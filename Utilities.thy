@@ -345,6 +345,16 @@ lemma max_le1 : "Ord(a) \<Longrightarrow> Ord(b) \<Longrightarrow> a \<le> a \<u
 lemma max_le2 : "Ord(a) \<Longrightarrow> Ord(b) \<Longrightarrow> b \<le> a \<union> b" 
   using le_Un_iff le_refl by auto
 
+lemma Ord_un_eq1 : "Ord(a) \<Longrightarrow> Ord(b) \<Longrightarrow> b \<le> a \<Longrightarrow> a \<union> b = a"
+  apply(rule leE) 
+    apply simp
+   apply(subst Ord_Un_if) 
+  by simp_all
+
+lemma Ord_un_eq2 : "Ord(a) \<Longrightarrow> Ord(b) \<Longrightarrow> a \<le> b \<Longrightarrow> a \<union> b = b"
+  apply(subst Un_commute)
+  apply(rule Ord_un_eq1) 
+  by auto
 
 lemma final_app_notation : 
   fixes l assumes lin : "l \<in> list(A)" and lnotnil : "l \<noteq> []"
@@ -429,5 +439,8 @@ qed
 
 lemma nat_in_nat : "n \<in> nat \<Longrightarrow> m \<in> n \<Longrightarrow> m \<in> nat"
   by(rule lt_nat_in_nat, rule ltI, simp_all)
+
+
+
 
 end 

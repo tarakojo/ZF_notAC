@@ -1,10 +1,10 @@
 theory Namification
   imports 
     P_Names
-    Automorphism
+    Automorphism_Theorems
 begin 
 
-context forcing_data_separative
+context forcing_data
 begin 
 
 
