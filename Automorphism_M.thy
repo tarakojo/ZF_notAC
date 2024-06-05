@@ -49,29 +49,53 @@ lemma is_P_auto_fm_sats_iff :
   apply(rule_tac Q="bijection(##M, P, P, \<pi>) \<and> (\<forall>p \<in> M. \<forall>q \<in> M. \<forall>p_q \<in> M. \<forall>\<pi>p \<in> M. \<forall>\<pi>q \<in> M. \<forall>\<pi>p_\<pi>q \<in> M. 
         p \<in> P \<longrightarrow> q \<in> P \<longrightarrow> fun_apply(##M, \<pi>, p, \<pi>p) \<longrightarrow> fun_apply(##M, \<pi>, q, \<pi>q) \<longrightarrow>
         pair(##M, p, q, p_q) \<longrightarrow> pair(##M, \<pi>p, \<pi>q, \<pi>p_\<pi>q) \<longrightarrow> (p_q \<in> leq  \<longleftrightarrow> \<pi>p_\<pi>q \<in> leq))" in iff_trans) 
-  apply(rule iff_flip) unfolding is_P_auto_fm_def apply(rule_tac is_P_auto_fm_auto) 
-  using P_in_M leq_in_M apply simp_all apply(rule_tac iffI) apply clarify 
+   apply(rule iff_flip) 
+  unfolding is_P_auto_fm_def 
+   apply(rule_tac is_P_auto_fm_auto) 
+  using P_in_M leq_in_M 
+      apply simp_all 
+  apply(rule_tac iffI) 
+   apply clarify 
   apply(rename_tac p q)
-  apply(rule_tac P="\<pi> ` p \<in> M" in mp) apply(rule_tac P="\<pi> ` q \<in> M" in mp) apply clarify 
-  using pair_in_M_iff P_in_M transM apply auto using apply_closed by auto
+   apply(rule_tac P="\<pi> ` p \<in> M" in mp) 
+    apply(rule_tac P="\<pi> ` q \<in> M" in mp) 
+     apply clarify 
+  using pair_in_M_iff P_in_M transM 
+     apply auto 
+  using apply_closed 
+  by auto
 
 lemma P_auto_in_M : "P_auto \<in> M" 
 proof - 
   have "separation(##M, \<lambda>\<pi>. sats(M, is_P_auto_fm, [\<pi>]@[P, leq]))" 
-    apply(rule_tac separation_ax) unfolding is_P_auto_fm_def
-    using P_in_M leq_in_M apply simp_all 
+    apply(rule_tac separation_ax) 
+    unfolding is_P_auto_fm_def
+    using P_in_M leq_in_M 
+      apply simp_all 
     unfolding bijection_fm_def injection_fm_def surjection_fm_def 
     by (simp del:FOL_sats_iff pair_abs add: fm_defs nat_simp_union)  
   then have "separation(##M, \<lambda>\<pi>. is_P_auto(\<pi>))"
     apply(rule_tac P="separation(##M, \<lambda>\<pi>. sats(M, is_P_auto_fm, [\<pi>]@[P, leq]))" in iffD1)
-    apply(rule_tac separation_cong) using is_P_auto_fm_sats_iff by auto
+     apply(rule_tac separation_cong) 
+    using is_P_auto_fm_sats_iff 
+    by auto
   then have "{ \<pi> \<in> Pow(P \<times> P) \<inter> M. is_P_auto(\<pi>) } \<in> M" 
-    apply(rule_tac separation_notation) apply simp 
-    apply(rule_tac M_powerset) using P_in_M cartprod_closed by auto 
+    apply(rule_tac separation_notation) 
+     apply simp 
+    apply(rule_tac M_powerset) 
+    using P_in_M cartprod_closed 
+    by auto 
   then show "P_auto \<in> M" 
     apply(rule_tac b=P_auto and a = "{ \<pi> \<in> Pow(P \<times> P) \<inter> M. is_P_auto(\<pi>) } " in ssubst) 
-    apply(rule equality_iffI; rule iffI) unfolding P_auto_def apply auto 
-    using Pi_iff apply force using P_auto_type apply auto unfolding is_P_auto_def by auto
+     apply(rule equality_iffI; rule iffI) 
+    unfolding P_auto_def 
+      apply auto 
+    using Pi_iff 
+      apply force 
+    using P_auto_type 
+     apply auto 
+    unfolding is_P_auto_def 
+    by auto
 qed
 
 definition HPn_auto_M_cond where 
@@ -97,8 +121,7 @@ lemma HPn_auto_M_cond_iff :
         <y, p> \<in> x \<and> 
         function(pi)
      )"
-  apply (rule iffI)
-proof -
+proof (rule iffI)
   assume "HPn_auto_M_cond(x_pi, g, elem)"
   and inM : "x_pi \<in> M" "g \<in> M" "elem \<in> M"
   then obtain g_app_y_pi pi_app_p y_p y_pi y p x pi where 
@@ -182,8 +205,10 @@ proof (clarify)
 
    have P1: "g`<y, pi> \<in> MVset(succ(rank(g)))" 
      apply (rule_tac P="\<lambda>x. x \<in> MVset(succ(rank(g)))" and F=g and x="<y, pi>" in in_dom_or_not)
-     using gfun apply simp 
-     using zero_in_MVset Ord_rank apply simp 
+     using gfun 
+       apply simp 
+     using zero_in_MVset Ord_rank 
+      apply simp 
    proof - 
      assume assm : "\<langle>y, pi\<rangle> \<in> domain(g)" 
      then obtain w where wh : "<<y, pi>, w> \<in> g" by auto 
@@ -193,16 +218,21 @@ proof (clarify)
      then have "g`<y,pi> \<in> M" using winM by auto
      then show "g`<y, pi> \<in> MVset(succ(rank(g)))" 
        apply (rule_tac MVsetI; simp) 
-       apply (rule lt_succ_lt) using Ord_rank apply simp 
+       apply (rule lt_succ_lt) 
+       using Ord_rank 
+        apply simp 
        apply (rule_tac j="rank(<<y, pi>, w>)" in lt_trans)
-       using weq rank_pair2 apply simp
+       using weq rank_pair2 
+        apply simp
        using wh rank_lt by simp
    qed
 
    have "pi ` p \<in> MVset(succ(rank(x_pi)))" 
      apply (rule_tac P="\<lambda>x. x \<in> MVset(succ(rank(x_pi)))" in in_dom_or_not) 
-     using H apply simp
-     using zero_in_MVset Ord_rank apply simp 
+     using H 
+       apply simp
+     using zero_in_MVset Ord_rank
+      apply simp 
    proof - 
      assume "p \<in> domain(pi)" 
      then obtain w where wh : "<p, w> \<in> pi" by auto 
@@ -211,15 +241,21 @@ proof (clarify)
      then have "w \<in> M" using pair_in_M_iff by auto 
      then show "pi ` p \<in> MVset(succ(rank(x_pi)))"
        apply (rule_tac MVsetI)
-       using weq apply simp
-       apply (rule_tac lt_succ_lt) using Ord_rank apply simp
+       using weq 
+        apply simp
+       apply (rule_tac lt_succ_lt) 
+       using Ord_rank 
+        apply simp
        apply (rule_tac j="rank(pi)" in lt_trans) 
        apply (rule_tac P="\<lambda>x. rank(x) < rank(pi)" and a=w in ssubst)
-       using weq apply simp
+       using weq 
+         apply simp
        apply (rule_tac j="rank(<p, w>)" in lt_trans)
        apply (rule_tac rank_pair2)
-       using rank_lt wh apply simp 
-       using H rank_pair2 by auto
+       using rank_lt wh 
+        apply simp 
+       using H rank_pair2 
+       by auto
    qed
 
    then show "elem \<in> MVset(succ(rank(g))) \<times> MVset(succ(rank(x_pi)))"
@@ -230,9 +266,11 @@ proof (clarify)
      apply (rule_tac cartprod_closed)
      apply simp_all 
      apply (rule_tac MVset_in_M) 
-     using rank_closed Ord_rank succ_in_MI Ord_succ apply simp_all
+     using rank_closed Ord_rank succ_in_MI Ord_succ 
+       apply simp_all
      apply (rule_tac MVset_in_M) 
-     using rank_closed Ord_rank succ_in_MI Ord_succ apply simp_all
+     using rank_closed Ord_rank succ_in_MI Ord_succ 
+      apply simp_all
      done
    then show "(MVset(succ(rank(g))) \<times> MVset(succ(rank(x_pi)))) \<in> M" by auto
  qed
@@ -306,7 +344,8 @@ lemma HPn_auto_M_fm_sats_iff :
   "elem \<in> M \<Longrightarrow> x_pi \<in> M \<Longrightarrow> g \<in> M \<Longrightarrow> 
   sats(M, HPn_auto_M_fm, [elem, x_pi, g]) \<longleftrightarrow> HPn_auto_M_cond(x_pi, g, elem)" 
   apply (rule iff_flip) 
-  unfolding HPn_auto_M_fm_def apply (rule_tac HPn_auto_M_fm_auto)
+  unfolding HPn_auto_M_fm_def 
+  apply (rule_tac HPn_auto_M_fm_auto)
   by auto
 
 lemma HPn_auto_M_fm'_sats_iff : 
@@ -314,8 +353,12 @@ lemma HPn_auto_M_fm'_sats_iff :
   sats(M, HPn_auto_M_fm', [z, g, x_pi] @ env) \<longleftrightarrow> z = HPn_auto_M(x_pi, g)" 
   apply (rule_tac Q="\<forall>elem \<in> M. elem \<in> z \<longleftrightarrow> HPn_auto_M_cond(x_pi, g, elem)" in iff_trans) 
   apply (rule iff_flip) 
-  unfolding HPn_auto_M_fm'_def apply (rule_tac HPn_auto_M_fm'_auto)
-  apply simp_all unfolding HPn_auto_M_def using transM by auto
+  unfolding HPn_auto_M_fm'_def 
+   apply (rule_tac HPn_auto_M_fm'_auto)
+      apply simp_all 
+  unfolding HPn_auto_M_def 
+  using transM 
+  by auto
 
 lemma HPn_auto_M_in_M : 
   "\<And>x_pi g. x_pi \<in> M \<Longrightarrow> g \<in> M \<Longrightarrow> function(g) \<Longrightarrow> HPn_auto_M(x_pi, g) \<in> M" 
@@ -333,16 +376,23 @@ proof -
     apply (rule_tac separation_ax) 
     apply (simp add : HPn_auto_M_fm_def) 
     apply (simp add : assms) 
-    unfolding HPn_auto_M_fm_def apply (simp del:FOL_sats_iff pair_abs add: fm_defs nat_simp_union) 
+    unfolding HPn_auto_M_fm_def 
+    apply (simp del:FOL_sats_iff pair_abs add: fm_defs nat_simp_union) 
     done 
   then have sinM : "S \<in> M" 
-    unfolding S_def apply (rule_tac separation_notation) using Ah by auto
+    unfolding S_def 
+    apply (rule_tac separation_notation) 
+    using Ah 
+    by auto
   
   have "S = { elem \<in> A. HPn_auto_M_cond(x_pi, g, elem) }" 
-    using HPn_auto_M_fm_sats_iff assms Ah transM Ah unfolding S_def by simp 
+    using HPn_auto_M_fm_sats_iff assms Ah transM Ah 
+    unfolding S_def 
+    by simp 
   also have "... = {  elem \<in> M. HPn_auto_M_cond(x_pi, g, elem) }" 
     apply (rule equality_iffI; rule iffI)
-    using transM Ah by auto 
+    using transM Ah 
+    by auto 
   also have "... = HPn_auto_M(x_pi, g)" 
     unfolding HPn_auto_M_def by simp 
   finally have "S = HPn_auto_M(x_pi, g)"  by simp
@@ -351,130 +401,204 @@ proof -
     using sinM by simp 
 qed
 
-definition Pn_auto_M where "Pn_auto_M(a) \<equiv> { <x_pi, wftrec(prel(edrel(MVset(a))^+, P_auto), x_pi, HPn_auto_M)> . x_pi \<in> MVset(a) \<times> P_auto }" 
-
-lemma Pn_auto_M_in_M : "Ord(a) \<Longrightarrow> a \<in> M \<Longrightarrow> Pn_auto_M(a) \<in> M"
-  unfolding Pn_auto_M_def apply(rule_tac p=HPn_auto_M_fm' in recfun_in_M) apply(rule_tac prel_closed) apply(rule_tac to_rin) 
-  apply(rule_tac trancl_closed) apply simp apply(rule_tac edrel_closed) 
-  unfolding Transset_def using MVset_trans apply blast apply(rule_tac MVset_in_M) apply simp apply simp 
-  using P_auto_in_M apply simp apply(rule_tac wf_prel; rule_tac wf_trancl; rule_tac wf_edrel) 
-  apply(rule_tac prel_trans; rule_tac trans_trancl) using MVset_in_M P_auto_in_M cartprod_closed apply simp 
-  apply(simp add: HPn_auto_M_fm'_def) apply (simp add: HPn_auto_M_fm'_def)
-  apply (simp del:FOL_sats_iff pair_abs add: fm_defs nat_simp_union) apply(rule iff_flip) apply(rule_tac HPn_auto_M_fm'_sats_iff)
-  apply simp_all apply(rule_tac HPn_auto_M_in_M) by auto 
-
-
-lemma Pn_auto_M: 
-  "a \<in> M \<Longrightarrow> Ord(a) \<Longrightarrow> \<pi> \<in> P_auto \<Longrightarrow> x \<in> P_names \<inter> MVset(a) \<Longrightarrow>
-   Pn_auto_M(a)`<x, \<pi>> = { <Pn_auto_M(a)`<y, \<pi>>, \<pi>`p>. <y, p> \<in> x }"   
+lemma HPn_auto_M_eq :  "\<And>h g x \<pi>. \<pi> \<in> P_auto \<Longrightarrow> h \<in> eclose(x) \<rightarrow> M \<Longrightarrow> g \<in> eclose(x) \<times> {\<pi>} \<rightarrow> M \<Longrightarrow> g \<in> M  
+               \<Longrightarrow> x \<in> M \<Longrightarrow> (\<And>y. y \<in> eclose(x) \<Longrightarrow> h`y = g`<y, \<pi>>) \<Longrightarrow> HPn_auto(\<pi>, x, h) = HPn_auto_M(<x, \<pi>>, g)"
 proof - 
-  assume assms : "a \<in> M" "Ord(a)" "\<pi> \<in> P_auto" "x \<in> P_names \<inter> MVset(a)"
+  fix h g x \<pi>
+  assume assms1 : "x \<in> M" "\<pi> \<in> P_auto" "h \<in> eclose(x) \<rightarrow> M" "g \<in> eclose(x) \<times> {\<pi>} \<rightarrow> M" "g \<in> M" 
+    "(\<And>y. y \<in> eclose(x) \<Longrightarrow> h ` y = g ` \<langle>y, \<pi>\<rangle>)"
 
-  define R where "R \<equiv> prel(edrel(MVset(a))^+, P_auto)" 
-  have wfR : "wf(R)" 
-    unfolding R_def apply(rule_tac wf_prel; rule_tac wf_trancl; rule_tac wf_edrel) done 
-  have transR : "trans(R)" 
-    unfolding R_def apply(rule_tac prel_trans) using trans_trancl by auto
+  have piinM : "\<pi> \<in> M" 
+    using pair_in_M_iff assms1 P_auto_def is_P_auto_def 
+    by auto  
 
-  have inM: "x \<in> M \<and> \<pi> \<in> M" 
-    using assms unfolding P_auto_def is_P_auto_def P_names_def by simp 
+  have "HPn_auto_M(<x, \<pi>>, g) \<in> M" 
+    apply(rule HPn_auto_M_in_M)
+    using assms1 pair_in_M_iff P_auto_def is_P_auto_def Pi_def
+    by auto
 
-  have recfuninM : "the_recfun(R, \<langle>x, \<pi>\<rangle>, HPn_auto_M) \<in> M" 
-    apply(rule_tac p=HPn_auto_M_fm' in the_recfun_in_M) using wfR apply simp using transR apply simp 
-    unfolding R_def apply(rule_tac prel_closed; rule_tac to_rin) apply(rule_tac trancl_closed) apply simp apply(rule_tac edrel_closed) 
-    unfolding Transset_def using MVset_trans assms apply blast using MVset_in_M assms apply simp
-    using P_auto_in_M apply simp  apply(simp add: HPn_auto_M_fm'_def) apply (simp add: HPn_auto_M_fm'_def)
-    apply (simp del:FOL_sats_iff pair_abs add: fm_defs nat_simp_union) using pair_in_M_iff inM apply simp  
-    using assms P_names_in_M unfolding P_auto_def is_P_auto_def apply simp 
-    using HPn_auto_M_in_M apply simp apply (rule iff_flip) apply(rule_tac HPn_auto_M_fm'_sats_iff) by auto 
+  show "HPn_auto(\<pi>, x, h) = HPn_auto_M(<x, \<pi>>, g)" 
+  proof(rule equality_iffI, rule iffI)
+    fix u assume "u \<in> HPn_auto(\<pi>, x, h)" 
+    then obtain y p where ueq : "u = <h`y, \<pi>`p>" and ypin : "<y, p> \<in> x" unfolding HPn_auto_def by auto
+    have "y \<in> eclose(x)" 
+      apply(rule domain_elem_in_eclose) 
+      using ypin 
+      by auto
+    then have hyeq : "h`y = g`<y, \<pi>>" using assms1 by auto
 
-  have H : "\<And>y p. <y, p> \<in> x \<Longrightarrow> Pn_auto_M(a)`<y, \<pi>> = the_recfun(R, \<langle>x, \<pi>\<rangle>, HPn_auto_M) ` \<langle>y, \<pi>\<rangle>" 
-  proof - 
-    fix y p assume assm1: "<y, p> \<in> x" 
+    have yinM : "y \<in> M"
+      apply(rule_tac x=x in domain_elem_in_M)
+      using assms1 ypin 
+      by auto
 
-    have yin : "y \<in> MVset(a)" using MVset_domain assm1 assms by auto
+    have pinM : "p \<in> M" 
+      apply(rule to_rin, rule_tac x="range(x)" in transM)
+      using assms1 ypin range_closed 
+      by auto
 
-    have rel : "<<y, \<pi>>, <x, \<pi>>> \<in> R" 
-      unfolding R_def apply(rule_tac prelI) apply(rule_tac r_into_trancl) unfolding edrel_def Rrel_def ed_def using assms assm1 yin apply auto done 
+    have uinM : "u \<in> M" 
+      apply(subst ueq)
+      apply(subst hyeq)
+      apply(rule to_rin, rule iffD2, rule pair_in_M_iff)
+      apply(rule conjI, rule apply_closed)
+      using assms1 pair_in_M_iff yinM piinM 
+        apply auto[2]
+      apply(rule apply_closed)
+      using piinM pinM
+      by auto
 
-    have "the_recfun(R, \<langle>x, \<pi>\<rangle>, HPn_auto_M) ` \<langle>y, \<pi>\<rangle> = (\<lambda>v\<in>R -`` {<x, \<pi>>}. HPn_auto_M(v, restrict(the_recfun(R, \<langle>x, \<pi>\<rangle>, HPn_auto_M), R -`` {v}))) ` <y, \<pi>>" 
-      apply(rule_tac P="is_recfun(R, <x, \<pi>>, HPn_auto_M, the_recfun(R, \<langle>x, \<pi>\<rangle>, HPn_auto_M))" in mp) 
-      apply(simp add:is_recfun_def) apply(rule_tac unfold_the_recfun) using wfR transR by auto 
-    also have "... = HPn_auto_M(<y, \<pi>>, restrict(the_recfun(R, \<langle>x, \<pi>\<rangle>, HPn_auto_M), R -`` {<y, \<pi>>}))" 
-      apply(rule_tac P="<y, \<pi>> \<in> R -`` {<x, \<pi>>}" in mp) apply simp apply(rule_tac b="<x, \<pi>>" in vimageI) using rel by auto
-    also have "... = HPn_auto_M(<y, \<pi>>, the_recfun(R, <y, \<pi>>, HPn_auto_M))" 
-      apply(rule_tac b="restrict(the_recfun(R, \<langle>x, \<pi>\<rangle>, HPn_auto_M), R -`` {<y, \<pi>>})" and a="the_recfun(R, <y, \<pi>>, HPn_auto_M)" in ssubst) 
-      apply(rule_tac the_recfun_cut) using wfR transR rel apply simp_all done 
-    also have "... = Pn_auto_M(a)`<y, \<pi>>" 
-      unfolding R_def apply(rule eq_flip) 
-      apply(rule_tac function_apply_equality) using assms unfolding Pn_auto_M_def function_def apply auto unfolding wftrec_def using yin by simp_all
-    finally show "Pn_auto_M(a) ` \<langle>y, \<pi>\<rangle> = the_recfun(R, \<langle>x, \<pi>\<rangle>, HPn_auto_M) ` \<langle>y, \<pi>\<rangle>" by simp
+    have "HPn_auto_M_cond(<x, \<pi>>, g, <h`y, \<pi>`p>)" 
+      apply(rule iffD2, rule HPn_auto_M_cond_iff)
+      using assms1 piinM pair_in_M_iff 
+         apply auto[2]
+       apply(rule to_rin, rule iffD2, rule pair_in_M_iff, rule conjI, subst hyeq)
+        apply(rule apply_closed)
+      using assms1 yinM piinM pair_in_M_iff 
+         apply auto[2]
+       apply(rule apply_closed)
+      using piinM pinM 
+        apply auto[2]
+      apply(rule_tac x=y in bexI, rule_tac x=p in bexI, rule_tac x=x in bexI, rule_tac x=\<pi> in bexI)
+          apply(subst hyeq)
+      using ypin
+          apply simp
+      using assms1 piinM yinM pinM
+      unfolding P_auto_def Pi_def 
+      by auto
+
+    then show "u \<in> HPn_auto_M(<x, \<pi>>, g)"
+      unfolding HPn_auto_M_def 
+      using ueq uinM 
+      by auto
+  next 
+    fix u assume "u \<in> HPn_auto_M(\<langle>x, \<pi>\<rangle>, g)" 
+    then have uH: "u \<in> M" "HPn_auto_M_cond(<x, \<pi>>, g, u)" unfolding HPn_auto_M_def by auto 
+    have "(\<exists>y \<in> M. \<exists>p \<in> M. \<exists>xx \<in> M. \<exists>pi \<in> M. 
+      <x, \<pi>> = <xx, pi> \<and>
+      u = <g`<y,pi>, pi`p> \<and> 
+      <y, p> \<in> xx \<and> 
+      function(pi)
+    )" 
+      apply(rule iffD1, rule_tac HPn_auto_M_cond_iff)
+      using pair_in_M_iff assms1 piinM uH
+      by auto
+    then obtain y p where ueq : "u = <g`<y, \<pi>>, \<pi>`p>" and ypin : "<y, p> \<in> x" by auto 
+    then show "u \<in> HPn_auto(\<pi>, x, h)" 
+      unfolding HPn_auto_def
+      apply simp
+      apply(rule_tac x="<y, p>" in bexI)
+       apply(subgoal_tac "y \<in> eclose(x)")
+      using assms1 
+        apply force
+       apply(rule domain_elem_in_eclose)
+      by auto
   qed
-
-  have "Pn_auto_M(a)`<x, \<pi>> = { elem \<in> M. HPn_auto_M_cond(<x, \<pi>>, the_recfun(R, <x, \<pi>>, HPn_auto_M), elem) }"  
-    apply(rule_tac function_apply_equality) unfolding Pn_auto_M_def R_def function_def wftrec_def HPn_auto_M_def using assms by auto
-  also have "... = { elem \<in> M. (\<exists>y \<in> M. \<exists>p \<in> M. \<exists>xx \<in> M. \<exists>pi \<in> M. 
-                                <x, \<pi>> = <xx, pi> \<and> elem = <the_recfun(R, <x, \<pi>>, HPn_auto_M)`<y,pi>, pi`p> \<and>  <y, p> \<in> xx \<and> function(pi)) }"
-    apply(rule_tac iff_eq) apply(rule_tac HPn_auto_M_cond_iff) using pair_in_M_iff inM apply simp using recfuninM by auto
-  also have "... = { elem \<in> M. (\<exists>y \<in> M. \<exists>p \<in> M. elem = <the_recfun(R, <x, \<pi>>, HPn_auto_M)`<y,\<pi>>, \<pi>`p> \<and>  <y, p> \<in> x) }" 
-    apply(rule_tac P="function(\<pi>)" in mp) apply clarify
-    apply(rule_tac iff_eq) using assms inM apply auto
-    using assms unfolding P_auto_def is_P_auto_def Pi_def apply auto done 
-  also have "... = { <the_recfun(R, <x, \<pi>>, HPn_auto_M)`<y,\<pi>>, \<pi>`p> .  <y, p> \<in> x }"
-    apply(rule equality_iffI; rule iffI) apply force
-  proof - 
-    fix v assume assm1: "v \<in> {\<langle>the_recfun(R, \<langle>x, \<pi>\<rangle>, HPn_auto_M) ` \<langle>y, \<pi>\<rangle>, \<pi> ` p\<rangle> . \<langle>y,p\<rangle> \<in> x}"
-    then obtain y p where ypH: "v = \<langle>the_recfun(R, \<langle>x, \<pi>\<rangle>, HPn_auto_M) ` \<langle>y, \<pi>\<rangle>, \<pi> ` p\<rangle>" "<y, p> \<in> x"
-      using relation_P_name assms unfolding relation_def by force 
-    then show "v \<in> {v \<in> M . \<exists>y\<in>M. \<exists>p\<in>M. v = \<langle>the_recfun(R, \<langle>x, \<pi>\<rangle>, HPn_auto_M) ` \<langle>y, \<pi>\<rangle>, \<pi> ` p\<rangle> \<and> \<langle>y, p\<rangle> \<in> x}" 
-      apply auto using pair_in_M_iff apply auto apply(rule_tac to_rin; rule_tac apply_closed) 
-      using recfuninM apply simp apply auto apply(rule_tac x=x in domain_elem_in_M) using assms P_names_in_M apply simp apply simp
-      using assms unfolding P_auto_def is_P_auto_def apply simp 
-      apply(rule_tac P="\<pi>`p \<in> P" in mp) using transM P_in_M apply simp apply(rule_tac P_auto_value) 
-      using assms unfolding P_auto_def apply simp apply(rule_tac x=x in P_name_range) using assms apply simp_all 
-      apply(rule_tac x=y in bexI) apply simp apply(rule_tac x=p in bexI) 
-      using inM pair_in_M_iff transM by auto
-  qed
-  also have "... = { <Pn_auto_M(a)`<y, \<pi>>, \<pi>`p>. <y, p> \<in> x }"   
-    apply(rule_tac pair_rel_eq) using assms relation_P_name apply simp apply clarify 
-    using H by auto 
-  finally show "Pn_auto_M(a) ` \<langle>x, \<pi>\<rangle> = {\<langle>Pn_auto_M(a) ` \<langle>y, \<pi>\<rangle>, \<pi> ` p\<rangle> . \<langle>y,p\<rangle> \<in> x} " by auto 
 qed
 
-lemma Pn_auto_M_eq : 
-  "a \<in> M \<Longrightarrow> Ord(a) \<Longrightarrow> \<pi> \<in> P_auto \<Longrightarrow> x \<in> MVset(a) \<inter> P_names \<Longrightarrow> Pn_auto_M(a)`<x, \<pi>> = Pn_auto(\<pi>)`x" 
-  apply(rule_tac P=" x \<in> MVset(a) \<inter> P_names \<longrightarrow> Pn_auto_M(a)`<x, \<pi>> = Pn_auto(\<pi>)`x" in mp) apply simp
-  apply(rule_tac Q="\<lambda>x. x \<in> MVset(a) \<inter> P_names \<longrightarrow> Pn_auto_M(a)`<x, \<pi>> = Pn_auto(\<pi>)`x" in ed_induction) 
-proof (clarify)
-  fix x assume assms: "a \<in> M" "Ord(a)" "\<pi> \<in> P_auto" "\<And>y. ed(y, x) \<Longrightarrow> y \<in> MVset(a) \<inter> P_names \<longrightarrow> Pn_auto_M(a) ` \<langle>y, \<pi>\<rangle> = Pn_auto(\<pi>) ` y" "x \<in> MVset(a)" "x \<in> P_names" 
-  have "Pn_auto_M(a) ` \<langle>x, \<pi>\<rangle> = { <Pn_auto_M(a)`<y, \<pi>>, \<pi>`p>. <y, p> \<in> x }"   
-    apply(rule_tac Pn_auto_M) using assms by auto 
-  also have "... = { <Pn_auto(\<pi>) `y, \<pi>`p>. <y, p> \<in> x }"   
-    apply(rule_tac pair_rel_eq) using assms relation_P_name apply simp apply clarify 
-    apply(rule_tac P="ed(y, x) \<and> y \<in> MVset(a) \<inter> P_names" in mp) using assms apply simp 
-    unfolding ed_def using assms P_name_domain_P_name MVset_domain apply auto done
-  also have "... = Pn_auto(\<pi>)`x" 
-    using Pn_auto assms by auto 
-  finally show "Pn_auto_M(a) ` \<langle>x, \<pi>\<rangle> = Pn_auto(\<pi>) ` x" by auto 
+definition is_Pn_auto_fm where "is_Pn_auto_fm(p, pi, x, v) \<equiv> And(is_P_name_fm(p, x), is_memrel_wftrec_fm(HPn_auto_M_fm', x, pi, v))" 
+
+lemma is_Pn_auto_fm_type : 
+  fixes p pi x v 
+  assumes "p \<in> nat" "pi \<in> nat" "x \<in> nat" "v \<in> nat" 
+  shows "is_Pn_auto_fm(p, pi, x, v) \<in> formula" 
+  unfolding is_Pn_auto_fm_def 
+  apply(rule And_type, rule is_P_name_fm_type, simp add:assms, simp add:assms)
+  apply(rule is_memrel_wftrec_fm_type) 
+  unfolding HPn_auto_M_fm'_def 
+  using assms
+  by auto
+
+lemma arity_is_Pn_auto_fm : 
+  fixes p pi x v 
+  assumes "p \<in> nat" "pi \<in> nat" "x \<in> nat" "v \<in> nat" 
+  shows "arity(is_Pn_auto_fm(p, pi, x, v)) \<le> succ(p) \<union> succ(pi) \<union> succ(x) \<union> succ(v)"
+
+  unfolding is_Pn_auto_fm_def 
+  apply simp
+  apply(rule Un_least_lt, rule le_trans, rule arity_is_P_name_fm)
+  using assms 
+     apply auto[2]
+   apply(rule Un_least_lt, simp, rule ltI, simp, simp add:assms)
+   apply(simp, rule ltI, simp, simp add:assms)
+  apply(rule le_trans, rule arity_is_memrel_wftrec_fm)
+  unfolding HPn_auto_M_fm'_def
+  using assms 
+       apply simp
+      apply (simp del:FOL_sats_iff pair_abs add: fm_defs nat_simp_union)
+  using assms 
+     apply auto[3]
+  apply(rule Un_least_lt)+
+    apply(simp, rule ltI, simp, simp add:assms)+
+  done
+
+lemma sats_is_Pn_auto_fm_iff :
+  fixes x \<pi> v env i j k l
+  assumes "i < length(env)" "j < length(env)" "k < length(env)" "l < length(env)" 
+          "nth(i, env) = P" "nth(j, env) = \<pi>" "nth(k, env) = x" "nth(l, env) = v" 
+          "env \<in> list(M)" "\<pi> \<in> P_auto" 
+  shows "sats(M, is_Pn_auto_fm(i, j, k, l), env) \<longleftrightarrow> x \<in> P_names \<and> v = Pn_auto(\<pi>)`x" 
+proof - 
+
+  have piinM : "\<pi> \<in> M" 
+    using pair_in_M_iff assms P_auto_def is_P_auto_def 
+    by auto  
+
+  have "sats(M, is_Pn_auto_fm(i, j, k, l), env) \<longleftrightarrow> x \<in> P_names \<and> v = wftrec(Memrel(M)^+, x, HPn_auto(\<pi>))"
+    unfolding is_Pn_auto_fm_def 
+    apply(rule iff_trans, rule sats_And_iff, simp add:assms, rule iff_conjI)
+     apply(rule sats_is_P_name_fm_iff)
+    using assms 
+         apply auto[5]
+    apply(rule_tac a=\<pi> and G=HPn_auto_M in sats_is_memrel_wftrec_fm_iff)
+    using assms P_auto_in_M
+                  apply auto[10]
+        apply(simp add:HPn_auto_M_fm'_def)+
+    apply(subst arity_pair_fm, simp_all)+
+    apply(subst arity_function_fm, simp_all)
+    apply(subst arity_fun_apply_fm, simp_all)+
+       apply (simp del:FOL_sats_iff pair_abs add: fm_defs nat_simp_union) 
+      apply(rule HPn_auto_M_in_M)
+        apply auto[3]
+     apply(rule HPn_auto_M_eq)
+    using assms
+            apply auto[6]
+    apply(rule iff_trans, rule iff_flip)
+     apply(rule HPn_auto_M_fm'_sats_iff)
+    by auto
+  also have "... \<longleftrightarrow> x \<in> P_names \<and> v = Pn_auto(\<pi>)`x" 
+    apply(rule iff_conjI2, simp)
+    unfolding Pn_auto_def 
+    apply(subst function_apply_equality)
+    unfolding function_def
+    by auto 
+  finally show ?thesis by simp
 qed
 
 lemma Pn_auto_value_in_M : 
   "\<And>x. is_P_auto(\<pi>) \<Longrightarrow> x \<in> P_names \<Longrightarrow> Pn_auto(\<pi>)`x \<in> M" 
-proof - 
-  fix x assume assms : "is_P_auto(\<pi>)" "x \<in> P_names"
-  have "x \<in> MVset(succ(rank(x)))"
-    apply(rule_tac MVset_succ_rank_in) using P_names_in_M assms by auto 
-  then have "x \<in> MVset(succ(rank(x))) \<inter> P_names" using assms by auto 
-  then have H : "Pn_auto_M(succ(rank(x)))`<x, \<pi>> \<in> M" 
-    apply(rule_tac to_rin; rule_tac apply_closed) apply simp apply(rule_tac Pn_auto_M_in_M) using Ord_rank apply simp 
-    using succ_in_MI rank_closed assms P_names_in_M apply auto 
-    using P_names_in_M pair_in_M_iff unfolding is_P_auto_def by auto
-  then have "Pn_auto_M(succ(rank(x)))`<x, \<pi>> = Pn_auto(\<pi>) ` x " 
-    apply(rule_tac Pn_auto_M_eq) using succ_in_MI rank_closed assms P_names_in_M unfolding P_auto_def apply auto 
-    using P_auto_type apply simp apply(rule_tac MVsetI) using P_names_in_M le_refl by auto 
-  then show "Pn_auto(\<pi>) ` x \<in> M" using H by auto
-qed
 
+  apply(rename_tac x, rule_tac b="Pn_auto(\<pi>)`x" and a="wftrec(Memrel(M)^+, x, HPn_auto(\<pi>))" in ssubst)
+   apply(rule function_apply_equality)
+    apply(simp add:Pn_auto_def)
+   apply(simp add:Pn_auto_def function_def)
+  apply(rule_tac G=HPn_auto_M and Gfm = HPn_auto_M_fm' and a=\<pi> in memrel_wftrec_in_M)
+  using P_name_in_M is_P_auto_def 
+        apply auto[2]
+      apply(simp add:HPn_auto_M_fm'_def)+
+     apply(subst arity_pair_fm, simp_all)+
+     apply(subst arity_function_fm, simp_all)
+     apply(subst arity_fun_apply_fm, simp_all)+
+     apply (simp del:FOL_sats_iff pair_abs add: fm_defs nat_simp_union) 
+    apply(rule HPn_auto_M_in_M)
+      apply auto[3]
+   apply(rule HPn_auto_M_eq)
+           apply(simp add:P_auto_def)
+  unfolding is_P_auto_def bij_def inj_def 
+  apply auto[6]
+  apply(rule iff_trans, rule iff_flip, rule HPn_auto_M_fm'_sats_iff)
+      apply auto
+  done
 
 end
 end

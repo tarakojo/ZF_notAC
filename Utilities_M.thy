@@ -157,11 +157,20 @@ proof -
     using Ord_rank Ord_0_le by auto
   then show ?thesis unfolding MVset_def using zero_in_M by auto
 qed
-      
-lemma domain_elem_in_M : "x \<in> M \<Longrightarrow> <y, p> \<in> x \<Longrightarrow> y \<in> M" 
+
+lemma MVset_pair : "Ord(a) \<Longrightarrow> <x, y> \<in> MVset(a) \<Longrightarrow> x \<in> MVset(a) \<and> y \<in> MVset(a)" 
+  unfolding MVset_def
+  using pair_in_M_iff
+  apply simp
+  apply(rule conjI, rule_tac j="rank(<x, y>)" in lt_trans, simp add:rank_pair1, simp)
+  apply(rule_tac j="rank(<x, y>)" in lt_trans, simp add:rank_pair2, simp)
+  done
+ 
+lemma domain_elem_in_M : "x \<in> M \<Longrightarrow> y \<in> domain(x) \<Longrightarrow> y \<in> M" 
 proof - 
-  assume assms : "x \<in> M" "<y, p> \<in> x" 
-  then have "<y, p> \<in> M" using  transM by auto 
+  assume assms : "x \<in> M" "y \<in> domain(x)"
+  then obtain p where "<y, p> \<in> x" by auto 
+  then have "<y, p> \<in> M" using assms transM by auto 
   then show "y \<in> M" using pair_in_M_iff by auto 
 qed
 
@@ -198,32 +207,6 @@ qed
 lemma id_closed : "\<And>A. A \<in> M \<Longrightarrow> id(A) \<in> M" 
   unfolding id_def lam_def using refl_rel_closed by auto 
 
-text\<open>
-  This proof is a modified copy of Names.thy 
-  by Emmanuel Gunther, Miguel Pagano, and Pedro Sánchez Terraf,
-  with only minor alterations.
-\<close>
-lemma aux_def_val_generalized:
-  assumes "z \<in> domain(x)"
-  shows "wfrec(edrel(eclose({x})),z,F) = wfrec(edrel(eclose({z})),z,F)"
-proof -
-  let ?r="\<lambda>x . edrel(eclose({x}))"
-  have "z\<in>eclose({z})" using arg_in_eclose_sing .
-  moreover
-  have "relation(?r(x))" using relation_edrel .
-  moreover
-  have "wf(?r(x))" using wf_edrel .
-  moreover from assms
-  have "tr_down(?r(x),z) \<subseteq> eclose({z})" using tr_edrel_subset by simp
-  ultimately
-  have "wfrec(?r(x),z,F) = wfrec[eclose({z})](?r(x),z,F)"
-    using wfrec_restr by simp
-  also from \<open>z\<in>domain(x)\<close>
-  have "... = wfrec(?r(z),z,F)"
-    using restrict_edrel_eq wfrec_restr_eq by simp
-  finally show ?thesis .
-qed
-
 lemma int_closed : 
   "A \<in> M \<Longrightarrow> B \<in> M \<Longrightarrow> A \<inter> B \<in> M" 
 proof - 
@@ -241,6 +224,7 @@ proof -
     using assms transM by auto 
   then show "A \<inter> B \<in> M" using H by auto
 qed
+
 
 end
 

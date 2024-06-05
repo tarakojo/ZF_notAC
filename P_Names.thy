@@ -107,7 +107,7 @@ qed
 lemma relation_P_name : "x \<in> P_names \<Longrightarrow> relation(x)" 
   using P_names_in unfolding relation_def by blast 
 
-lemma P_names_in_M : "x \<in> P_names \<Longrightarrow> x \<in> M" 
+lemma P_name_in_M : "x \<in> P_names \<Longrightarrow> x \<in> M" 
 proof - 
   assume "x \<in> P_names" 
   then obtain a where "Ord(a)" "x \<in> P_set(a)" unfolding P_names_def by auto 
@@ -274,6 +274,42 @@ proof -
   then show ?thesis   
     apply (rule_tac x=I in exI)
     using ilim by auto
+qed
+
+lemma P_name_iff : "x \<in> P_names \<longleftrightarrow> (x \<in> M \<and> x \<subseteq> P_names \<times> P)" 
+proof (rule iffI)
+  assume assm : "x \<in> P_names" 
+  then obtain a where aH: "Ord(a)" "x \<in> P_set(succ(a))" 
+    using P_names_in_P_set_succ 
+    by auto 
+  then have xsubset : "x \<subseteq> P_set(a) \<times> P" 
+    using P_set_succ 
+    by auto 
+  have "x \<subseteq> P_names \<times> P" 
+  proof (rule subsetI)
+    fix v assume "v \<in> x" 
+    then obtain y p where ypH : "v = <y, p>" "y \<in> P_set(a)" "p \<in> P" using xsubset by auto
+    then have "y \<in> P_names" using P_namesI aH by auto
+    then show "v \<in> P_names \<times> P" using ypH by auto
+  qed
+  then show "x \<in> M \<and> x \<subseteq> P_names \<times> P" using P_name_in_M assm by auto
+next 
+  assume assms : " x \<in> M \<and> x \<subseteq> P_names \<times> P " 
+  then have "domain(x) \<subseteq> P_names" by auto 
+  then obtain a where aH : "Limit(a)" "\<forall>y \<in> domain(x). y \<in> P_set(a)" 
+    using set_of_P_names_in_P_set by blast
+  have "x \<subseteq> P_set(a) \<times> P" 
+  proof (rule subsetI)
+    fix v assume vin : "v \<in> x" 
+    then obtain y p where ypH : "y \<in> P_names" "p \<in> P" "v = <y, p>" using assms by auto 
+    then have "y \<in> P_set(a)" using vin ypH aH by auto 
+    then show "v \<in> P_set(a) \<times> P" using ypH vin by auto
+  qed
+  then have "x \<in> P_set(succ(a))" using P_set_succ assms by auto
+  then show "x \<in> P_names" 
+    apply(rule_tac P_namesI)
+    using Limit_is_Ord aH 
+    by auto
 qed
 
 lemma zero_is_P_name : "0 \<in> P_names" 

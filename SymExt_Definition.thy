@@ -1,8 +1,10 @@
 theory SymExt_Definition
   imports 
     "Forcing/Forcing_Main" 
-    HS
+    HS_Theorems
 begin 
+
+locale M_symmetric_system_G_generic = M_symmetric_system + G_generic 
 
 context M_symmetric_system 
 begin 
@@ -20,7 +22,7 @@ qed
 lemma SymExt_subset_GenExt : "SymExt(G) \<subseteq> GenExt(G)" 
   apply(rule subsetI)
   unfolding SymExt_def GenExt_def 
-  using HS_iff P_names_in_M 
+  using HS_iff P_name_in_M 
   by auto
 
 lemma Transset_SymExt : " Transset(SymExt(G))" 

@@ -1,4 +1,4 @@
-theory HS
+theory HS_Definition
   imports 
     "Forcing/Forcing_Main" 
     Automorphism_Theorems
@@ -156,7 +156,7 @@ next
     using assms 
     apply auto 
     apply(rule_tac P="x \<in> Pow(P_set(L) \<times> P) \<inter> M" in mp)
-    using P_set_succ P_names_in_M 
+    using P_set_succ P_name_in_M 
      apply auto  
   proof - 
     fix v assume vin : "v \<in> x" 
@@ -174,41 +174,6 @@ next
     apply(rule_tac x="succ(L)" in exI) 
     using LH Limit_is_Ord 
     by auto
-qed
-
-lemma check_in_HS : "x \<in> M \<Longrightarrow> check(x) \<in> HS" 
-proof - 
-  assume "x \<in> M" 
-  have "\<And>x. x \<in> M \<longrightarrow> check(x) \<in> HS" 
-  proof(rule_tac P="\<lambda>x. x \<in> M \<longrightarrow> check(x) \<in> HS" in eps_induct, rule impI) 
-    fix x assume assms : "x \<in> M" "\<forall>y \<in> x. y \<in> M \<longrightarrow> check(y) \<in> HS"
-    thm HS_iff 
-    have H1: "check(x) \<in> P_names"  using check_P_name assms by auto
-    have "\<And>\<pi>. \<pi> \<in> \<G> \<Longrightarrow> Pn_auto(\<pi>)`check(x) = check(x)" 
-      apply(rule check_fixpoint) 
-      using \<G>_P_auto_group assms
-      unfolding is_P_auto_group_def 
-      by auto
-    then have "sym(check(x)) = \<G>"
-      using check_fixpoint \<G>_P_auto_group  
-      unfolding is_P_auto_group_def sym_def 
-      by auto
-    then have H2: "symmetric(check(x))" 
-      unfolding symmetric_def 
-      using \<G>_in_\<F>
-      by auto 
-    have "domain(check(x)) \<subseteq> HS" 
-    proof(rule subsetI)
-      fix v assume assm1: "v \<in> domain(check(x))" 
-      then obtain p where vpH: "<v, p> \<in> check(x)" by auto 
-      have "check(x) = { <check(y), one> . y \<in> x }" by(rule def_check) 
-      then obtain y where "v = check(y)" "y \<in> x" using vpH by auto 
-      then show "v \<in> HS" using assms transM by auto
-    qed
-
-    then show "check(x) \<in> HS" using HS_iff H1 H2 by auto
-  qed
-  then show ?thesis using \<open>x \<in> M\<close> by auto
 qed
 
 end

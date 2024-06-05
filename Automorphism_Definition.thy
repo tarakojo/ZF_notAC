@@ -134,12 +134,27 @@ proof -
     using assms local.P_auto_value by auto 
 qed
 
+lemma P_auto_comp : "is_P_auto(\<pi>) \<Longrightarrow> is_P_auto(\<tau>) \<Longrightarrow> is_P_auto(\<pi> O \<tau>)" 
+  unfolding is_P_auto_def 
+  apply(rule conjI, rule to_rin, rule comp_closed, simp, simp)
+  apply(rule conjI, rule comp_bij, force, force)
+  apply clarify 
+  apply(subst comp_fun_apply, rule bij_is_fun, simp, simp)
+  apply(subst comp_fun_apply, rule bij_is_fun, simp, simp)
+  apply(rename_tac p q, rule_tac Q="(\<tau>`p \<preceq> \<tau>`q)" in iff_trans) 
+   apply simp
+  apply(rename_tac p q, subgoal_tac "\<tau>`p \<in> P \<and> \<tau>`q \<in> P")
+   apply force
+  apply(rule conjI, rule P_auto_value, simp add:is_P_auto_def, simp)
+  apply(rule P_auto_value, simp add:is_P_auto_def, simp)
+  done
+
 definition HPn_auto :: "[i, i, i] \<Rightarrow> i" where 
-  "HPn_auto(\<pi>, x, H) \<equiv> { <H`y, \<pi>`p> . <y, p> \<in> x }" 
+  "HPn_auto(\<pi>, x, H) \<equiv> { <H`fst(v), \<pi>`snd(v)> .. v \<in> x, \<exists>y p. v = <y, p>  }" 
 
 definition Pn_auto :: "i \<Rightarrow> i" where 
   "Pn_auto(\<pi>) \<equiv> 
-    { <x, wfrec(edrel(eclose({x})), x, HPn_auto(\<pi>))> . x \<in> P_names }" 
+    { <x, wftrec(Memrel(M)^+, x, HPn_auto(\<pi>))> . x \<in> P_names }" 
 
 lemma Pn_auto_function : "function(Pn_auto(\<pi>))" 
   unfolding Pn_auto_def function_def by auto
@@ -148,34 +163,69 @@ lemma Pn_auto_domain : "domain(Pn_auto(\<pi>)) = P_names"
 
 lemma Pn_auto : "x \<in> P_names \<Longrightarrow> Pn_auto(\<pi>)`x = { <Pn_auto(\<pi>)`y, \<pi>`p> . <y, p> \<in> x}"  
 proof -
+  define F where "F \<equiv> \<lambda>y \<in> Memrel(M)^+ -``{x}. wftrec(Memrel(M)^+, y, HPn_auto(\<pi>))" 
+
   assume assm : "x \<in> P_names"
   then have xin: "x \<subseteq> P_set(P_rank(x)) \<times> P" using P_names_in by auto 
-  then have "Pn_auto(\<pi>) ` x = wfrec(edrel(eclose({x})), x, HPn_auto(\<pi>))" 
+  then have E1: "Pn_auto(\<pi>) ` x = wftrec(Memrel(M)^+, x, HPn_auto(\<pi>))" 
     using function_value assm  unfolding Pn_auto_def by auto 
-  also have 
-    "... = HPn_auto(\<pi>, x, \<lambda>y \<in> edrel(eclose({x}))-``{x}. wfrec(edrel(eclose({x})), y, HPn_auto(\<pi>)))"
-    apply (rule_tac wfrec)
-    using wf_edrel by auto 
-  also have 
-    "... = { <( \<lambda>y \<in> edrel(eclose({x}))-``{x}. wfrec(edrel(eclose({x})), y, HPn_auto(\<pi>)))`y, \<pi>`p>.
-     <y, p> \<in> x }" unfolding HPn_auto_def by auto 
-  also have 
-    "... = { <( \<lambda>y \<in> domain(x). wfrec(edrel(eclose({x})), y, HPn_auto(\<pi>)))`y, \<pi>`p>.
-     <y, p> \<in> x }" using dom_under_edrel_eclose by auto 
-  also have 
-    "... = { <wfrec(edrel(eclose({x})), y, HPn_auto(\<pi>)), \<pi>`p>. <y, p> \<in> x }"
-    apply (rule_tac pair_rel_eq)  using xin assm relation_P_name by auto
-  also have "... = { <wfrec(edrel(eclose({y})), y, HPn_auto(\<pi>)), \<pi>`p>. <y, p> \<in> x }"
-    apply (rule_tac pair_rel_eq)  using xin assm relation_P_name apply auto 
-    apply(rule_tac aux_def_val_generalized)
-    by auto 
-  also have "... = { <Pn_auto(\<pi>)`y, \<pi>`p>. <y, p> \<in> x }"
-    apply (rule_tac pair_rel_eq) using xin assm relation_P_name apply auto
+  have E2:
+    "... = HPn_auto(\<pi>, x, F)"
+    unfolding F_def
+    apply (subst wftrec)
+      apply(rule wf_trancl, rule wf_Memrel, rule trans_trancl, simp)
+    done
+  have E3:
+    "... = { <F`fst(v), \<pi>`snd(v)> .. v \<in> x, \<exists>y p. v = <y, p> }" unfolding HPn_auto_def by auto 
+  have E4:
+    "... = { <F`y, \<pi>`p>.  <y, p> \<in> x }" 
+  proof(rule equality_iffI, rule iffI)
+    fix w assume "w \<in> { <F`fst(v), \<pi>`snd(v)> .. v \<in> x, \<exists>y p. v = <y, p> }" 
+    then obtain v where "w = <F`fst(v), \<pi>`snd(v)>" "v \<in> x" "\<exists>y p. v = <y, p>" by auto 
+    then obtain y p where "w = <F`y, \<pi>`p>" "<y, p> \<in> x" by auto 
+    then show "w \<in> {\<langle>F ` y, \<pi> ` p\<rangle> . \<langle>y,p\<rangle> \<in> x}" 
+      apply clarify
+      apply force
+      done
+  next 
+    fix v assume "v \<in> {\<langle>F ` y, \<pi> ` p\<rangle> . \<langle>y,p\<rangle> \<in> x}"  
+    then have "\<exists>y p. <y, p> \<in> x \<and> v = \<langle>F ` y, \<pi> ` p\<rangle>" 
+      apply(rule_tac pair_rel_arg)
+      using assm relation_P_name 
+      by auto
+    then obtain y p where "<y, p> \<in> x" "v = \<langle>F ` y, \<pi> ` p\<rangle>" by blast
+    then show "v \<in> { <F`fst(v), \<pi>`snd(v)> .. v \<in> x, \<exists>y p. v = <y, p> }" 
+      apply(rule_tac iffD2, rule_tac SepReplace_iff)
+      apply(rule_tac x="<y, p>" in bexI)
+      by auto
+  qed
+  have E5:
+    "... = { <wftrec(Memrel(M)^+, y, HPn_auto(\<pi>)), \<pi>`p>. <y, p> \<in> x }"
+    unfolding F_def
+    apply (rule_tac pair_rel_eq)
+    using xin assm relation_P_name
+     apply force
+    apply(rule allI)+
+    apply(rule impI)
+    apply(rename_tac y p, subgoal_tac "y\<in>Memrel(M)^+ -`` {x}") 
+     apply force
+    apply(rule_tac b=x in vimageI) 
+     apply(rule domain_elem_Memrel_trancl)
+    using assm P_name_in_M 
+    by auto
+  have E6: 
+    "... = { <Pn_auto(\<pi>)`y, \<pi>`p>. <y, p> \<in> x }"
+     apply (rule_tac pair_rel_eq) 
+     using xin assm relation_P_name 
+      apply auto
     apply (rule_tac eq_flip)
     unfolding Pn_auto_def
     apply (rule_tac function_value)
-    using P_name_domain_P_name assm by auto 
-  finally show " Pn_auto(\<pi>)`x = { <Pn_auto(\<pi>)`y, \<pi>`p> . <y, p> \<in> x}" by auto 
+    using P_name_domain_P_name assm 
+    by auto 
+  show " Pn_auto(\<pi>)`x = { <Pn_auto(\<pi>)`y, \<pi>`p> . <y, p> \<in> x}" 
+    using E1 E2 E3 E4 E5 E6
+    by auto
 qed 
 
 end

@@ -25,7 +25,7 @@ proof -
     and ih : "\<And>y. ed(y, x) \<Longrightarrow> \<forall>a. Ord(a) \<longrightarrow> (y \<in> P_names \<longrightarrow> y \<in> P_set(a) \<longleftrightarrow> Pn_auto(\<pi>) ` y \<in> P_set(a))" 
     and xpname : "x \<in> P_names" 
 
-    have xinM : "x \<in> M" using P_names_in_M xpname by auto 
+    have xinM : "x \<in> M" using P_name_in_M xpname by auto 
 
     have pinP : "\<forall><y, p> \<in> x. p \<in> P" 
       apply (rule_tac pair_forallI) 
@@ -232,12 +232,40 @@ proof -
     apply (rule conjI)
     apply (rule_tac A=P and B=P in comp_fun_apply) using assms is_P_auto_def bij_def inj_def apply simp_all 
     apply (rule_tac A=P and B=P in comp_fun_apply) using assms is_P_auto_def bij_def inj_def apply simp_all done 
-  then have "Pn_auto(\<pi> O \<tau>) \<in> P_names \<rightarrow> P_names" using Pn_auto_type by auto 
+  then have comp_type: "Pn_auto(\<pi> O \<tau>) \<in> P_names \<rightarrow> P_names" using Pn_auto_type by auto 
 
-  then show "Pn_auto(\<pi> O \<tau>) = Pn_auto(\<pi>) O Pn_auto(\<tau>)" 
-    apply (rule_tac A=P_names and  B=P_names and C = P_names in function_eq)
-    apply simp apply (rule_tac B=P_names in comp_fun) using assms Pn_auto_type apply simp_all
-    using main by auto 
+  have range_subset: "range(Pn_auto(\<tau>)) \<subseteq> domain(Pn_auto(\<pi>))" 
+  proof(rule subsetI)
+    fix v assume "v \<in> range(Pn_auto(\<tau>))" 
+    then obtain x where xH: "<x, v> \<in> Pn_auto(\<tau>)" by auto 
+    then have veq: "Pn_auto(\<tau>)`x = v" 
+      apply(rule function_apply_equality)
+      apply(rule Pn_auto_function)
+      done
+    have "Pn_auto(\<tau>)`x \<in> P_names" 
+      apply(rule Pn_auto_value)
+      using assms xH Pn_auto_def 
+      by auto
+    then have "v \<in> P_names" using veq by auto 
+    then show "v \<in> domain(Pn_auto(\<pi>))" using Pn_auto_domain by auto
+  qed
+
+  show "Pn_auto(\<pi> O \<tau>) = Pn_auto(\<pi>) O Pn_auto(\<tau>)" thm function_eq
+    apply (rule_tac function_eq)
+    unfolding relation_def
+    using Pi_def comp_type
+         apply force
+        apply(simp add:comp_def)
+    using Pi_def comp_type 
+       apply simp
+      apply(rule comp_function)
+       apply(rule Pn_auto_function)+
+     apply(subst domain_comp_eq, rule range_subset)
+     apply(subst Pn_auto_domain)+
+     apply simp
+    apply(rule mp, rule main)
+    using Pn_auto_domain 
+    by auto 
 qed
 
 lemma Pn_auto_id : "Pn_auto(id(P)) = id(P_names)" 
@@ -273,8 +301,16 @@ proof -
   qed
 
   show "Pn_auto(id(P)) = id(P_names)" 
-    apply (rule_tac A=P_names and B=P_names and C=P_names in function_eq) 
-    using P_auto_idP Pn_auto_type id_type main by auto 
+    apply (rule function_eq) 
+         apply(simp add:relation_def Pn_auto_def)
+    using relation_def id_def relation_lam 
+        apply force
+       apply(rule Pn_auto_function)
+      apply(simp add:id_def, rule function_lam)
+     apply(subst Pn_auto_domain, simp add:id_def)
+    apply(rule mp, rule main)
+    using Pn_auto_domain 
+    by auto
 qed
 
 lemma Pn_auto_bij : "is_P_auto(\<pi>) \<Longrightarrow> Pn_auto(\<pi>) \<in> bij(P_names, P_names)"
@@ -296,6 +332,50 @@ proof -
   then show "\<pi> \<in> bij(P, P)" unfolding is_P_auto_def by auto 
 qed
 
+lemma Pn_auto_converse : "is_P_auto(\<pi>) \<Longrightarrow> x \<in> P_names \<Longrightarrow> Pn_auto(converse(\<pi>)) = converse(Pn_auto(\<pi>))" 
+proof - 
+  assume assms: "is_P_auto(\<pi>)" "x \<in> P_names"
+  have "Pn_auto(\<pi>) O Pn_auto(converse(\<pi>)) = Pn_auto(\<pi> O converse(\<pi>))" 
+    apply(subst Pn_auto_comp)
+    using assms P_auto_converse 
+    by auto
+  also have "... = Pn_auto(id(P))" 
+    apply(subst right_comp_inverse)
+    using assms is_P_auto_def bij_is_surj 
+    by auto
+  also have "... = id(P_names)"
+    using Pn_auto_id 
+    by auto
+  finally have eq: "Pn_auto(\<pi>) O Pn_auto(converse(\<pi>)) = id(P_names) " by simp
+
+  have "Pn_auto(converse(\<pi>)) = id(P_names) O Pn_auto(converse(\<pi>))" 
+    apply(rule eq_flip, rule_tac A=P_names in left_comp_id)
+    using Pn_auto_type assms P_auto_converse Pi_def 
+    by force
+  also have "... = (converse(Pn_auto(\<pi>)) O Pn_auto(\<pi>)) O Pn_auto(converse(\<pi>))" 
+    apply(rule eq_flip)
+    apply(subst left_comp_inverse)
+    using Pn_auto_bij assms bij_is_inj 
+    by auto
+  also have "... = converse(Pn_auto(\<pi>)) O (Pn_auto(\<pi>) O Pn_auto(converse(\<pi>)))" 
+    using comp_assoc by auto
+  also have "... = converse(Pn_auto(\<pi>)) O Pn_auto(\<pi> O converse(\<pi>))" 
+    apply(subst Pn_auto_comp)
+    using assms P_auto_converse   
+    by auto 
+  also have "... = converse(Pn_auto(\<pi>)) O Pn_auto(id(P))" 
+    apply(subst right_comp_inverse)
+    using assms is_P_auto_def bij_is_surj 
+    by auto
+  also have "... = converse(Pn_auto(\<pi>)) O id(P_names)" 
+    using Pn_auto_id 
+    by auto 
+  also have "... = converse(Pn_auto(\<pi>))" 
+    apply(rule right_comp_id, rule converse_type)
+    using Pn_auto_type Pi_def assms 
+    by auto
+  finally show "Pn_auto(converse(\<pi>)) = converse(Pn_auto(\<pi>)) " by simp
+qed
 
 lemma Pn_auto_preserves_P_rank : 
   "is_P_auto(\<pi>) \<Longrightarrow> x \<in> P_names \<Longrightarrow> P_rank(x) = P_rank(Pn_auto(\<pi>)`x)" 

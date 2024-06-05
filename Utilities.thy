@@ -299,32 +299,6 @@ next
     using bij_is_fun assms unfolding Pi_def apply simp_all apply blast done
 qed  
 
-
-lemma function_eq : "\<And>A B C f g. f \<in> A \<rightarrow> B \<Longrightarrow> g \<in> A \<rightarrow> C \<Longrightarrow> \<forall>x \<in> A. f`x = g`x \<Longrightarrow> f = g" 
-  apply (rule_tac equality_iffI)
-proof -
-  
-  have helper :  "\<And>A B f x. f \<in> A \<rightarrow> B \<Longrightarrow> x \<in> f \<longleftrightarrow> (\<exists>a \<in> A. x = <a, f`a>)" 
-  proof (rule iffI)
-    fix A B f x assume assms : "f \<in> A \<rightarrow> B" "x \<in> f" 
-    then obtain a b where abH : "a \<in> A" "<a, b> = x" unfolding Pi_def by auto 
-    then have "b = f`a" using apply_equality assms by auto 
-    then show "\<exists>a\<in>A. x = <a, f`a>" using abH by auto 
-  next 
-    fix A B f x assume assms : "f \<in> A \<rightarrow> B" "\<exists>a\<in>A. x = \<langle>a, f ` a\<rangle>" 
-    then obtain a where aH : "a \<in> A" "x = <a, f`a>" by auto 
-    then have "<a, f`a> \<in> f" 
-      apply (rule_tac function_apply_Pair) using assms Pi_iff aH by auto 
-    then show "x \<in> f" using aH by auto
-  qed
-
-  fix A B C f g x assume assms : "f \<in> A \<rightarrow> B" "g \<in> A \<rightarrow> C" "\<forall>x \<in> A. f`x = g`x"  
-  have H1:"x \<in> f \<longleftrightarrow> (\<exists>a \<in> A. <a, f`a> = x)" apply (rule_tac iffI) using helper assms by auto 
-  have H2:"... \<longleftrightarrow> (\<exists>a \<in> A. <a, g`a> = x)" using assms by auto
-  have H3:"... \<longleftrightarrow> x \<in> g" using helper assms by auto 
-  show " x \<in> f \<longleftrightarrow> x \<in> g " using H1 H2 H3 by auto 
-qed
-
 lemma ifT_eq : "a \<noteq> b \<Longrightarrow> (if P then a else b) = a \<Longrightarrow> P" 
   apply (rule_tac P=P and Q="\<not>P" in disjE) apply simp_all done 
 
@@ -335,15 +309,20 @@ lemma neq_flip : "a \<noteq> b \<Longrightarrow> b \<noteq> a" by auto
 
 lemma iff_eq : "\<And>A P Q. (\<And>x. x \<in> A \<Longrightarrow> P(x) \<longleftrightarrow> Q(x)) \<Longrightarrow> { x \<in> A. P(x) } = { x \<in> A. Q(x) }" by auto
 
-lemma ex_iff : "\<And>A P Q. (\<And>x. x \<in> A \<Longrightarrow> P(x) \<longleftrightarrow> Q(x)) \<Longrightarrow> (\<exists>x \<in> A. P(x)) \<longleftrightarrow> (\<exists>x \<in> A. Q(x))" by auto
-
+lemma ex_iff : "\<And>A P Q. (\<And>x. x \<in> A \<Longrightarrow> P(x) \<longleftrightarrow> Q(x)) \<Longrightarrow> (\<exists>x \<in> A. P(x)) \<longleftrightarrow> (\<exists>x \<in> A. Q(x))" by auto (*todo : bex_iff ni rename *)
+lemma all_iff : "\<And>A P Q. (\<And>x. P(x) \<longleftrightarrow> Q(x)) \<Longrightarrow> (\<forall>x. P(x)) \<longleftrightarrow> (\<forall>x. Q(x))" by auto 
+lemma ball_iff : "\<And>A P Q. (\<And>x. x \<in> A \<Longrightarrow> P(x) \<longleftrightarrow> Q(x)) \<Longrightarrow> (\<forall>x \<in> A. P(x)) \<longleftrightarrow> (\<forall>x \<in> A. Q(x))" by auto 
+lemma iff_disjI : "\<And>P Q R S. P \<longleftrightarrow> Q \<Longrightarrow> R \<longleftrightarrow> S \<Longrightarrow> P \<or> R \<longleftrightarrow> Q \<or> S" by auto
 lemma iff_conjI : "\<And>P Q R S. P \<longleftrightarrow> Q \<Longrightarrow> R \<longleftrightarrow> S \<Longrightarrow> P \<and> R \<longleftrightarrow> Q \<and> S" by auto
+lemma iff_conjI2 : "\<And>P Q R S. P \<longleftrightarrow> Q \<Longrightarrow> (Q \<Longrightarrow> R \<longleftrightarrow> S) \<Longrightarrow> (P \<and> R \<longleftrightarrow> Q \<and> S)" by auto 
+lemma iff_iff : "\<And>P Q R S. P \<longleftrightarrow> Q \<Longrightarrow> R \<longleftrightarrow> S \<Longrightarrow> (P \<longleftrightarrow> R) \<longleftrightarrow> (Q \<longleftrightarrow> S)" by auto  
+lemma imp_iff : "\<And>P Q R S. P \<longleftrightarrow> Q \<Longrightarrow> R \<longleftrightarrow> S \<Longrightarrow> (P \<longrightarrow> R) \<longleftrightarrow> (Q \<longrightarrow> S)" by auto 
 
-lemma max_le1 : "Ord(a) \<Longrightarrow> Ord(b) \<Longrightarrow> a \<le> a \<union> b" 
+lemma max_le1 : "Ord(a) \<Longrightarrow> Ord(b) \<Longrightarrow> a \<le> a \<union> b" (*todo : Un_upper1_le ni okikae *)
   using le_Un_iff le_refl by auto
 
-lemma max_le2 : "Ord(a) \<Longrightarrow> Ord(b) \<Longrightarrow> b \<le> a \<union> b" 
-  using le_Un_iff le_refl by auto
+lemma max_le2 : "Ord(a) \<Longrightarrow> Ord(b) \<Longrightarrow> b \<le> a \<union> b" (*todo : Un_upper2_le ni okikae *)
+  using le_Un_iff le_refl by auto  
 
 lemma Ord_un_eq1 : "Ord(a) \<Longrightarrow> Ord(b) \<Longrightarrow> b \<le> a \<Longrightarrow> a \<union> b = a"
   apply(rule leE) 
@@ -355,6 +334,23 @@ lemma Ord_un_eq2 : "Ord(a) \<Longrightarrow> Ord(b) \<Longrightarrow> a \<le> b 
   apply(subst Un_commute)
   apply(rule Ord_un_eq1) 
   by auto
+
+lemma pred_le' : "a \<in> nat \<Longrightarrow> b \<in> nat \<Longrightarrow> a \<le> b \<Longrightarrow> pred(a) \<le> pred(b)" 
+  apply(rule_tac n=b in natE)
+    apply simp
+   apply(subgoal_tac "a = 0", simp, simp, simp)
+  using pred_le 
+  by auto
+
+lemma domain_elem_rank_lt : "y \<in> domain(x) \<Longrightarrow> rank(y) < rank(x)" 
+proof - 
+  assume "y \<in> domain(x)" 
+  then obtain p where "<y, p> \<in> x" by auto 
+  then show "rank(y) < rank(x)" 
+    apply(rule_tac j="rank(<y, p>)" in lt_trans)
+     apply(rule rank_pair1, rule rank_lt, simp)
+    done
+qed
 
 lemma final_app_notation : 
   fixes l assumes lin : "l \<in> list(A)" and lnotnil : "l \<noteq> []"
@@ -437,9 +433,86 @@ proof -
   then show "x \<in> domain(f) \<times> B" using assms abH by auto
 qed
 
+lemma domain_Pi : "f \<in> A \<rightarrow> B \<Longrightarrow> domain(f) = A" 
+  unfolding Pi_def 
+  by auto
+
+lemma function_eq_helper : "\<And>A B C f g. f \<in> A \<rightarrow> B \<Longrightarrow> g \<in> A \<rightarrow> C \<Longrightarrow> \<forall>x \<in> A. f`x = g`x \<Longrightarrow> f = g" 
+  apply (rule_tac equality_iffI)
+proof -
+  
+  have helper :  "\<And>A B f x. f \<in> A \<rightarrow> B \<Longrightarrow> x \<in> f \<longleftrightarrow> (\<exists>a \<in> A. x = <a, f`a>)" 
+  proof (rule iffI)
+    fix A B f x assume assms : "f \<in> A \<rightarrow> B" "x \<in> f" 
+    then obtain a b where abH : "a \<in> A" "<a, b> = x" unfolding Pi_def by auto 
+    then have "b = f`a" using apply_equality assms by auto 
+    then show "\<exists>a\<in>A. x = <a, f`a>" using abH by auto 
+  next 
+    fix A B f x assume assms : "f \<in> A \<rightarrow> B" "\<exists>a\<in>A. x = \<langle>a, f ` a\<rangle>" 
+    then obtain a where aH : "a \<in> A" "x = <a, f`a>" by auto 
+    then have "<a, f`a> \<in> f" 
+      apply (rule_tac function_apply_Pair) using assms Pi_iff aH by auto 
+    then show "x \<in> f" using aH by auto
+  qed
+
+  fix A B C f g x assume assms : "f \<in> A \<rightarrow> B" "g \<in> A \<rightarrow> C" "\<forall>x \<in> A. f`x = g`x"  
+  have H1:"x \<in> f \<longleftrightarrow> (\<exists>a \<in> A. <a, f`a> = x)" apply (rule_tac iffI) using helper assms by auto 
+  have H2:"... \<longleftrightarrow> (\<exists>a \<in> A. <a, g`a> = x)" using assms by auto
+  have H3:"... \<longleftrightarrow> x \<in> g" using helper assms by auto 
+  show " x \<in> f \<longleftrightarrow> x \<in> g " using H1 H2 H3 by auto 
+qed
+
+lemma function_eq : "\<And>f g. relation(f) \<Longrightarrow> relation(g) \<Longrightarrow> function(f) \<Longrightarrow> function(g) \<Longrightarrow> domain(f) = domain(g) \<Longrightarrow> (\<And>x. x \<in> domain(f) \<Longrightarrow> f`x = g`x) \<Longrightarrow> f = g" 
+  apply(rule_tac A="domain(f)" and B="range(f)" and C="range(g)" in function_eq_helper)
+    apply(rule Pi_memberI)
+  apply simp_all
+    apply(rule Pi_memberI)
+     apply simp_all
+  done
+
 lemma nat_in_nat : "n \<in> nat \<Longrightarrow> m \<in> n \<Longrightarrow> m \<in> nat"
   by(rule lt_nat_in_nat, rule ltI, simp_all)
 
+lemma union_in_nat : "n \<in> nat \<Longrightarrow> m \<in> nat \<Longrightarrow> n \<union> m \<in> nat" 
+  by auto
+
+lemma add_diff_swap : 
+  fixes a b c 
+  assumes "a \<in> nat" "b \<in> nat" "c \<in> nat" "c \<le> b"
+  shows "a #+ b #- c = a #+ (b #- c)"
+proof - 
+  have "c #+ (a #+ b #- c) = (a #+ b #- c) #+ c" by auto 
+  also have "... = a #+ b" 
+    apply(rule add_diff_inverse2)
+     apply(rule_tac j=b in le_trans)
+    using assms 
+    by auto
+  also have "... = a #+ ((b #- c) #+ c)" 
+    apply(rule_tac i=a and j = a in add_left_cancel, simp, simp add:assms)
+      apply(subst add_diff_inverse2)
+    using assms 
+    by auto
+  also have "... = c #+ (a #+ (b #- c))" by auto 
+
+  finally show ?thesis 
+    apply(rule_tac i=c and j=c in add_left_cancel)
+    by auto
+qed
+
+lemma le_succ_pred : 
+  "\<And>n. n \<in> nat \<Longrightarrow> n \<le> succ(pred(n))" 
+  apply(rule_tac n=n in natE)
+  by auto
+
+lemma relation_recfun : 
+  assumes "is_recfun(r, x, H, f)" 
+  shows "relation(f)"
+
+  using assms 
+  unfolding is_recfun_def 
+  apply(rule_tac a="(\<lambda>x\<in>r -`` {x}. H(x, restrict(f, r -`` {x})))" and b=f in ssubst, simp)
+  apply(rule relation_lam)
+  done
 
 
 

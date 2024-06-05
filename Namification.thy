@@ -8,6 +8,38 @@ context forcing_data
 begin 
 
 
+definition HP_namify where "HP_namify(x, H) \<equiv> { v \<in> M. \<exists>y p. <y, p> \<in> x \<and> p \<in> P \<and> v = <H`y, p> }" 
+
+definition P_namify where "P_namify(x) \<equiv> wftrec(Memrel(M)^+, x, HP_namify)"
+
+lemma P_namify : "\<And>x. x \<in> M \<Longrightarrow> P_namify(x) = { v \<in> M. \<exists>y p. <y,p> \<in> x \<and> p \<in> P \<and> v = <P_namify(y), p> }" 
+proof - 
+  fix x assume xinM : "x \<in> M" 
+  have "P_namify(x) = wftrec(Memrel(M)^+, x, HP_namify)" 
+    unfolding P_namify_def 
+    by simp 
+  also have "... = HP_namify(x, \<lambda>v \<in> Memrel(M)^+ -`` {x}. wftrec(Memrel(M)^+, v, HP_namify))" 
+    apply(rule wftrec)
+     apply(rule wf_trancl, rule wf_Memrel)
+    apply(rule trans_trancl)
+    done
+  also have "... = { v \<in> M. \<exists>y p. <y,p> \<in> x \<and> p \<in> P \<and> v = <(\<lambda>v \<in> Memrel(M)^+ -`` {x}. wftrec(Memrel(M)^+, v, HP_namify))`y, p> }"
+    by (simp add: HP_namify_def)
+  also have "... = { v \<in> M. \<exists>y p. <y,p> \<in> x \<and> p \<in> P \<and> v = <wftrec(Memrel(M)^+, y, HP_namify), p> }"
+  proof - 
+    have "\<And>y p. <y, p> \<in> x \<Longrightarrow> (\<lambda>v \<in> Memrel(M)^+ -`` {x}. wftrec(Memrel(M)^+, v, HP_namify))`y = wftrec(Memrel(M)^+, y, HP_namify)"
+      apply(rename_tac y p; subgoal_tac "y\<in>Memrel(M)^+ -`` {x}", simp) 
+      apply(rule_tac b=x in vimageI) 
+       apply(rule domain_elem_Memrel_trancl)
+      using xinM 
+      by auto
+    then show ?thesis by auto
+  qed
+  also have "... = { v \<in> M. \<exists>y p. <y,p> \<in> x \<and> p \<in> P \<and> v = <P_namify(y), p> }"
+    unfolding P_namify_def by simp 
+  finally show "P_namify(x) = { v \<in> M. \<exists>y p. <y,p> \<in> x \<and> p \<in> P \<and> v = <P_namify(y), p> }" by simp 
+qed
+
 definition HP_namify_M_cond where 
   "HP_namify_M_cond(v, x', H) \<equiv> \<exists>y \<in> M. \<exists>p \<in> M. \<exists>x \<in> M. \<exists>P \<in> M. \<exists>x_P \<in> M. \<exists>y_p \<in> M. \<exists>y_P \<in> M. \<exists>Hy_P \<in> M.  
     pair(##M, x, P, x') \<and> pair(##M, y, p, y_p) \<and> y_p \<in> x \<and> pair(##M, y, P, y_P) \<and> p \<in> P \<and> fun_apply(##M, H, y_P, Hy_P) \<and> pair(##M, Hy_P, p, v)" 
@@ -133,190 +165,35 @@ lemma HP_namify_M_fm_sats_iff :
   using transM 
     apply (simp, simp)
   unfolding HP_namify_M_fm_def 
-  apply(rule HP_namify_M_fm_auto; auto) done
-
-definition P_namify_M where "P_namify_M(a) \<equiv> { <x_P, wftrec(prel(edrel(MVset(a))^+, {P}), x_P, HP_namify_M)>. x_P \<in> MVset(a) \<times> {P} }" 
-
-lemma P_namify_M_in_M : "a \<in> M \<Longrightarrow> Ord(a) \<Longrightarrow> P_namify_M(a) \<in> M" 
-  unfolding P_namify_M_def 
-  apply(rule_tac p=HP_namify_M_fm in recfun_in_M) 
-         apply(rule prel_closed; rule to_rin) 
-          apply(rule trancl_closed, simp; rule edrel_closed) 
-  unfolding Transset_def 
-  using MVset_trans 
-           apply blast
-          apply(rule MVset_in_M, simp, simp)
-  using singleton_in_M_iff P_in_M 
-         apply simp 
-        apply(rule wf_prel; rule wf_trancl; rule wf_edrel) 
-       apply(rule prel_trans; rule trans_trancl) 
-      apply(rule to_rin; rule cartprod_closed; simp)
-       apply(rule MVset_in_M; simp; simp) 
-  using singleton_in_M_iff P_in_M 
-      apply simp 
-  apply (simp add:HP_namify_M_fm_def, simp add:HP_namify_M_fm_def, simp del:FOL_sats_iff pair_abs add: fm_defs nat_simp_union)   
-   apply (rule HP_namify_M_fm_sats_iff, simp_all, rule HP_namify_M_in_M) 
-  by auto 
-
-lemma P_namify_M : 
-  "a \<in> M \<Longrightarrow> Ord(a) \<Longrightarrow> x \<in> MVset(a) \<Longrightarrow> P_namify_M(a)`<x, P> = { v \<in> M. \<exists>y p. <y, p> \<in> x \<and> p \<in> P \<and> v = <P_namify_M(a)`<y, P>, p> }" 
-proof - 
-  assume assms : "a \<in> M" "Ord(a)" "x \<in> MVset(a)" 
-
-  define R where "R \<equiv> prel(edrel(MVset(a))^+, {P})"
-  have wfR : "wf(R)" 
-    unfolding R_def 
-    apply(rule wf_prel; rule wf_trancl; rule wf_edrel) done 
-  have transR : "trans(R)" 
-    unfolding R_def 
-    apply(rule prel_trans) 
-    using trans_trancl by auto
-
-  have dom_in_mvset : "\<And>y. y \<in> domain(x) \<Longrightarrow> y \<in> MVset(a)" using MVset_domain assms by auto
-
-  have recfuninM : "the_recfun(R, \<langle>x, P\<rangle>, HP_namify_M) \<in> M" 
-    apply(rule_tac p=HP_namify_M_fm in the_recfun_in_M)
-           apply (simp add:wfR, simp add:transR, simp add:R_def)
-         apply(rule prel_closed, rule to_rin, rule trancl_closed)
-          apply(simp, rule edrel_closed) 
-    unfolding Transset_def using MVset_trans assms 
-           apply blast 
-          apply(rule MVset_in_M, simp add:assms, simp add:assms) 
-    using singleton_in_M_iff P_in_M 
-         apply simp 
-        apply(simp add:HP_namify_M_fm_def) 
-       apply(simp add:HP_namify_M_fm_def, simp del:FOL_sats_iff pair_abs add: fm_defs nat_simp_union)
-    using assms pair_in_M_iff P_in_M unfolding MVset_def 
-      apply force
-     apply(rule HP_namify_M_in_M, simp, simp, simp) 
-    apply(rule HP_namify_M_fm_sats_iff) 
-    by simp_all 
-
-  have rel : "\<And>y p. <y, p> \<in> x \<Longrightarrow> <<y, P>, <x, P>> \<in> R" 
-    unfolding R_def 
-    apply(rule prelI, rule r_into_trancl) 
-    unfolding edrel_def Rrel_def edrel_def ed_def
-    using dom_in_mvset assms 
-    by auto 
-
-  have eq : "\<And>y p. <y, p> \<in> x \<Longrightarrow> P_namify_M(a)`<y, P> = the_recfun(R, \<langle>x, P\<rangle>, HP_namify_M) ` \<langle>y, P\<rangle>" 
-  proof - 
-    fix y p assume ypH : "<y, p> \<in> x" 
-    then have "P_namify_M(a)`<y, P> = HP_namify_M(<y, P>, the_recfun(R, <y, P>, HP_namify_M))" 
-      apply(rule_tac function_apply_equality) 
-      unfolding P_namify_M_def function_def assms HP_namify_M_def wftrec_def R_def 
-      using dom_in_mvset
-      by auto 
-    also have "... = HP_namify_M(<y, P>, restrict(the_recfun(R, <x, P>, HP_namify_M), R -`` {<y, P>}))" 
-      apply(subst the_recfun_cut, simp add:wfR) 
-      using transR rel ypH 
-      by auto 
-    also have "... = (\<lambda>v \<in> R -`` {<x, P>}.  HP_namify_M(v, restrict(the_recfun(R, <x, P>, HP_namify_M), R -`` {v}))) ` <y, P>"
-      apply(subgoal_tac "<y, P> \<in> R-``{<x, P>}", simp)
-      apply(rule vimageI)
-      using rel ypH 
-      by auto 
-    also have "... = the_recfun(R, \<langle>x, P\<rangle>, HP_namify_M) ` \<langle>y, P\<rangle>"  
-      apply(subgoal_tac "is_recfun(R, <x, P>, HP_namify_M, the_recfun(R, <x, P>, HP_namify_M))") 
-       apply(simp add:is_recfun_def) 
-      apply(rule unfold_the_recfun) 
-      using wfR transR 
-      by auto 
-    finally show "P_namify_M(a) ` \<langle>y, P\<rangle> = the_recfun(R, \<langle>x, P\<rangle>, HP_namify_M) ` \<langle>y, P\<rangle>" by auto
-  qed
-
-  have "P_namify_M(a) ` <x, P> = HP_namify_M(<x, P>, the_recfun(R, <x, P>, HP_namify_M))" 
-    apply(rule function_apply_equality) 
-    unfolding P_namify_M_def function_def R_def wftrec_def 
-    using assms 
-    by auto 
-  also have "... = { v \<in> M. HP_namify_M_cond(v, <x, P>, the_recfun(R, <x, P>, HP_namify_M)) }"  
-    unfolding HP_namify_M_def 
-    by simp
-  also have "... = { v \<in> M. \<exists>y p PP xx. <x, P> = <xx, PP> \<and> <y, p> \<in> xx \<and> p \<in> PP \<and> v = <the_recfun(R, <x, P>, HP_namify_M)`<y, PP>, p> }"
-    apply(rule iff_eq, rule HP_namify_M_cond_iff)
-    using recfuninM assms assms P_in_M pair_in_M_iff P_names_in_M
-    unfolding MVset_def 
-    by auto
-  also have "... = { v \<in> M. \<exists>y p. <y, p> \<in> x \<and> p \<in> P \<and> v = <the_recfun(R, <x, P>, HP_namify_M)`<y, P>, p> }"
-    apply(rule iff_eq) 
-    by auto 
-  also have "... = { v \<in> M. \<exists>y p. <y, p> \<in> x \<and> p \<in> P \<and> v = <P_namify_M(a)`<y, P>, p> }" 
-    apply(rule iff_eq) 
-    using eq 
-    by auto 
-  finally show "P_namify_M(a) ` \<langle>x, P\<rangle> = {v \<in> M . \<exists>y p. \<langle>y, p\<rangle> \<in> x \<and> p \<in> P \<and> v = \<langle>P_namify_M(a) ` \<langle>y, P\<rangle>, p\<rangle>} " 
-    by simp
-qed
-
-definition HP_namify where "HP_namify(x, H) \<equiv> { v \<in> M. \<exists>y p. <y, p> \<in> x \<and> p \<in> P \<and> v = <H`y, p> }" 
-
-definition P_namify where "P_namify(x) \<equiv> wfrec(edrel(eclose({x})), x, HP_namify)"
-
-lemma P_namify : "\<And>x. x \<in> M \<Longrightarrow> P_namify(x) = { v \<in> M. \<exists>y p. <y,p> \<in> x \<and> p \<in> P \<and> v = <P_namify(y), p> }" 
-proof - 
-  fix x
-  have "P_namify(x) = wfrec(edrel(eclose({x})), x, HP_namify)" 
-    unfolding P_namify_def 
-    by simp 
-  also have "... = HP_namify(x, \<lambda>v \<in> edrel(eclose({x})) -`` {x}. wfrec(edrel(eclose({x})), v, HP_namify))" 
-    apply(rule wfrec; simp add:wf_edrel) done
-  also have "... = { v \<in> M. \<exists>y p. <y,p> \<in> x \<and> p \<in> P \<and> v = <(\<lambda>v \<in> edrel(eclose({x})) -`` {x}. wfrec(edrel(eclose({x})), v, HP_namify))`y, p> }"
-    by (simp add: HP_namify_def )
-  also have "... = { v \<in> M. \<exists>y p. <y,p> \<in> x \<and> p \<in> P \<and> v = <wfrec(edrel(eclose({x})), y, HP_namify), p> }"
-  proof - 
-    have "\<And>y p. <y, p> \<in> x \<Longrightarrow> (\<lambda>v \<in> edrel(eclose({x})) -`` {x}. wfrec(edrel(eclose({x})), v, HP_namify))`y = wfrec(edrel(eclose({x})), y, HP_namify)"
-      apply(rename_tac y p; subgoal_tac "y\<in>edrel(eclose({x})) -`` {x}", simp) 
-      apply(rule vimageI) 
-       apply auto[2] 
-       apply(simp_all add:eclose_eq_Union) 
-       apply(rule_tac x=3 in bexI, simp, rule_tac x="<y,p>" in bexI, rule_tac x="{y}" in bexI) 
-          apply (simp_all add:Pair_def)
-      apply(rule_tac x=0 in bexI) 
-      by auto  
-    then show ?thesis by auto 
-  qed
-  also have "... = { v \<in> M. \<exists>y p. <y,p> \<in> x \<and> p \<in> P \<and> v = <wfrec(edrel(eclose({y})), y, HP_namify), p> }"
-  proof - 
-    have "\<And>y p. <y, p> \<in> x \<Longrightarrow> wfrec(edrel(eclose({x})), y, HP_namify) = wfrec(edrel(eclose({y})), y, HP_namify)" 
-      apply(rule aux_def_val_generalized) 
-      by auto
-    then show ?thesis by auto 
-  qed
-  also have "... = { v \<in> M. \<exists>y p. <y,p> \<in> x \<and> p \<in> P \<and> v = <P_namify(y), p> }"
-    unfolding P_namify_def by simp 
-  finally show "P_namify(x) = { v \<in> M. \<exists>y p. <y,p> \<in> x \<and> p \<in> P \<and> v = <P_namify(y), p> }" by simp 
-qed
-
-lemma P_namify_eq : "a \<in> M \<Longrightarrow> Ord(a) \<Longrightarrow> x \<in> MVset(a) \<Longrightarrow> P_namify(x) = P_namify_M(a)`<x, P>" 
-  apply(subgoal_tac "x \<in> MVset(a) \<longrightarrow> P_namify(x) = P_namify_M(a)`<x, P>", simp)
-  apply(rule_tac Q="\<lambda>x. x \<in> MVset(a) \<longrightarrow> P_namify(x) = P_namify_M(a)`<x, P>" in ed_induction) 
-  apply clarify 
-proof - 
-  fix x assume assms : "a \<in> M" "Ord(a)" "x \<in> MVset(a)" "(\<And>y. ed(y, x) \<Longrightarrow> y \<in> MVset(a) \<longrightarrow> P_namify(y) = P_namify_M(a) ` \<langle>y, P\<rangle>)"
-
-  have dom_in_mvset : "\<And>y. y \<in> domain(x) \<Longrightarrow> y \<in> MVset(a)" using MVset_domain assms by auto
-
-  have "P_namify(x) = { v \<in> M. \<exists>y p. <y,p> \<in> x \<and> p \<in> P \<and> v = <P_namify(y), p> }" 
-    using P_namify assms unfolding MVset_def by auto 
-  also have "... = { v \<in> M. \<exists>y p. <y,p> \<in> x \<and> p \<in> P \<and> v = <P_namify_M(a) ` \<langle>y, P\<rangle>, p> }" 
-    apply(rule iff_eq, rule iffI, clarify)
-     apply(rename_tac v y p; rule_tac x=y in exI; subgoal_tac "ed(y, x) \<and> y \<in> MVset(a)") 
-    using assms dom_in_mvset 
-    by (force, force, force)
-  also have "... = P_namify_M(a)`<x, P>" 
-    using P_namify_M assms by auto 
-  finally show "P_namify(x) = P_namify_M(a) ` \<langle>x, P\<rangle> " by auto 
-qed
+  apply(rule HP_namify_M_fm_auto; auto) 
+  done
 
 lemma P_namify_value_in_M : "x \<in> M \<Longrightarrow> P_namify(x) \<in> M" 
-  apply(rule_tac a="P_namify_M(succ(rank(x)))`<x, P>" and b = "P_namify(x)" in ssubst) 
-   apply(rule P_namify_eq) 
-  using rank_closed succ_in_MI Ord_rank MVsetI le_refl
-     apply simp_all 
-  apply(rule to_rin, rule apply_closed, simp, rule P_namify_M_in_M) 
-  using rank_closed succ_in_MI Ord_rank P_in_M pair_in_M_iff 
-  by auto 
+  unfolding P_namify_def 
+  apply(rule_tac a = P and Gfm = HP_namify_M_fm in memrel_wftrec_in_M) 
+        apply(simp add:P_in_M, simp)
+      apply(simp add:HP_namify_M_fm_def)
+     apply(simp add:HP_namify_M_fm_def)
+     apply (simp del:FOL_sats_iff pair_abs add: fm_defs nat_simp_union)
+      apply(rename_tac y g, rule_tac x'=y and H=g in HP_namify_M_in_M)
+      apply auto[3]
+   apply (simp add: HP_namify_M_def)
+   apply(rename_tac h g y, rule_tac b="{v \<in> M . HP_namify_M_cond(v, \<langle>y, P\<rangle>, g)}" and a="{v \<in> M. \<exists>yy p PP xx. <y, P> = <xx, PP> \<and> <yy, p> \<in> xx \<and> p \<in> PP \<and> v = <g`<yy, PP>, p>}" in ssubst)
+    apply(rule iff_eq, rule HP_namify_M_cond_iff)
+  using P_in_M pair_in_M_iff
+      apply auto[3]
+  unfolding HP_namify_def
+   apply(rule iff_eq)
+   apply(rule iffI, clarify)
+    apply(rename_tac h g y v z p, simp, rule_tac x=z in exI, simp)
+    apply(rename_tac h g y z p, subgoal_tac "z \<in> eclose(y)", force)
+    apply(rule domain_elem_in_eclose, force) 
+   apply(rule exE, simp, clarify)
+   apply(rename_tac h g y v yy p pp PP xx, rule_tac x=yy in exI, rule_tac x=pp in exI, simp)
+   apply(rename_tac h g v yy pp xx, subgoal_tac "yy \<in> eclose(xx)", force)
+   apply(rule domain_elem_in_eclose, force)
+  apply(rule HP_namify_M_fm_sats_iff)
+  by auto
 
 lemma P_namify_value_in_P_names : "x \<in> M \<Longrightarrow> P_namify(x) \<in> P_names" 
   apply(subgoal_tac "\<forall>x. x \<in> M \<longrightarrow> P_namify(x) \<in> P_names", simp) 
@@ -359,7 +236,7 @@ proof -
   fix x assume xpname : "x \<in> P_names" 
   and ih : "(\<And>y. ed(y, x) \<Longrightarrow> y \<in> P_names \<longrightarrow> P_namify(y) = y)"
 
-  have xinM : "x \<in> M" using P_names_in_M xpname by auto
+  have xinM : "x \<in> M" using P_name_in_M xpname by auto
 
   have "P_namify(x) = { v \<in> M. \<exists>y p. <y,p> \<in> x \<and> p \<in> P \<and> v = <P_namify(y), p> }" using xinM P_namify by blast 
   also have "... = { v \<in> M. \<exists>y p. <y,p> \<in> x \<and> p \<in> P \<and> v = <y, p> }"
@@ -369,7 +246,7 @@ proof -
   qed
   also have "... = x" 
     apply(rule equality_iffI; rule iffI) 
-    using xpname P_names_in_M transM 
+    using xpname P_name_in_M transM 
      apply auto[2]
   proof - 
     fix v assume vin : "v \<in> x" 
