@@ -102,14 +102,13 @@ lemma strep_iff :
   unfolding strong_replacement_def univalent_def by auto 
 
 lemma recfun_strong_replacement_lemma :
-  fixes r H p x 
+  fixes r H p 
   assumes 
     "wf(r)" 
     "trans(r)" 
     "r \<in> M" 
     "p \<in> formula"
     "arity(p) \<le> 3"
-    "x \<in> M" 
     "(\<And>x g. x \<in> M \<Longrightarrow> g \<in> M \<Longrightarrow> function(g) \<Longrightarrow> H(x, g) \<in> M)" 
     " (\<And>a0 a1 a2 env. a0 \<in> M \<Longrightarrow> a1 \<in> M \<Longrightarrow> a2 \<in> M \<Longrightarrow> env \<in> list(M) \<Longrightarrow> a0 = H(a2, a1) \<longleftrightarrow> sats(M, p, [a0, a1, a2] @ env))"  
    
@@ -275,6 +274,61 @@ proof -
     done
   then show ?thesis 
     unfolding wftrec_def 
+    by auto
+qed
+
+
+lemma wftrec_pair_closed : 
+  fixes r H p A  
+  assumes 
+    "wf(r)" 
+    "trans(r)" 
+    "r \<in> M" 
+    "p \<in> formula"
+    "arity(p) \<le> 3"
+    "A \<in> M" 
+    "(\<And>x g. x \<in> M \<Longrightarrow> g \<in> M \<Longrightarrow> function(g) \<Longrightarrow> H(x, g) \<in> M)" 
+    " (\<And>a0 a1 a2 env. a0 \<in> M \<Longrightarrow> a1 \<in> M \<Longrightarrow> a2 \<in> M \<Longrightarrow> env \<in> list(M) \<Longrightarrow> a0 = H(a2, a1) \<longleftrightarrow> sats(M, p, [a0, a1, a2] @ env))"  
+  shows "{ <x, wftrec(r, x, H)>. x \<in> A } \<in> M" 
+proof - 
+  have H:"strong_replacement(##M, \<lambda>x z. \<exists>y[##M]. \<exists>g[##M]. pair(##M, x, y, z) \<and> is_recfun(r, x, H, g) \<and> y = H(x, g))"
+    using assms recfun_strong_replacement_lemma 
+    by auto
+
+  have H1: "strong_replacement(##M, \<lambda>x z. z = <x, wftrec(r, x, H)>)" 
+    apply(rule iffD1, rule_tac P="\<lambda>x z. \<exists>y[##M]. \<exists>g[##M]. pair(##M, x, y, z) \<and> is_recfun(r, x, H, g) \<and> y = H(x, g)" in strong_replacement_cong)
+     apply(rule iffI, clarify)
+      apply(simp add:wftrec_def)
+      apply(rename_tac x y g, rule_tac a=g and b="the_recfun(r, x, H)" in ssubst)
+       apply(rule the_recfun_eq, simp)
+    using assms
+        apply auto[3]
+     apply clarify
+     apply(rename_tac x y, rule_tac x="wftrec(r, x, H)" in rexI)
+      apply(rename_tac x y, rule_tac x="the_recfun(r, x, H)" in rexI)
+       apply(rule conjI)
+    using pair_abs using pair_in_M_iff 
+        apply force
+       apply(rule conjI, rule unfold_the_recfun)
+    using assms 
+         apply auto[2]
+       apply(simp add:wftrec_def)
+      apply(simp, rule the_recfun_in_M)
+    using assms 
+             apply auto[8]
+     apply simp
+    using H 
+    by auto
+
+  show ?thesis 
+    apply(rule to_rin, rule RepFun_closed, rule H1)
+    using assms 
+     apply simp
+    apply(rule ballI, rule iffD2, rule pair_in_M_iff, rule conjI)
+    using transM assms
+     apply force
+    apply(simp, rule wftrec_in_M)
+    using assms transM 
     by auto
 qed
 

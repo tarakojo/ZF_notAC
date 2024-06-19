@@ -17,16 +17,10 @@ definition P_auto_subgroups where "P_auto_subgroups(G) \<equiv> { H \<in> Pow(G)
 
 end
 
-locale M_symmetric_system = forcing_data_partial + 
+locale pre_M_symmetric_system = forcing_data_partial + 
   fixes \<G> \<F> 
   assumes \<G>_in_M : "\<G> \<in> M"  
-  and \<G>_P_auto_group : "is_P_auto_group(\<G>)" 
   and \<F>_in_M : "\<F> \<in> M" 
-  and \<F>_subset : "\<F> \<subseteq> P_auto_subgroups(\<G>)" 
-  and \<F>_nonempty : "\<F> \<noteq> 0" 
-  and \<F>_closed_under_intersection : "\<forall>A \<in> \<F>. \<forall>B \<in> \<F>. A \<inter> B \<in> \<F>" 
-  and \<F>_closed_under_supergroup : "\<forall>A \<in> \<F>. \<forall>B \<in> P_auto_subgroups(\<G>). A \<subseteq> B \<longrightarrow> B \<in> \<F>" 
-  and \<F>_normal : "\<forall>H \<in> \<F>. \<forall>\<pi> \<in> \<G>. { \<pi> O \<tau> O converse(\<pi>). \<tau> \<in> H } \<in> \<F>" 
 begin
 
 definition sym where "sym(x) \<equiv> { \<pi> \<in> \<G>. Pn_auto(\<pi>)`x = x }"  
@@ -37,18 +31,6 @@ definition HHS_set_succ where "HHS_set_succ(a, X) \<equiv> { x \<in> P_set(succ(
 
 definition HS_set where "HS_set(a) \<equiv> transrec2(a, 0, HHS_set_succ)" 
 definition HS where "HS \<equiv> { x \<in> P_names. \<exists>a. Ord(a) \<and> x \<in> HS_set(a) }" 
-
-lemma \<G>_is_subgroup_of_\<G> : "\<G> \<in> P_auto_subgroups(\<G>)" 
-  unfolding P_auto_subgroups_def 
-  using \<G>_in_M local.\<G>_P_auto_group 
-  by auto
-
-lemma \<G>_in_\<F> : "\<G> \<in> \<F>" 
-proof - 
-  obtain \<I> where H: "\<I> \<in> \<F>" "\<I> \<in> P_auto_subgroups(\<G>)"  using \<F>_nonempty \<F>_subset by auto 
-  then have "\<I> \<subseteq> \<G>" using P_auto_subgroups_def by auto 
-  then show "\<G> \<in> \<F>" using \<F>_closed_under_supergroup \<G>_is_subgroup_of_\<G> H by auto
-qed
 
 lemma HS_in_HS_set_succ' : "Ord(a) \<Longrightarrow> x \<in> HS_set(a) \<Longrightarrow> \<exists>b < a. Ord(b) \<and> x \<in> HS_set(succ(b))" 
   apply(rule_tac P="\<forall>x. x \<in> HS_set(a) \<longrightarrow> (\<exists>b < a. Ord(b) \<and> x \<in> HS_set(succ(b)))" in mp) 
@@ -174,6 +156,29 @@ next
     apply(rule_tac x="succ(L)" in exI) 
     using LH Limit_is_Ord 
     by auto
+qed
+
+end
+
+locale M_symmetric_system = pre_M_symmetric_system +
+  assumes \<G>_P_auto_group : "is_P_auto_group(\<G>)" 
+  and \<F>_subset : "\<F> \<subseteq> P_auto_subgroups(\<G>)" 
+  and \<F>_nonempty : "\<F> \<noteq> 0" 
+  and \<F>_closed_under_intersection : "\<forall>A \<in> \<F>. \<forall>B \<in> \<F>. A \<inter> B \<in> \<F>" 
+  and \<F>_closed_under_supergroup : "\<forall>A \<in> \<F>. \<forall>B \<in> P_auto_subgroups(\<G>). A \<subseteq> B \<longrightarrow> B \<in> \<F>" 
+  and \<F>_normal : "\<forall>H \<in> \<F>. \<forall>\<pi> \<in> \<G>. { \<pi> O \<tau> O converse(\<pi>). \<tau> \<in> H } \<in> \<F>" 
+begin
+
+lemma \<G>_is_subgroup_of_\<G> : "\<G> \<in> P_auto_subgroups(\<G>)" 
+  unfolding P_auto_subgroups_def 
+  using \<G>_in_M local.\<G>_P_auto_group 
+  by auto
+
+lemma \<G>_in_\<F> : "\<G> \<in> \<F>" 
+proof - 
+  obtain \<I> where H: "\<I> \<in> \<F>" "\<I> \<in> P_auto_subgroups(\<G>)"  using \<F>_nonempty \<F>_subset by auto 
+  then have "\<I> \<subseteq> \<G>" using P_auto_subgroups_def by auto 
+  then show "\<G> \<in> \<F>" using \<F>_closed_under_supergroup \<G>_is_subgroup_of_\<G> H by auto
 qed
 
 end

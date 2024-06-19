@@ -6,10 +6,15 @@ begin
 
 locale M_symmetric_system_G_generic = M_symmetric_system + G_generic 
 
-context M_symmetric_system 
+context pre_M_symmetric_system 
 begin 
 
 definition SymExt where "SymExt(G) \<equiv> { val(G, x). x \<in> HS }" 
+
+end 
+
+context M_symmetric_system 
+begin
 
 lemma M_subset_SymExt : "M_generic(G) \<Longrightarrow> M \<subseteq> SymExt(G)" 
 proof (rule subsetI)

@@ -308,5 +308,44 @@ lemma memrel_wftrec_in_M :
   apply(rule_tac a="field(Rrel(InEclose, M))" and b=M in ssubst, rule eq_flip, rule field_Rrel_InEclose, simp)
   done
   
+lemma domain_elem_Memrel_trancl : 
+  fixes x y 
+  assumes "x \<in> M" "y \<in> domain(x)" 
+  shows "<y, x> \<in> Memrel(M)^+" 
+proof - 
+  obtain z where zH : "<y, z> \<in> x" using assms by auto 
+  have singin : "{y} \<in> <y, z>" using Pair_def by auto 
+  have yinM : "y \<in> M" using domain_elem_in_M assms by auto
+  have yzinM : "<y, z> \<in> M" using zH assms transM by auto 
+  then have zinM : "z \<in> M" using pair_in_M_iff by auto 
+  show ?thesis
+    apply(rule_tac b="<y, z>" in rtrancl_into_trancl1)
+     apply(rule_tac b="{y}" in rtrancl_into_rtrancl)
+      apply(rule r_into_rtrancl)
+    unfolding Memrel_def 
+    using yinM singleton_in_M_iff 
+      apply force
+    using yinM singleton_in_M_iff pair_in_M_iff zH singin zinM 
+     apply force
+    apply simp
+    using zH yzinM assms 
+    by auto
+qed
+
+lemma domain_elem_in_eclose : 
+  fixes x y 
+  assumes "y \<in> domain(x)" 
+  shows "y \<in> eclose(x)"
+proof - 
+  obtain z where zH : "<y, z> \<in> x" using assms by auto 
+  show ?thesis 
+    apply(subst eclose_eq_Union, simp, rule_tac x=2 in bexI, simp)
+     apply(rule_tac x="<y, z>" in bexI)
+      apply(rule_tac x="{y}" in bexI, simp)
+      apply(subst Pair_def, simp)
+    using zH 
+    by auto
+qed
+
 end
 end

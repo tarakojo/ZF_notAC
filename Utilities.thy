@@ -316,13 +316,26 @@ lemma iff_disjI : "\<And>P Q R S. P \<longleftrightarrow> Q \<Longrightarrow> R 
 lemma iff_conjI : "\<And>P Q R S. P \<longleftrightarrow> Q \<Longrightarrow> R \<longleftrightarrow> S \<Longrightarrow> P \<and> R \<longleftrightarrow> Q \<and> S" by auto
 lemma iff_conjI2 : "\<And>P Q R S. P \<longleftrightarrow> Q \<Longrightarrow> (Q \<Longrightarrow> R \<longleftrightarrow> S) \<Longrightarrow> (P \<and> R \<longleftrightarrow> Q \<and> S)" by auto 
 lemma iff_iff : "\<And>P Q R S. P \<longleftrightarrow> Q \<Longrightarrow> R \<longleftrightarrow> S \<Longrightarrow> (P \<longleftrightarrow> R) \<longleftrightarrow> (Q \<longleftrightarrow> S)" by auto  
-lemma imp_iff : "\<And>P Q R S. P \<longleftrightarrow> Q \<Longrightarrow> R \<longleftrightarrow> S \<Longrightarrow> (P \<longrightarrow> R) \<longleftrightarrow> (Q \<longrightarrow> S)" by auto 
+lemma imp_iff : "\<And>P Q R S. P \<longleftrightarrow> Q \<Longrightarrow> (R \<longleftrightarrow> S) \<Longrightarrow> (P \<longrightarrow> R) \<longleftrightarrow> (Q \<longrightarrow> S)" by auto
+lemma imp_iff2 : "\<And>P Q R S. P \<longleftrightarrow> Q \<Longrightarrow> (Q \<Longrightarrow> R \<longleftrightarrow> S) \<Longrightarrow> (P \<longrightarrow> R) \<longleftrightarrow> (Q \<longrightarrow> S)" by auto  
 
 lemma max_le1 : "Ord(a) \<Longrightarrow> Ord(b) \<Longrightarrow> a \<le> a \<union> b" (*todo : Un_upper1_le ni okikae *)
   using le_Un_iff le_refl by auto
 
 lemma max_le2 : "Ord(a) \<Longrightarrow> Ord(b) \<Longrightarrow> b \<le> a \<union> b" (*todo : Un_upper2_le ni okikae *)
   using le_Un_iff le_refl by auto  
+
+lemma zero_le : "\<And>i. Ord(i) \<Longrightarrow> 0 \<le> i" 
+  apply(rule mp)
+  apply(rule_tac P="\<lambda>i. Ord(i) \<longrightarrow> 0 \<le> i" in eps_induct, rule impI)
+  apply(rename_tac i x, case_tac "\<exists>y. y \<in> x")
+   apply clarify 
+    apply(rule lt_succ_lt, simp)
+    apply(rename_tac i x y, rule_tac b=y in le_lt_lt)
+  using Ord_in_Ord ltI 
+     apply auto[2]
+   apply(rename_tac i x, rule_tac b=x and a=0 in ssubst)
+  by auto
 
 lemma Ord_un_eq1 : "Ord(a) \<Longrightarrow> Ord(b) \<Longrightarrow> b \<le> a \<Longrightarrow> a \<union> b = a"
   apply(rule leE) 
@@ -513,7 +526,6 @@ lemma relation_recfun :
   apply(rule_tac a="(\<lambda>x\<in>r -`` {x}. H(x, restrict(f, r -`` {x})))" and b=f in ssubst, simp)
   apply(rule relation_lam)
   done
-
 
 
 end 

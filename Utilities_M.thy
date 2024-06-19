@@ -225,7 +225,32 @@ proof -
   then show "A \<inter> B \<in> M" using H by auto
 qed
 
+lemma fst_closed : 
+  "x \<in> M \<Longrightarrow> fst(x) \<in> M" 
+  unfolding fst_def
+  apply(cases "\<exists>a b. x = <a, b>") 
+  apply clarify
+   apply(rename_tac a b, subst the_equality)
+  using pair_in_M_iff
+     apply auto[3]
+  apply(subst the_0)
+  using zero_in_M
+  by auto
+
+lemma snd_closed : 
+  "x \<in> M \<Longrightarrow> snd(x) \<in> M" 
+  unfolding snd_def
+  apply(cases "\<exists>a b. x = <a, b>") 
+  apply clarify
+   apply(rename_tac a b, subst the_equality)
+  using pair_in_M_iff
+     apply auto[3]
+  apply(subst the_0)
+  using zero_in_M
+  by auto
+
+
+
 
 end
-
 end

@@ -712,7 +712,7 @@ lemma HS_separation :
   assumes "A \<in> M" 
   shows "A \<inter> HS \<in> M" 
 proof - 
-  have "separation(##M, \<lambda>x. sats(M, is_HS_fm(1, 0), [x] @ [<\<F>, \<G>, P, P_auto>]))"
+  have sep : "separation(##M, \<lambda>x. sats(M, is_HS_fm(1, 0), [x] @ [<\<F>, \<G>, P, P_auto>]))"
     apply(rule separation_ax)
     apply(rule is_HS_fm_type)
     using assms \<F>_in_M \<G>_in_M P_in_M P_auto_in_M pair_in_M_iff  
@@ -721,6 +721,49 @@ proof -
     apply(rule Un_least_lt)
     by auto
 
+  define S where "S \<equiv> { x \<in> A. sats(M, is_HS_fm(1, 0), [x] @ [<\<F>, \<G>, P, P_auto>]) }" 
+  have SinM : "S \<in> M" 
+    unfolding S_def 
+    apply(rule separation_notation)
+    using assms sep 
+    by auto
+
+  have "S = { x \<in> A. x \<in> HS }" 
+    unfolding S_def
+    apply(rule iff_eq)
+    apply(rule sats_is_HS_fm_iff)
+    using assms \<F>_in_M \<G>_in_M P_in_M P_auto_in_M pair_in_M_iff transM
+        apply auto[5]
+    done 
+
+  also have "... = A \<inter> HS" by auto 
+
+  finally show ?thesis using SinM by auto
+qed
   
 end
 end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
