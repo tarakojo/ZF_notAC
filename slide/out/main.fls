@@ -1,8 +1,8 @@
-PWD c:/Users/tarak/source/repos/research/slide
+PWD c:/Users/tarak/source/repos/ZF-notAC/slide
 INPUT c:/texlive/2023/texmf.cnf
 INPUT c:/texlive/2023/texmf-dist/web2c/texmf.cnf
 INPUT c:/texlive/2023/texmf-var/web2c/euptex/uplatex.fmt
-INPUT c:/Users/tarak/source/repos/research/slide/main.tex
+INPUT c:/Users/tarak/source/repos/ZF-notAC/slide/main.tex
 OUTPUT out/main.log
 INPUT c:/texlive/2023/texmf-dist/tex/latex/plautopatch/plautopatch.sty
 INPUT c:/texlive/2023/texmf-dist/tex/latex/plautopatch/plautopatch.sty

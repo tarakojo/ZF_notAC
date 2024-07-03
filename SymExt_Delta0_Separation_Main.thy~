@@ -695,37 +695,7 @@ qed
 end 
 end 
 
-(*
 
-\<Delta>0 separation 
-
-separation \<phi> \<longleftrightarrow> \<psi>
-
-\<exists>x \<phi>(x) 
-
-\<exists>x \<in> M. \<phi>(x)
-\<exists>x \<in> A \<in> M. \<phi>(x)  
-
-M \<subseteq> S[G] \<subseteq> M[G]
-S[G] is class in M[G] 
-x \<in> S[G] \<longleftrightarrow> \<phi>(x) in M[G] 
-
-
-X \<subseteq> S[G] \<and> X \<in> M[G] \<longrightarrow> \<exists>Y \<in> S[G] . X \<subseteq> Y
-
-almost universal + \<Delta>0-separation \<longrightarrow> separation
-
-Jech. set theory
-
-collection principle
-
-
-
-
-
-
-
-*)
 
 
 

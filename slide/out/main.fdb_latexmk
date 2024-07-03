@@ -1,11 +1,11 @@
 # Fdb version 4
-["dvipdf"] 1719831585 "out/main.dvi" "out/main.pdf" "out/main" 1719831587 0
-  "out/main.dvi" 1719831585 178824 68d4dfaf139c6ce86e58618ae9d2dbe8 "latex"
+["dvipdf"] 1719985906 "out/main.dvi" "out/main.pdf" "out/main" 1719985908 0
+  "out/main.dvi" 1719985906 184440 6637e6f55fc44d85ded5ae0e2a20c166 "latex"
   (generated)
   "out/main.pdf"
   (rewritten before read)
-["latex"] 1719831583 "c:/Users/tarak/source/repos/research/slide/main.tex" "out/main.dvi" "main" 1719831587 0
-  "c:/Users/tarak/source/repos/research/slide/main.tex" 1719831579 24881 c2ebd7633a8377290712fe2ab0101ae8 ""
+["latex"] 1719985903 "c:/Users/tarak/source/repos/ZF-notAC/slide/main.tex" "out/main.dvi" "main" 1719985908 0
+  "c:/Users/tarak/source/repos/ZF-notAC/slide/main.tex" 1719985900 25784 9b6ce0c0135e50e48f80cf41728085c0 ""
   "c:/texlive/2023/texmf-dist/fonts/map/fontname/texfonts.map" 1684129764 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "c:/texlive/2023/texmf-dist/fonts/tfm/jknappen/ec/ecss1728.tfm" 1684129134 3584 18bb954c8c3b95c57368f4d9f3439ce6 ""
   "c:/texlive/2023/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam10.tfm" 1684126886 916 f87d7c45f9c908e672703b83b72241a3 ""
@@ -239,11 +239,11 @@
   "c:/texlive/2023/texmf-dist/web2c/texmf.cnf" 1684126680 40967 d940221f8762fd5848760382d97d1226 ""
   "c:/texlive/2023/texmf-var/web2c/euptex/uplatex.fmt" 1684138241 7813980 a30c69d6b4c22d6670a9e05f98c2ab29 ""
   "c:/texlive/2023/texmf.cnf" 1684138078 713 e69b156964470283e0530f5060668171 ""
-  "main.tex" 1719831579 24881 c2ebd7633a8377290712fe2ab0101ae8 ""
-  "out/main.aux" 1719831585 10364 735550a1eecf6275f30fb0ab681ac15f "latex"
-  "out/main.nav" 1719831585 5475 186f91ce12046d332ced7bc90bd718d6 "latex"
-  "out/main.out" 1719831585 589 652bf190c63fcc53c83a7e0e195e7da9 "latex"
-  "out/main.toc" 1719831585 240 9ee119caff263c27d53351efe94bc256 "latex"
+  "main.tex" 1719985900 25784 9b6ce0c0135e50e48f80cf41728085c0 ""
+  "out/main.aux" 1719985906 10704 018c8a1b650f19d391486a62aa5169ac "latex"
+  "out/main.nav" 1719985906 5659 8083642c6a7b67c58c6d8f3311484c31 "latex"
+  "out/main.out" 1719985906 589 652bf190c63fcc53c83a7e0e195e7da9 "latex"
+  "out/main.toc" 1719985906 240 cd9c274f9eb14ff3807036c99aa52081 "latex"
   (generated)
   "out/main.aux"
   "out/main.dvi"

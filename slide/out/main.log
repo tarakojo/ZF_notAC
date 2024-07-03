@@ -1,10 +1,10 @@
-This is e-upTeX, Version 3.141592653-p4.1.0-u1.29-230214-2.6 (utf8.uptex) (TeX Live 2023) (preloaded format=uplatex 2023.5.15)  1 JUL 2024 19:59
+This is e-upTeX, Version 3.141592653-p4.1.0-u1.29-230214-2.6 (utf8.uptex) (TeX Live 2023) (preloaded format=uplatex 2023.5.15)  3 JUL 2024 14:51
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**c:/Users/tarak/source/repos/research/slide/main.tex
-(c:/Users/tarak/source/repos/research/slide/main.tex
+**c:/Users/tarak/source/repos/ZF-notAC/slide/main.tex
+(c:/Users/tarak/source/repos/ZF-notAC/slide/main.tex
 pLaTeX2e <2023-02-14u04>+1 (based on LaTeX2e <2022-11-01> patch level 1)
 L3 programming layer <2023-05-11> (c:/texlive/2023/texmf-dist/tex/latex/plautopatch/plautopatch.sty
 Package: plautopatch 2021/12/07 v0.9q Automated patches for pLaTeX/upLaTeX
@@ -883,6 +883,10 @@ LaTeX Font Info:    Font shape `T1/qhv/b/n' will be
 (Font)              scaled to size 23.38725pt on input line 120.
 [2
 
+] [3
+
+] [4
+
 ] (out/main.toc
 LaTeX Font Info:    Font shape `JT2/hgt/bx/n' will be
 (Font)              scaled to size 9.6222pt on input line 1.
@@ -892,13 +896,9 @@ LaTeX Font Info:    Font shape `T1/qhv/bx/n' in size <10> not available
 (Font)              Font shape `T1/qhv/b/n' tried instead on input line 1.
 LaTeX Font Info:    Font shape `T1/qhv/b/n' will be
 (Font)              scaled to size 9.40002pt on input line 1.
-) [3
+) [5
 
-] (out/main.toc) [4
-
-] [5
-
-] [6
+] (out/main.toc) [6
 
 ] [7
 
@@ -934,38 +934,38 @@ LaTeX Font Info:    Font shape `T1/qhv/b/n' will be
 
 ] [23
 
-] (out/main.toc) [24
+] [24
 
 ] [25
 
-]
-LaTeX Font Info:    Font shape `JT2/hgt/m/n' will be
-(Font)              scaled to size 11.54663pt on input line 351.
-LaTeX Font Info:    Font shape `JY2/hgt/m/n' will be
-(Font)              scaled to size 11.54663pt on input line 351.
-LaTeX Font Info:    Font shape `T1/qhv/m/n' will be
-(Font)              scaled to size 11.28003pt on input line 351.
-
-Overfull \vbox (2.23116pt too high) detected at line 351
- []
-
-[26
+] (out/main.toc) [26
 
 ] [27
 
-] [28
+]
+LaTeX Font Info:    Font shape `JT2/hgt/m/n' will be
+(Font)              scaled to size 11.54663pt on input line 370.
+LaTeX Font Info:    Font shape `JY2/hgt/m/n' will be
+(Font)              scaled to size 11.54663pt on input line 370.
+LaTeX Font Info:    Font shape `T1/qhv/m/n' will be
+(Font)              scaled to size 11.28003pt on input line 370.
+
+Overfull \vbox (2.23116pt too high) detected at line 370
+ []
+
+[28
 
 ] [29
 
-]
-Overfull \vbox (22.42793pt too high) detected at line 386
- []
-
-[30
+] [30
 
 ] [31
 
-] [32
+]
+Overfull \vbox (22.42793pt too high) detected at line 405
+ []
+
+[32
 
 ] [33
 
@@ -987,63 +987,67 @@ Overfull \vbox (22.42793pt too high) detected at line 386
 
 ] [42
 
-]
+] [43
 
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 500.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\lnot' on input line 500.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 500.
-
-(out/main.toc) [43
+] [44
 
 ]
-Overfull \vbox (9.55354pt too high) detected at line 508
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 519.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\lnot' on input line 519.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 519.
+
+(out/main.toc) [45
+
+]
+Overfull \vbox (9.55354pt too high) detected at line 527
  []
 
-[44
+[46
 
 ]
 LaTeX Font Info:    Font shape `JT2/hgt/bx/n' will be
-(Font)              scaled to size 13.85594pt on input line 521.
+(Font)              scaled to size 13.85594pt on input line 540.
 LaTeX Font Info:    Font shape `JY2/hgt/bx/n' will be
-(Font)              scaled to size 13.85594pt on input line 521.
+(Font)              scaled to size 13.85594pt on input line 540.
 LaTeX Font Info:    Font shape `T1/qhv/bx/n' in size <14.4> not available
-(Font)              Font shape `T1/qhv/b/n' tried instead on input line 521.
+(Font)              Font shape `T1/qhv/b/n' tried instead on input line 540.
 LaTeX Font Info:    Font shape `T1/qhv/b/n' will be
-(Font)              scaled to size 13.53603pt on input line 521.
+(Font)              scaled to size 13.53603pt on input line 540.
 
-Overfull \vbox (0.40843pt too high) detected at line 521
- []
-
-[45
-
-] [46
-
-]
-Overfull \vbox (1.09932pt too high) detected at line 545
+Overfull \vbox (0.40843pt too high) detected at line 540
  []
 
 [47
 
+] [48
+
 ]
-Overfull \vbox (9.55354pt too high) detected at line 554
+Overfull \vbox (1.09932pt too high) detected at line 564
  []
 
-[48
-
-] [49
+[49
 
 ]
-Overfull \vbox (10.42793pt too high) detected at line 573
+Overfull \vbox (9.55354pt too high) detected at line 573
  []
 
 [50
+
+] [51
+
+]
+Overfull \vbox (10.42793pt too high) detected at line 592
+ []
+
+[52
 
 ]
 ***** List of packages loaded by `plautopatch': *****
@@ -1063,12 +1067,12 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: 652BF190C63FCC53C83A7E0E195E7DA9;589.
  ) 
 Here is how much of TeX's memory you used:
- 27984 strings out of 476701
- 534745 string characters out of 5808313
+ 27988 strings out of 476701
+ 534781 string characters out of 5808313
  1852829 words of memory out of 5000000
- 47828 multiletter control sequences out of 15000+600000
+ 47832 multiletter control sequences out of 15000+600000
  622742 words of font info for 139 fonts, out of 8000000 for 9000
  929 hyphenation exceptions out of 8191
  128i,11n,122p,520b,1019s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on out/main.dvi (50 pages, 178824 bytes).
+Output written on out/main.dvi (52 pages, 184440 bytes).
