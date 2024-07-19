@@ -589,13 +589,13 @@ proof -
   have I1 : "sats(M, is_preds_rel_fm(Rfm, i, j), env) \<longleftrightarrow> (\<exists>P \<in> M. P = preds(R, x) \<and> (\<forall>v \<in> M. v \<in> S \<longleftrightarrow> (\<exists>y \<in> M. \<exists>z \<in> M. v = <z, y> \<and> z \<in> P \<and> (y \<in> P \<or> y = x) \<and> R(z, y))))"
     unfolding is_preds_rel_fm_def 
     apply(rule iff_trans, rule sats_Exists_iff, simp add:assms)
-    apply(rule bex_iff, rule iff_trans, rule sats_And_iff, simp add:assms, rule iff_lemma)
+    apply(rule ex_iff, rule iff_trans, rule sats_And_iff, simp add:assms, rule iff_lemma)
     apply(rule sats_is_preds_fm_iff)
     using assms 
            apply(simp, simp, simp, simp, simp, simp, simp, simp)
     apply(rule iff_trans, rule sats_Forall_iff, simp add:assms, rule ball_iff, rule iff_trans, rule sats_Iff_iff, simp add:assms)
     apply(rule iff_lemma2, simp add:assms, rule iff_trans, rule sats_Exists_iff, simp add:assms)
-    apply(rule bex_iff, rule iff_trans, rule sats_Exists_iff, simp add:assms, rule bex_iff, simp add:assms, rule iff_conjI, simp)
+    apply(rule ex_iff, rule iff_trans, rule sats_Exists_iff, simp add:assms, rule ex_iff, simp add:assms, rule iff_conjI, simp)
     apply(rule iff_trans, rule sats_And_iff, simp add:assms)
     using pair_in_M_iff 
      apply force
@@ -656,7 +656,7 @@ proof -
     apply(rule_tac Q="\<exists>y \<in> M. \<exists>z \<in> M. v = <z, y> \<and> R(z, y)" in iff_trans)
     using assms 
     apply simp
-    apply(rule bex_iff, rule bex_iff, rule iff_conjI, simp)
+    apply(rule ex_iff, rule ex_iff, rule iff_conjI, simp)
     apply(rule iff_flip, rule iff_trans, rename_tac v a b, rule_tac Rfm=Rfm and R=R in Relation_fmD)
     using assms pair_in_M_iff
     unfolding Rrel_def 
@@ -1003,11 +1003,11 @@ proof -
 
   have I1 : "sats(M, is_preds_prel_elem_fm(Rfm, i, j, k), env) \<longleftrightarrow> (\<exists>A \<in> M. A = preds_rel(R, x) \<and> (\<exists>zy \<in> M. \<exists>ya \<in> M. \<exists>za \<in> M. \<exists>y \<in> M. \<exists>z \<in> M. v = <za, ya> \<and> za = <z, a> \<and> ya = <y, a> \<and> zy = <z, y> \<and> zy \<in> A))" 
     unfolding is_preds_prel_elem_fm_def
-    apply(rule iff_trans, rule sats_Exists_iff, simp add:assms, rule bex_iff, rule iff_trans, rule sats_And_iff, simp add:assms)
+    apply(rule iff_trans, rule sats_Exists_iff, simp add:assms, rule ex_iff, rule iff_trans, rule sats_And_iff, simp add:assms)
     apply(rule iff_lemma, rule sats_is_preds_rel_fm_iff)
     using assms 
              apply auto[9]
-    apply(rule iff_trans, rule sats_Exists_iff, simp add:assms, rule bex_iff)+
+    apply(rule iff_trans, rule sats_Exists_iff, simp add:assms, rule ex_iff)+
     using assms 
     apply (simp, rule_tac iff_lemma, simp)+
     using pair_in_M_iff preds_rel_in_M assms
@@ -1736,8 +1736,8 @@ proof -
   have I1: "sats(M, is_wftrec_fm(Gfm, Rfm, i, j, k), env) \<longleftrightarrow> (\<exists>xa \<in> M. \<exists>S \<in> M. S = preds_rel(\<lambda>a b. \<langle>a, b\<rangle> \<in> prel(Rrel(R, M), p), \<langle>x, a\<rangle>) \<and> xa = <x, a> \<and> v = wftrec(S, xa, G))" 
     unfolding is_wftrec_fm_def
 
-    apply(rule iff_trans, rule sats_Exists_iff, simp add:assms, rule bex_iff)
-    apply(rule iff_trans, rule sats_Exists_iff, simp add:assms, rule bex_iff)
+    apply(rule iff_trans, rule sats_Exists_iff, simp add:assms, rule ex_iff)
+    apply(rule iff_trans, rule sats_Exists_iff, simp add:assms, rule ex_iff)
     apply(rule iff_trans, rule sats_And_iff, simp add:assms, rule iff_lemma1)
      apply(rule sats_is_preds_prel_fm_iff)
     using assms inat jnat knat xinM ainp pinM

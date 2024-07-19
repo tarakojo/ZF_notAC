@@ -236,20 +236,20 @@ next
     apply(rule HS_Pn_auto_helper)
     using \<G>_P_auto_group is_P_auto_group_def assms 
     by auto
-  have "Pn_auto(converse(\<pi>)) ` (Pn_auto(\<pi>)`x) = converse(Pn_auto(\<pi>)) ` (Pn_auto(\<pi>)`x)"
-    apply(subst Pn_auto_converse)
-    using assms \<G>_P_auto_group is_P_auto_group_def 
+  have "Pn_auto(converse(\<pi>)) ` (Pn_auto(\<pi>)`x) = (Pn_auto(converse(\<pi>)) O Pn_auto(\<pi>)) ` x" 
+    apply(rule eq_flip, rule comp_fun_apply)
+    apply(rule Pn_auto_type)
+    using assms \<G>_P_auto_group is_P_auto_group_def
     by auto
-  also have "... = (converse(Pn_auto(\<pi>)) O Pn_auto(\<pi>)) ` x" 
-    apply(rule sym, rule comp_fun_apply)
-     apply(rule Pn_auto_type)
-    using assms \<G>_P_auto_group is_P_auto_group_def  
-    by auto 
+  also have "... = Pn_auto(converse(\<pi>) O \<pi>) ` x" 
+    apply(subst Pn_auto_comp)
+    apply(rule P_auto_converse)
+    using assms \<G>_P_auto_group is_P_auto_group_def
+    by auto
   also have "... = Pn_auto(id(P)) ` x" 
     apply(subst left_comp_inverse)
-     apply(rule bij_is_inj)
-    apply(rule Pn_auto_bij)
-    using assms \<G>_P_auto_group is_P_auto_group_def Pn_auto_id
+    apply(rule bij_is_inj)
+    using assms \<G>_P_auto_group is_P_auto_group_def is_P_auto_def 
     by auto
   also have "... = id(P_names) ` x" 
     by(subst Pn_auto_id, simp)
@@ -258,67 +258,7 @@ next
     by auto 
   finally show "x \<in> HS" using H by auto
 qed
-
-lemma Pn_auto_domain_closed_helper :
-  fixes x y \<pi>
-  assumes "x \<in> P_names" "y \<in> domain(x)" "\<pi> \<in> sym(x)" 
-  shows "Pn_auto(\<pi>)`y \<in> domain(x)" 
-proof - 
-  obtain p where pH: "<y, p> \<in> x" using assms by auto
-  have "<Pn_auto(\<pi>)`y, \<pi>`p> \<in> Pn_auto(\<pi>)`x"
-    apply(subst (2) Pn_auto)
-    using assms 
-     apply simp
-    apply(rule pair_relI)
-    using pH
-    by auto
-  then have "<Pn_auto(\<pi>)`y, \<pi>`p> \<in> x" 
-    using assms sym_def 
-    by auto
-  then show ?thesis by auto
-qed
-
-lemma Pn_auto_domain_closed:
-  fixes x y \<pi>
-  assumes "x \<in> P_names" "\<pi> \<in> sym(x)" "y \<in> P_names" 
-  shows "y \<in> domain(x) \<longleftrightarrow> Pn_auto(\<pi>)`y \<in> domain(x)" 
-proof(rule iffI)
-  assume "y \<in> domain(x)" 
-  then obtain p where "<y, p> \<in> x" by auto
-  then show "Pn_auto(\<pi>) ` y \<in> domain(x)" 
-    apply(rule_tac Pn_auto_domain_closed_helper)
-    using assms P_name_domain_P_name 
-    by auto
-next 
-  assume assms1 : "Pn_auto(\<pi>) ` y \<in> domain(x)" 
-
-  have H : "Pn_auto(converse(\<pi>))`(Pn_auto(\<pi>)`y) \<in> domain(x)" 
-    apply(rule Pn_auto_domain_closed_helper)
-    using assms assms1 converse_in_sym assms 
-    by auto
-  have "Pn_auto(converse(\<pi>)) ` (Pn_auto(\<pi>)`y) = converse(Pn_auto(\<pi>)) ` (Pn_auto(\<pi>)`y)"
-    apply(subst Pn_auto_converse)
-    using assms \<G>_P_auto_group is_P_auto_group_def sym_def
-    by auto
-  also have "... = (converse(Pn_auto(\<pi>)) O Pn_auto(\<pi>)) ` y" 
-    apply(rule sym, rule comp_fun_apply)
-     apply(rule Pn_auto_type)
-    using assms \<G>_P_auto_group is_P_auto_group_def sym_def
-    by auto 
-  also have "... = Pn_auto(id(P)) ` y" 
-    apply(subst left_comp_inverse)
-     apply(rule bij_is_inj)
-    apply(rule Pn_auto_bij)
-    using assms \<G>_P_auto_group is_P_auto_group_def Pn_auto_id sym_def
-    by auto
-  also have "... = id(P_names) ` y" 
-    by(subst Pn_auto_id, simp)
-  also have "... = y" 
-    using assms 
-    by auto 
-  finally show "y \<in> domain(x)" 
-    using H by auto
-qed
+   
 
 end
 end

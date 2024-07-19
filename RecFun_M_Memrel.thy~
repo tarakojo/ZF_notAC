@@ -4,11 +4,12 @@ theory RecFun_M_Memrel
     RecFun_M
 begin 
 
-definition InEclose where "InEclose(y, x) \<equiv> y \<in> eclose(x)"  
-definition InEclose_fm where "InEclose_fm \<equiv> Exists(And(is_eclose_fm(2, 0), Member(1, 0)))"
-
 context M_ctm 
 begin 
+
+
+definition InEclose where "InEclose(y, x) \<equiv> y \<in> eclose(x)"  
+definition InEclose_fm where "InEclose_fm \<equiv> Exists(And(is_eclose_fm(2, 0), Member(1, 0)))"
 
 lemma Relation_fm_InEclose : 
   "Relation_fm(InEclose, InEclose_fm)" 
@@ -169,12 +170,7 @@ lemma Rrel_InEclose_vimage_eq : "\<And>y. y \<in> M \<Longrightarrow> Rrel(InEcl
   using transM eclose_closed
   by auto
 
-end
-
 definition is_memrel_wftrec_fm where "is_memrel_wftrec_fm(Gfm, i, j, k) \<equiv> is_wftrec_fm(Gfm, InEclose_fm, i, j, k)" 
-
-context M_ctm 
-begin 
 
 lemma is_memrel_wftrec_fm_type : 
   fixes Gfm i j k 

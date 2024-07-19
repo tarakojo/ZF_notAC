@@ -17,16 +17,10 @@ definition P_auto_subgroups where "P_auto_subgroups(G) \<equiv> { H \<in> Pow(G)
 
 end
 
-locale M_symmetric_system = forcing_data_partial + 
+locale pre_M_symmetric_system = forcing_data_partial + 
   fixes \<G> \<F> 
   assumes \<G>_in_M : "\<G> \<in> M"  
-  and \<G>_P_auto_group : "is_P_auto_group(\<G>)"   
-  and \<F>_in_M : "\<F> \<in> M"
-  and \<F>_subset : "\<F> \<subseteq> P_auto_subgroups(\<G>)" 
-  and \<F>_nonempty : "\<F> \<noteq> 0" 
-  and \<F>_closed_under_intersection : "\<forall>A \<in> \<F>. \<forall>B \<in> \<F>. A \<inter> B \<in> \<F>" 
-  and \<F>_closed_under_supergroup : "\<forall>A \<in> \<F>. \<forall>B \<in> P_auto_subgroups(\<G>). A \<subseteq> B \<longrightarrow> B \<in> \<F>" 
-  and \<F>_normal : "\<forall>H \<in> \<F>. \<forall>\<pi> \<in> \<G>. { \<pi> O \<tau> O converse(\<pi>). \<tau> \<in> H } \<in> \<F>" 
+  and \<F>_in_M : "\<F> \<in> M" 
 begin
 
 definition sym where "sym(x) \<equiv> { \<pi> \<in> \<G>. Pn_auto(\<pi>)`x = x }"  
@@ -163,6 +157,17 @@ next
     using LH Limit_is_Ord 
     by auto
 qed
+
+end
+
+locale M_symmetric_system = pre_M_symmetric_system +
+  assumes \<G>_P_auto_group : "is_P_auto_group(\<G>)" 
+  and \<F>_subset : "\<F> \<subseteq> P_auto_subgroups(\<G>)" 
+  and \<F>_nonempty : "\<F> \<noteq> 0" 
+  and \<F>_closed_under_intersection : "\<forall>A \<in> \<F>. \<forall>B \<in> \<F>. A \<inter> B \<in> \<F>" 
+  and \<F>_closed_under_supergroup : "\<forall>A \<in> \<F>. \<forall>B \<in> P_auto_subgroups(\<G>). A \<subseteq> B \<longrightarrow> B \<in> \<F>" 
+  and \<F>_normal : "\<forall>H \<in> \<F>. \<forall>\<pi> \<in> \<G>. { \<pi> O \<tau> O converse(\<pi>). \<tau> \<in> H } \<in> \<F>" 
+begin
 
 lemma \<G>_is_subgroup_of_\<G> : "\<G> \<in> P_auto_subgroups(\<G>)" 
   unfolding P_auto_subgroups_def 

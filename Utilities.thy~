@@ -309,8 +309,7 @@ lemma neq_flip : "a \<noteq> b \<Longrightarrow> b \<noteq> a" by auto
 
 lemma iff_eq : "\<And>A P Q. (\<And>x. x \<in> A \<Longrightarrow> P(x) \<longleftrightarrow> Q(x)) \<Longrightarrow> { x \<in> A. P(x) } = { x \<in> A. Q(x) }" by auto
 
-lemma ex_iff : "\<And>A P Q. (\<And>x. P(x) \<longleftrightarrow> Q(x)) \<Longrightarrow> (\<exists>x. P(x)) \<longleftrightarrow> (\<exists>x. Q(x))" by auto 
-lemma bex_iff : "\<And>A P Q. (\<And>x. x \<in> A \<Longrightarrow> P(x) \<longleftrightarrow> Q(x)) \<Longrightarrow> (\<exists>x \<in> A. P(x)) \<longleftrightarrow> (\<exists>x \<in> A. Q(x))" by auto 
+lemma ex_iff : "\<And>A P Q. (\<And>x. x \<in> A \<Longrightarrow> P(x) \<longleftrightarrow> Q(x)) \<Longrightarrow> (\<exists>x \<in> A. P(x)) \<longleftrightarrow> (\<exists>x \<in> A. Q(x))" by auto (*todo : bex_iff ni rename *)
 lemma all_iff : "\<And>A P Q. (\<And>x. P(x) \<longleftrightarrow> Q(x)) \<Longrightarrow> (\<forall>x. P(x)) \<longleftrightarrow> (\<forall>x. Q(x))" by auto 
 lemma ball_iff : "\<And>A P Q. (\<And>x. x \<in> A \<Longrightarrow> P(x) \<longleftrightarrow> Q(x)) \<Longrightarrow> (\<forall>x \<in> A. P(x)) \<longleftrightarrow> (\<forall>x \<in> A. Q(x))" by auto 
 lemma iff_disjI : "\<And>P Q R S. P \<longleftrightarrow> Q \<Longrightarrow> R \<longleftrightarrow> S \<Longrightarrow> P \<or> R \<longleftrightarrow> Q \<or> S" by auto

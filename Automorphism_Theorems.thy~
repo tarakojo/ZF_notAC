@@ -332,9 +332,9 @@ proof -
   then show "\<pi> \<in> bij(P, P)" unfolding is_P_auto_def by auto 
 qed
 
-lemma Pn_auto_converse : "is_P_auto(\<pi>) \<Longrightarrow> Pn_auto(converse(\<pi>)) = converse(Pn_auto(\<pi>))" 
+lemma Pn_auto_converse : "is_P_auto(\<pi>) \<Longrightarrow> x \<in> P_names \<Longrightarrow> Pn_auto(converse(\<pi>)) = converse(Pn_auto(\<pi>))" 
 proof - 
-  assume assms: "is_P_auto(\<pi>)" 
+  assume assms: "is_P_auto(\<pi>)" "x \<in> P_names"
   have "Pn_auto(\<pi>) O Pn_auto(converse(\<pi>)) = Pn_auto(\<pi> O converse(\<pi>))" 
     apply(subst Pn_auto_comp)
     using assms P_auto_converse 

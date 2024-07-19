@@ -45,6 +45,16 @@ lemma nonempty_SymExt : "SymExt(G) \<noteq> 0"
   using zero_in_M M_subset_SymExt
   by auto
 
+lemma ex_elem_name : 
+  fixes x' x y
+  assumes "x' \<in> P_names" "val(G, x') = x" "y \<in> x" 
+  shows "\<exists>y' \<in> domain(x'). \<exists>p \<in> G. <y', p> \<in> x' \<and> val(G, y') = y"  
+proof - 
+  have "val(G, x') = { val(G, y') .. y' \<in> domain(x'), \<exists>p \<in> P. <y', p> \<in> x' \<and> p \<in> G }" 
+    by(subst def_val, simp)
+  then obtain y' p where "val(G, y') = y" "<y', p> \<in> x'" "p \<in> G" using assms by auto
+  then show ?thesis by auto
+qed
 
 lemma ex_HS_name_list : 
   fixes l 

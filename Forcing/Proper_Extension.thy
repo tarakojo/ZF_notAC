@@ -58,7 +58,7 @@ proof
   moreover
   note assms
   ultimately
-  show "False" 
+  show "False"
     using filter_complement_dense[of G] M_generic_denseD[of G "P-G"] 
       M_generic_def by simp \<comment> \<open>need to put generic ==> filter in claset\<close>
 qed

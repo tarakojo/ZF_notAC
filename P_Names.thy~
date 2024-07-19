@@ -390,5 +390,20 @@ proof-
   qed
 qed
 
+lemma union_P_name : 
+  fixes x y 
+  assumes "x \<in> P_names" "y \<in> P_names" 
+  shows "x \<union> y \<in> P_names" 
+proof - 
+  have H1: "x \<subseteq> P_names \<times> P" using P_name_iff assms by auto
+  have H2: "y \<subseteq> P_names \<times> P" using P_name_iff assms by auto
+  have H3: "x \<union> y \<subseteq> P_names \<times> P" using H1 H2 by auto
+  have "x \<union> y \<in> M" using Un_closed P_name_in_M assms by auto
+  then show ?thesis 
+    using H3 P_name_iff 
+    by auto
+qed
+
+
 end
 end 

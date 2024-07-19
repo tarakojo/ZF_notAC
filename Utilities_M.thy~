@@ -249,10 +249,6 @@ lemma snd_closed :
   using zero_in_M
   by auto
 
-lemma least_cong : 
-  "\<And>P Q a. a \<in> M \<Longrightarrow> (\<And>a. a \<in> M \<Longrightarrow> Ord(a) \<Longrightarrow> P(a) \<longleftrightarrow> Q(a)) \<Longrightarrow> least(##M, P, a) \<longleftrightarrow> least(##M, Q, a)" 
-  unfolding least_def 
-  by auto
 
 
 

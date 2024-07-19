@@ -73,8 +73,8 @@ proof -
      apply force
     apply(rename_tac x, rule_tac Q= "\<exists>a \<in> M. \<exists>v \<in> M. a = <x, param> \<and>  g`a = v \<and> v = 1" in iff_trans)
      apply(rule iff_trans, rule sats_Exists_iff, simp add:assms)
-     apply(rule bex_iff, rule iff_trans, rule sats_Exists_iff, simp add:assms)
-     apply(rule bex_iff, rule iff_trans, rule sats_And_iff, simp add:assms)
+     apply(rule ex_iff, rule iff_trans, rule sats_Exists_iff, simp add:assms)
+     apply(rule ex_iff, rule iff_trans, rule sats_And_iff, simp add:assms)
      apply(rule iff_conjI)
     apply(subgoal_tac "i \<in> nat \<and> k \<in> nat \<and> g \<in> M")
     using assms 
@@ -169,7 +169,7 @@ proof -
   have "(M, env \<Turnstile> is_sym_elem_fm(i, j, k, l)) \<longleftrightarrow> (v \<in> \<G> \<and> (\<exists>u \<in> M. (x \<in> P_names \<and> u = Pn_auto(v)`x) \<and> u = x))" 
     unfolding is_sym_elem_fm_def 
     apply(rule iff_trans, rule sats_And_iff, simp add:assms, rule iff_conjI2, simp add:assms)
-    apply(rule iff_trans, rule sats_Exists_iff, simp add:assms, rule bex_iff)  
+    apply(rule iff_trans, rule sats_Exists_iff, simp add:assms, rule ex_iff)  
     apply(rule iff_trans, rule sats_And_iff, simp add:assms, rule iff_conjI2)
      apply(rule sats_is_Pn_auto_fm_iff) 
     using assms lt_nat_in_nat nth_type apply auto[9]
@@ -624,7 +624,7 @@ proof -
           domx = domain(x) \<and> x \<in> P_names \<and> (\<forall>y. y \<in> domx \<longrightarrow> g`\<langle>y, \<F>, \<G>, P, P_auto\<rangle> = 1) \<and> symx = sym(x) \<and> symx \<in> \<F>)"   
     unfolding His_HS_M_cond_fm_def 
     apply(subgoal_tac "\<langle>u, \<F>, \<G>, P, P_auto\<rangle> \<in> M")
-     apply(rule_tac iff_trans, rule_tac sats_Exists_iff, simp add:assms, rule_tac bex_iff)+
+     apply(rule_tac iff_trans, rule_tac sats_Exists_iff, simp add:assms, rule_tac ex_iff)+
      apply(rule iff_trans, rule sats_And_iff, simp add:assms, rule iff_conjI2, simp add:assms)+
       apply(rename_tac symx domx pauto p ppauto G Gppauto F FGppauto x)
       apply(rule_tac b="forcing_data.P_names(p, M)" and a=P_names in ssubst, force)
@@ -716,7 +716,7 @@ proof -
 
   have "sats(M, is_HS_fm(i, j), env) \<longleftrightarrow> (\<exists>v \<in> M. v = wftrec(Memrel(M)^+, x, His_HS) \<and> v = 1)" 
     unfolding is_HS_fm_def 
-    apply(rule iff_trans, rule sats_Exists_iff, simp add:assms, rule bex_iff)
+    apply(rule iff_trans, rule sats_Exists_iff, simp add:assms, rule ex_iff)
     apply(rule iff_trans, rule sats_And_iff, simp add:assms, rule iff_conjI)
      apply(rule_tac a="<\<F>, \<G>, P, P_auto>" and G="His_HS_M" in sats_is_memrel_wftrec_fm_iff)
     using assms \<F>_in_M \<G>_in_M P_in_M P_auto_in_M pair_in_M_iff innat

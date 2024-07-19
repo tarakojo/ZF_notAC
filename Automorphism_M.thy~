@@ -5,6 +5,10 @@ theory Automorphism_M
     Automorphism_Definition
 begin 
 
+
+context forcing_data_partial 
+begin 
+
 schematic_goal is_P_auto_fm_auto:
   assumes
     "nth(0,env) = \<pi>" 
@@ -37,9 +41,6 @@ definition is_P_auto_fm where
                                   Implies
                                    (fun_apply_fm(6, 4, 1),
                                     Implies(pair_fm(5, 4, 3), Implies(pair_fm(2, 1, 0), Iff(Member(3, 8), Member(0, 8)))))))))))))))  " 
-
-context forcing_data_partial 
-begin 
 
 lemma is_P_auto_fm_sats_iff : 
   "\<pi> \<in> M \<Longrightarrow> sats(M, is_P_auto_fm, [\<pi>, P, leq]) \<longleftrightarrow> is_P_auto(\<pi>)" 
@@ -286,8 +287,6 @@ schematic_goal HPn_auto_M_fm_auto:
   unfolding HPn_auto_M_cond_def
   by (insert assms ; (rule sep_rules | simp)+)
 
-end
-
 definition HPn_auto_M_fm where 
   "HPn_auto_M_fm =  Exists
              (Exists
@@ -307,9 +306,6 @@ definition HPn_auto_M_fm where
              And(fun_apply_fm(0, 2, 6),
                  fun_apply_fm(10, 4, 7))))))))))))))))"
 
-context forcing_data_partial 
-begin 
-
 schematic_goal HPn_auto_M_fm'_auto:
   assumes
     "nth(0,env) = z" 
@@ -321,8 +317,6 @@ schematic_goal HPn_auto_M_fm'_auto:
      \<longleftrightarrow> sats(M,?fm(0,1,2),env)"
   unfolding HPn_auto_M_cond_def
   by (insert assms ; (rule sep_rules | simp)+)
-
-end
 
 definition HPn_auto_M_fm' where 
   "HPn_auto_M_fm' \<equiv> 
@@ -342,10 +336,6 @@ definition HPn_auto_M_fm' where
                                               And(pair_fm(3, 2, 5),
  And(Member(5, 1),
      And(function_fm(0), And(fun_apply_fm(0, 2, 6), fun_apply_fm(10, 4, 7)))))))))))))))))) " 
-
-
-context forcing_data_partial 
-begin 
 
 definition HPn_auto_M where 
   "HPn_auto_M(x_pi, g) \<equiv> { elem \<in> M. HPn_auto_M_cond(x_pi, g, elem) }"
@@ -506,13 +496,7 @@ proof -
   qed
 qed
 
-end
-
 definition is_Pn_auto_fm where "is_Pn_auto_fm(p, pi, x, v) \<equiv> And(is_P_name_fm(p, x), is_memrel_wftrec_fm(HPn_auto_M_fm', x, pi, v))" 
-
-
-context forcing_data_partial 
-begin 
 
 lemma is_Pn_auto_fm_type : 
   fixes p pi x v 

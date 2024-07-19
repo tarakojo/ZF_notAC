@@ -293,7 +293,7 @@ proof -
     
   have "sats(M, is_P_name_fm(i, j), env) \<longleftrightarrow> (\<exists>v \<in> M. v = wftrec(Memrel(M)^+, x, His_P_name) \<and> v = 1)" 
     unfolding is_P_name_fm_def 
-    apply(rule iff_trans, rule sats_Exists_iff, simp add:assms, rule bex_iff)
+    apply(rule iff_trans, rule sats_Exists_iff, simp add:assms, rule ex_iff)
     apply(rule iff_trans, rule sats_And_iff, simp add:assms, rule iff_conjI2)
      apply(rule_tac a=P and G=His_P_name_M 
         in sats_is_memrel_wftrec_fm_iff)

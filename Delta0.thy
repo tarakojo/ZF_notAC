@@ -3,9 +3,10 @@ theory Delta0
     Utilities_M
 begin 
 
-
 definition BExists' where "BExists'(n, \<phi>) \<equiv> Exists(And(Member(0, n), \<phi>))"  
 definition BExists where "BExists(n, \<phi>) \<equiv> BExists'(succ(n), \<phi>)" 
+definition BForall where "BForall(n, \<phi>) \<equiv> Neg(BExists(n, Neg(\<phi>)))" 
+
 definition \<Delta>0_from where "\<Delta>0_from(X) \<equiv> X \<union> { Nand(\<phi>, \<psi>). <\<phi>, \<psi>> \<in> X \<times> X } \<union> { \<psi> \<in> formula. \<exists>n \<in> nat. \<exists>\<phi> \<in> X. n \<noteq> 0 \<and> \<psi> = BExists'(n, \<phi>) }" 
 definition \<Delta>0_base where "\<Delta>0_base \<equiv> { \<phi> \<in> formula. \<exists> n \<in> nat. \<exists> m \<in> nat. \<phi> = Member(n, m) \<or> \<phi> = Equal(n, m) }" 
 
@@ -42,7 +43,29 @@ proof-
     by auto
 qed
 
-lemma Nand_\<Delta>0 : 
+lemma Member_\<Delta>0 [simp] : 
+  fixes n m 
+  assumes "n \<in> nat" "m \<in> nat" 
+  shows "Member(n, m) \<in> \<Delta>0" 
+  unfolding \<Delta>0_def 
+  apply simp
+  apply(rule_tac x=0 in bexI)
+  unfolding \<Delta>0_base_def 
+  using assms
+  by auto
+
+lemma Equal_\<Delta>0 [simp] : 
+  fixes n m 
+  assumes "n \<in> nat" "m \<in> nat" 
+  shows "Equal(n, m) \<in> \<Delta>0" 
+  unfolding \<Delta>0_def 
+  apply simp
+  apply(rule_tac x=0 in bexI)
+  unfolding \<Delta>0_base_def 
+  using assms
+  by auto
+
+lemma Nand_\<Delta>0 [simp] : 
   fixes \<phi> \<psi>
   assumes "\<phi> \<in> \<Delta>0" "\<psi> \<in> \<Delta>0" 
   shows "Nand(\<phi>, \<psi>) \<in> \<Delta>0" 
@@ -75,7 +98,47 @@ proof -
     by blast
 qed 
 
-lemma BExists_\<Delta>0 : 
+lemma Neg_\<Delta>0 [simp]: 
+  fixes \<phi> 
+  assumes "\<phi> \<in> \<Delta>0" 
+  shows "Neg(\<phi>) \<in> \<Delta>0" 
+  unfolding Neg_def 
+  using assms
+  by auto
+
+lemma And_\<Delta>0 [simp]: 
+  fixes \<phi> \<psi>
+  assumes "\<phi> \<in> \<Delta>0" "\<psi> \<in> \<Delta>0"
+  shows "And(\<phi>, \<psi>) \<in> \<Delta>0" 
+  unfolding And_def 
+  using assms
+  by auto
+
+lemma Or_\<Delta>0 [simp] : 
+  fixes \<phi> \<psi>
+  assumes "\<phi> \<in> \<Delta>0" "\<psi> \<in> \<Delta>0"
+  shows "Or(\<phi>, \<psi>) \<in> \<Delta>0" 
+  unfolding Or_def 
+  using assms
+  by auto
+
+lemma Implies_\<Delta>0 [simp] : 
+  fixes \<phi> \<psi>
+  assumes "\<phi> \<in> \<Delta>0" "\<psi> \<in> \<Delta>0"
+  shows "Implies(\<phi>, \<psi>) \<in> \<Delta>0" 
+  unfolding Implies_def 
+  using assms
+  by auto
+  
+lemma Iff_\<Delta>0 [simp] : 
+  fixes \<phi> \<psi>
+  assumes "\<phi> \<in> \<Delta>0" "\<psi> \<in> \<Delta>0"
+  shows "Iff(\<phi>, \<psi>) \<in> \<Delta>0" 
+  unfolding Iff_def 
+  using assms
+  by auto
+
+lemma BExists_\<Delta>0[simp] : 
   fixes \<phi> n 
   assumes "\<phi> \<in> \<Delta>0" "n \<in> nat" 
   shows "BExists(n, \<phi>) \<in> \<Delta>0" 
@@ -97,6 +160,21 @@ proof -
     unfolding \<Delta>0_def
     by blast
 qed
+
+lemma BExists_formula : 
+  fixes \<phi> n 
+  assumes "\<phi> \<in> \<Delta>0" "n \<in> nat" 
+  shows "BExists(n, \<phi>) \<in> formula" 
+  using assms \<Delta>0_subset
+  by auto
+
+lemma BForall_\<Delta>0 [simp] : 
+  fixes \<phi> n 
+  assumes "\<phi> \<in> \<Delta>0" "n \<in> nat" 
+  shows "BForall(n, \<phi>) \<in> \<Delta>0" 
+  unfolding BForall_def 
+  using assms
+  by auto
 
 lemma \<Delta>0_sats_iff : 
   fixes A B env \<phi>
@@ -419,5 +497,38 @@ proof -
     apply auto
     done
 qed
+
+lemma sats_BExists_iff :
+  fixes A \<phi> env n 
+  assumes "\<phi> \<in> formula" "n < length(env)" "env \<in> list(A)" 
+  shows "sats(A, BExists(n, \<phi>), env) \<longleftrightarrow> (\<exists>x \<in> A. x \<in> nth(n, env) \<and> sats(A, \<phi>, Cons(x, env)))" 
+  unfolding BExists_def BExists'_def 
+  using assms lt_nat_in_nat
+  by auto
+  
+lemma sats_BForall_iff : 
+  fixes A \<phi> env n 
+  assumes "\<phi> \<in> formula" "n < length(env)" "env \<in> list(A)" 
+  shows "sats(A, BForall(n, \<phi>), env) \<longleftrightarrow> (\<forall>x \<in> A. x \<in> nth(n, env) \<longrightarrow> sats(A, \<phi>, Cons(x, env)))" 
+  unfolding BForall_def BExists_def BExists'_def 
+  using assms lt_nat_in_nat
+  by auto
+
+lemma arity_BExists : 
+  fixes \<phi> n 
+  assumes "n \<in> nat" "\<phi> \<in> formula" 
+  shows "arity(BExists(n, \<phi>)) \<le> succ(n) \<union> pred(arity(\<phi>))" 
+
+  unfolding BExists_def BExists'_def 
+  using assms
+  apply simp
+  apply(rule pred_le, simp_all)
+  apply(rule Un_least_lt)+
+    apply simp_all
+   apply(rule ltI, simp_all)
+  apply(subst succ_Un_distrib, simp_all)
+  apply(rule_tac n="arity(\<phi>)" in natE, simp_all)
+  apply(rule ltI, simp_all)
+  done
 
 end
