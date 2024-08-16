@@ -4,6 +4,8 @@ begin
 
 context M_ctm begin 
 
+interpretation forcing_data_partial "Fn" "Fn_leq" "0" "M" "enum" using Fn_forcing_data_partial by auto
+
 lemma Fn_perms_group : "forcing_data_partial.is_P_auto_group(Fn, Fn_leq, M, Fn_perms)" 
   apply(subst forcing_data_partial.is_P_auto_group_def)
    apply(rule Fn_forcing_data_partial, rule conjI)
@@ -704,6 +706,355 @@ proof-
     unfolding G_def
     by auto
 qed
+
+lemma Fn_perms_filter_subpergroup : 
+  fixes A B
+  assumes "A \<in> Fn_perms_filter" "B \<in> forcing_data_partial.P_auto_subgroups(Fn, Fn_leq, M, Fn_perms)" "A \<subseteq> B" 
+  shows "B \<in> Fn_perms_filter" 
+  using assms
+  unfolding Fn_perms_filter_def Fn_perms_filter_def
+  by auto
+
+definition normal_comp_elem_fm where 
+  "normal_comp_elem_fm(X, Y, F) \<equiv> 
+      Exists(Exists(
+          And(converse_fm(F#+2, 0), 
+          And(composition_fm(F#+2, X#+2, 1), 
+              composition_fm(1, 0, Y#+2)))))" 
+
+lemma sats_normal_comp_elem_fm : 
+  fixes i j k X Y H env  
+  assumes "i < length(env)" "j < length(env)" "k < length(env)" 
+          "nth(i, env) = X" "nth(j, env) = Y" "nth(k, env) = F" 
+          "env \<in> list(M)" "relation(F)" 
+  shows "sats(M, normal_comp_elem_fm(i, j, k), env) \<longleftrightarrow> Y = F O X O converse(F)" 
+  apply(rule_tac Q="\<exists>FX \<in> M. \<exists>Finv \<in> M. Finv = converse(F) \<and> FX = F O X \<and> Y = FX O Finv" in iff_trans)
+  unfolding normal_comp_elem_fm_def 
+  apply(rule iff_trans, rule sats_Exists_iff, simp add:assms, rule bex_iff)+
+  apply(rule iff_trans, rule sats_And_iff, simp add:assms, rule iff_conjI2)
+   apply(rule iff_trans, rule sats_converse_fm_iff)
+  using assms lt_nat_in_nat length_type relation_def converse_def
+        apply auto[6]
+  apply(rule iff_trans, rule sats_And_iff, simp add:assms, rule iff_conjI2)
+  apply(rule iff_trans, rule sats_composition_fm)
+  using assms lt_nat_in_nat length_type
+       apply auto[5]
+  apply(rule iff_trans, rule sats_composition_fm)
+  using assms lt_nat_in_nat length_type comp_closed 
+       apply auto[5]
+  apply(rule iffI, force)
+  apply(rule_tac x="F O X" in bexI)
+   apply(rule_tac x="converse(F)" in bexI)
+  using comp_assoc
+    apply simp
+  using assms lt_nat_in_nat nth_type length_type converse_closed comp_closed
+   apply auto
+  done
+
+lemma normal_comp_closed : 
+  fixes Y F 
+  assumes "Y \<in> M" "F \<in> M" "relation(F)" 
+  shows "{ F O X O converse(F). X \<in> Y } \<in> M"
+
+  apply(rule to_rin, rule RepFun_closed)
+    apply(rule iffD1, rule_tac P="\<lambda>X Y. sats(M, normal_comp_elem_fm(0, 1, 2), [X, Y] @ [F])" in strong_replacement_cong)
+     apply(rule sats_normal_comp_elem_fm)
+  using assms
+            apply auto[8]
+    apply(rule replacement_ax)
+  unfolding normal_comp_elem_fm_def converse_fm_def composition_fm_def
+  using assms
+      apply auto[2]
+  apply (simp del:FOL_sats_iff pair_abs add: fm_defs nat_simp_union)
+  using assms transM comp_closed converse_closed
+  by auto
+
+lemma Fn_perms_filter_normal : 
+  fixes H F
+  assumes "H \<in> Fn_perms_filter" "F \<in> Fn_perms" 
+  shows "{ F O G O converse(F) . G \<in> H } \<in> Fn_perms_filter" 
+proof - 
+  obtain f where fH: "F = Fn_perm'(f)" "f \<in> nat_perms"
+    using assms Fn_perms_def 
+    by force
+
+  define X where "X \<equiv> { F O G O converse(F) . G \<in> H }" 
+
+  have XinM : "X \<in> M" 
+    unfolding X_def
+    apply(rule normal_comp_closed)
+    using transM Fn_perms_in_M Fn_perms_filter_in_M assms relation_def Fn_perms_def Fn_perm'_def
+    by auto
+
+  have Xsubset: "X \<subseteq> Fn_perms" 
+  proof(rule subsetI)
+    fix x 
+    assume "x \<in> X" 
+    then obtain G where xH: "x = F O G O converse(F)" "G \<in> H" using X_def by force 
+    then have "G \<in> Fn_perms" using assms Fn_perms_filter_subset by force 
+    then obtain g where gH : "G = Fn_perm'(g)" "g \<in> nat_perms" using Fn_perms_def by force 
+    then have "x = F O G O converse(F)" using xH by auto 
+    also have "... = (Fn_perm'(f) O Fn_perm'(g)) O Fn_perm'(converse(f))" 
+      using fH Fn_perm'_converse gH by auto
+    also have "... = Fn_perm'(f O g) O Fn_perm'(converse(f))" 
+      apply(subst Fn_perm'_comp)
+      using gH converse_in_nat_perms fH
+      by auto
+    also have "... = Fn_perm'(f O g O converse(f))" 
+      apply(subst Fn_perm'_comp)
+        apply(simp add:nat_perms_def)
+        apply(rule conjI, rule comp_bij)
+      using gH fH nat_perms_def comp_closed converse_in_nat_perms comp_assoc
+      by auto
+    finally show "x \<in> Fn_perms" 
+      unfolding Fn_perms_def
+      apply simp
+      apply(rule_tac x="f O g O converse(f)" in bexI)
+       apply simp
+      unfolding nat_perms_def 
+      apply(simp, rule conjI)
+       apply(rule comp_bij)+
+      using converse_in_nat_perms fH gH nat_perms_def comp_closed converse_closed
+         apply auto[4]
+      done
+  qed
+
+  have Xsubset': "X \<subseteq> bij(Fn, Fn)" 
+  proof(rule subsetI)
+    fix x 
+    assume "x \<in> X" 
+    then have "x \<in> Fn_perms" using Xsubset by auto
+    then obtain f where fH : "f \<in> nat_perms" "x = Fn_perm'(f)" using Fn_perms_def by force 
+    then have "Fn_perm'(f) \<in> bij(Fn, Fn)" by(rule_tac Fn_perm'_bij)
+    then show "x \<in> bij(Fn, Fn)" using fH by auto
+  qed
+
+  have Xsubset'': "\<And>x. x \<in> X \<Longrightarrow> forcing_data_partial.is_P_auto(Fn, Fn_leq, M, x)" 
+    apply(subst forcing_data_partial.is_P_auto_def)
+     apply(rule Fn_forcing_data_partial)
+    apply(rule conjI)
+    using transM XinM 
+     apply force 
+    apply(rule conjI)
+    using Xsubset'
+     apply force
+    apply(rename_tac x, subgoal_tac "\<exists>f \<in> nat_perms. x = Fn_perm'(f)", clarsimp)
+    using Fn_perm'_preserves_order Fn_perm'_preserves_order'
+     apply force
+    using Xsubset Fn_perms_def
+    by auto
+
+  have compin: "\<And>A B. A \<in> X \<Longrightarrow> B \<in> X \<Longrightarrow> A O B \<in> X"
+  proof - 
+    fix A B 
+    assume assms1: "A \<in> X" "B \<in> X" 
+    obtain S where SH: "A = F O S O converse(F)" "S \<in> H" 
+      using assms1 X_def by auto
+    obtain T where TH: "B = F O T O converse(F)" "T \<in> H" 
+      using assms1 X_def by auto
+
+    have"S \<in> Fn_perms" using SH assms Fn_perms_filter_subset by auto
+    then have "S \<in> bij(Fn, Fn)" using Fn_perms_def Fn_perm'_bij by auto
+    then have Ssubset : "S \<subseteq> Fn \<times> Fn" using bij_def inj_def Pi_def by force
+
+    have "A O B = F O ((S O (converse(F) O F)) O T) O converse(F)"
+      using SH TH comp_assoc by auto
+    also have "... = F O ((S O (id(Fn))) O T) O converse(F)"
+      apply(subst left_comp_inverse, rule bij_is_inj)
+      using assms Fn_perms_def Fn_perm'_bij 
+      by auto
+    also have "... = F O (S O T) O converse(F)"
+      apply(subst right_comp_id [where B=Fn])
+       apply(rule Ssubset, simp)
+      done
+    finally show "A O B \<in> X" 
+      apply (simp add:X_def)
+      apply(rule_tac x="S O T" in bexI, simp)
+      apply(rule_tac P="H \<in> forcing_data_partial.P_auto_subgroups(Fn, Fn_leq, M, Fn_perms)" in mp)
+       apply(subst forcing_data_partial.P_auto_subgroups_def, rule Fn_forcing_data_partial, simp)
+       apply(subst forcing_data_partial.is_P_auto_group_def, rule Fn_forcing_data_partial)
+      using SH TH 
+       apply force
+      using assms Fn_perms_filter_def 
+      by auto
+  qed
+
+  have conversein : "\<And>A. A \<in> X \<Longrightarrow> converse(A) \<in> X" 
+  proof - 
+    fix A 
+    assume assms1 : "A \<in> X"
+    obtain S where SH: "A = F O S O converse(F)" "S \<in> H" 
+      using assms1 X_def by auto
+    then have "converse(A) = converse(F O (S O converse(F)))" by auto 
+    also have "... = converse(S O converse(F)) O converse(F)" by (subst converse_comp, simp)
+    also have "... = (converse(converse(F)) O converse(S)) O converse(F)" by (subst converse_comp, simp)
+    also have "... = F O converse(S) O converse(F)" using comp_assoc by auto
+    finally show "converse(A) \<in> X" 
+      apply(simp add:X_def)
+      apply(rule_tac x="converse(S)" in bexI, simp)
+      apply(rule_tac P="H \<in> forcing_data_partial.P_auto_subgroups(Fn, Fn_leq, M, Fn_perms)" in mp)
+       apply(subst forcing_data_partial.P_auto_subgroups_def, rule Fn_forcing_data_partial, simp)
+       apply(subst forcing_data_partial.is_P_auto_group_def, rule Fn_forcing_data_partial)
+      using SH
+       apply force
+      using assms Fn_perms_filter_def 
+      by auto
+  qed
+
+  have Xgroup : "forcing_data_partial.is_P_auto_group(Fn, Fn_leq, M, X)"
+    apply(subst forcing_data_partial.is_P_auto_group_def)
+    apply(rule Fn_forcing_data_partial)
+    using Xsubset' Xsubset'' bij_def inj_def compin conversein
+    by auto
+
+  have Xsubgroup :"X \<in> forcing_data_partial.P_auto_subgroups(Fn, Fn_leq, M, Fn_perms)" 
+    apply(subst forcing_data_partial.P_auto_subgroups_def)
+     apply(rule Fn_forcing_data_partial)
+    using Xsubset XinM Xgroup
+    by auto
+
+  obtain E where EH : "E \<in> Pow(nat) \<inter> M" "finite_M(E)" "Fix(E) \<subseteq> H" 
+    using assms Fn_perms_filter_def
+    by auto
+
+  then obtain m e where meH: "m \<in> nat" "e \<in> inj(E, m)" "e \<in> M" using finite_M_def by force
+
+  have imgsubset: "f``E \<subseteq> nat" 
+  proof (rule subsetI)
+    fix y assume "y \<in> f``E" 
+    then obtain x where "<x, y> \<in> f" by auto
+    then show "y \<in> nat" using fH nat_perms_def bij_def inj_def Pi_def by auto
+  qed
+
+  define e' where "e' \<equiv> e O converse(restrict(f, E))" 
+  have e'in : "e' \<in> M" using e'_def comp_closed meH converse_closed fH nat_perms_def restrict_closed EH image_closed by auto
+
+  have "e' \<in> inj(f``E, m)" 
+    unfolding e'_def
+    apply(rule_tac B=E in comp_inj)
+     apply(rule bij_is_inj, rule bij_converse_bij)
+     apply(rule restrict_bij, rule bij_is_inj)
+    using fH nat_perms_def EH meH
+    by auto
+
+  then have imgfinite: "finite_M(f``E)" 
+    unfolding finite_M_def
+    using meH e'in 
+    by force
+
+  have fixsubset: "Fix(f``E) \<subseteq> X" 
+  proof(rule subsetI)
+    fix A assume assms1 : "A \<in> Fix(f``E)" 
+    then obtain a where aH: "A = Fn_perm'(a)" "a \<in> nat_perms" "\<forall>n \<in> f``E. a`n = n" using Fix_def by auto
+  
+    define g where "g \<equiv> converse(f) O a O f" 
+    have gin: "g \<in> nat_perms" 
+      unfolding g_def 
+      using composition_in_nat_perms fH aH converse_in_nat_perms
+      by auto
+
+    have "\<And>n. n \<in> E \<Longrightarrow> g`n = n"
+    proof-  
+      fix n assume nin : "n \<in> E" 
+      have "g`n = ((converse(f) O a) O f) ` n" using g_def comp_assoc by simp
+      also have "... = (converse(f) O a) ` (f ` n)" 
+        apply(subst comp_fun_apply)
+        using fH nat_perms_def bij_def inj_def 
+          apply auto[1]
+        using nin EH 
+         apply force
+        by simp
+      also have "... = converse(f) ` (a ` (f ` n))"
+        apply(subst comp_fun_apply)
+        using aH nat_perms_def bij_def inj_def 
+          apply auto[1]
+         apply(rule function_value_in)
+        using fH nat_perms_def bij_def inj_def 
+          apply auto[1]
+        using nin EH 
+         apply force
+        by simp
+      also have "... = converse(f) ` (f ` n)" 
+        apply(subgoal_tac "f ` n \<in> f `` E")
+        using aH 
+         apply force 
+        apply(rule imageI, rule function_apply_Pair)
+        using fH nat_perms_def bij_def inj_def Pi_def nin EH
+        by auto
+      also have "... = n"
+        apply(rule left_inverse)
+        using fH nat_perms_def bij_def
+         apply force
+        using nin EH
+        by auto
+      finally show "g`n = n" by auto
+    qed
+        
+    then have gfix : "Fn_perm'(g) \<in> Fix(E)" 
+      unfolding Fix_def 
+      using gin
+      by auto
+
+    have "f O g O converse(f) = (f O converse(f)) O a O (f O converse(f))" 
+      unfolding g_def
+      using comp_assoc
+      by auto
+    also have "... = id(nat) O (a O id(nat))" 
+      apply(subst right_comp_inverse)
+      using fH nat_perms_def bij_def
+      apply force
+      apply(subst right_comp_inverse)
+      using fH nat_perms_def bij_def
+      by auto
+    also have "... = id(nat) O a" 
+      apply(subst right_comp_id)
+      using aH nat_perms_def bij_def inj_def Pi_def
+      by auto
+    also have "... = a"
+      apply(subst left_comp_id)
+      using aH nat_perms_def bij_def inj_def Pi_def
+      by auto
+    finally have "a = f O g O converse(f)" by simp
+    then have "Fn_perm'(a) = Fn_perm'(f O g O converse(f))" by simp
+    then have "A = Fn_perm'(f O g O converse(f))" using aH by auto
+    also have "... = Fn_perm'(f) O Fn_perm'(g O converse(f))" 
+      apply(subst Fn_perm'_comp)
+      using fH composition_in_nat_perms converse_in_nat_perms fH gin
+      by auto
+    also have "... = Fn_perm'(f) O Fn_perm'(g) O Fn_perm'(converse(f))" 
+      apply(subst (2) Fn_perm'_comp)
+      using fH composition_in_nat_perms converse_in_nat_perms fH gin
+      by auto
+    also have "... = Fn_perm'(f) O Fn_perm'(g) O converse(Fn_perm'(f))" 
+      using Fn_perm'_converse fH converse_in_nat_perms
+      by auto
+    also have "... = F O Fn_perm'(g) O converse(F)" using fH by auto
+    finally show "A \<in> X" 
+      apply(simp add:X_def)
+      apply(rule_tac x="Fn_perm'(g)" in bexI, simp)
+      using gfix EH 
+      by auto
+  qed
+
+  have "X \<in> Fn_perms_filter" 
+    unfolding Fn_perms_filter_def 
+    using Xsubgroup imgsubset fH EH nat_perms_def image_closed imgfinite fixsubset
+    by force
+
+  then show ?thesis 
+    using X_def 
+    by auto
+qed
+
+lemma Fn_M_symmetric_system : "M_symmetric_system(Fn, Fn_leq, 0, M, enum, Fn_perms, Fn_perms_filter)" 
+  unfolding M_symmetric_system_def
+  apply(rule conjI)
+   apply(rule forcing_data_partial_axioms)
+  unfolding M_symmetric_system_axioms_def 
+  using Fn_perms_in_M Fn_perms_group Fn_perms_filter_in_M Fn_perms_filter_def
+        Fn_perms_filter_nonempty Fn_perms_filter_intersection Fn_perms_filter_subpergroup 
+        Fn_perms_filter_subpergroup Fn_perms_filter_normal
+  by auto
 
 end
 end

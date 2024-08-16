@@ -12,6 +12,14 @@ lemma converse_in_nat_perms :
   using bij_converse_bij assms nat_perms_def nat_perms_in_M transM converse_closed
   by auto
 
+lemma composition_in_nat_perms : 
+  fixes f g 
+  assumes "f \<in> nat_perms" "g \<in> nat_perms" 
+  shows "f O g \<in> nat_perms" 
+  using assms comp_closed comp_bij
+  unfolding nat_perms_def 
+  by auto
+
 lemma Fn_perm_subset : 
   fixes f p 
   assumes "f \<in> nat_perms" "p \<in> Fn" 

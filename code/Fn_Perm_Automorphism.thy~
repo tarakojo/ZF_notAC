@@ -501,25 +501,36 @@ proof (rule equality_iffI)
     using id_bij bij_def inj_def Pi_def
     by auto
 
-  have "v \<in> converse(Fn_perm'(f)) \<longleftrightarrow> (\<exists>p \<in> Fn. v = <Fn_perm(f, p), p>)"
+  have I1: "v \<in> converse(Fn_perm'(f)) \<longleftrightarrow> (\<exists>p \<in> Fn. v = <Fn_perm(f, p), p>)"
     using Fn_perm'_type assms Pi_def Fn_perm'_def
     by force
-  have "... \<longleftrightarrow> (\<exists>p \<in> Fn. v = <Fn_perm'(f)`p, p>)"
+  have I2: "... \<longleftrightarrow> (\<exists>p \<in> Fn. v = <Fn_perm'(f)`p, p>)"
     using assms Fn_perm'_eq 
     by auto
-  have "... \<longleftrightarrow> (\<exists>p' \<in> Fn. v = <Fn_perm'(f)`(Fn_perm'(converse(f))`p'), Fn_perm'(converse(f))`p'>)"
+  have I3: "... \<longleftrightarrow> (\<exists>p' \<in> Fn. v = <Fn_perm'(f)`(Fn_perm'(converse(f))`p'), Fn_perm'(converse(f))`p'>)"
     using converse_in_nat_perms assms Fn_perm_in_Fn Fn_perm'_eq surjE
     by force
-  have "... \<longleftrightarrow> (\<exists>p' \<in> Fn. v = <p', Fn_perm'(converse(f))`p'>)"
+  have I4: "... \<longleftrightarrow> (\<exists>p' \<in> Fn. v = <p', Fn_perm'(converse(f))`p'>)"
     apply(rule bex_iff)
     apply(subst comp_fun_apply [symmetric])
-    
-  have "... \<longleftrightarrow> (\<exists>p' \<in> Fn.  <Fn_perm'(converse(f))`p', p'> \<in> Fn_perm'(f) \<and> v = <p', Fn_perm'(converse(f))`p'>)"
-    using eq by auto
-  have "... \<longleftrightarrow> (\<exists>p' \<in> Fn.  v \<in> converse(Fn_perm'(f)) \<and> v = <p', Fn_perm'(converse(f))`p'>)"
+      apply(rule Fn_perm'_type, rule converse_in_nat_perms, simp add:assms, simp)
+    apply(subst Fn_perm'_comp, simp add:assms, rule converse_in_nat_perms, simp add:assms)
+    apply(subst right_comp_inverse)
+    using assms nat_perms_def bij_is_surj 
+     apply force
+    apply(subst Fn_perm'_id, subst function_apply_equality, rule idI, simp)
+    using id_bij bij_def inj_def Pi_def 
     by auto
-
-
+  have I5: "... \<longleftrightarrow> (\<exists>p' \<in> Fn. v = <p', Fn_perm(converse(f), p')>)"
+    using Fn_perm'_type assms Pi_def Fn_perm'_def converse_in_nat_perms Fn_perm'_eq
+    by force
+  have I6: "... \<longleftrightarrow> v \<in> Fn_perm'(converse(f))" 
+    using Fn_perm'_type assms Pi_def Fn_perm'_def converse_in_nat_perms
+    by force
+  show "v \<in> converse(Fn_perm'(f)) \<longleftrightarrow> v \<in> Fn_perm'(converse(f))" 
+    using I1 I2 I3 I4 I5 I6 
+    by auto
+qed
 
 lemma Fn_perm'_preserves_order : 
   fixes f p p' 
@@ -625,26 +636,9 @@ lemma Fn_perm'_is_P_auto :
    apply(rule Fn_perm'_preserves_order)
   using assms
       apply auto[4]
-
     apply(rule Fn_perm'_preserves_order')
   using assms
   by auto
-
-lemma Fn_perms_group : "forcing_data_partial.is_P_auto_group(Fn, Fn_leq, M, Fn_perms)" 
-  apply(subst forcing_data_partial.is_P_auto_group_def)
-   apply(rule Fn_forcing_data_partial, rule conjI)
-   apply(subst Fn_perms_def)
-  using Fn_perm'_type Fn_perm'_is_P_auto
-   apply force
-  apply(rule conjI)
-   apply(subst Fn_perms_def)+
-   apply clarsimp
-   apply(rename_tac f f', rule_tac x="f O f'" in bexI)
-    apply(rule Fn_perm'_comp)
-  using nat_perms_def comp_closed comp_bij 
-     apply auto[3]
-  
-
 
 
 end
