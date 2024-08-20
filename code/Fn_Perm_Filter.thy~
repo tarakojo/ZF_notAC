@@ -705,7 +705,7 @@ proof-
     by auto
 qed
 
-lemma Fn_perms_filter_subpergroup : 
+lemma Fn_perms_filter_supergroup : 
   fixes A B
   assumes "A \<in> Fn_perms_filter" "B \<in> forcing_data_partial.P_auto_subgroups(Fn, Fn_leq, M, Fn_perms)" "A \<subseteq> B" 
   shows "B \<in> Fn_perms_filter" 
@@ -905,7 +905,7 @@ proof -
     using Xsubset' Xsubset'' bij_def inj_def compin conversein
     by auto
 
-  have "X \<in> forcing_data_partial.P_auto_subgroups(Fn, Fn_leq, M, Fn_perms)" 
+  have Xsubgroup :"X \<in> forcing_data_partial.P_auto_subgroups(Fn, Fn_leq, M, Fn_perms)" 
     apply(subst forcing_data_partial.P_auto_subgroups_def)
      apply(rule Fn_forcing_data_partial)
     using Xsubset XinM Xgroup
@@ -915,11 +915,32 @@ proof -
     using assms Fn_perms_filter_def
     by auto
 
-  have "f``E \<subseteq> nat" 
-  proof - 
-    (* f``E \<subseteq> nat, f``E finite *)
+  then obtain m e where meH: "m \<in> nat" "e \<in> inj(E, m)" "e \<in> M" using finite_M_def by force
 
-  have "Fix(f``E) \<subseteq> X" 
+  have imgsubset: "f``E \<subseteq> nat" 
+  proof (rule subsetI)
+    fix y assume "y \<in> f``E" 
+    then obtain x where "<x, y> \<in> f" by auto
+    then show "y \<in> nat" using fH nat_perms_def bij_def inj_def Pi_def by auto
+  qed
+
+  define e' where "e' \<equiv> e O converse(restrict(f, E))" 
+  have e'in : "e' \<in> M" using e'_def comp_closed meH converse_closed fH nat_perms_def restrict_closed EH image_closed by auto
+
+  have "e' \<in> inj(f``E, m)" 
+    unfolding e'_def
+    apply(rule_tac B=E in comp_inj)
+     apply(rule bij_is_inj, rule bij_converse_bij)
+     apply(rule restrict_bij, rule bij_is_inj)
+    using fH nat_perms_def EH meH
+    by auto
+
+  then have imgfinite: "finite_M(f``E)" 
+    unfolding finite_M_def
+    using meH e'in 
+    by force
+
+  have fixsubset: "Fix(f``E) \<subseteq> X" 
   proof(rule subsetI)
     fix A assume assms1 : "A \<in> Fix(f``E)" 
     then obtain a where aH: "A = Fn_perm'(a)" "a \<in> nat_perms" "\<forall>n \<in> f``E. a`n = n" using Fix_def by auto
@@ -1013,12 +1034,27 @@ proof -
       by auto
   qed
 
+  have "X \<in> Fn_perms_filter" 
+    unfolding Fn_perms_filter_def 
+    using Xsubgroup imgsubset fH EH nat_perms_def image_closed imgfinite fixsubset
+    by force
 
-  
-    
-  
+  then show ?thesis 
+    using X_def 
+    by auto
+qed
 
-  
+interpretation forcing_data_partial "Fn" "Fn_leq" "0" "M" "enum" using Fn_forcing_data_partial by auto
+
+lemma Fn_M_symmetric_system : "M_symmetric_system(Fn, Fn_leq, 0, M, enum, Fn_perms, Fn_perms_filter)" 
+  unfolding M_symmetric_system_def
+  apply(rule conjI)
+   apply(rule forcing_data_partial_axioms)
+  unfolding M_symmetric_system_axioms_def 
+  using Fn_perms_in_M Fn_perms_group Fn_perms_filter_in_M Fn_perms_filter_def
+        Fn_perms_filter_nonempty Fn_perms_filter_intersection  
+        Fn_perms_filter_supergroup Fn_perms_filter_normal
+  by auto
 
 end
 end
