@@ -479,7 +479,23 @@ lemma add_fun_in_M :
   apply(subst add_fun_comp)
   using comp_closed succ_fun_in_M 
   by auto
-  
+
+lemma finite_M_iff : 
+  fixes A 
+  shows "finite_M(A) \<longleftrightarrow> Finite(A) \<and> A \<in> M" 
+  unfolding finite_M_def
+  apply(rule iffI, clarsimp, rule not_emptyE, force)
+   apply(rule conjI, rename_tac n f, rule_tac X=n in lepoll_Finite)
+  unfolding lepoll_def 
+     apply force
+    apply(rule nat_into_Finite, simp)
+   apply(rename_tac n f, rule_tac b=A and a="domain(f)" in ssubst)
+  using inj_def Pi_def domain_closed  
+    apply auto[2]
+
+
+
+
 schematic_goal finite_M_union_h_elem_fm_auto:
   assumes
     "nth(0,env) = v"
@@ -494,7 +510,7 @@ schematic_goal finite_M_union_h_elem_fm_auto:
 
 lemma finite_M_union : 
   fixes A B 
-  assumes "A \<in> Pow(nat) \<inter> M" "B \<in> Pow(nat) \<inter> M" "finite_M(A)" "finite_M(B)" 
+  assumes "finite_M(A)" "finite_M(B)" 
   shows "finite_M(A \<union> B)"
 proof - 
   obtain n f where nfH: "n \<in> nat" "f \<in> M" "f \<in> inj(A, n)" using assms finite_M_def by force

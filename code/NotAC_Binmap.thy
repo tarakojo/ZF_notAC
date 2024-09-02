@@ -8,6 +8,7 @@ interpretation M_symmetric_system "Fn" "Fn_leq" "0" "M" "enum" "Fn_perms" "Fn_pe
   using Fn_M_symmetric_system by auto
 
 definition binmap_row' where "binmap_row'(n) \<equiv> { x \<in> domain(check(nat)) \<times> Fn. \<exists>F \<in> Fn. \<exists>m \<in> nat. x = <check(m), F> \<and> F`<n, m> = 1 }" 
+definition binmap_row where "binmap_row(G, n) \<equiv> { m \<in> nat. \<exists>p \<in> G. p`<n, m> = 1 }" 
 definition binmap' where "binmap' \<equiv> { binmap_row'(n). n \<in> nat } \<times> { 0 }" 
 
 
@@ -666,6 +667,281 @@ lemma binmap'_HS : "binmap' \<in> HS"
   using Fix_def Fn_perms_def zero_in_M
   by auto
 
+lemma finite_M_cons : 
+  fixes A x 
+  assumes "finite_M(A)" "x \<in> M" "x \<notin> A"  
+  shows "finite_M(cons(x, A))" 
+proof - 
+
+  obtain n f where nfH: "n \<in> nat" "f \<in> inj(A, n)" "f \<in> M" using assms finite_M_def by force
+
+  define g where "g \<equiv> f \<union> { <x, n> }" 
+
+  have "\<And>y. <x, y> \<notin> f" 
+    using nfH inj_def Pi_def assms
+    by force
+  then have functionH: "function(g)" 
+    unfolding function_def g_def
+    using nfH inj_def Pi_def assms function_def
+    by force
+
+  have "domain(g) = domain(f) \<union> {x}" 
+    unfolding g_def 
+    by auto
+  then have domH: "domain(g) = cons(x, A)"
+    using cons_def assms nfH inj_def Pi_def
+    by auto
+
+  have ranH: "range(g) \<subseteq> succ(n)" 
+    unfolding g_def 
+    using nfH inj_def Pi_def
+    by auto
+  
+  have gpiH: "g \<in> cons(x, A) \<rightarrow> succ(n)" 
+    apply(rule Pi_memberI)
+    using relation_def g_def nfH inj_def Pi_def
+       apply force
+    using functionH domH ranH 
+    by auto
+
+  have appAH: "\<And>a. a \<in> A \<Longrightarrow> g`a = f`a" 
+    apply(rule function_apply_equality)
+    unfolding g_def 
+     apply simp
+     apply(rule disjI1, rule function_apply_Pair)
+    using nfH inj_def Pi_def g_def functionH
+    by auto
+
+  have appAH' : "\<And>a. a \<in> A \<Longrightarrow> g`a \<in> n" 
+  proof - 
+    fix a 
+    assume ain : "a \<in> A" 
+    then have "g`a = f`a" using appAH by auto
+    have "a \<in> domain(f)" using nfH inj_def Pi_def ain by auto
+    then obtain m where mH: "<a, m> \<in> f" by auto
+    then have "f`a = m" using function_apply_equality nfH inj_def Pi_def by auto
+    have "m \<in> n" using nfH inj_def Pi_def mH by auto
+    then show "g`a \<in> n" using \<open>f`a = m\<close> \<open>g`a = f`a\<close> by auto
+  qed    
+
+  have appxH: "g`x = n" 
+    apply(rule function_apply_equality)
+    using g_def functionH
+    by auto
+
+  have appneq : "\<And>a. a \<in> A \<Longrightarrow> g`a \<noteq> g`x" 
+    apply(rule ccontr)
+    using appAH' appxH
+    apply simp
+    apply(subgoal_tac "n \<in> n", rule mem_irrefl, simp)
+    by auto
+
+  have appneq' : "\<And>a b. a \<in> A \<Longrightarrow> b \<in> A \<Longrightarrow> g`a = g`b \<Longrightarrow> a = b" 
+    using appAH nfH inj_def 
+    by force
+
+  have "\<And>a b. a \<in> cons(x, A) \<Longrightarrow> b \<in> cons(x, A) \<Longrightarrow> g`a = g`b \<Longrightarrow> a = b"
+    apply auto
+    using appneq
+    apply auto[2] 
+    apply(rule appneq')
+    by auto
+  then have "g \<in> inj(cons(x, A), succ(n))" 
+    unfolding inj_def
+    using gpiH 
+    by auto
+
+  then show ?thesis 
+    unfolding finite_M_def 
+    apply(rule_tac x="succ(n)" in bexI)
+     apply(subgoal_tac "g \<in> M", force)
+    unfolding g_def
+    using nfH Un_closed singleton_in_M_iff pair_in_M_iff assms nat_in_M transM
+    by auto  
+qed
+
+lemma generic_filter_contains_max : 
+  fixes G 
+  assumes "M_generic(G)" 
+  shows "0 \<in> G" 
+proof - 
+  thm M_generic_def
+  filter_def
+
+  have "dense(Fn)" 
+    unfolding dense_def Fn_leq_def
+    apply(subst forcing_notion.dense_def)
+    using Fn_leq_def forcing_notion_axioms
+     apply force
+    by auto
+
+  then have "G \<inter> Fn \<noteq> 0" using M_generic_def assms Fn_in_M by blast
+  then obtain p where pH: "p \<in> Fn" "p \<in> G" by auto
+
+  show "0 \<in> G" 
+    apply(rule M_generic_leqD)
+    using assms pH zero_in_Fn
+       apply auto[3]
+    unfolding Fn_leq_def
+    using zero_in_Fn pH
+    by auto
+qed
+   
+lemma binmap_row_eq : 
+  fixes n G  
+  assumes "n \<in> nat" "M_generic(G)" 
+  shows "val(G, binmap_row'(n)) = binmap_row(G, n)" 
+proof(rule equality_iffI, rule iffI)
+  fix v 
+  assume vin: "v \<in> val(G, binmap_row'(n))" 
+  have "v \<in> { val(G, m) .. m \<in> domain(binmap_row'(n)), \<exists>p \<in> Fn. \<langle>m, p\<rangle> \<in> binmap_row'(n) \<and> p \<in> G }"
+    apply(rule_tac P="v \<in> val(G, binmap_row'(n))" in mp)
+    apply(subst def_val)
+    using vin 
+    by auto
+  then obtain m p where mpH: "p \<in> Fn" "m \<in> nat" "\<langle>check(m), p\<rangle> \<in> binmap_row'(n)" "p \<in> G" "v = val(G, check(m))" "p`<n, m> = 1" 
+    unfolding binmap_row'_def
+    by force
+  
+  have "val(G, check(m)) = m"
+    apply(rule valcheck)
+    using generic_filter_contains_max zero_in_Fn assms
+    by auto
+  then have "v = m" using mpH by auto 
+  then show "v \<in> binmap_row(G, n)" 
+    unfolding binmap_row_def 
+    using mpH 
+    by auto
+next 
+  fix v
+  assume "v \<in> binmap_row(G, n)" 
+  then obtain m p where mpH: "m \<in> nat" "p \<in> G" "p`<n, m> = 1" "v = m" using binmap_row_def by auto
+  then have "<check(m), p> \<in> binmap_row'(n)" 
+    unfolding binmap_row'_def 
+    apply auto
+      apply(subst (2) def_check)
+    using mpH M_genericD assms
+    by auto
+  then have "val(G, check(m)) \<in> { val(G, m) .. m \<in> domain(binmap_row'(n)), \<exists>p \<in> Fn. \<langle>m, p\<rangle> \<in> binmap_row'(n) \<and> p \<in> G }"
+    apply simp
+    apply(rule_tac x="check(m)" in bexI)
+    using mpH M_genericD assms
+    by auto
+  then have "val(G, check(m)) \<in> val(G, binmap_row'(n))" 
+    by(subst (2) def_val, force)
+  then show "v \<in> val(G, binmap_row'(n))" 
+    apply(subgoal_tac "m = val(G, check(m))")
+    using mpH 
+     apply force
+    apply(rule sym)
+    apply(rule valcheck)
+    using generic_filter_contains_max zero_in_Fn assms
+    by auto
+qed
+
+lemma Fn_leq_preserves_value : 
+  fixes p q 
+  assumes "<q, p> \<in> Fn_leq" "<m, n> \<in> domain(p)" 
+  shows "q`<m, n> = p`<m, n>" 
+proof - 
+  obtain v where vH: "<<m, n>, v> \<in> p" using assms by auto 
+  then have vH': "<<m, n>, v> \<in> q" using assms Fn_leq_def by auto
+
+  have papp : "p`<m, n> = v" 
+    apply(rule function_apply_equality)
+    using vH assms Fn_leq_def Fn_def 
+    by auto
+
+  have qapp : "q`<m, n> = v" 
+    apply(rule function_apply_equality)
+    using vH assms Fn_leq_def Fn_def 
+    by auto
+
+  show "q`<m, n> = p`<m, n>" using papp qapp by auto 
+qed
+
+lemma Fn_1_forces : 
+  fixes p n m 
+  assumes "p \<in> Fn" "n \<in> nat" "m \<in> nat" "p`<n, m> = 1" 
+  shows "\<forall>G. M_generic(G) \<and> p \<in> G \<longrightarrow> SymExt(G), map(val(G), [check(m), binmap_row'(n)]) \<Turnstile> Member(0, 1)" 
+  apply(clarsimp)
+  apply(rule iffD2, rule sats_Member_iff)
+   apply clarsimp
+   apply(rule conjI, subst SymExt_def)
+  using check_in_HS assms transM nat_in_M 
+    apply force
+  using binmap_row'_HS assms SymExt_def
+   apply force
+  apply simp
+  apply(rename_tac G, subgoal_tac "val(G, check(m)) = m \<and> val(G, binmap_row'(n)) = binmap_row(G, n)")
+   apply (simp add:binmap_row_def)
+  using assms
+   apply force
+  apply(rule conjI)
+   apply(rule valcheck)
+  using generic_filter_contains_max zero_in_Fn assms binmap_row_eq
+  by auto
+
+lemma Fn_0_forces : 
+  fixes p n m 
+  assumes "p \<in> Fn" "n \<in> nat" "m \<in> nat" "p`<n, m> = 0" "<n ,m> \<in> domain(p)"  
+  shows "\<forall>G. M_generic(G) \<and> p \<in> G \<longrightarrow> SymExt(G), map(val(G), [check(m), binmap_row'(n)]) \<Turnstile> Neg(Member(0, 1))" 
+proof(rule ccontr)
+  assume "\<not> (\<forall>G. M_generic(G) \<and> p \<in> G \<longrightarrow> SymExt(G), map(val(G), [check(m), binmap_row'(n)]) \<Turnstile> Neg(Member(0, 1)))" 
+  then obtain G where GH: "M_generic(G)" "p \<in> G" "\<not>(SymExt(G), map(val(G), [check(m), binmap_row'(n)]) \<Turnstile> Neg(Member(0, 1)))"
+    by auto
+
+  have listin : "[check(m), binmap_row'(n)] \<in> list(HS)" 
+      apply simp
+      apply(rule conjI)
+    using check_in_HS assms nat_in_M transM
+       apply force
+    using binmap_row'_HS assms
+    apply force 
+    done
+
+  have mapin : "map(val(G), [check(m), binmap_row'(n)]) \<in> list(SymExt(G))" 
+    unfolding SymExt_def 
+    using listin 
+    by auto
+
+  have "SymExt(G), map(val(G), [check(m), binmap_row'(n)]) \<Turnstile> Member(0, 1)"
+    using mapin GH by auto
+
+  then have "val(G, check(m)) \<in> val(G, binmap_row'(n))" 
+    using mapin 
+    by auto
+  then have "m \<in> binmap_row(G, n)" 
+    apply(subgoal_tac "val(G, check(m)) = m \<and> val(G, binmap_row'(n)) = binmap_row(G, n)")
+     apply (simp add:binmap_row_def)
+    apply(rule conjI)
+     apply(rule valcheck)
+    using generic_filter_contains_max zero_in_Fn assms binmap_row_eq GH
+    by auto
+  then obtain q where qH: "q \<in> G" "q`<n, m> = 1" 
+    using binmap_row_def
+    by auto
+
+  have domin : "<n, m> \<in> domain(q)" 
+    apply(rule ccontr)
+    using qH apply_0
+    by force
+
+  have "\<forall>p\<in>G. \<forall>q\<in>G. compat_in(G, Fn_leq, p, q)" 
+    using GH M_generic_def filter_def by auto
+  then obtain r where rH: "<r, p> \<in> Fn_leq" "<r, q> \<in> Fn_leq" "r \<in> G" 
+    using compat_in_def qH GH by force
+  then have "r`<n, m> = q`<n, m>" 
+    using Fn_leq_preserves_value domin 
+    by auto
+  then have v1: "r`<n, m> = 1" using qH by auto
+
+  have "r`<n, m> = 0" 
+    using rH GH Fn_leq_preserves_value assms
+    by force
+  then show "False" using v1 by auto
+qed 
+
 lemma binmap_row'_distinct_helper : 
   fixes n m p
   assumes "n \<in> nat" "n' \<in> nat" "n \<noteq> n'" "p \<in> Fn" "ForcesHS(p, Equal(0, 1), [binmap_row'(n), binmap_row'(n')])" 
@@ -708,10 +984,15 @@ proof -
 
   define q where "q \<equiv> p \<union> { <<n, m>, 1> } \<union> { <<n', m>, 0> }" 
 
-  have "finite_M(q)" 
-    unfolding finite_M_def 
+  have "domain(q) = domain(p) \<union> { <n, m>, <n', m> }" using q_def by auto
+  then have "domain(q) = cons(<n, m>, cons(<n', m>, domain(p)))" by auto 
+  then have domfin: "finite_M(domain(q))" 
+    apply simp
+    apply(rule finite_M_cons)+
+    using pair_in_M_iff assms nat_in_M transM mH Fn_def
+    by auto
 
-  have "q \<in> Fn" 
+  have qinFn : "q \<in> Fn" 
     unfolding q_def Fn_def  
     apply clarsimp
     apply(rule conjI)
@@ -729,35 +1010,89 @@ proof -
     using assms Fn_def mH
      apply auto[1]
     apply(rule conjI)
-     apply(rule finite_M_union)
+    using domfin q_def 
+     apply force
     using assms Fn_def mH
-     apply auto[1]
+    by auto
 
+  have appn : "q`<n, m> = 1"
+    apply(rule function_apply_equality)
+    using q_def qinFn Fn_def 
+    by auto
 
+  have appn' : "q`<n', m> = 0" 
+    apply(rule function_apply_equality)
+    using q_def qinFn Fn_def 
+    by auto    
 
-    
+  have listin : "[binmap_row'(n), binmap_row'(n')] \<in> list(HS)" 
+    using binmap_row'_HS assms
+    by auto
+  then have mapin : "\<And>G. map(val(G), [binmap_row'(n), binmap_row'(n')]) \<in> list(SymExt(G))" 
+    unfolding SymExt_def
+    by auto
 
+  have "\<forall>G. M_generic(G) \<and> q \<in> G \<longrightarrow> SymExt(G), map(val(G), [binmap_row'(n), binmap_row'(n')]) \<Turnstile> Equal(0, 1)"
+    apply(rule iffD1, rule definition_of_forcing_HS)
+    using assms binmap_row'_HS qinFn
+        apply auto[3]
+     apply (simp del:FOL_sats_iff pair_abs add: fm_defs nat_simp_union)
+    apply(rule_tac p=p in HS_strengthening_lemma)
+    using assms qinFn Fn_leq_def q_def listin HS_iff P_name_in_M
+    apply auto[5]
+     apply (simp del:FOL_sats_iff pair_abs add: fm_defs nat_simp_union)
+    using assms
+    by auto
+  then have eqH: "\<forall>G. M_generic(G) \<and> q \<in> G \<longrightarrow> val(G, binmap_row'(n)) = val(G, binmap_row'(n'))"
+    using mapin
+    by force
 
+  have "\<forall>G. M_generic(G) \<and> q \<in> G \<longrightarrow> SymExt(G), map(val(G), [check(m), binmap_row'(n)]) \<Turnstile> Member(0, 1)" 
+    apply(rule Fn_1_forces)
+    using assms mH qinFn appn
+    by auto
+  then have memH: "\<forall>G. M_generic(G) \<and> q \<in> G \<longrightarrow> val(G, check(m)) \<in> val(G, binmap_row'(n))"
+    apply(rule_tac allI)
+    apply(rename_tac G, subgoal_tac "map(val(G), [check(m), binmap_row'(n)]) \<in> list(SymExt(G))")
+     apply force
+    unfolding SymExt_def
+    using check_in_HS listin mH nat_in_M transM
+    by auto
 
+  have "\<forall>G. M_generic(G) \<and> q \<in> G \<longrightarrow> SymExt(G), map(val(G), [check(m), binmap_row'(n')]) \<Turnstile> Neg(Member(0, 1))"
+    apply(rule Fn_0_forces)
+    using assms mH qinFn appn' q_def
+    by auto
+  then have "\<forall>G. M_generic(G) \<and> q \<in> G \<longrightarrow> val(G, check(m)) \<notin> val(G, binmap_row'(n'))"
+    apply(rule_tac allI)
+    apply(rename_tac G, subgoal_tac "map(val(G), [check(m), binmap_row'(n')]) \<in> list(SymExt(G))")
+     apply force
+    unfolding SymExt_def
+    using check_in_HS listin mH nat_in_M transM
+    by auto
+  then have neqH: "\<forall>G. M_generic(G) \<and> q \<in> G \<longrightarrow> val(G, binmap_row'(n)) \<noteq> val(G, binmap_row'(n'))"
+    using memH by auto
+  
+  have "\<exists>G. M_generic(G) \<and> q \<in> G" 
+    using generic_filter_existence qinFn 
+    by force
+
+  then show False 
+    using eqH neqH 
+    by force
+qed
 
 lemma binmap_row'_distinct : 
   fixes n m 
-  assumes "n \<in> nat" "m \<in> nat" 
+  assumes "n \<in> nat" "m \<in> nat" "n \<noteq> m" 
   shows "ForcesHS(0, Neg(Equal(0, 1)), [binmap_row'(n), binmap_row'(m)])" 
 
   apply(rule iffD2, rule ForcesHS_Neg)
   using Fn_in_M binmap_row'_in_M assms zero_in_Fn
      apply auto[3]
   apply(rule ccontr, clarsimp)
-
-
-
-
-  
-
-thm Fn_def Forces_Neg ForcesHS_And
-
-
+  using binmap_row'_distinct_helper assms
+  by auto
 
 end
 end
