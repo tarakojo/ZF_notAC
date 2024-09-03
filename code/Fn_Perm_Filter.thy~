@@ -479,23 +479,7 @@ lemma add_fun_in_M :
   apply(subst add_fun_comp)
   using comp_closed succ_fun_in_M 
   by auto
-
-lemma finite_M_iff : 
-  fixes A 
-  shows "finite_M(A) \<longleftrightarrow> Finite(A) \<and> A \<in> M" 
-  unfolding finite_M_def
-  apply(rule iffI, clarsimp, rule not_emptyE, force)
-   apply(rule conjI, rename_tac n f, rule_tac X=n in lepoll_Finite)
-  unfolding lepoll_def 
-     apply force
-    apply(rule nat_into_Finite, simp)
-   apply(rename_tac n f, rule_tac b=A and a="domain(f)" in ssubst)
-  using inj_def Pi_def domain_closed  
-    apply auto[2]
-
-
-
-
+  
 schematic_goal finite_M_union_h_elem_fm_auto:
   assumes
     "nth(0,env) = v"
@@ -508,9 +492,80 @@ schematic_goal finite_M_union_h_elem_fm_auto:
           (\<exists>x \<in> M. \<exists>gx \<in> M. \<exists>gxn \<in> M. x \<notin> A \<and> fun_apply(##M, g, x, gx) \<and> fun_apply(##M, addn, gx, gxn) \<and> pair(##M, x, gxn, v))) \<longleftrightarrow> sats(M,?fm,env)" 
   by (insert assms ; (rule sep_rules | simp)+) 
 
+lemma finite_M_implies_Finite : 
+  fixes A 
+  assumes "finite_M(A)" 
+  shows "Finite(A)" 
+
+  using assms
+  unfolding finite_M_def 
+  apply clarsimp
+  apply(rename_tac n, rule_tac X=n in lepoll_Finite)
+  using lepoll_def nat_into_Finite
+  by auto
+
+lemma finite_M_cons : 
+  fixes A x 
+  assumes "finite_M(A)" "x \<in> M" 
+  shows "finite_M(cons(x, A))"
+
+proof (cases "x \<in> A")
+  case True
+  then have "cons(x, A) = A" 
+    apply(rule_tac equality_iffI, force)
+    done
+  then show ?thesis 
+    using assms
+    by auto
+next
+  case False
+
+  obtain n f where nfH: "n \<in> nat" "f \<in> inj(A, n)" "f \<in> M" 
+    using assms finite_M_def 
+    by force
+
+  have xnotin: "x \<notin> domain(f)" 
+    using nfH inj_def Pi_def \<open>x \<notin> A\<close>
+    by auto
+
+  define g where "g \<equiv> f \<union> {<x, n>}" 
+  have "g \<in> cons(x, A) \<rightarrow> succ(n)" 
+    apply(rule Pi_memberI)
+    unfolding g_def
+    using nfH inj_def Pi_def relation_def 
+       apply force
+    unfolding function_def 
+      apply auto[1]
+    using nfH inj_def function_def assms Pi_def xnotin \<open>x \<notin> A\<close>
+        apply (force, force, force, auto)
+    done 
+
+  have "\<And>a. a \<in> A \<Longrightarrow> g`a \<in> n" 
+    apply(rename_tac a, rule_tac a="f`a" and b="g`a" in ssubst)
+     apply(rule function_apply_equality)
+    unfolding g_def
+      apply(simp, rule disjI1, rule function_apply_Pair)
+    using nfH inj_def Pi_def
+       apply auto[2]
+    unfolding function_def 
+     apply auto[1]
+    using nfH inj_def Pi_def function_def
+  
+
+  then have gin : "g \<in> inj(cons(x, A), succ(n))"
+    unfolding inj_def
+    apply simp
+    apply(rule conjI)
+
+  then show ?thesis 
+    unfolding finite_M_def 
+    apply(rule_tac x="succ(n)" in bexI)
+qed
+
+
 lemma finite_M_union : 
   fixes A B 
-  assumes "finite_M(A)" "finite_M(B)" 
+  assumes "A \<in> Pow(nat) \<inter> M" "B \<in> Pow(nat) \<inter> M" "finite_M(A)" "finite_M(B)" 
   shows "finite_M(A \<union> B)"
 proof - 
   obtain n f where nfH: "n \<in> nat" "f \<in> M" "f \<in> inj(A, n)" using assms finite_M_def by force

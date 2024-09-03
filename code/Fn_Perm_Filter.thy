@@ -504,49 +504,9 @@ lemma finite_M_implies_Finite :
   using lepoll_def nat_into_Finite
   by auto
 
-lemma finite_M_cons : 
-  fixes A x 
-  assumes "finite_M(A)" "x \<in> M" 
-  shows "finite_M(cons(x, A))"
-
-proof (cases "x \<in> A")
-  case True
-  then have "cons(x, A) = A" 
-    apply(rule_tac equality_iffI, force)
-    done
-  then show ?thesis 
-    using assms
-    by auto
-next
-  case False
-
-  obtain n f where nfH: "n \<in> nat" "f \<in> inj(A, n)" "f \<in> M" 
-    using assms finite_M_def 
-    by force
-
-  have xnotin: "x \<notin> domain(f)" 
-    using nfH inj_def Pi_def \<open>x \<notin> A\<close>
-    by auto
-
-  define g where "g \<equiv> f \<union> {<x, n>}" 
-  have "g \<in> cons(x, A) \<rightarrow> succ(n)" 
-    apply(rule Pi_memberI)
-    unfolding g_def
-    using nfH inj_def Pi_def relation_def 
-       apply force
-    unfolding function_def 
-      apply auto[1]
-    using nfH inj_def function_def assms Pi_def xnotin \<open>x \<notin> A\<close>
-        apply (force, force, force, auto)
-    done
-
-  then show ?thesis sorry
-qed
-
-
 lemma finite_M_union : 
   fixes A B 
-  assumes "A \<in> Pow(nat) \<inter> M" "B \<in> Pow(nat) \<inter> M" "finite_M(A)" "finite_M(B)" 
+  assumes "A \<in> M" "B \<in> M" "finite_M(A)" "finite_M(B)" 
   shows "finite_M(A \<union> B)"
 proof - 
   obtain n f where nfH: "n \<in> nat" "f \<in> M" "f \<in> inj(A, n)" using assms finite_M_def by force
