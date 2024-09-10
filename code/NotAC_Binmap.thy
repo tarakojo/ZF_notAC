@@ -1,5 +1,5 @@
 theory NotAC_Binmap
-  imports Fn_perm_Filter HS_Forces
+  imports Fn_Perm_Filter HS_Forces
 begin 
 
 context M_ctm begin 

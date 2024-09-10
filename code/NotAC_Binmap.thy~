@@ -1117,5 +1117,44 @@ lemma binmap_row'_distinct :
   using binmap_row'_distinct_helper assms
   by auto
 
+lemma binmap_row_distinct : 
+  fixes G n m 
+  assumes "M_generic(G)" "n \<in> nat" "m \<in> nat" "n \<noteq> m" 
+  shows "binmap_row(G, n) \<noteq> binmap_row(G, m)" 
+proof - 
+
+  have listin : "[binmap_row'(n), binmap_row'(m)] \<in> list(HS)" 
+    using binmap_row'_HS assms
+    by auto
+  
+  have "ForcesHS(0, Neg(Equal(0, 1)), [binmap_row'(n), binmap_row'(m)])"
+    apply(rule binmap_row'_distinct)
+    using assms
+    by auto
+  then have "(\<forall>H. M_generic(H) \<and> 0\<in>H  \<longrightarrow>  SymExt(H), map(val(H),[binmap_row'(n), binmap_row'(m)]) \<Turnstile> Neg(Equal(0, 1)))"
+    apply(rule_tac iffD1)
+     apply(rule definition_of_forcing_HS)
+    using zero_in_M assms zero_in_Fn listin
+    apply auto[4]
+     apply (simp del:FOL_sats_iff pair_abs add: fm_defs nat_simp_union)
+    by auto
+  then have "SymExt(G), map(val(G),[binmap_row'(n), binmap_row'(m)]) \<Turnstile> Neg(Equal(0, 1))"
+    using assms local.generic_filter_contains_max 
+    by auto
+  then have "val(G, binmap_row'(n)) \<noteq> val(G, binmap_row'(m))" (is ?A)
+    apply(subgoal_tac "val(G, binmap_row'(n)) \<in> SymExt(G) \<and> val(G, binmap_row'(m)) \<in> SymExt(G)")
+     apply force
+    using SymExt_def listin
+    by auto
+  then show rowneq: "binmap_row(G, n) \<noteq> binmap_row(G, m)" 
+    apply(rule_tac P="?A" in iffD1)
+     apply(subst binmap_row_eq)
+    using assms  
+       apply auto[2]
+     apply(subst binmap_row_eq)
+    using assms nat_perms_def bij_def inj_def
+    by auto
+qed
+
 end
 end
