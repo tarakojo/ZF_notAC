@@ -8,34 +8,55 @@ TODO :
 
 \fi
 
-\RequirePackage{plautopatch}
-\documentclass[17pt,aspectratio=169]{beamer}
-\usepackage{bxdpx-beamer} % dvipdfmxなので必要
+\RequirePackage{plautopatch} 
+\documentclass[17pt,aspectratio=169]{beamer} 
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{luatexja}
+\usepackage{luatexja-fontspec} 
+\usepackage{fontspec}
 \usepackage{color}
+\usepackage{tcolorbox}
+\usepackage{ascmac}
+\usepackage{bm}
+
+\usepackage{enumitem}
+\setlist[itemize,1]{label=\textbullet, itemsep=17pt}  % 記号をもうちょっと大きくしたい
+\setlist[itemize,2]{label=\textasteriskcentered, itemsep=3pt} 
 
 \usetheme{metropolis}  % Metropolisテーマを使用
+\setmainjfont{Yu Gothic Bold}  
+\setsansjfont{Yu Gothic Bold}  
 
-\usefonttheme{professionalfonts}
+%Beamerフォント設定
+\usefonttheme{professionalfonts} % Be professional!
 \usepackage[T1]{fontenc}
-\usepackage{mlmodern} 
+\usepackage{mlmodern}  % 太いComputer Modern
 % MLmodernのバグを修正: cf. https://tex.stackexchange.com/questions/646333/size-of-integral-symbol-in-section-header-with-mlmodern
 \DeclareFontFamily{OMX}{mlmex}{}
 \DeclareFontShape{OMX}{mlmex}{m}{n}{%
    <->mlmex10%
    }{} 
-\usepackage{newtxtext} % 数式以外をTXフォントで上書き
 \renewcommand{\familydefault}{\sfdefault}  % 英文をサンセリフ体に
 \renewcommand{\kanjifamilydefault}{\gtdefault}  % 日本語をゴシック体に
 \usefonttheme{structurebold} % タイトル部を太字
 \setbeamerfont{alerted text}{series=\bfseries} % Alertを太字
 \setbeamerfont{section in toc}{series=\mdseries} % 目次は太字にしない
 \setbeamerfont{frametitle}{size=\large} % フレームタイトル文字サイズ
-\setbeamerfont{title}{size=\Large} % タイトル文字サイズ
+\setbeamerfont{title}{size=\LARGE} % タイトル文字サイズ
 \setbeamerfont{date}{size=\small}  % 日付文字サイズ
- 
-\usepackage{enumitem}
-\setlist[itemize,1]{label=\textbullet, itemsep=17pt}  % 記号をもうちょっと大きくしたい
-\setlist[itemize,2]{label=\textasteriskcentered, itemsep=3pt} 
+\setbeamerfont{normal text}{series=\mdseries} % 本文を太字に 
+
+%ページ番号の設定
+\setbeamertemplate{footline}{
+    \hfill {\textcolor{gray!90}{\insertframenumber/\inserttotalframenumber}\hspace{0.1cm}}
+    \vspace{0.1cm} 
+}
+
+%短縮形
+\newcommand{\Pbb}{\mathbb{P}}
+\newcommand{\Gcal}{\mathcal{G}}
+\newcommand{\Fcal}{\mathcal{F}}
 
 %タイトル
 \title{￢ACの相対的無矛盾性のIsabelle/ZFによる形式的証明}
@@ -116,7 +137,7 @@ TODO :
 % https://isabelle.in.tum.de/dist/library/FOL/ZF/ZF_Base.html ZFの公理のコード
 
 
-\section{集合論の形式化に関する先行研究 }
+\section{集合論の形式化に関する\\先行研究 }
 
 \begin{frame}{先行研究 (Isabelle/ZF)}
 
@@ -126,17 +147,20 @@ TODO :
     %----------------------------------------------
 
     \begin{itemize}
-        \item 構成可能宇宙$L$の形式化
+        \vspace{10pt}
+
+        \item \textbf{構成可能集合の形式化}
               {\small \begin{itemize}
-                  \item Lawrence C. Paulson(2002)
-                  \item ZF上ACが相対的無矛盾であることの証明
-              \end{itemize} }
+                      \item Lawrence C. Paulson(2002)
+                      \item ACがZF上相対的無矛盾であることの証明
+                  \end{itemize} }
               % https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-551.pdf 論文リンク
 
-        \item 強制法の形式化とCHのZFC上の独立性証明
+        \item 強制法の形式化 \& CHのZFC上の独立性証明
               {\small \begin{itemize}
                   \item Emmanuel Guntherら(2020,2022)
-                  \item Kunenの本のアプローチ
+                  \item Kunenの強制法の章を形式化
+                  \item c.t.m.の存在を仮定しその上のpreorderを用いる
               \end{itemize} }
 
               % https://arxiv.org/pdf/2001.09715 強制法の形式化
@@ -144,12 +168,11 @@ TODO :
     \end{itemize}
 \end{frame}
 
-
 \begin{frame}{先行研究 (Lean)}
     \vspace{10pt}
 
     \begin{itemize}
-        \item 強制法の形式化とCHのZFC上の独立性証明
+        \item 強制法の形式化 \& CHのZFC上の独立性証明
               {\small \begin{itemize}
                   \item Jesse Michael Han, Floris van Doorn(2020)
                   \item flypitchプロジェクト
@@ -161,453 +184,216 @@ TODO :
                   \item Sky Wilshaw(2024)
               \end{itemize} }
 
+              %----------------------------------------------
+              % https://leanprover-community.github.io/con-nf// 
+              % Leanの型理論は(ZFC+可算個の到達不能基数の存在)上無矛盾
+              % 到達不能基数の方の仮定は証明でいらないのでZFC上でいいらしい  
+              %----------------------------------------------
+    \end{itemize}
+\end{frame}
+
+\section{本研究}
+
+\begin{frame}{本研究}
+    \begin{itembox}[l]{やったこと}
+        \begin{center}
+            $\neg$ACがZF上相対的無矛盾であることを\\Isabelle/ZFで証明
+        \end{center}
+    \end{itembox}
+
+    背景
+    \vspace{-10pt}
+    {\small
+        \begin{itemize}
+            \setlength{\itemsep}{1pt}
+            \item コーエンはCHとACがZFから独立であることを示した
+            \item CHの独立性は形式化されている
+            \item ACも形式化したい
+        \end{itemize}
+
         %----------------------------------------------
-        % https://leanprover-community.github.io/con-nf// 
-        % Leanの型理論は(ZFC+可算個の到達不能基数の存在)上無矛盾
-        % 到達不能基数の方の仮定は証明でいらないのでZFC上でいいらしい  
+        % ただし、コーエンの証明そのままを形式化したわけではない
         %----------------------------------------------
-    \end{itemize}
+    }
 \end{frame}
 
+\begin{frame}{本研究のアプローチ}
+    \vspace{10pt}
 
-% ここから下は後で消す ----------------------------------------------
-
-\begin{frame}{ZFC公理系}
     \begin{itemize}
-        \item ZermeloとFraenkelによる、集合論の公理系 %ZFやその拡張は集合論の現在スタンダードな公理系の一つ
-        \item 選択公理を除いたものをZF公理系と呼ぶ
-        \item {\small (等号を含む)}一階述語論理を用いる
-        \item 述語記号は、$\in$のみ %一階術語論理に等号公理を含むものとする。
-        \item 関数・定数記号は無い %和集合やべき集合などの記号は含まない。
+        \item Isabelle/ZFを用いる
+              {\small \begin{itemize}
+                  \item ZFに関する定義・補題・糖衣構文が多い
+
+                        %----------------------------------------------
+                        % Leanの強制法の形式化はLean3でやっている
+                        % 最新はLean4で、Lean3と完全に互換性あるわけではない
+                        % Lean4に引き継げるのかよくわからなかった
+                        %----------------------------------------------
+
+              \end{itemize}}
+        \item 証明の基本方針はAsaf Karagilaの講義ノート
+              {\small \begin{itemize}
+                  \item Lecture Notes: Forcing \& Symmetric Extensions (2023)
+                  \item c.t.m.とpreorderを用いた証明
+                  \item すでにある強制法の形式化と相性が良い
+              \end{itemize} }
+
+              %講義ノートの写真・リンクいる？
+              %The axiom of choiceも参考にしていることを書く？
     \end{itemize}
 \end{frame}
 
-\begin{frame}{略記}
+\section{証明概略}
+\begin{frame}{証明概略}
+    ZFのc.t.m.$M$から出発し、ZF+$\neg$ACのモデルを構成
     \begin{itemize}
-        \item 論理式の括弧は適宜省略する
-        \item $\forall x \in y (\phi)$は$\forall x (x \in y \rightarrow \phi)$の略記
-        \item $\exists x \in y (\phi)$は$\exists x (x \in y \land \phi)$の略記
+        \item あるposet $\mathbb{P}$によるgeneric拡大$M[G]$について\\
+              \textcolor{red}{symmetric extension}と呼ばれる\\
+              部分モデル$N \subseteq M[G]$を構成
+        \item $N$はZFを満たすが、整列可能定理を満たさない
     \end{itemize}
 \end{frame}
 
-\begin{frame}{略記}
+\begin{frame}{symmetric extensionの定義(1)}
+    \begin{itembox}[l]{定義 (自己同型)}
+        {\small
+            $(\Pbb, \le_{\Pbb})$は半順序で、最大元$1_{\Pbb}$をもつとする \\
+            $\pi : \Pbb \rightarrow \Pbb$が自己同型であるとは次を満たすこと
+            \begin{itemize}
+                \setlength{\itemsep}{3pt}
+                \item $\pi$は全単射
+                \item $p, q \in \Pbb$に対して、$p \le_{\Pbb} q \Leftrightarrow \pi p \le_{\Pbb} \pi q$
+            \end{itemize}
+            $\pi$は以下のように$M^\Pbb$上の自己同型に拡張される
+            $$ \pi \dot{x} = \{ (\pi \dot{y}, \pi p) | (\dot{y}, p) \in \dot{x} \} $$
+        }
+    \end{itembox}
+\end{frame}
+
+
+\begin{frame}{symmetric extensionの定義(2)}
+    \begin{itembox}[l]{定義(normal filter)}
+        {\small
+            $\Gcal$を$\Pbb$の自己同型群とする \\
+            $\Gcal$の部分群の族$\Fcal$がnormal filterであるとは次を満たすこと
+            \begin{itemize}
+                \setlength{\itemsep}{3pt}
+                \item $H_1, H_2 \in \Fcal$に対して$H_1 \cap H_2 \in \Fcal$
+                \item super groupをとる操作で閉じている
+                \item $H \in \Fcal, \pi \in \Gcal$に対して$\pi H \pi^{-1} \in \Fcal$
+            \end{itemize} }
+    \end{itembox}
+\end{frame}
+
+\begin{frame}{symmetric extensionの定義(3)}
+    \begin{itembox}[l]{定義 (hereditarily symmetric)}
+        {\small
+            $\Fcal$を$\Gcal$のnormal filterとする
+            \vspace{5pt}
+            \begin{itemize}
+                \setlength{\itemsep}{2pt}
+                \vspace{-10pt}
+                \item $\dot{x} \in M^\Pbb$が$\Fcal$-symmetric $\Leftrightarrow \{ \pi \in \Gcal | \pi \dot{x} = \dot{x} \} \in \Fcal$
+                \item $\dot{x}$がhereditarily $\Fcal$-symmetricとは以下を満たすこと
+                      \vspace{-3pt}
+                      \begin{itemize}
+                          \item $\dot{x}$は$\Fcal$-symmetric
+                          \item $\bm{\mathbf{dom}}(\dot{x})$の全ての要素はhereditarily $\Fcal$-symmetric
+                      \end{itemize}
+                \item hereditarily $\Fcal$-symmetricな$\dot{x}$の集合を$\bm{\mathbf{HS}}_{\Fcal}$とかく
+                      %\item $\Pbb$-generic filter $G$に対し、\\$N = \{ \dot{x}_G | \dot{x} \in \bm{\mathbf{HS}}_{\Fcal} \}$をsymmetric extensionという
+            \end{itemize}
+        }
+    \end{itembox}
+\end{frame}
+
+\begin{frame}{symmetric extensionの定義(4)}
+    \begin{itembox}[l]{定義 (symmetric extension)}
+        {\small
+            $\Pbb$-generic filter $G$に対し、\\$\{ \dot{x}_G | \dot{x} \in \bm{\mathbf{HS}}_{\Fcal} \}$をsymmetric extensionという
+        }
+    \end{itembox}
+\end{frame}
+
+\section {Isabelle/ZFによる形式化}
+
+\begin{frame}{成果}
+    本研究で証明した主定理
+    \vspace{-1cm}
+    \hspace{-1.5cm}
+    \begin{figure}
+        \includegraphics[width=1.1\linewidth]{./images/ZF_notAC_main_theorem.png}
+    \end{figure}
+
+    \vspace{-5pt}
+    意味 \\
+    {\small
+    \hspace{1cm} $M$をZFのc.t.m.とする。このとき、ある$N$があって、\\
+    \hspace{1cm} $N$はZFを満たすが、整列可能定理を満たさない
+    }
+\end{frame}
+
+\begin{frame}{作業工程}
+    以下の工程に分けられる
+    \begin{itemize}[itemsep=8pt]
+        \item symmetric extensionの定義
+        \item ZFのモデルであることの証明
+        \item 特定のsymmetric extensionの構成
+        \item それが$\neg$ACを満たすことの証明
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{作業量}
+    \makebox[\textwidth]{約1万5千行のコード \hfill {\small 補題など(3千行)}}
+    {\small
+        \begin{itemize}[itemsep=8pt]
+            \item symmetric extensionの定義(3千行)
+            \item ZFのモデルであることの証明(5千行)
+            \item 特定のsymmetric extensionの構成(2千行)
+            \item それが$\neg$ACを満たすことの証明(2千行)
+        \end{itemize} } 
+\end{frame}
+
+\begin{frame}{苦労した点(1)}
+    「自明なこと」の証明が非常に大変な場合がある \\
+    例えば...
+    {\small
     \begin{itemize}
-        \item 普段用いている$\emptyset$,$\subset$,$\bigcup$等の記号を含む論理式は\\
-              $=$と$\in$のみを用いた論理式の略記とする
-        \item 例 : $x = \emptyset$は$\forall y \neg (y \in x)$と書ける
-        \item 例 : $x \subset y$は$\forall z (z \in x \rightarrow z \in y)$ と書ける
+        \item 定義した関数が「本当に関数であること」
+        \item クラスに対し「本当にそれを表す論理式が存在すること」
     \end{itemize}
+    }
 \end{frame}
 
-\begin{frame}{ZFC公理系}
-    \begin{block}{定義}
-        \begin{itemize}
-            \item \textbf{外延性公理} \\
-                  集合xとyの要素たちが同じならば、xとyは等しい
-            \item \textbf{空集合公理} \\
-                  空集合が存在する
-            \item \textbf{対の公理} \\
-                  集合x, yに対し、集合$\{x, y\}$が存在する
-        \end{itemize}
-    \end{block}
+\begin{frame}{苦労した点(2)}
+    先行研究の強制関係の定義が少し特殊
 \end{frame}
 
-\begin{frame}{ZFC公理系}
-    \begin{block}{定義}
-        \begin{itemize}
-            \item \textbf{外延性公理} \\
-                  $\forall x \forall y (\forall z (z \in x \leftrightarrow z \in y) \rightarrow x = y)$
-            \item \textbf{空集合公理} \\
-                  $\exists x \forall y \neg (y \in x)$
-            \item \textbf{対の公理} \\
-                  $\forall x \forall y \exists z \forall u (u \in z \leftrightarrow u = x \lor u = y)$
-        \end{itemize}
-    \end{block}
+\begin{frame}{苦労した点(3)}
+    ZFのモデルであることの証明
 \end{frame}
 
-\begin{frame}{ZFC公理系}
-    \begin{block}{定義}
-        \begin{itemize}
-            \item \textbf{和集合の公理} \\
-                  集合xに対し、$\bigcup x$が存在する
-            \item \textbf{べき集合の公理} \\
-                  集合xに対し、$\mathcal{P}(x)$が存在する
-            \item \textbf{無限公理} \\
-                  無限集合が存在する※
-        \end{itemize}
-    \end{block}
+\section {まとめ}
+
+\begin{frame}{まとめ}
 \end{frame}
 
-\begin{frame}{ZFC公理系}
-    \begin{block}{定義}
-        \begin{itemize}
-            \item \textbf{和集合の公理} \\
-                  $\forall x \exists y \forall z (z \in y \leftrightarrow \exists u (u \in x \land z \in u))$
-            \item \textbf{べき集合の公理} \\
-                  $ \forall x \exists y \forall z (z \in y \leftrightarrow \forall u (u \in z \rightarrow u \in x))$
-            \item \textbf{無限公理} \\
-                  $\exists x (\emptyset \in x \land \forall y (y \in x \rightarrow y \cup \{y\} \in x))$
-        \end{itemize}
-    \end{block}
-\end{frame}
-
-\begin{frame}{ZFC公理系}
-    \begin{block}{定義}
-        \begin{itemize}
-            \item \textbf{正則性公理} \\
-                  $x_0 \ni x_1 \ni x_2 \ni \dots$という集合の無限列は存在しない
-        \end{itemize}
-    \end{block}
-\end{frame}
-
-\begin{frame}{ZFC公理系}
-    \begin{block}{定義}
-        \begin{itemize}
-            \item \textbf{正則性公理} \\
-                  $\forall x (x \neq \emptyset \rightarrow \exists y (y \in x \land x \cap y = \emptyset))$
-                  % この公理を入れることでラッセルのパラドックスを回避できるわけではない。
-                  % 論理の単調性から公理を増やすことで矛盾は回避できない
-                  % ラッセルのパラドックスはどちらかというと分出公理の形により回避される??
-        \end{itemize}
-    \end{block}
-\end{frame}
-
-\begin{frame}{ZFC公理系}
-    \begin{block}{定義}
-        \begin{itemize}
-            \item \textbf{分出公理図式} \\
-                  $x, v_1, \dots, v_n$を集合とし、\\
-                  $\phi (u, v_1, \dots, v_n)$を論理式とするとき、\\
-                  集合\{ $u \in x | \phi(u, v_1, \dots, v_n)$ \} が存在する
-        \end{itemize}
-    \end{block}
-
-\end{frame}
-
-\begin{frame}{ZFC公理系}
-    \begin{block}{定義}
-        \begin{itemize}
-            \item \textbf{分出公理図式} \\
-                  $\forall x \forall v_1 \dots \forall v_n \exists y \forall u (u \in y \leftrightarrow u \in x \land \phi(u, v_1, \dots, v_n))$
-        \end{itemize}
-        ZF公理系は各論理式$\phi$に対してこの形の公理を持つ。
-    \end{block}
-
-    分出公理は、空集合公理と、後述する置換公理から\\
-    導けるので省かれることもある
-\end{frame}
-
-\begin{frame}{ZFC公理系}
-    \begin{block}{定義}
-        \begin{itemize}
-            \item \textbf{置換公理図式} \\
-                  $F$をクラス関数、$x$を集合とするとき、\\
-                  集合$\{ F(u) | u \in x \}$が存在する
-        \end{itemize}
-    \end{block}
-\end{frame}
-
-
-\begin{frame}{ZFC公理系}
-    \begin{block} {定義}
-        \begin{itemize}
-            \item \textbf{選択公理} \\
-                  非空集合の族$\{x_i\}_{i \in I}$に対し、\\
-                  $\prod_{i \in I} x_i \neq \emptyset$が成り立つ
-        \end{itemize}
-    \end{block}
-\end{frame}
-
-
-\begin{frame}{ZFC公理系の上で}
-    \begin{itemize}
-
-        \item ZFC公理系の上で、\\(それを集合論の言葉に書き直すことで)\\ ほとんどの数学的対象を扱える
-        \item 自然数、整数、有理数、実数、複素数、位相空間、\\ ベクトル空間 \dots
-
-    \end{itemize}
-\end{frame}
-
-\begin{frame}{例 : 自然数}
-    \begin{itemize}
-        \item 例えば、自然数は次のように定義できる
-        \item $0 = \emptyset$
-        \item $1 = \{0\} = \{\emptyset\}$
-        \item $2 = \{0, 1\} = \{\emptyset, \{\emptyset\}\}$
-        \item $3 = \{0, 1, 2\} = \{\emptyset, \{\emptyset\}, \{\emptyset, \{\emptyset\}\}\}$
-    \end{itemize}
-\end{frame}
-
-\begin{frame} {例 : 自然数}
-    \begin{itemize}
-        \item $n = \{0, 1, \dots, n-1\}$と定義する
-        \item このとき、自然数の間の順序$m < n$を\\$m \in n$で定義できる
-        \item $\mathbb{N} = \{ 0, 1, 2, \dots \}$の存在を証明できる
-    \end{itemize}
-\end{frame}
-
-\begin{frame} {選択公理}
-    \begin{itemize}
-        \item 選択公理に関する疑問
-              \begin{itemize}
-                  \item 他の公理から矛盾しないのか？
-                  \item 他の公理から導くことは不可能か？
-              \end{itemize}
-        \item 選択公理がZFの下で独立であることが証明され、\\
-              どちらの疑問の答えも「Yes」と分かった
-    \end{itemize}
-\end{frame}
-
-\begin{frame} {Isabelle/ZF}
-    \begin{itemize}
-        \item 定理証明支援系Isaeblleのバリエーションの一つ
-        \item 他にはIsabelle/HOL, Isabelle/FOLなどがある
-        \item Isabelle/ZFは、Isabelle上でZF公理系を扱える
-        \item 集合論的な糖衣構文が多数使える
-        \item Isabelle/ZFで証明できる命題は、\\
-              ZF公理系で証明できる命題だと思うことができる
-    \end{itemize}
-\end{frame}
-
-\section{独立性証明と研究について}
-
-\begin{frame} {研究の背景}
-    \begin{itemize}
-        \item ZF公理系における選択公理の独立性証明を\\Isabelle/ZFを用いて形式化したい
-    \end{itemize}
-\end{frame}
-
-\begin{frame} {独立性}
-    \begin{block}{定義}
-        $T$を言語$\mathcal{L}$上の公理系とする
-        \begin{itemize}
-            \item $T$から命題$\phi$も$\neg \phi$も証明できないとき、\\ $\phi$は$T$において独立であるという
-            \item $T$において、ある命題$\phi$とその否定$\neg \phi$が\\ともに証明できるとき、$T$は矛盾するという
-            \item そのような$\phi$がないとき、$T$は無矛盾であるという \\ {\footnotesize (「証明できる」は厳密に定義する必要がある)}
-        \end{itemize}
-    \end{block}
-
-\end{frame}
-
-\begin{frame} {独立性の例}
-    \begin{itemize}
-        \item $\mathcal{L} = \{ \cdot, e \}$とする {\small ($\cdot$は2変数関数記号、$e$は定数記号)}
-        \item $T = $(群の公理)とする
-        \item このとき、可換性$\forall x \forall y (x\cdot y = y \cdot x)$はTにおいて独立
-    \end{itemize}
-\end{frame}
-
-\begin{frame} {独立性の例}
-    \begin{itemize}
-        \item 実際、$(\mathbb{Z}, +, 0)$は可換な群{\small (アーベル群) }であり、
-        \item n次実正則行列全体の集合とその乗法からなる群 \\$(GL_n(\mathbb{R}), \cdot, I_n)$は非可換な群である
-        \item 可換な群と非可換な群が存在するため、\\群の公理から可換性を導くことも、\\非可換性を導くこともできない
-    \end{itemize}
-\end{frame}
-
-\begin{frame} {独立性を証明するには？}
-    \begin{exampleblock}{命題}
-        任意の公理系$T$, 命題$\phi$に対し、以下は同値
-        \begin{itemize}
-            \item $T$において$\phi$を証明できない
-            \item $T + \neg \phi$は無矛盾
-        \end{itemize}
-    \end{exampleblock}
-    従って、$T + \phi$と$T + \neg \phi$がともに無矛盾であれば、\\$\phi$は$T$において独立である
-\end{frame}
-
-\begin{frame} {研究の背景}
-    \begin{itemize}
-        \item ZF公理系における選択公理の独立性証明を\\Isabelle/ZFを用いて形式化したい
-        \item ZF + AC (つまりZFC)と、ZF + $\neg$ACが\\ ともに無矛盾であることが\\Isabelle/ZF上で示せればよい
-        \item が、ゲーデルの不完全性定理より\\これはZF公理系からは証明できない\\{\small (従って、Isabelle/ZF上でも証明できないはずである)}
-    \end{itemize}
-\end{frame}
-
-\begin{frame} {研究の背景}
-    \begin{itemize}
-        \item そこで、「ZFが無矛盾である」という仮定のもとで、\\ZFCとZF + $\neg$ACがともに無矛盾であることを\\示すことになる
-        \item このように、公理系$T$の無矛盾性を仮定したうえで、\\公理系$S$の無矛盾性を示すことを\\相対的無矛盾性証明という
-    \end{itemize}
-\end{frame}
-
-\begin{frame} {無矛盾性を証明するには？}
-    \begin{exampleblock}{ゲーデルの完全性定理}
-        任意の公理系$T$に対し、以下は同値
-        \begin{itemize}
-            \item $T$は無矛盾
-            \item $T$はモデルを持つ
-        \end{itemize}
-    \end{exampleblock}
-    従って、$T + \phi$と$T + \neg \phi$それぞれのモデルを\\構成できれば、$\phi$は$T$において独立である
-\end{frame}
-
-\begin{frame} {モデル}
-    \begin{itemize}
-        \item モデルとは、公理系$T$を満たす数学的構造のこと \\ {\footnotesize (「数学的構造」や「満たす」は厳密に定義する必要がある)}
-        \item $(\mathbb{Z}, +, 0)$は、群の公理+(可換性)のモデル
-        \item $(GL_n(\mathbb{R}), \cdot, I_n)$は、群の公理+($\neg$ 可換性)のモデル
-    \end{itemize}
-\end{frame}
-
-\begin{frame} {研究の背景}
-    \begin{itemize}
-        \item ZF公理系における選択公理の独立性証明を\\Isabelle/ZFを用いて形式化したい
-        \item 「ZFが無矛盾である」という仮定の下では、\\ZFのモデルの存在する
-        \item このモデルを用いて、ZFCとZF + $\neg$ACのモデルを\\構成することで、相対的無矛盾性を示すことが\\できる
-    \end{itemize}
-\end{frame}
-
-\begin{frame} {研究の背景}
-    \begin{itemize}
-        \item ZFCのZFからの相対的無矛盾性証明は、\\
-              ゲーデルの証明をもとにLawrence C. Paulsonにより\\
-              Isabelle上ですでに形式化されている
-        \item 構成可能宇宙$L$を用いている
-        \item https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-551.pdf
-    \end{itemize}
-\end{frame}
-
-\begin{frame} {研究}
-    \begin{itemize}
-        \item ZFからのZF + $\neg$ACの相対的無矛盾性は、\\コーエンによってforcingを用いて証明された
-        \item 定理証明支援系で形式化されていないと思われる\\のでIsabelle/ZF上で形式化したい
-        \item 議論の中でforcingという数学的手法を用いるが、\\これはすでにIsabelle/ZFのパッケージがあるので\\それを用いる
-    \end{itemize}
-\end{frame}
-
-\begin{frame} {Forcingパッケージ}
-    \begin{itemize}
-        \item Emmanuel Guntherらによる
-        \item https://arxiv.org/abs/2001.09715
-        \item Kunenの教科書の内容を形式化している
-        \item 連続体仮説の独立性証明も形式化されている
-    \end{itemize}
-\end{frame}
-
-\begin{frame} {Forcingパッケージ}
-    \begin{itemize}
-        \item このパッケージを用いると、こちらが指定した\\
-              「ZFの可算推移$\in$モデル{\small(以下c.t.m.)}M」について、\\
-              それに関するforcingを議論できる
-    \end{itemize}
-\end{frame}
-
-\begin{frame} {c.t.m.を用いた議論の正当性}
-    \begin{itemize}
-        \item 本来示したいことは、{\small (ZF上で)}\\
-              ZFのモデルが存在 $\Rightarrow$ ZF + $\neg$ACのモデルが存在
-        \item Forcingパッケージを利用する場合は、\\
-              ZFのc.t.m.を用意する必要がある
-        \item だが、ZFのモデルが存在 $\Rightarrow$ ZFのc.t.m.が存在\\
-              は{\small (ZF上で)}成立しない
-    \end{itemize}
-\end{frame}
-
-\begin{frame} {c.t.m.を用いた議論の正当性}
-    \begin{itemize}
-        \item この問題は回避できる
-        \item {\small (一般のSについて) } \\
-              \textcolor{red}{ZFのc.t.m MからZF + Sのモデルを構成できる}\\
-              を{\small (ZF上で)}示せるとき、その証明を修正して\\
-              \textcolor{red}{ZFのモデルが存在 $\Rightarrow$ ZF + Sのモデルが存在}\\
-              を{\small (ZF上で)}示せる
-    \end{itemize}
-\end{frame}
-
-\begin{frame} {c.t.m.を用いた議論の正当性}
-    \begin{itemize}
-        \item つまり、\\
-              \textcolor{red}{ZFのc.t.m.からZF + $\neg$ACのモデルを構成できる}\\
-              ことの{\small (ZF上での)}証明は、実質的に\\
-              \textcolor{red}{ZFのモデルが存在 $\Rightarrow$ ZF + $\neg$ACのモデルが存在}\\
-              ことの{\small (ZF上での)}証明となる
-        \item ただし、「実質的」でない具体的な証明をIsabelle\\
-              上で形式化するのは{\small (労力的に)}難しいかもしれない
-    \end{itemize}
-\end{frame}
-
-\begin{frame} {Forcingパッケージ}
-    \begin{itemize}
-        \item c.t.m.を利用するのは、\\
-              forcingにより相対的無矛盾性証明を行う際の\\
-              メジャーなアプローチのひとつ
-        \item 形式化の側面から見ると、前述のような\\形式化が難しい{\small (かもしれない)}議論が残ってしまう？
-    \end{itemize}
-\end{frame}
-
-\section{ZF + $\lnot$ACのモデルの構成とIsabelle/ZFによる形式化}
-\begin{frame} {Forcing}
-    \begin{itemize}
-        \item 集合論のモデル$M$に元を加えて、\\新たな集合論のモデル$M[G]$を構成する技法
-        \item この$M[G]$を$M$のジェネリック拡大という
-        \item $M \cup \{ G \}$のように単に元を加えただけでは、\\集合論のモデルにはならない
-        \item $G$と$M$の元を用いた集合演算で\\閉じていなければならない
-    \end{itemize}
-\end{frame}
-
-\begin{frame} {Forcingの例{\small (ZFCの下で議論する)}}
-    \begin{block}{定義(連続体仮説,CH)}
-        $|\mathcal{P}(\mathbb{N})| = \aleph_1$である \\
-        ただし、$\aleph_n$は、n番目に大きい無限濃度(無限基数)で\\
-        特に$\aleph_0 = |\mathbb{N}|$である
-    \end{block}
-    \begin{itemize}
-        \item CHはZFCにおいて独立である
-        \item ゲーデルがZFC + CHの無矛盾性を、\\
-              コーエンがZFC + $\neg$CHの無矛盾性を示した
-    \end{itemize}
-\end{frame}
-
-\begin{frame} {Forcingの例{\small (ZFCの下で議論する)}}
-    \begin{itemize}
-        \item Forcingを用いて、ZFC+$\neg$CHのモデルを構成できる
-        \item Forcingで、\\
-              ZFCのモデル$M$に単射$f : \aleph_2 \rightarrow \mathcal{P}(\mathbb{N})$を加えた\\
-              ZFCのモデル$M[G]$を構成できる \\
-        \item この$M[G]$では、少なくとも$\aleph_2$個の$\mathbb{N}$の部分集合が\\
-              存在するから、$|\mathcal{P}(\mathbb{N})| > \aleph_1$であり、よって$\neg$CH \\
-              {\footnotesize (いろいろ不正確な記述あり)}
-    \end{itemize}
-\end{frame}
-
-\begin{frame} {ZF+$\neg$ACのモデルの構成}
-    \begin{itemize}
-        \item ZFのc.t.m.$M$から出発して\\
-              あるジェネリック拡大$M[G]$をとり、\\
-              その部分モデル$N$であってZF+$\neg$ACが\\
-              成り立つようなものを構成する
-        \item この$N$は、$M$のsymmetric extensionと呼ばれるもの
-        \item 基本的にこの資料の10章の議論に従っている \\
-              https://karagila.org/files/Forcing-2023.pdf
-    \end{itemize}
-\end{frame}
-
-\begin{frame} {形式化の現在の進捗}
-    \begin{itemize}
-        \item symmetric extensionの定義が完了
-        \item 証明のカギとなる補題(symmetric lemma)の\\証明が完了
-        \item 現在はsymmetric extensionがZFの公理を\\満たすことを証明中{\small (まだ０個)}
-        \item その後、symmetric extensionの中で議論して、\\ACが成り立たないことを示す
-    \end{itemize}
-\end{frame}
-
-\begin{frame} {最近の進歩}
-    \begin{itemize}
-        \item symmetric extensionがZFの公理を満たすことを\\証明中
-        \item $\Delta_0$-formulaに関する分出公理図式の証明が完了
-        \item $\Delta_0$-分出公理とalmost universalから分出公理を証明\\
-              する流れがよくあるが、なんだかうまくいかない
-        \item この問題の回避策を考えた
-    \end{itemize}
-\end{frame}
-
-\begin{frame} {形式化をしてみて}
-    \begin{itemize}
-        \item 教科書の議論を丸写しにはできない
-        \item パッケージの都合や作業量を考えて、\\議論を修正するべきことがよくある
-        \item 教科書等で自明だとされる議論の形式化が\\非常に大変になることよくある
-        \item 「ZFのモデルの中で～ような集合を構成する」\\といった議論が特に大変{\small (超限再帰的な構成だとさらに)}
-    \end{itemize}
-\end{frame}
 \end{document}
+
+
+\iffalse
+    主定理のコード
+    定義を掘っていく
+
+    どのように集合論を表現しているか
+    論理式・充足関係
+
+    行程の説明
+
+    全体的に苦労した点
+    Mの元であることの証明
+
+
+
+\fi
