@@ -19,6 +19,7 @@ TODO :
 \usepackage{tcolorbox}
 \usepackage{ascmac}
 \usepackage{bm}
+\usepackage{appendixnumberbeamer}
 
 \usepackage{enumitem}
 \setlist[itemize,1]{label=\textbullet, itemsep=17pt}  % 記号をもうちょっと大きくしたい
@@ -60,54 +61,85 @@ TODO :
 
 %タイトル
 \title{￢ACの相対的無矛盾性のIsabelle/ZFによる形式的証明}
-\author{東北大学情報科学研究科 住井・松田研究室 \\ 舟根大喜}
+\author{東北大学大学院情報科学研究科 住井・松田研究室 \\ 舟根大喜}
 \date{\today}
 
 \begin{document}
 \maketitle
 
-\begin{frame} {参考文献}
-    \begin{itemize}
-        \item Kenneth Kunen著, 藤田 博司 訳 (2008) \\「集合論: 独立性証明への案内」
-        \item Thomas Jech著 (2008) 「the Axiom of Choice」
-        \item Thomas Jech著 (2002) 「Set Theory」
-        \item Asaf Karagila著 (2023) \\ 「Lecture Notes: Forcing \& Symmetric Extensions」 \\
-              {\small (https://karagila.org/files/Forcing-2023.pdf) }
-    \end{itemize}
+\begin{frame} {参考文献} 
+      
+    {\small
+        \begin{itemize}[itemsep=5pt]
+            \item Kenneth Kunen著, 藤田 博司 訳 (2008) \\「集合論: 独立性証明への案内」
+            \item Thomas Jech著 (2002) 「Set Theory」
+            \item Thomas Jech著 (2008) 「the Axiom of Choice」
+            \item Asaf Karagila著 (2023) \\ 「Lecture Notes: Forcing \& Symmetric Extensions」 \\
+                  {\small (https://karagila.org/files/Forcing-2023.pdf) }
+        \end{itemize}}
 \end{frame}
 
 \section{Isabelle/ZFについて}
 
 \begin{frame}{定理証明支援系}
-    \begin{itemize}
-        \item 数学的証明の形式化や、\\ソフトウェアの正しさの証明\\などに用いられるシステム
-        \item プログラムを書くように定義・証明を記述する
-    \end{itemize}
+    \begin{columns}
+        \begin{column}{0.65\textwidth}
+            \begin{itemize}
+                \item 数学的証明の形式化や、\\ソフトウェアの正しさの証明\\などに用いられるシステム
+                \item プログラムを書くように\\定義・証明を記述する
+            \end{itemize}
 
-    %定理証明支援系のイメージ画像
+        \end{column}
+        \begin{column}{0.35\textwidth}
+            \begin{figure}
+                \includegraphics[width=1.0\linewidth]{./images/isabelle_editor.png}
+            \end{figure}
+            \begin{figure}
+                \includegraphics[width=1.0\linewidth]{./images/coq-proving.png}
+            \end{figure}
 
-\end{frame}
+        \end{column}
+    \end{columns}
 
-\begin{frame}{Isabelle}
-    \begin{itemize}
-        \item 定理証明支援系の一つ
-        \item 初版は1986年
-              {\small \begin{itemize}
-                  \item Lawrence Paulsonらによる
-              \end{itemize} }
-        \item 現在も開発・利用が続けられている
-    \end{itemize}
-
-    %Isabelleのロゴ画像 Isabelle2024?
-    %https://isabelle.in.tum.de/index.html Isabelleの公式サイト 
-    %archiveの画像
+    %----------------------------------------------
+    % coqの画像 https://ja.wikipedia.org/wiki/Coq#/media/%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB:CoqProofOfDecidablityOfEqualityOnNaturalNumbers.png
+    %----------------------------------------------
 
 \end{frame}
 
 %----------------------------------------------
-%    Isabelleの実績: seL4マイクロカーネルの正式な仕様と証明
+%    マイクロカーネル
 %    https://read.seas.harvard.edu/~kohler/class/cs260r-17/klein10sel4.pdf
 %----------------------------------------------
+
+\begin{frame}{Isabelle}
+    \begin{columns}
+        \begin{column}{0.75\textwidth}
+            \begin{itemize}
+                \item 定理証明支援系の一つ
+                \item 初版は1986年
+                      {\small \begin{itemize}
+                          \item Lawrence Paulsonらによる
+                      \end{itemize} }
+                \item 現在も開発・利用が続けられている
+                      {\small \begin{itemize}
+                          \item 実績 : seL4マイクロカーネルの\\
+                                \,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,
+                                仕様と実装の形式検証
+                      \end{itemize} }
+
+            \end{itemize}
+
+        \end{column}
+        \begin{column}{0.25\textwidth}
+            \begin{figure}
+                \includegraphics[width=1.0\linewidth]{./images/isabelle_logo.png}
+            \end{figure}
+        \end{column}
+    \end{columns}
+
+\end{frame}
+
 
 %Pureの説明or画像があるといいかも
 
@@ -208,7 +240,7 @@ TODO :
             \setlength{\itemsep}{1pt}
             \item コーエンはCHとACがZFから独立であることを示した
             \item CHの独立性は形式化されている
-            \item ACも形式化したい
+            \item ACもやりたい{\footnotesize ($\neg$ACの相対的無矛盾性が残っていた)}
         \end{itemize}
 
         %----------------------------------------------
@@ -248,12 +280,186 @@ TODO :
 \begin{frame}{証明概略}
     ZFのc.t.m.$M$から出発し、ZF+$\neg$ACのモデルを構成
     \begin{itemize}
-        \item あるposet $\mathbb{P}$によるgeneric拡大$M[G]$について\\
+        \item あるposet $\mathbb{P}$によるgeneric extension$M[G]$について\\
               \textcolor{red}{symmetric extension}と呼ばれる\\
               部分モデル$N \subseteq M[G]$を構成
         \item $N$はZFを満たすが、整列可能定理を満たさない
     \end{itemize}
 \end{frame}
+
+\section {Isabelle/ZFによる形式化}
+
+\begin{frame}{成果}
+    本研究で証明した主定理
+    \vspace{-1cm}
+    \hspace{-1.5cm}
+    \begin{figure}
+        \includegraphics[width=1.1\linewidth]{./images/ZF_notAC_main_theorem.png}
+    \end{figure}
+
+    \vspace{-5pt}
+    意味 \\
+    {\small
+    \hspace{1cm} $M$をZFのc.t.m.とする。このとき、ある$N$があって、\\
+    \hspace{1cm} $N$はZFを満たすが、整列可能定理を満たさない
+    }
+\end{frame}
+
+\begin{frame}{作業工程}
+    以下の工程に分けられる
+    {\small
+    \begin{itemize}[itemsep=8pt]
+        \item symmetric extensionの定義
+        \item ZFのモデルであることの証明
+        \item 特定のsymmetric extensionの構成
+        \item それが$\neg$ACを満たすことの証明
+    \end{itemize} }
+\end{frame}
+
+\begin{frame}{作業量}
+    \makebox[\textwidth]{約1万5千行のコード \hfill {\small 補題など(3千行)}}
+    {\small
+        \begin{itemize}[itemsep=8pt]
+            \item symmetric extensionの定義(3千行)
+            \item ZFのモデルであることの証明(5千行)
+            \item 特定のsymmetric extensionの構成(2千行)
+            \item それが$\neg$ACを満たすことの証明(2千行)
+        \end{itemize} }
+\end{frame}
+
+\begin{frame}{苦労した点\, {\normalsize 1.自明なことの確認}}
+
+    「自明なこと」の確認が非常に大変な場合がある
+
+    {\small
+    \begin{itemize}
+        \item 定義した関数が「本当に関数であること」
+        \item クラスに「本当にそれを表す論理式が存在すること」
+    \end{itemize}
+    }
+\end{frame}
+
+\begin{frame}{苦労した点\, {\normalsize 1.自明なことの確認}}
+    特に、「帰納的に定義された$M$内の関数」の場合
+
+    {\small
+    \begin{itemize}
+        \item そもそも「$M$の元であること」の確認も必要
+              {\footnotesize
+              \begin{itemize}
+                  \item 仮定とZFの公理からちゃんと構成できるか？
+              \end{itemize}}
+        \item このような関数を定義するためのヘルパーが2千行以上
+    \end{itemize}
+    }
+\end{frame}
+
+\begin{frame}{苦労した点\, {\normalsize 2.先行研究の定義}}
+    先行研究の強制関係の定義
+    {\small
+    \begin{itemize}[itemsep=8pt]
+        \item よくあるfor allに対する強制関係の定義
+              $$ p \Vdash \forall x \phi(x, \dot{x_1}, ..., \dot{x_n}) \Leftrightarrow \forall \dot{x} \in M^\Pbb(p \Vdash \phi(\dot{x}, \dot{x_1}, ..., \dot{x_n})) $$
+        \item 先行研究の定義
+              $$ p \Vdash \forall x \phi(x, \dot{x_1}, ..., \dot{x_n}) \Leftrightarrow \forall x \in \textcolor{red}{M}(p \Vdash \phi(x, \dot{x_1}, ..., \dot{x_n})) $$
+    \end{itemize}
+    \vspace{-6pt}
+    \hspace{1cm}※この定義でうまくいくように他の部分も修正されている
+    }
+\end{frame}
+
+\begin{frame}{苦労した点\, {\normalsize 2.先行研究の定義}}
+    帰納法に$\Pbb$-nameでないものが混入する...
+    {
+    \small
+    \begin{itemize}[itemsep=8pt]
+        \item $\mathbf{val}(G, \cdot)$を$M$上の関数として定義している
+              $$\mathbf{val}(G, x) := \{ \mathbf{val}(G, y) | y \in \mathbf{dom}(x), \exists p \in G. (y, p) \in x \}$$
+        \item $x \in M$に対しある$\dot{z} \in M^\Pbb$があって$\mathbf{val}(x, G) = \mathbf{val}(\dot{z}, G)$
+              \vspace{5pt}
+              \begin{itemize}
+                  \item この事実を形式化して一度は困難を解決
+                  \item 最終的には別手法で「苦労した点3.」と同時に解決
+              \end{itemize}
+    \end{itemize}
+
+    }
+\end{frame}
+
+\begin{frame}{苦労した点\, {\normalsize 3.ZFのモデルであることの証明}}
+    symmetric extensionがZFのモデルであることの証明
+    \begin{itembox}[l]{命題}
+        {\small
+            $N$が推移的かつalmost universalなクラスで、$\Delta_0$-separationを\\
+            満たすならば、$N$はZFの内部モデルである
+        }
+    \end{itembox}
+    {\small
+    \begin{itemize}[itemsep=8pt]
+        \item 参考資料ではこの命題を証明に用いている
+        \item 前提条件は証明できたが、「命題自体」が証明できなかった
+    \end{itemize}
+    }
+\end{frame}
+
+\begin{frame}{苦労した点\, {\normalsize 3.ZFのモデルであることの証明}}
+
+    \begin{itembox}[l]{命題(Collection Principle, Jech「Set Theory」6.5)}
+        {\small $p$をパラメータとして}
+        \vspace{-10pt}
+        $$\forall X \exists Y (\forall u \in X)[\exists v \phi(u, v, p) \rightarrow (\exists v \in Y) \phi(u, v, p)]$$
+    \end{itembox}
+
+    \vspace{-5pt}
+    {\small
+        \begin{itemize}[itemsep=8pt]
+            \item 具体的にはこの命題の証明で行き詰った
+                  \begin{itemize}
+                      \item 簡単な見落とし?
+                      \item Isabelle/ZFや他の定義の制限?
+                      \item とても長い証明が必要？
+                  \end{itemize}
+        \end{itemize}
+    }
+
+\end{frame}
+
+\begin{frame}{苦労した点\, {\normalsize 3.ZFのモデルであることの証明}}
+    代替手段
+    \vspace{-10pt}
+    {\small
+        \begin{itemize}[itemsep=8pt]
+            \item (ある意味で)制限された強制関係$\textcolor{red}{\Vdash_{\mathbf{HS}}}$を形式化
+                  \begin{itemize}
+                      \item 参考資料に書かれている概念
+                      \item $\Vdash_{\mathbf{HS}}$は、symmetric extensionに対し、\\
+                            generic extensionに対する$\Vdash$のように振舞う
+                  \end{itemize}
+            \item $\Vdash_{\mathbf{HS}}$を用いてZFのモデルであることを証明
+                  \begin{itemize}
+                      \item 強制関係の帰納法が不要になり{\footnotesize「苦労した点2.」}も解決
+                  \end{itemize}
+        \end{itemize}
+    }
+\end{frame}
+
+
+\section {まとめ}
+
+\begin{frame}{まとめ}
+    $\neg$ACのZF上の相対的無矛盾性をIsabelle/ZFで証明
+    {\small
+    \begin{itemize}[itemsep=8pt]
+        \item symmetric extensionを形式化し証明
+        \item Isabelle/ZFでACのZF上の独立性が証明されたことになる
+        \item 参考資料の通りにいかず試行錯誤した部分も
+        \item 先行研究の改善点を発見？
+    \end{itemize}
+    }
+\end{frame}
+
+\appendix
+\setbeamertemplate{footline}{}
 
 \begin{frame}{symmetric extensionの定義(1)}
     \begin{itembox}[l]{定義 (自己同型)}
@@ -302,7 +508,7 @@ TODO :
                           \item $\bm{\mathbf{dom}}(\dot{x})$の全ての要素はhereditarily $\Fcal$-symmetric
                       \end{itemize}
                 \item hereditarily $\Fcal$-symmetricな$\dot{x}$の集合を$\bm{\mathbf{HS}}_{\Fcal}$とかく
-                      %\item $\Pbb$-generic filter $G$に対し、\\$N = \{ \dot{x}_G | \dot{x} \in \bm{\mathbf{HS}}_{\Fcal} \}$をsymmetric extensionという
+
             \end{itemize}
         }
     \end{itembox}
@@ -316,84 +522,6 @@ TODO :
     \end{itembox}
 \end{frame}
 
-\section {Isabelle/ZFによる形式化}
-
-\begin{frame}{成果}
-    本研究で証明した主定理
-    \vspace{-1cm}
-    \hspace{-1.5cm}
-    \begin{figure}
-        \includegraphics[width=1.1\linewidth]{./images/ZF_notAC_main_theorem.png}
-    \end{figure}
-
-    \vspace{-5pt}
-    意味 \\
-    {\small
-    \hspace{1cm} $M$をZFのc.t.m.とする。このとき、ある$N$があって、\\
-    \hspace{1cm} $N$はZFを満たすが、整列可能定理を満たさない
-    }
-\end{frame}
-
-\begin{frame}{作業工程}
-    以下の工程に分けられる
-    \begin{itemize}[itemsep=8pt]
-        \item symmetric extensionの定義
-        \item ZFのモデルであることの証明
-        \item 特定のsymmetric extensionの構成
-        \item それが$\neg$ACを満たすことの証明
-    \end{itemize}
-\end{frame}
-
-\begin{frame}{作業量}
-    \makebox[\textwidth]{約1万5千行のコード \hfill {\small 補題など(3千行)}}
-    {\small
-        \begin{itemize}[itemsep=8pt]
-            \item symmetric extensionの定義(3千行)
-            \item ZFのモデルであることの証明(5千行)
-            \item 特定のsymmetric extensionの構成(2千行)
-            \item それが$\neg$ACを満たすことの証明(2千行)
-        \end{itemize} } 
-\end{frame}
-
-\begin{frame}{苦労した点(1)}
-    「自明なこと」の証明が非常に大変な場合がある \\
-    例えば...
-    {\small
-    \begin{itemize}
-        \item 定義した関数が「本当に関数であること」
-        \item クラスに対し「本当にそれを表す論理式が存在すること」
-    \end{itemize}
-    }
-\end{frame}
-
-\begin{frame}{苦労した点(2)}
-    先行研究の強制関係の定義が少し特殊
-\end{frame}
-
-\begin{frame}{苦労した点(3)}
-    ZFのモデルであることの証明
-\end{frame}
-
-\section {まとめ}
-
-\begin{frame}{まとめ}
-\end{frame}
-
 \end{document}
 
 
-\iffalse
-    主定理のコード
-    定義を掘っていく
-
-    どのように集合論を表現しているか
-    論理式・充足関係
-
-    行程の説明
-
-    全体的に苦労した点
-    Mの元であることの証明
-
-
-
-\fi
