@@ -8,7 +8,7 @@ definition rep_for_recfun_fm where
   "rep_for_recfun_fm(p, x, z, r) \<equiv> 
     Exists(Exists(Exists(And(Equal(x #+ 3, 2), And(pair_fm(x#+3, 0, z#+3), And(is_recfun_fm(p, r#+3, x#+3, 1), p))))))" 
 
-context M_ctm 
+context M_ZF_Fragment_Utilities_M
 begin 
 
 lemma rep_for_recfun_fm_sats_iff :
@@ -110,8 +110,8 @@ lemma recfun_strong_replacement_lemma :
     "p \<in> formula"
     "arity(p) \<le> 3"
     "(\<And>x g. x \<in> M \<Longrightarrow> g \<in> M \<Longrightarrow> function(g) \<Longrightarrow> H(x, g) \<in> M)" 
-    " (\<And>a0 a1 a2 env. a0 \<in> M \<Longrightarrow> a1 \<in> M \<Longrightarrow> a2 \<in> M \<Longrightarrow> env \<in> list(M) \<Longrightarrow> a0 = H(a2, a1) \<longleftrightarrow> sats(M, p, [a0, a1, a2] @ env))"  
-   
+    "(\<And>a0 a1 a2 env. a0 \<in> M \<Longrightarrow> a1 \<in> M \<Longrightarrow> a2 \<in> M \<Longrightarrow> env \<in> list(M) \<Longrightarrow> a0 = H(a2, a1) \<longleftrightarrow> sats(M, p, [a0, a1, a2] @ env))"  
+    "rep_for_recfun_fm(p, 0, 1, 2) \<in> \<Phi>"
   shows "strong_replacement(##M, \<lambda>x z. \<exists>y[##M]. \<exists>g[##M]. pair(##M, x, y, z) \<and> is_recfun(r, x, H, g) \<and> y = H(x, g))"
 proof - 
 
@@ -123,10 +123,10 @@ proof -
   have strep_sats : 
     "strong_replacement(##M, \<lambda>x. \<lambda>z. sats(M, rep_for_recfun_fm(p, 0, 1, 2), [x, z] @ [r]))"
     apply (rule_tac replacement_ax) 
-    unfolding rep_for_recfun_fm_def 
+    apply(simp add:rep_for_recfun_fm_def )
     using assms 
-      apply auto[2]
-    apply simp
+      apply auto[3]
+    apply(simp add:rep_for_recfun_fm_def)
     using assms
     apply(rule_tac pred_le, simp_all)+
     apply(rule Un_least_lt)+
@@ -172,8 +172,8 @@ lemma recfun_wfrec_replacement_lemma :
     "arity(p) \<le> 3"
     "x \<in> M" 
     "(\<And>x g. x \<in> M \<Longrightarrow> g \<in> M \<Longrightarrow> function(g) \<Longrightarrow> H(x, g) \<in> M)" 
-    " (\<And>a0 a1 a2 env. a0 \<in> M \<Longrightarrow> a1 \<in> M \<Longrightarrow> a2 \<in> M \<Longrightarrow> env \<in> list(M) \<Longrightarrow> a0 = H(a2, a1) \<longleftrightarrow> sats(M, p, [a0, a1, a2] @ env))"  
-  
+    "(\<And>a0 a1 a2 env. a0 \<in> M \<Longrightarrow> a1 \<in> M \<Longrightarrow> a2 \<in> M \<Longrightarrow> env \<in> list(M) \<Longrightarrow> a0 = H(a2, a1) \<longleftrightarrow> sats(M, p, [a0, a1, a2] @ env))"  
+    "rep_for_recfun_fm(p, 0, 1, 2) \<in> \<Phi>"
   shows "wfrec_replacement(##M, \<lambda>a b c. c = H(a, b), r)" 
   
   using assms
@@ -202,7 +202,8 @@ lemma wf_exists_is_recfun' :
     "x \<in> M" 
     "(\<And>x g. x \<in> M \<Longrightarrow> g \<in> M \<Longrightarrow> function(g) \<Longrightarrow> H(x, g) \<in> M)" 
     " (\<And>a0 a1 a2 env. a0 \<in> M \<Longrightarrow> a1 \<in> M \<Longrightarrow> a2 \<in> M \<Longrightarrow> env \<in> list(M) \<Longrightarrow> a0 = H(a2, a1) \<longleftrightarrow> sats(M, p, [a0, a1, a2] @ env))"  
-  shows "\<exists>f \<in> M. is_recfun(r, x, H, f)"
+    "rep_for_recfun_fm(p, 0, 1, 2) \<in> \<Phi>"
+shows "\<exists>f \<in> M. is_recfun(r, x, H, f)"
 
   using assms 
   apply(rule_tac P="rex(##M, is_recfun(r, x, H))" in mp) 
@@ -226,7 +227,8 @@ lemma the_recfun_in_M :
     "x \<in> M" 
     "(\<And>x g. x \<in> M \<Longrightarrow> g \<in> M \<Longrightarrow> function(g) \<Longrightarrow> H(x, g) \<in> M)" 
     " (\<And>a0 a1 a2 env. a0 \<in> M \<Longrightarrow> a1 \<in> M \<Longrightarrow> a2 \<in> M \<Longrightarrow> env \<in> list(M) \<Longrightarrow> a0 = H(a2, a1) \<longleftrightarrow> sats(M, p, [a0, a1, a2] @ env))"  
-  shows "the_recfun(r, x, H) \<in> M" 
+    "rep_for_recfun_fm(p, 0, 1, 2) \<in> \<Phi>" 
+  shows "the_recfun(r, x, H) \<in> M"
 proof - 
   have "\<exists>f \<in> M. is_recfun(r, x, H, f)" 
     apply(rule_tac wf_exists_is_recfun') 
@@ -250,7 +252,8 @@ lemma wftrec_in_M :
     "arity(p) \<le> 3"
     "x \<in> M" 
     " (\<And>a0 a1 a2 env. a0 \<in> M \<Longrightarrow> a1 \<in> M \<Longrightarrow> a2 \<in> M \<Longrightarrow> env \<in> list(M) \<Longrightarrow> a0 = H(a2, a1) \<longleftrightarrow> sats(M, p, [a0, a1, a2] @ env))"  
-  and HM : "(\<And>x g. x \<in> M \<Longrightarrow> g \<in> M \<Longrightarrow> function(g) \<Longrightarrow> H(x, g) \<in> M)" 
+    "rep_for_recfun_fm(p, 0, 1, 2) \<in> \<Phi>"  
+    and HM : "(\<And>x g. x \<in> M \<Longrightarrow> g \<in> M \<Longrightarrow> function(g) \<Longrightarrow> H(x, g) \<in> M)"
   shows "wftrec(r, x, H) \<in> M" 
 proof - 
   have recfuninM : "the_recfun(r, x, H) \<in> M" 
@@ -289,7 +292,8 @@ lemma wftrec_pair_closed :
     "A \<in> M" 
     "(\<And>x g. x \<in> M \<Longrightarrow> g \<in> M \<Longrightarrow> function(g) \<Longrightarrow> H(x, g) \<in> M)" 
     " (\<And>a0 a1 a2 env. a0 \<in> M \<Longrightarrow> a1 \<in> M \<Longrightarrow> a2 \<in> M \<Longrightarrow> env \<in> list(M) \<Longrightarrow> a0 = H(a2, a1) \<longleftrightarrow> sats(M, p, [a0, a1, a2] @ env))"  
-  shows "{ <x, wftrec(r, x, H)>. x \<in> A } \<in> M" 
+    "rep_for_recfun_fm(p, 0, 1, 2) \<in> \<Phi>" 
+  shows "{ <x, wftrec(r, x, H)>. x \<in> A } \<in> M"
 proof - 
   have H:"strong_replacement(##M, \<lambda>x z. \<exists>y[##M]. \<exists>g[##M]. pair(##M, x, y, z) \<and> is_recfun(r, x, H, g) \<and> y = H(x, g))"
     using assms recfun_strong_replacement_lemma 
@@ -315,7 +319,7 @@ proof -
        apply(simp add:wftrec_def)
       apply(simp, rule the_recfun_in_M)
     using assms 
-             apply auto[8]
+             apply auto[9]
      apply simp
     using H 
     by auto
@@ -341,6 +345,7 @@ lemma sats_is_wfrec_fm_iff :
           "Hfm \<in> formula" "arity(Hfm) \<le> 3"
           "(\<And>x g. x \<in> M \<Longrightarrow> g \<in> M \<Longrightarrow> function(g) \<Longrightarrow> H(x, g) \<in> M)"
           "wf(r)" "trans(r)" 
+          "rep_for_recfun_fm(Hfm, 0, 1, 2) \<in> \<Phi>" 
   and HH: "(\<And>a0 a1 a2 env. a0 \<in> M \<Longrightarrow> a1 \<in> M \<Longrightarrow> a2 \<in> M \<Longrightarrow> env \<in> list(M) 
               \<Longrightarrow> a0 = H(a2, a1) \<longleftrightarrow> sats(M, Hfm, [a0, a1, a2] @ env))"
   shows "sats(M, is_wfrec_fm(Hfm, i, j, k), env) \<longleftrightarrow> v = wftrec(r, x, H)"  
@@ -411,7 +416,7 @@ definition is_preds_fm_Rfm_ren where "is_preds_fm_Rfm_ren(Rfm, x) \<equiv> ren(R
 
 definition is_preds_fm where "is_preds_fm(Rfm, x, S) \<equiv> Forall(Iff(Member(0, S #+ 1), is_preds_fm_Rfm_ren(Rfm, x)))" 
 
-context M_ctm 
+context M_ZF_Fragment_Utilities_M 
 begin 
 
 lemma is_preds_fm_ren_type : 
@@ -538,7 +543,7 @@ definition is_preds_rel_fm where
   "is_preds_rel_fm(Rfm, x, S) \<equiv> 
     Exists(And(is_preds_fm(Rfm, x #+ 1, 0), Forall(Iff(Member(0, S #+ 2), Exists(Exists(And(pair_fm(0, 1, 2), And(Member(0, 3), And(Or(Member(1, 3), Equal(1, x #+ 4)), Rfm)))))))))"
 
-context M_ctm 
+context M_ZF_Fragment_Utilities_M 
 begin 
 
 lemma is_preds_rel_fm_type : 
@@ -645,14 +650,16 @@ proof -
   show ?thesis using I1 I2 I3 by auto
 qed
 
+definition preds_rel_sep_fm where "preds_rel_sep_fm(Rfm) \<equiv> Exists(Exists(And(pair_fm(0, 1, 2), Rfm)))"
+
 lemma preds_rel_in_M : 
   fixes R Rfm x
-  assumes "Relation_fm(R, Rfm)" "x \<in> M" "preds(R, x) \<in> M"
+  assumes "Relation_fm(R, Rfm)" "x \<in> M" "preds(R, x) \<in> M" "preds_rel_sep_fm(Rfm) \<in> \<Phi>"
   shows "preds_rel(R, x) \<in> M"
 proof - 
-  define fm where "fm \<equiv> Exists(Exists(And(pair_fm(0, 1, 2), Rfm)))"
+  define fm where "fm \<equiv> preds_rel_sep_fm(Rfm) "
   have sats_iff :  "\<And>v. v \<in> M \<Longrightarrow> sats(M, fm, [v]) \<longleftrightarrow> v \<in> Rrel(R, M)" 
-    unfolding fm_def 
+    unfolding fm_def preds_rel_sep_fm_def
     apply(rule_tac Q="\<exists>y \<in> M. \<exists>z \<in> M. v = <z, y> \<and> R(z, y)" in iff_trans)
     using assms 
     apply simp
@@ -666,7 +673,7 @@ proof -
     apply(rule separation_ax)
     unfolding fm_def
     using assms Relation_fm_def
-      apply (simp, force, simp, simp)
+       apply(simp add:preds_rel_sep_fm_def, force, force, force, simp add:preds_rel_sep_fm_def)
     by(simp del:FOL_sats_iff pair_abs add: fm_defs nat_simp_union)  
 
   then have H : "{ v \<in> preds(R, x) \<times> (preds(R, x) \<union> {x}). sats(M, fm, [v] @ []) } \<in> M"
@@ -877,7 +884,16 @@ end
 definition prel_fm where 
   "prel_fm \<equiv> Exists(Exists(Exists(Exists(Exists(Exists(And(pair_fm(5, 4, 6), And(pair_fm(3, 1, 5), And(pair_fm(2, 1, 4), And(pair_fm(3, 2, 0), Member(0, 7)))))))))))  " 
 
-context M_ctm 
+definition is_preds_prel_elem_fm where 
+  "is_preds_prel_elem_fm(Rfm, x, a, v) \<equiv> Exists(And(is_preds_rel_fm(Rfm, x #+ 1, 0), Exists(Exists(Exists(Exists(Exists(And(pair_fm(2, 3, v #+ 6), And(pair_fm(0, a #+ 6, 2), And(pair_fm(1, a #+ 6, 3), And(pair_fm(0, 1, 4), Member(4, 5))))))))))))" 
+
+definition is_preds_prel_fm where 
+  "is_preds_prel_fm(Rfm, x, a, S) \<equiv> Forall(Iff(Member(0, S #+ 1), is_preds_prel_elem_fm(Rfm, x #+ 1, a #+ 1, 0)))" 
+
+definition is_wftrec_fm where "is_wftrec_fm(Gfm, Rfm, x, a, v) \<equiv> Exists(Exists(And(is_preds_prel_fm(Rfm, x#+2, a#+2, 0), And(pair_fm(x #+ 2, a #+ 2, 1), is_wfrec_fm(Gfm, 0, 1, v #+ 2)))))" 
+
+locale M_ZF_Fragment_RecFun_M = M_ZF_Fragment_Utilities_M + 
+  assumes recfun_M_prel_fm : "prel_fm \<in> \<Phi>" 
 begin 
 
 lemma prel_fm_sats_iff : 
@@ -898,7 +914,12 @@ proof -
   then have base: "((field(r) \<times> A) \<times> (field(r) \<times> A)) \<in> M" using assms cartprod_closed by auto 
 
   have "separation(##M, \<lambda>x. sats(M, prel_fm, [x]@[r, A]))" 
-    apply(rule_tac separation_ax) unfolding prel_fm_def using assms apply auto 
+    apply(rule_tac separation_ax) 
+       apply(simp add:prel_fm_def)
+      apply(simp add:recfun_M_prel_fm)
+    unfolding prel_fm_def
+    using assms  
+      apply auto 
     by (simp del:FOL_sats_iff pair_abs add: fm_defs nat_simp_union)  
   then have H: "{ p \<in> ((field(r) \<times> A) \<times> (field(r) \<times> A)). sats(M, prel_fm, [p]@[r, A]) } \<in> M"
     apply(rule_tac separation_notation) using base by auto 
@@ -951,14 +972,7 @@ proof -
     apply(rule_tac prelI) using H1 by auto 
   then show "<x, z> \<in> prel(r, p)" using H1 H2 by auto 
 qed
-
-end
-
-definition is_preds_prel_elem_fm where 
-  "is_preds_prel_elem_fm(Rfm, x, a, v) \<equiv> Exists(And(is_preds_rel_fm(Rfm, x #+ 1, 0), Exists(Exists(Exists(Exists(Exists(And(pair_fm(2, 3, v #+ 6), And(pair_fm(0, a #+ 6, 2), And(pair_fm(1, a #+ 6, 3), And(pair_fm(0, 1, 4), Member(4, 5))))))))))))" 
-
-context M_ctm 
-begin 
+ 
 
 lemma is_preds_prel_elem_fm_type : 
   fixes Rfm x a v 
@@ -994,7 +1008,7 @@ lemma is_preds_prel_elem_fm_arity :
 lemma sats_is_preds_prel_elem_fm_iff : 
   fixes R Rfm i j k x a v env p
   assumes "Relation_fm(R, Rfm)" "preds(R, x) \<in> M"  "env \<in> list(M)" "i \<in> nat" "j \<in> nat" "k \<in> nat" "nth(i, env) = x" "nth(j, env) = a" "nth(k, env) = v" 
-          "v \<in> M" "x \<in> M" "a \<in> M" "p \<in> M" "a \<in> p" 
+          "v \<in> M" "x \<in> M" "a \<in> M" "p \<in> M" "a \<in> p" "preds_rel_sep_fm(Rfm) \<in> \<Phi>"
   shows "sats(M, is_preds_prel_elem_fm(Rfm, i, j, k), env) \<longleftrightarrow> v \<in> preds_rel(\<lambda>a b. <a, b> \<in> prel(Rrel(R, M), p), <x, a>)" 
 proof - 
   have iff_lemma : "\<And>P Q R S. (P \<longleftrightarrow> Q) \<Longrightarrow> (Q \<Longrightarrow> R \<longleftrightarrow> S) \<Longrightarrow> (P \<and> R) \<longleftrightarrow> (Q \<and> S)" by auto
@@ -1013,7 +1027,8 @@ proof -
     using pair_in_M_iff preds_rel_in_M assms
     by auto
   have I2 : "... \<longleftrightarrow>(\<exists>y \<in> M. \<exists>z \<in> M. v = <<z, a>, <y, a>> \<and> <z, y> \<in> preds_rel(R, x))" 
-    using assms preds_rel_in_M pair_in_M_iff by auto
+    using assms preds_rel_in_M pair_in_M_iff 
+    by auto
   have I3 : "... \<longleftrightarrow> v \<in> preds_rel(\<lambda>a b. <a, b> \<in> prel(Rrel(R, M), p), <x, a>)" 
   proof(rule iffI)
     assume "\<exists>y\<in>M. \<exists>z\<in>M. v = \<langle>\<langle>z, a\<rangle>, y, a\<rangle> \<and> \<langle>z, y\<rangle> \<in> preds_rel(R, x)" 
@@ -1088,7 +1103,7 @@ qed
 lemma preds_prel_in_M : 
   fixes R Rfm x a p
   assumes "Relation_fm(R, Rfm)" "preds(R, x) \<in> M"  
-          "x \<in> M" "a \<in> M" "p \<in> M" "a \<in> p" 
+          "x \<in> M" "a \<in> M" "p \<in> M" "a \<in> p" "is_preds_prel_elem_fm(Rfm, 1, 2, 0) \<in> \<Phi>" "preds_rel_sep_fm(Rfm) \<in> \<Phi>"
   shows "preds_rel(\<lambda>a b. <a, b> \<in> prel(Rrel(R, M), p), <x, a>) \<in> M"
 proof - 
   define A where "A \<equiv> { v \<in> (preds(R, x) \<times> {a}) \<times> ((preds(R, x) \<times> {a}) \<union> {<x, a>}). sats(M, is_preds_prel_elem_fm(Rfm, 1, 2, 0), [v] @ [x, a]) }"
@@ -1161,14 +1176,6 @@ proof -
   finally show ?thesis using AinM by auto
 qed
 
-end
-
-definition is_preds_prel_fm where 
-  "is_preds_prel_fm(Rfm, x, a, S) \<equiv> Forall(Iff(Member(0, S #+ 1), is_preds_prel_elem_fm(Rfm, x #+ 1, a #+ 1, 0)))" 
-
-context M_ctm 
-begin 
-
 lemma is_preds_prel_fm_type :
   fixes Rfm x a S 
   assumes "Rfm \<in> formula" "x \<in> nat" "a \<in> nat" "S \<in> nat" 
@@ -1206,7 +1213,7 @@ lemma is_preds_prel_fm_arity :
 lemma sats_is_preds_prel_fm_iff : 
   fixes R Rfm i j k x a S env p
   assumes "Relation_fm(R, Rfm)" "preds(R, x) \<in> M"  "env \<in> list(M)" "i \<in> nat" "j \<in> nat" "k \<in> nat" "nth(i, env) = x" "nth(j, env) = a" "nth(k, env) = S" 
-          "S \<in> M" "x \<in> M" "a \<in> M" "p \<in> M" "a \<in> p" 
+          "S \<in> M" "x \<in> M" "a \<in> M" "p \<in> M" "a \<in> p" "is_preds_prel_elem_fm(Rfm, 1, 2, 0) \<in> \<Phi>" "preds_rel_sep_fm(Rfm) \<in> \<Phi>"
   shows "sats(M, is_preds_prel_fm(Rfm, i, j, k), env) \<longleftrightarrow> S = preds_rel(\<lambda>a b. <a, b> \<in> prel(Rrel(R, M), p), <x, a>)" 
 proof- 
   have iff_lemma : "\<And>P Q R S. (P \<longleftrightarrow> Q) \<Longrightarrow> (R \<longleftrightarrow> S) \<Longrightarrow> (P \<longleftrightarrow> R) \<longleftrightarrow> (Q \<longleftrightarrow> S)" by auto
@@ -1241,12 +1248,6 @@ proof-
   then show ?thesis using I1 I2 by auto
 qed
 
-end
-
-definition is_wftrec_fm where "is_wftrec_fm(Gfm, Rfm, x, a, v) \<equiv> Exists(Exists(And(is_preds_prel_fm(Rfm, x#+2, a#+2, 0), And(pair_fm(x #+ 2, a #+ 2, 1), is_wfrec_fm(Gfm, 0, 1, v #+ 2)))))" 
-
-context M_ctm 
-begin 
 
 lemma is_wftrec_fm_type : 
   fixes Gfm Rfm x a v 
@@ -1300,6 +1301,7 @@ lemma wftrec_prel_eq :
   and GM : "\<And>x g. x \<in> M \<Longrightarrow> function(g) \<Longrightarrow> g \<in> M \<Longrightarrow> G(x, g) \<in> M"  
   and HGeq: "\<And>h g x. h \<in> r -`` {x} \<rightarrow> M \<Longrightarrow> g \<in> (r -`` {x} \<times> {a}) \<rightarrow> M \<Longrightarrow> g \<in> M  
                \<Longrightarrow> x \<in> field(r) \<Longrightarrow> (\<And>y. y \<in> r -`` {x} \<Longrightarrow> h`y = g`<y, a>) \<Longrightarrow> H(x, h) = G(<x, a>, g)"  
+  and "rep_for_recfun_fm(Gfm, 0, 1, 2) \<in> \<Phi>"
 
   shows "wftrec(r, x, H) = wftrec(prel(r, p), <x, a>, G)" 
 proof - 
@@ -1372,7 +1374,8 @@ proof -
             apply auto[5]
        apply(rule GM)
          apply auto[3]
-      apply(rule satsGfm)
+       apply(rule satsGfm)
+      using assms
       by auto
 
     then have "range(the_recfun(prel(r, p), \<langle>x, a\<rangle>, G)) \<in> M" using range_closed by auto
@@ -1458,7 +1461,7 @@ lemma wftrec_prel_preds_rel_eq :
           "\<And>a0 a1 a2 env. a0 \<in> M \<Longrightarrow> a1 \<in> M \<Longrightarrow> a2 \<in> M \<Longrightarrow> env \<in> list(M) \<Longrightarrow> a0 = G(a2, a1) \<longleftrightarrow> sats(M, Gfm, [a0, a1, a2] @ env)"  
   and HGeq: "\<And>h g x. h \<in> Rrel(R, M) -`` {x} \<rightarrow> M \<Longrightarrow> g \<in> (Rrel(R, M) -`` {x} \<times> {a}) \<rightarrow> M \<Longrightarrow> g \<in> M  
                \<Longrightarrow> x \<in> field(Rrel(R, M)) \<Longrightarrow> (\<And>y. y \<in> Rrel(R, M) -`` {x} \<Longrightarrow> h`y = g`<y, a>) \<Longrightarrow> H(x, h) = G(<x, a>, g)"  
-
+  and "preds_rel_sep_fm(Rfm) \<in> \<Phi>" "rep_for_recfun_fm(Gfm, 0, 1, 2) \<in> \<Phi>"
   shows "wftrec(prel(preds_rel(R, x), {a}), <x, a>, G) = wftrec(Rrel(R, M), x, H)" 
 proof - 
 
@@ -1579,7 +1582,7 @@ proof -
         apply simp
       using fieldsubset 
        apply force      
-      using fieldsubset H
+      using fieldsubset H assms
       by auto
   qed 
   also have E2: "... = wftrec(Rrel(R, M), x, H)" 
@@ -1604,7 +1607,7 @@ lemma sats_is_Rrel_wftrec_fm_iff :
           " (\<And>a0 a1 a2 env. a0 \<in> M \<Longrightarrow> a1 \<in> M \<Longrightarrow> a2 \<in> M \<Longrightarrow> env \<in> list(M) \<Longrightarrow> a0 = G(a2, a1) \<longleftrightarrow> sats(M, Gfm, [a0, a1, a2] @ env))"  
   and HGeq: "\<And>h g x. h \<in> Rrel(R, M) -`` {x} \<rightarrow> M \<Longrightarrow> g \<in> (Rrel(R, M) -`` {x} \<times> {a}) \<rightarrow> M \<Longrightarrow> g \<in> M  
                \<Longrightarrow> x \<in> field(Rrel(R, M)) \<Longrightarrow> (\<And>y. y \<in> Rrel(R, M) -`` {x} \<Longrightarrow> h`y = g`<y, a>) \<Longrightarrow> H(x, h) = G(<x, a>, g)"  
-
+  and "is_preds_prel_elem_fm(Rfm, 1, 2, 0) \<in> \<Phi>" "preds_rel_sep_fm(Rfm) \<in> \<Phi>" "rep_for_recfun_fm(Gfm, 0, 1, 2) \<in> \<Phi>" 
   shows "sats(M, is_wftrec_fm(Gfm, Rfm, i, j, k), env) \<longleftrightarrow> v = wftrec(Rrel(R, M), x, H)" 
 proof - 
 
@@ -1770,6 +1773,21 @@ proof -
   show ?thesis using I1 I2 I3 I4 by auto
 qed
 
+lemma function_the_recfun : 
+  assumes "wf(r)" "trans(r)" 
+  shows"function(the_recfun(r, x, H))"
+  (is "function(?f)")
+proof- 
+  have "is_recfun(r, x, H, ?f)"
+    using unfold_the_recfun assms
+    by auto
+  then have eq:  "?f = (\<lambda>y\<in>r-``{x}. H(y, restrict(?f, r-``{y})))" (is "?f = ?g")
+    using is_recfun_def
+    by auto
+  have "function(?g)" using function_lam by auto
+  then show ?thesis using eq by auto
+qed
+
 lemma Rrel_wftrec_in_M : 
   fixes R Rfm G H x a
   assumes "x \<in> M" "a \<in> M" "x \<in> field(Rrel(R, M))" "wf(Rrel(R, M))" "trans(Rrel(R, M))"
@@ -1778,20 +1796,24 @@ lemma Rrel_wftrec_in_M :
   and GM: "\<And>x g. x \<in> M \<Longrightarrow> g \<in> M \<Longrightarrow> function(g) \<Longrightarrow> G(x, g) \<in> M"  
   and HGeq: "\<And>h g x. h \<in> Rrel(R, M) -`` {x} \<rightarrow> M \<Longrightarrow> g \<in> (Rrel(R, M) -`` {x} \<times> {a}) \<rightarrow> M \<Longrightarrow> g \<in> M  
                \<Longrightarrow> x \<in> field(Rrel(R, M)) \<Longrightarrow> (\<And>y. y \<in> Rrel(R, M) -`` {x} \<Longrightarrow> h`y = g`<y, a>) \<Longrightarrow> H(x, h) = G(<x, a>, g)"  
-  
+  and "preds_rel_sep_fm(Rfm) \<in> \<Phi>" "rep_for_recfun_fm(Gfm, 0, 1, 2) \<in> \<Phi>" "rep_for_recfun_fm(Gfm, 0, 1, 2) \<in> \<Phi>" 
   shows "wftrec(Rrel(R, M), x, H) \<in> M"
 
   apply(rule_tac b="wftrec(Rrel(R, M), x, H)" in ssubst) 
    apply(rule eq_flip, rule_tac G=G and a=a in wftrec_prel_preds_rel_eq) 
   using assms 
-              apply auto[12]
+              apply auto[14]
   unfolding wftrec_def
    apply(rule GM)
   using pair_in_M_iff assms
     apply force
    apply(rule_tac p=Gfm in the_recfun_in_M)
-          apply(rule wf_prel, rule wf_preds_rel, simp add:assms, simp add:assms)
-         apply(rule prel_trans, rule trans_preds_rel, simp add:assms, simp add:assms)
+           apply(rule wf_prel, rule wf_preds_rel)
+  using assms
+            apply auto[2]
+          apply(rule prel_trans, rule trans_preds_rel)
+  using assms
+          apply auto[2]
         apply(rule prel_closed, rule_tac Rfm=Rfm in preds_rel_in_M)
   using assms singleton_in_M_iff pair_in_M_iff
            apply auto[9]
@@ -1800,10 +1822,20 @@ lemma Rrel_wftrec_in_M :
    apply(subgoal_tac "is_recfun(prel(preds_rel(R, x), {a}), <x, a>, G, the_recfun(prel(preds_rel(R, x), {a}), \<langle>x, a\<rangle>, G))") 
     apply (simp add:is_recfun_def)
    apply(rule unfold_the_recfun)
-    apply(rule wf_prel, rule wf_preds_rel, simp add:assms, simp add:assms)
-   apply(rule prel_trans, rule trans_preds_rel, simp add:assms, simp add:assms)
-  apply(rule function_lam)
-  done
+      apply(rule wf_prel, rule wf_preds_rel)
+  using assms
+       apply auto[2]
+     apply(rule prel_trans, rule trans_preds_rel)
+  using assms
+      apply auto[4]
+  apply(rule function_the_recfun)
+      apply(rule wf_prel, rule wf_preds_rel)
+  using assms
+       apply auto[2]
+     apply(rule prel_trans, rule trans_preds_rel)
+  using assms
+      apply auto[2]
+  done              
 
 end
 end

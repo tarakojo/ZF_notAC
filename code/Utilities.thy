@@ -1,7 +1,6 @@
 theory Utilities 
   imports 
-    ZF 
-    "Forcing/Forcing_Main"
+    "Forcing/Separation_Rename"
 begin 
 
 lemma function_value : "x \<in> D \<Longrightarrow> { <y, f(y)>. y \<in> D }`x = f(x)" 

@@ -2,9 +2,13 @@ theory Utilities_M
   imports 
     ZF 
     Utilities
+    "Forcing/Forces_Definition" 
+    "Forcing/Least" 
 begin 
 
-context M_ctm
+locale M_ZF_Fragment_Utilities_M = M_ZF_Fragment_Interface + 
+  assumes utilities_M_refl_rel_fm : "Exists(pair_fm(0, 0, 1)) \<in> \<Phi>" 
+  and utilities_M_mem_fm : "Member(0, 1) \<in> \<Phi>" 
 begin 
 
 lemma to_rex : "\<And>P. \<exists>x[##M]. P(x) \<Longrightarrow> \<exists>x \<in> M. P(x)" by auto
@@ -188,7 +192,10 @@ proof -
   fix A assume assm : "A \<in> M" 
   define fm where "fm \<equiv> Exists(pair_fm(0, 0, 1)) " 
   have sep : "separation(##M, \<lambda>x. sats(M, fm, [x] @ []))" 
-    apply (rule_tac separation_ax) unfolding fm_def apply simp_all  
+    apply (rule_tac separation_ax) 
+    unfolding fm_def 
+       apply simp_all  
+      apply(simp add: utilities_M_refl_rel_fm)
     apply (simp del:FOL_sats_iff pair_abs add: fm_defs nat_simp_union) done 
   then have H: "{ v \<in> A\<times>A. sats(M, fm, [v]@[]) } \<in> M"  
     apply (rule_tac separation_notation) using assm cartprod_closed apply auto done 
@@ -213,7 +220,7 @@ proof -
   assume assms : "A \<in> M" "B \<in> M" 
   have "separation(##M, \<lambda>x. sats(M, Member(0, 1), [x] @ [B]))" 
     apply(rule separation_ax) 
-    using assms 
+    using assms utilities_M_mem_fm
     apply simp_all
     by (simp del:FOL_sats_iff pair_abs add: fm_defs nat_simp_union)  
   then have H : "{ x \<in> A. sats(M, Member(0, 1), [x] @ [B]) } \<in> M" 

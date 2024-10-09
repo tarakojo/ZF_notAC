@@ -13,7 +13,10 @@ lemma Collect_inter_Transset:
   using assms unfolding Transset_def
   by (auto)
 
-context G_generic  begin
+locale forcing_data_Powerset_Axiom_G_generic = forcing_data_Forces_Theorems_G_generic + forcing_data_Union_Axiom +
+  assumes powerset_axiom_sats_fst_snd_in_M_fm : "Exists(Exists(And(pair_fm(0, 1, 2), ren(\<phi>) ` 6 ` 7 ` perm_pow_fn))) \<in> \<Phi>" 
+  and powerset_axiom_pow_inter_MG_fm : "separation_MG_fms(subset_fm(0, 1), 1) \<subseteq> \<Phi>" 
+begin
 
 lemma name_components_in_M:
   assumes "<\<sigma>,p>\<in>\<theta>" "\<theta> \<in> M"
@@ -99,7 +102,7 @@ proof -
     moreover note assms \<open>A\<times>B\<in>M\<close>
     ultimately 
     show "{x \<in> A\<times>B . sats(M, ?\<psi>, [x, p, l, o, \<chi>, p])} \<in> M"
-      using separation_ax separation_iff
+      using separation_ax separation_iff powerset_axiom_sats_fst_snd_in_M_fm
       by simp
   qed
   finally show ?thesis .
@@ -256,18 +259,20 @@ proof -
   have " ... = {x\<in>?b . sats(M[G],subset_fm(0,1),[x,a])} \<inter> M[G]"
     by auto
   also from \<open>?b\<in>M[G]\<close> 
-  have " ... = {x\<in>?b . sats(M[G],subset_fm(0,1),[x,a])}"
+  have " ... = {x\<in>?b . sats(M[G],subset_fm(0,1),[x] @ [a])}"
     using Collect_inter_Transset Transset_MG
     by simp
   also from \<open>?b\<in>M[G]\<close> \<open>a\<in>M[G]\<close>
   have " ... \<in> M[G]"
-    using Collect_sats_in_MG GenExtI nat_simp_union by simp
+    using powerset_axiom_pow_inter_MG_fm
+    using Collect_sats_in_MG GenExtI nat_simp_union 
+    by auto
   finally show ?thesis .
 qed
 end (* context: G_generic *)
 
 
-context G_generic begin
+context forcing_data_Powerset_Axiom_G_generic begin
 
 interpretation mgtriv: M_trivial "##M[G]"
   using generic Union_MG pairing_in_MG zero_in_MG transitivity_MG

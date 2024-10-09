@@ -1,7 +1,7 @@
 theory SymExt_Separation_Base
   imports 
-    "Forcing/Forcing_Main" 
     SymExt_Definition
+    HS_Forces
 begin 
 
 context M_symmetric_system_G_generic
@@ -240,6 +240,14 @@ proof -
     by simp
 qed
 
+end 
+
+locale M_symmetric_system_SymExt_Separation_Base = 
+  M_symmetric_system_HS_Forces_G_generic + 
+  assumes SymExt_Separation_Base_rep_Hsep : "rep_for_recfun_fm(Hsep_base_M_fm, 0, 1, 2) \<in> \<Phi>" 
+  and SymExt_Separation_Base_is_sep_base : "is_sep_base_fm(0, 2, 1) \<in> \<Phi>" 
+begin
+
 lemma sats_is_sep_base_fm_iff : 
   fixes env i j k x s 
   assumes "env \<in> list(M)" "i < length(env)" "j < length(env)" "k < length(env)"
@@ -256,9 +264,10 @@ lemma sats_is_sep_base_fm_iff :
     apply(rule Hsep_base_M_in_M)
       apply auto[3]
    apply(rule Hsep_base_eq)
-       apply auto[5]
-  unfolding Hsep_base_M_fm_def
-  apply(rule Hsep_base_M_fm_auto)
+        apply auto[5] 
+   apply(subst Hsep_base_M_fm_def)
+   apply(rule Hsep_base_M_fm_auto)
+  using SymExt_Separation_Base_rep_Hsep
   by auto
 
 lemma sep_base_in_M : 
@@ -276,8 +285,9 @@ lemma sep_base_in_M :
       apply auto[3]
    apply(rule Hsep_base_eq)
        apply auto[5]
-  unfolding Hsep_base_M_fm_def
-  apply(rule Hsep_base_M_fm_auto)
+   apply(subst Hsep_base_M_fm_def)
+   apply(rule Hsep_base_M_fm_auto)
+  using SymExt_Separation_Base_rep_Hsep
   by auto
 
 lemma sep_base_in : 
@@ -445,8 +455,8 @@ proof -
   have H: "strong_replacement(##M, \<lambda>x y. sats(M, is_sep_base_fm(0, 2, 1), [x, y] @ [P]))" 
     apply(rule replacement_ax)
       apply(simp add: is_sep_base_fm_def, rule is_memrel_wftrec_fm_type, simp add: Hsep_base_M_fm_def)
-    using P_in_M 
-        apply auto[4]
+    using P_in_M SymExt_Separation_Base_is_sep_base
+        apply auto[5]
     apply simp
     apply(simp add:is_sep_base_fm_def, rule le_trans, rule arity_is_memrel_wftrec_fm)
          apply(simp add: Hsep_base_M_fm_def, simp add:Hsep_base_M_fm_def)

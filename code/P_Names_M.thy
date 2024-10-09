@@ -1,11 +1,39 @@
 theory P_Names_M
-  imports 
-    "Forcing/Forcing_Main"
+  imports  
     RecFun_M_Memrel
     P_Names
 begin 
 
-context forcing_data
+definition is_1_fm where "is_1_fm(x) \<equiv> Forall(Iff(Member(0, x #+ 1), empty_fm(0)))"
+
+
+definition His_P_name_M_fm where "His_P_name_M_fm \<equiv> 
+       Forall
+             (Iff(Member(0, 1),
+                  And(empty_fm(0),
+                      Exists
+                       (Exists
+                         (Exists
+                           (Exists
+                             (And(pair_fm(3, 2, 7),
+                                  And(relation_fm(3),
+                                      And(range_fm(3, 1),
+                                          And(domain_fm(3, 0),
+                                              And(Forall(Implies(Member(0, 2), Member(0, 3))),
+                                                  Forall
+                                                   (Implies
+                                                     (Member(0, 1),
+                                                      Exists
+                                                       (Exists
+                                                         (And(pair_fm(2, 5, 1),
+                                                              And(fun_apply_fm(9, 1, 0),
+                                                                  Forall(Iff(Member(0, 1), empty_fm(0)))))))))))))))))))))   "
+
+definition is_P_name_fm where "is_P_name_fm(p, x) \<equiv> Exists(And(is_memrel_wftrec_fm(His_P_name_M_fm, x #+ 1, p #+ 1, 0), is_1_fm(0)))" 
+
+
+locale forcing_data_P_Names_M = forcing_data_Forces_Definition + M_ZF_Fragment_RecFun_M_Memrel + 
+  assumes P_Names_M_rep_for_recfun_fm : "rep_for_recfun_fm(His_P_name_M_fm, 0, 1, 2) \<in> \<Phi>"
 begin 
 
 definition is_1 where "is_1(x) \<equiv> \<forall>y \<in> M. y \<in> x \<longleftrightarrow> empty(##M, y)" 
@@ -25,12 +53,6 @@ lemma is_1_iff :
     apply (force, force)
   by auto
 
-end
-
-definition is_1_fm where "is_1_fm(x) \<equiv> Forall(Iff(Member(0, x #+ 1), empty_fm(0)))"
-
-context forcing_data
-begin 
 
 lemma is_1_fm_type : 
   fixes i 
@@ -152,6 +174,7 @@ lemma His_P_name_M_cond_iff :
   using domain_elem_in_M domainI 
   by auto 
 
+
 schematic_goal His_P_name_M_fm_auto:
   assumes
     "nth(0,env) = v" 
@@ -161,35 +184,7 @@ schematic_goal His_P_name_M_fm_auto:
  shows 
     "(\<forall>e \<in> M. e \<in> v \<longleftrightarrow> (empty(##M, e) \<and> His_P_name_M_cond(x', g))) \<longleftrightarrow> sats(M,?fm(0,1,2),env)" 
   unfolding His_P_name_M_cond_def subset_def 
-  by (insert assms ; (rule sep_rules | simp)+) 
-
-end 
-
-definition His_P_name_M_fm where "His_P_name_M_fm \<equiv> 
-       Forall
-             (Iff(Member(0, 1),
-                  And(empty_fm(0),
-                      Exists
-                       (Exists
-                         (Exists
-                           (Exists
-                             (And(pair_fm(3, 2, 7),
-                                  And(relation_fm(3),
-                                      And(range_fm(3, 1),
-                                          And(domain_fm(3, 0),
-                                              And(Forall(Implies(Member(0, 2), Member(0, 3))),
-                                                  Forall
-                                                   (Implies
-                                                     (Member(0, 1),
-                                                      Exists
-                                                       (Exists
-                                                         (And(pair_fm(2, 5, 1),
-                                                              And(fun_apply_fm(9, 1, 0),
-                                                                  Forall(Iff(Member(0, 1), empty_fm(0)))))))))))))))))))))   "
-
-
-context forcing_data
-begin 
+  by (insert assms ; (rule sep_rules | simp)+)  
 
 lemma His_P_name_M_fm_iff_sats : 
   "v \<in> M \<Longrightarrow> g \<in> M \<Longrightarrow> x' \<in> M \<Longrightarrow> env \<in> list(M) \<Longrightarrow> sats(M, His_P_name_M_fm, [v, g, x'] @ env) \<longleftrightarrow> v = His_P_name_M(x', g)" 
@@ -221,13 +216,6 @@ lemma His_P_name_M_fm_iff_sats :
   using His_P_name_M_cond_iff 
   apply blast 
   done
-
-end
-
-definition is_P_name_fm where "is_P_name_fm(p, x) \<equiv> Exists(And(is_memrel_wftrec_fm(His_P_name_M_fm, x #+ 1, p #+ 1, 0), is_1_fm(0)))" 
-
-context forcing_data
-begin 
 
 lemma is_P_name_fm_type : 
   fixes i j 
@@ -304,8 +292,9 @@ proof -
        apply(simp add: His_P_name_M_def, rule impI, simp add:zero_in_M)
       apply(rule Heq)
            apply auto[5]
-     apply(rule iff_flip, rule His_P_name_M_fm_iff_sats)
-        apply auto[4]
+      apply(rule iff_flip, rule His_P_name_M_fm_iff_sats)
+    using P_Names_M_rep_for_recfun_fm
+        apply auto[5]
     apply(rule sats_is_1_fm_iff)
     using assms 
     by auto

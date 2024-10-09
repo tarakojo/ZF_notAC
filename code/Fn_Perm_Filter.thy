@@ -2,11 +2,39 @@ theory Fn_Perm_Filter
   imports Fn_Perm_Automorphism
 begin 
 
-context M_ctm begin 
+context M_symmetric_system_Fn_Perm_Automorphism begin 
 
-lemma Fn_perms_group : "forcing_data_partial.is_P_auto_group(Fn, Fn_leq, M, Fn_perms)" 
-  apply(subst forcing_data_partial.is_P_auto_group_def)
-   apply(rule Fn_forcing_data_partial, rule conjI)
+definition is_Fix_elem_fm where "is_Fix_elem_fm(perms, fn, E, v) \<equiv> 
+  Exists(And(Member(0, perms#+1), And(is_Fn_perm'_fm(0, fn#+1, v#+1), Forall(Implies(Member(0, E#+2), fun_apply_fm(1, 0, 0))))))"  
+
+
+definition is_Fix_fm where "is_Fix_fm(perms, fn, E, v) \<equiv> Forall(Iff(Member(0, v#+1), is_Fix_elem_fm(perms#+1, fn#+1, E#+1, 0)))" 
+
+definition converse_fm where "converse_fm(i, j) \<equiv> And(relation_fm(i),
+                                                    And(relation_fm(j),
+                                                        Forall
+                                                         (Forall
+                                                           (Iff(Exists(And(pair_fm(2, 1, 0), Member(0, succ(succ(succ(i)))))),
+                                                                Exists(And(pair_fm(1, 2, 0), Member(0, succ(succ(succ(j))))))))))) "
+
+definition closed_under_comp_and_converse_fm where 
+  "closed_under_comp_and_converse_fm(i) \<equiv> 
+      And(Forall(Forall(Implies(Member(1, succ(succ(i))),
+                        Implies(Member(0, succ(succ(i))), 
+                        Exists(And(composition_fm(2, 1, 0), Member(0, succ(succ(succ(i)))))))))), 
+          Forall(Implies(Member(0, succ(i)), Exists(And(Member(0, succ(succ(i))), converse_fm(1, 0))))))" 
+
+end
+
+locale M_symmetric_system_Fn_Perm_Filter = M_symmetric_system_Fn_Perm_Automorphism + 
+  assumes fn_perm_filer_Fix_in_M_fm : "is_Fix_elem_fm(1, 2, 3, 0) \<in> \<Phi>" 
+  and fn_perm_filter_Fn_perms_filter_in_M_fm : "And(closed_under_comp_and_converse_fm(0),
+        Exists(Exists(And(Member(0, 3), And(finite_M_fm(6, 0), And(is_Fix_fm(4, 5, 0, 1), subset_fm(1, 2))))))) \<in> \<Phi>"
+begin
+ 
+lemma Fn_perms_group : "forcing_data_Automorphism_M.is_P_auto_group(Fn, Fn_leq, M, Fn_perms)" 
+  apply(subst forcing_data_Automorphism_M.is_P_auto_group_def)
+   apply(rule Fn_forcing_data_Automorphism_M, rule conjI)
    apply(subst Fn_perms_def)
   using Fn_perm'_type Fn_perm'_is_P_auto
    apply force
@@ -25,9 +53,6 @@ lemma Fn_perms_group : "forcing_data_partial.is_P_auto_group(Fn, Fn_leq, M, Fn_p
   by auto
 
 definition Fix where "Fix(E) \<equiv> { Fn_perm'(f).. f \<in> nat_perms, \<forall>n \<in> E. f`n = n }"
-
-definition is_Fix_elem_fm where "is_Fix_elem_fm(perms, fn, E, v) \<equiv> 
-  Exists(And(Member(0, perms#+1), And(is_Fn_perm'_fm(0, fn#+1, v#+1), Forall(Implies(Member(0, E#+2), fun_apply_fm(1, 0, 0))))))"  
 
 lemma is_Fix_elem_fm_type : 
   fixes i j k l 
@@ -114,8 +139,8 @@ proof -
     unfolding X_def
     apply(rule separation_notation, rule separation_ax)
        apply(rule is_Fix_elem_fm_type)
-    using assms nat_perms_in_M Fn_in_M 
-          apply auto[5]
+    using assms nat_perms_in_M Fn_in_M fn_perm_filer_Fix_in_M_fm
+          apply auto[6]
      apply(rule le_trans, rule local.arity_is_Fix_elem_fm)
     using Un_least_lt Fn_perms_in_M
     by auto
@@ -130,8 +155,6 @@ proof -
     by auto
   finally show ?thesis using \<open>X \<in> M\<close> by auto
 qed
-
-definition is_Fix_fm where "is_Fix_fm(perms, fn, E, v) \<equiv> Forall(Iff(Member(0, v#+1), is_Fix_elem_fm(perms#+1, fn#+1, E#+1, 0)))" 
 
 lemma is_Fix_fm_type : 
   fixes i j k l 
@@ -201,13 +224,6 @@ schematic_goal converse_fm_auto:
   shows "is_relation(##M, A) \<and> is_relation(##M, B) \<and> (\<forall>x \<in> M. \<forall>y \<in> M. (\<exists>z \<in> M. pair(##M, x, y, z) \<and> z \<in> A) \<longleftrightarrow> (\<exists>w \<in> M. pair(##M, y, x, w) \<and> w \<in> B)) \<longleftrightarrow> sats(M,?fm(i, j),env)" 
   by (insert assms ; (rule sep_rules | simp)+) 
 
-definition converse_fm where "converse_fm(i, j) \<equiv> And(relation_fm(i),
-                                                    And(relation_fm(j),
-                                                        Forall
-                                                         (Forall
-                                                           (Iff(Exists(And(pair_fm(2, 1, 0), Member(0, succ(succ(succ(i)))))),
-                                                                Exists(And(pair_fm(1, 2, 0), Member(0, succ(succ(succ(j))))))))))) "
-
 lemma sats_converse_fm_iff : 
   fixes env i j A B 
   assumes "env \<in> list(M)" "i < length(env)" "j < length(env)" "nth(i, env) = A" "nth(j, env) = B" 
@@ -253,12 +269,6 @@ schematic_goal closed_under_comp_fm_auto:
      \<longleftrightarrow> sats(M,?fm(i),env)" 
   unfolding is_converse_def 
   by (insert assms ; (rule sep_rules | simp)+) 
-definition closed_under_comp_and_converse_fm where 
-  "closed_under_comp_and_converse_fm(i) \<equiv> 
-      And(Forall(Forall(Implies(Member(1, succ(succ(i))),
-                        Implies(Member(0, succ(succ(i))), 
-                        Exists(And(composition_fm(2, 1, 0), Member(0, succ(succ(succ(i)))))))))), 
-          Forall(Implies(Member(0, succ(i)), Exists(And(Member(0, succ(succ(i))), converse_fm(1, 0))))))" 
 
 lemma sats_closed_under_comp_and_converse_fm_iff : 
   fixes env i A
@@ -313,7 +323,7 @@ lemma arity_closed_under_comp_and_converse_fm :
   done
 
 
-definition Fn_perms_filter where "Fn_perms_filter \<equiv> { H \<in> forcing_data_partial.P_auto_subgroups(Fn, Fn_leq, M, Fn_perms).  \<exists>E \<in> Pow(nat) \<inter> M. finite_M(E) \<and> Fix(E) \<subseteq> H }" 
+definition Fn_perms_filter where "Fn_perms_filter \<equiv> { H \<in> forcing_data_Automorphism_M.P_auto_subgroups(Fn, Fn_leq, M, Fn_perms).  \<exists>E \<in> Pow(nat) \<inter> M. finite_M(E) \<and> Fix(E) \<subseteq> H }" 
 
 lemma Fn_perms_filter_in_M : "Fn_perms_filter \<in> M" 
 proof - 
@@ -322,7 +332,9 @@ proof -
   have XinM: "X \<in> M" 
     unfolding X_def
        apply(subgoal_tac "finite_M_fm(6, 0) \<in> formula \<and> is_Fix_fm(4, 5, 0, 1) \<in> formula \<and> closed_under_comp_and_converse_fm(0) \<in> formula")
-    apply(rule separation_notation, rule separation_ax, force)
+     apply(rule separation_notation, rule separation_ax, force)
+    using fn_perm_filter_Fn_perms_filter_in_M_fm
+        apply force
     using nat_in_M nat_perms_in_M Fn_in_M M_powerset 
       apply force 
       apply simp
@@ -355,7 +367,7 @@ proof -
      apply(rule sats_is_Fix_fm_iff)
              apply auto[9]
     apply(rule iff_trans, rule sats_subset_fm)
-    using M_ctm_axioms M_ctm_def M_ctm_axioms_def 
+    using trans_M
     by auto
   also have "... = { H \<in> Pow(Fn_perms) \<inter> M. (\<forall>x \<in> H. \<forall>y \<in> H. x O y \<in> H) \<and> (\<forall>x \<in> H. converse(x) \<in> H) \<and> (\<exists>E \<in> Pow(nat) \<inter> M. finite_M(E) \<and> Fix(E) \<subseteq> H) }" 
     apply(rule iff_eq, rule iffI, force)
@@ -363,11 +375,11 @@ proof -
     by auto
   also have "... = Fn_perms_filter" 
     unfolding Fn_perms_filter_def
-    apply(subst forcing_data_partial.P_auto_subgroups_def)
-     apply(rule Fn_forcing_data_partial, simp)
+    apply(subst forcing_data_Automorphism_M.P_auto_subgroups_def)
+     apply(rule Fn_forcing_data_Automorphism_M, simp)
     apply(rule iff_eq)
-    apply(subst forcing_data_partial.is_P_auto_group_def)
-     apply(rule Fn_forcing_data_partial, rule iffI)
+    apply(subst forcing_data_Automorphism_M.is_P_auto_group_def)
+     apply(rule Fn_forcing_data_Automorphism_M, rule iffI)
      apply(rule conjI)+
        apply(rule subsetI, simp)
        apply(rename_tac H x, subgoal_tac "\<exists>f \<in> nat_perms. Fn_perm'(f) = x")
@@ -381,7 +393,7 @@ lemma Fn_perms_filter_nonempty : "Fn_perms_filter \<noteq> 0"
   apply(rule_tac a="Fn_perms" in not_emptyI)
   unfolding Fn_perms_filter_def
   apply simp
-  apply(rule conjI, subst forcing_data_partial.P_auto_subgroups_def, rule Fn_forcing_data_partial)
+  apply(rule conjI, subst forcing_data_Automorphism_M.P_auto_subgroups_def, rule Fn_forcing_data_Automorphism_M)
    apply (simp, rule conjI, rule Fn_perms_in_M, rule Fn_perms_group)
   apply(rule_tac x=0 in bexI, rule conjI, simp add:finite_M_def)
     apply(rule_tac x=0 in bexI, rule_tac a=0 in not_emptyI)

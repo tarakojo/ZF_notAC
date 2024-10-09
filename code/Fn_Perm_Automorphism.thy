@@ -2,7 +2,22 @@ theory Fn_Perm_Automorphism
   imports Fn_Perm_Definition 
 
 begin
-context M_ctm begin 
+context M_symmetric_system_Fn_Perm_Definition begin 
+
+definition Fn_perm_in_Fn_helper_fm where 
+  "Fn_perm_in_Fn_helper_fm \<equiv> Exists(Exists(Exists(Exists(Exists(Exists(
+                            And(pair_fm(0, 1, 4), 
+                            And(Member(4, 7),
+                            And(fun_apply_fm(8, 0, 2), 
+                            And(pair_fm(2, 1, 3), 
+                            And(fun_apply_fm(9, 4, 5), 
+                                pair_fm(3, 5, 6))))))))))))"
+
+end
+
+locale M_symmetric_system_Fn_Perm_Automorphism = M_symmetric_system_Fn_Perm_Definition + 
+  assumes fn_perm_auto_Fn_perm_in_Fn_helper_fm : "Fn_perm_in_Fn_helper_fm \<in> \<Phi>" 
+begin 
 
 lemma converse_in_nat_perms : 
   fixes f 
@@ -133,23 +148,19 @@ proof -
     have hinM : "h \<in> M" 
     proof - 
       (* n m f`n <f`n, m> <n, m> g`<n, m> v domain(p) f g*)
-      define \<phi> where "\<phi> \<equiv> Exists(Exists(Exists(Exists(Exists(Exists(
-                            And(pair_fm(0, 1, 4), 
-                            And(Member(4, 7),
-                            And(fun_apply_fm(8, 0, 2), 
-                            And(pair_fm(2, 1, 3), 
-                            And(fun_apply_fm(9, 4, 5), 
-                                pair_fm(3, 5, 6))))))))))))"  
+      define \<phi> where "\<phi> \<equiv> Fn_perm_in_Fn_helper_fm"  
       define X where "X \<equiv> { v \<in> (nat \<times> nat) \<times> N. sats(M, \<phi>, [v] @ [domain(p), f, g]) }"
 
       have XinM: "X \<in> M" 
         unfolding X_def
         apply(rule separation_notation, rule separation_ax)
         unfolding \<phi>_def 
-           apply simp
+        apply(simp add:Fn_perm_in_Fn_helper_fm_def)
+        using fn_perm_auto_Fn_perm_in_Fn_helper_fm 
+        apply auto[1]
         using domain_closed gNH assms Fn_in_M nat_perms_in_M transM 
           apply force 
-        apply simp
+        apply (simp add:Fn_perm_in_Fn_helper_fm_def)
          apply (simp del:FOL_sats_iff pair_abs add: fm_defs nat_simp_union)
         using cartprod_closed gNH nat_in_M transM 
         by auto
@@ -158,7 +169,7 @@ proof -
                     \<exists>gnm \<in> M. \<exists>nm \<in> M. \<exists>fnm \<in> M. \<exists>fn \<in> M. \<exists>m \<in> M. \<exists>n \<in> M. 
                     <n, m> = nm \<and> nm \<in> domain(p) \<and> f`n = fn \<and> fnm = <fn, m> \<and> gnm = g`nm \<and> v = <fnm, gnm> }" 
 
-        unfolding X_def \<phi>_def
+        unfolding X_def \<phi>_def Fn_perm_in_Fn_helper_fm_def
         apply(rule iff_eq)
         apply(rename_tac v, subgoal_tac "v \<in> M \<and> domain(p) \<in> M \<and> f \<in> M \<and> g \<in> M \<and> N \<in> M")
         using pair_in_M_iff zero_in_M succ_in_MI gNH domain_closed assms transM nat_perms_in_M Fn_in_M nat_in_M
@@ -631,13 +642,16 @@ proof -
     by auto
 qed
 
+
 lemma Fn_perm'_is_P_auto : 
   fixes f 
   assumes "f \<in> nat_perms" 
   shows "forcing_data_partial.is_P_auto(Fn, Fn_leq, M, Fn_perm'(f))"
 
   apply(subst forcing_data_partial.is_P_auto_def)
-   apply(rule Fn_forcing_data_partial)
+   apply(insert Fn_forcing_data_Automorphism_M)
+  using forcing_data_Automorphism_M_def 
+   apply force
   apply(rule conjI, rule Fn_perm'_in_M, simp add:assms, rule conjI, rule Fn_perm'_bij, simp add:assms)
   apply(rule ballI)+
   apply(rule iffI)

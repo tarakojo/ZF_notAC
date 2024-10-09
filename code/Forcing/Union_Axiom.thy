@@ -3,15 +3,6 @@ theory Union_Axiom
   imports Names
 begin
 
-context forcing_data
-begin
-
-
-definition Union_name_body :: "[i,i,i,i] \<Rightarrow> o" where
-  "Union_name_body(P',leq',\<tau>,\<theta>p) \<equiv> (\<exists> \<sigma>[##M].
-           \<exists> q[##M]. (q\<in> P' \<and> (\<langle>\<sigma>,q\<rangle> \<in> \<tau> \<and>
-            (\<exists> r[##M].r\<in>P' \<and> (\<langle>fst(\<theta>p),r\<rangle> \<in> \<sigma> \<and> \<langle>snd(\<theta>p),r\<rangle> \<in> leq' \<and> \<langle>snd(\<theta>p),q\<rangle> \<in> leq')))))"
-
 definition Union_name_fm :: "i" where
   "Union_name_fm \<equiv>
     Exists(
@@ -23,6 +14,16 @@ definition Union_name_fm :: "i" where
          Exists (And(And(pair_fm(6,1,0),Member(0,4)),
           Exists (And(And(pair_fm(6,2,0),Member(0,10)),
           Exists (And(pair_fm(7,5,0),Member(0,11)))))))))))))))))"
+
+
+locale forcing_data_Union_Axiom = forcing_data + 
+  assumes Union_Axiom_Union_name_fm : "Union_name_fm \<in> \<Phi>" 
+begin
+
+definition Union_name_body :: "[i,i,i,i] \<Rightarrow> o" where
+  "Union_name_body(P',leq',\<tau>,\<theta>p) \<equiv> (\<exists> \<sigma>[##M].
+           \<exists> q[##M]. (q\<in> P' \<and> (\<langle>\<sigma>,q\<rangle> \<in> \<tau> \<and>
+            (\<exists> r[##M].r\<in>P' \<and> (\<langle>fst(\<theta>p),r\<rangle> \<in> \<sigma> \<and> \<langle>snd(\<theta>p),r\<rangle> \<in> leq' \<and> \<langle>snd(\<theta>p),q\<rangle> \<in> leq')))))"
 
 lemma Union_name_fm_type [TC]:
   "Union_name_fm \<in>formula"
@@ -68,7 +69,7 @@ proof -
   have "[\<tau>,leq] \<in> list(M)" "[P,\<tau>,leq] \<in> list(M)" by auto
   with assms assms P_in_M leq_in_M  \<open>arity(Union_name_fm)\<le>6\<close>
   have "separation(##M,?P)"
-    using separation_ax by simp
+    using separation_ax Union_Axiom_Union_name_fm by simp
   with \<open>?d \<times> P \<in> M\<close>
   have A:"{ u \<in> ?d \<times> P . ?P(u) } \<in> M"
     using  separation_iff by force

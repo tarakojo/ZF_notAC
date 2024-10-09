@@ -610,7 +610,7 @@ lemma sats_forces_nmem'_fm:
   using assms sats_forces_mem'_fm sats_is_tuple_fm sats_frc_at_fm
   by simp
 
-context forcing_data
+context forcing_data_Names
 begin
 
 (* Absoluteness of components *)
@@ -809,6 +809,13 @@ proof -
     by simp
 qed
 
+end 
+
+locale forcing_data_Forces_Definition = forcing_data_Names + 
+  assumes forcing_definition_frecrelP_fm : "frecrelP_fm(0) \<in> \<Phi>" 
+  and forcing_definition_wfrec_Hfrc_fm : "Exists(And(pair_fm(1,0,2),is_wfrec_fm(Hfrc_at_fm(8,9,2,1,0),5,1,0))) \<in> \<Phi>"
+begin 
+
 lemma frecrel_closed:
   assumes
     "x\<in>M"
@@ -816,8 +823,10 @@ lemma frecrel_closed:
     "frecrel(x)\<in>M"
 proof -
   have "Collect(x\<times>x,\<lambda>z. (\<exists>x y. z = \<langle>x,y\<rangle> \<and> frecR(x,y)))\<in>M"
+    apply(rule Collect_in_M_0p[of "frecrelP_fm(0)"])
     using Collect_in_M_0p[of "frecrelP_fm(0)"] arity_frecrelP_fm sats_frecrelP_fm
-      frecrelP_abs \<open>x\<in>M\<close> cartprod_closed by simp
+      frecrelP_abs \<open>x\<in>M\<close> cartprod_closed forcing_definition_frecrelP_fm 
+    by auto
   then show ?thesis
     unfolding frecrel_def Rrel_def frecrelP_def by simp
 qed
@@ -1225,7 +1234,7 @@ proof -
           add: fm_defs frecR_fm_def number1_fm_def components_defs nat_simp_union)
     then
     have "separation(##M, \<lambda>z. sats(M,frecrelP_fm(0) , [z]))"
-      using separation_ax by simp
+      using separation_ax forcing_definition_frecrelP_fm by simp
     moreover
     have "frecrelP(##M,z) \<longleftrightarrow> sats(M,frecrelP_fm(0),[z])"
       if "z\<in>M" for z
@@ -1288,7 +1297,7 @@ proof -
     unfolding fm_defs Hfrc_at_fm_def by simp
   ultimately
   have "strong_replacement(##M,\<lambda>x z. sats(M,?f,[x,z,P,leq,forcerel(P,X)]))"
-    using replacement_ax 1 artyf \<open>X\<in>M\<close> forcerel_in_M P_in_M leq_in_M by simp
+    using replacement_ax 1 artyf \<open>X\<in>M\<close> forcerel_in_M P_in_M leq_in_M forcing_definition_wfrec_Hfrc_fm by simp
   then
   have "strong_replacement(##M,\<lambda>x z.
           \<exists>y\<in>M. pair(##M,x,y,z) & is_wfrec(##M, is_Hfrc_at(##M,P,leq),forcerel(P,X), x, y))"
@@ -1548,7 +1557,7 @@ lemma forces'_type [TC]:  "\<phi>\<in>formula \<Longrightarrow> forces'(\<phi>) 
 lemma forces_type[TC] : "\<phi>\<in>formula \<Longrightarrow> forces(\<phi>) \<in> formula"
   unfolding forces_def by simp
 
-context forcing_data
+context forcing_data_Forces_Definition
 begin
 
 subsection\<open>Forcing for atomic formulas in context\<close>

@@ -1,10 +1,9 @@
 theory SymExt_Definition
   imports 
-    "Forcing/Forcing_Main" 
     HS_Theorems
 begin 
 
-context M_symmetric_system 
+context M_symmetric_system_HS_M
 begin 
 
 definition SymExt where "SymExt(G) \<equiv> { val(G, x). x \<in> HS }" 
@@ -12,7 +11,7 @@ definition SymExt where "SymExt(G) \<equiv> { val(G, x). x \<in> HS }"
 end 
 
 
-locale M_symmetric_system_G_generic = M_symmetric_system + G_generic
+locale M_symmetric_system_G_generic = M_symmetric_system_HS_M + G_generic
 begin
 
 lemma M_subset_SymExt : "M \<subseteq> SymExt(G)" 

@@ -1,0 +1,261 @@
+theory Utilities_M 
+  imports 
+    ZF 
+    Utilities
+    "Forcing/Forces_Definition" 
+begin 
+
+context M_ZF_Fragment_Interface
+begin 
+
+lemma to_rex : "\<And>P. \<exists>x[##M]. P(x) \<Longrightarrow> \<exists>x \<in> M. P(x)" by auto
+lemma to_rin : "(##M)(x) \<Longrightarrow> x \<in> M" by auto
+
+lemma powerset_powerA_inter_M_helper
+  : "\<forall> A \<in> M. (Pow(A) \<inter> M) \<in> M \<and> (\<forall> X \<in> M. powerset(##M, A, X) \<longrightarrow> X = (Pow(A) \<inter> M))" 
+  apply (clarify)
+  apply (auto)
+proof - 
+  fix A assume "A \<in> M" 
+  then have "powerset(##M, A, Pow(A) \<inter> M)"unfolding powerset_def by auto
+  obtain AP where apassm:  "AP \<in> M" "powerset(##M, A, AP)" 
+    using power_ax \<open>A \<in> M\<close> unfolding power_ax_def by auto
+  then have apeq :  "AP = { x \<in> Pow(A). (##M)(x) }" using powerset_abs by auto 
+  have p1 : "powerset(##M, A, Pow(A) \<inter> M)" unfolding powerset_def by auto 
+  then have "Pow(A) \<inter> M = { x \<in> Pow(A). (##M)(x) }" using powerset_abs by auto 
+  then have "AP = Pow(A) \<inter> M" using apeq by auto 
+  then show "(Pow(A) \<inter> M) \<in> M" using apassm by auto 
+qed
+
+lemma powerset_powerA_inter_M
+  : "A \<in> M \<Longrightarrow> X \<in> M \<Longrightarrow> powerset(##M, A, X) \<Longrightarrow> X = (Pow(A) \<inter> M)" 
+  using powerset_powerA_inter_M_helper by auto 
+
+lemma M_powerset : 
+  "A \<in> M \<Longrightarrow> (Pow(A) \<inter> M) \<in> M" 
+  using powerset_powerA_inter_M_helper by auto
+
+lemma separation_notation_helper :
+  "S \<in> M \<Longrightarrow> T \<in> M \<Longrightarrow> \<forall>x[##M].(x \<in> S \<longleftrightarrow> x \<in> T \<and> P(x)) \<Longrightarrow> S = { x \<in> T. P(x) }" 
+  apply (rule equality_iffI; rule iffI) 
+proof - 
+  fix x assume assms : "\<forall>x[##M]. x \<in> S \<longleftrightarrow> x \<in> T \<and> P(x)" "x \<in> S" "S \<in> M"
+  then have "x \<in> M" using transM by auto
+  then have "x \<in> T" "P(x)" using assms by auto 
+  then show "x \<in> { x \<in> T. P(x) }" by auto 
+next 
+  fix x assume assms : "\<forall>x[##M]. x \<in> S \<longleftrightarrow> x \<in> T \<and> P(x)" "x \<in> { y \<in> T. P(y) }" "T \<in> M"
+  then have p1 :"x \<in> T \<and> P(x)" by auto 
+  then have "x \<in> T" by auto 
+  then have "x \<in> M" using transM assms by auto 
+  then show "x \<in> S" using assms by auto 
+qed
+
+lemma separation_notation : 
+  "separation(##M, P) \<Longrightarrow> A \<in> M \<Longrightarrow> { x \<in> A. P(x) } \<in> M" 
+proof - 
+  assume assms : "separation(##M, P)" "A \<in> M"  
+  then have "\<exists>y[##M]. \<forall>x[##M]. (x \<in> y \<longleftrightarrow> x \<in> A \<and> P(x))" unfolding separation_def by auto 
+  then obtain S where sh: "\<forall>x[##M]. (x \<in> S \<longleftrightarrow> x \<in> A \<and> P(x))" "S \<in> M" by auto 
+  then have "S = { x \<in> A. P(x) }"
+    apply (rule_tac separation_notation_helper) using assms by auto 
+  then show "{ x \<in> A. P(x) } \<in> M" using sh by auto 
+qed  
+
+
+lemma separation_fst :
+  "separation(##M, P) \<Longrightarrow> X \<in> M \<Longrightarrow> Y \<in> M \<Longrightarrow> { <x, y> \<in> X \<times> Y. P(x) } \<in> M"   
+proof - 
+  assume assms : "separation(##M, P)" "X \<in> M" "Y \<in> M"  
+  then have "{ x \<in> X. P(x) } \<in> M" using separation_notation by auto 
+  then have p1: "{ x \<in> X. P(x) } \<times> Y \<in> M" using cartprod_closed assms by auto 
+  have "{ x \<in> X. P(x) } \<times> Y = { <x, y> \<in> X \<times> Y. P(x) }" by auto
+  then show "{ <x, y> \<in> X \<times> Y. P(x) } \<in> M" using p1 by auto 
+qed 
+
+lemma singleton_iff2 : "x \<in> M \<Longrightarrow> y \<in> M \<Longrightarrow> x = {y} \<longleftrightarrow> (\<forall>z\<in>M. z \<in> x \<longleftrightarrow> z = y)"
+proof (auto)  
+  assume assms : "x \<in> M" "y \<in> M" "\<forall>z\<in>M. z \<in> x \<longleftrightarrow> z = y"
+  have p : "\<forall>z\<in>M. z \<in> x \<longleftrightarrow> z \<in> {y}" using singleton_iff assms by auto 
+  have "\<forall>z. z \<in> x \<longleftrightarrow> z \<in> {y}"
+    apply (rule_tac allI; rule_tac iffI) 
+  proof - 
+    fix z assume zin : "z \<in> x" 
+    then have "z \<in> M" using assms transM by auto 
+    then show "z \<in> {y}" using p zin by auto
+  next 
+    fix z assume zin : "z \<in> {y}" 
+    have ysin : "{y} \<in> M" using assms singleton_in_M_iff by auto 
+    then have "z \<in> M" using zin transM by auto 
+    then show "z \<in> x" using p zin by auto 
+  qed
+  then show "x = {y}" by auto 
+qed
+
+definition MVset where "MVset(a) \<equiv> { x \<in> Vset(a). x \<in> M }" 
+
+lemma MVsetI : "x \<in> M \<Longrightarrow> rank(x) < a \<Longrightarrow> x \<in> MVset(a)" 
+  unfolding MVset_def using lt_Ord2 Ord_rank VsetI by auto
+
+lemma MVsetD : "Ord(a) \<Longrightarrow> x \<in> MVset(a) \<Longrightarrow> x \<in> M \<and> rank(x) < a" 
+  unfolding MVset_def using VsetD by auto 
+
+lemma MVset_in_M : "\<And>a. a \<in> M \<Longrightarrow> Ord(a) \<Longrightarrow> MVset(a) \<in> M" 
+  using Vset_closed unfolding MVset_def by auto 
+
+lemma MVset_succ_elem_elem : " x \<in> MVset(succ(a)) \<Longrightarrow> y \<in> x \<Longrightarrow> y \<in> MVset(a)" 
+proof - 
+  assume assms : "x \<in> MVset(succ(a))" "y \<in> x"
+  then have "x \<in> Vset(succ(a))" unfolding MVset_def by auto 
+  then have "x \<in> Pow(Vset(a))" using Vset_succ by auto 
+  then have "x \<subseteq> Vset(a)" by auto 
+  then have yin : "y \<in> Vset(a)" using assms by auto 
+  have "x \<in> M" using assms unfolding MVset_def by auto 
+  then have "y \<in> M" using transM assms by auto 
+  then show " y \<in> MVset(a)" using yin unfolding MVset_def by auto 
+qed 
+
+lemma MVset_trans : "Ord(a) \<Longrightarrow> x \<in> MVset(a) \<Longrightarrow> y \<in> x \<Longrightarrow> y \<in> MVset(a)" 
+proof - 
+  assume assms: "Ord(a)" "x \<in> MVset(a)" "y \<in> x"
+  then have yinM : "y \<in> M" unfolding MVset_def using transM by auto 
+  have "y \<in> Vset(a)" 
+    apply (rule VsetI; rule_tac j="rank(x)" in lt_trans) 
+    using assms rank_lt apply simp 
+    using assms unfolding MVset_def using VsetD by auto
+  then show "y \<in> MVset(a)" using yinM unfolding MVset_def by auto 
+qed
+
+lemma MVset_domain : "Ord(a) \<Longrightarrow> x \<in> MVset(a) \<Longrightarrow> y \<in> domain(x) \<Longrightarrow> y \<in> MVset(a)" 
+proof - 
+  assume assms: "Ord(a)" "x \<in> MVset(a)" "y \<in> domain(x)"
+  then obtain z where zh : "<y, z> \<in> x" unfolding domain_def by auto
+  have "domain(x) \<in> M" 
+    using domain_closed assms unfolding MVset_def by auto 
+  then have yinM : "y \<in> M" using transM assms by auto
+  have "rank(y) < a" 
+    apply (rule_tac j="rank(x)" in lt_trans) 
+    apply (rule_tac j="rank(<y, z>)" in lt_trans) 
+    using rank_pair1 apply simp 
+    using rank_lt zh apply simp 
+    using VsetD assms unfolding MVset_def by auto 
+  then show "y \<in> MVset(a)" unfolding MVset_def using VsetI yinM by auto 
+qed
+
+lemma MVset_succ_rank_in : "x \<in> M \<Longrightarrow> x \<in> MVset(succ(rank(x)))" 
+proof - 
+  assume xinM : "x \<in> M" 
+  have "x \<in> Vset(succ(rank(x)))" 
+    using Univ.VsetI by auto 
+  then show ?thesis unfolding MVset_def using xinM by auto 
+qed 
+
+lemma zero_in_MVset : "Ord(a) \<Longrightarrow> 0 \<in> MVset(succ(a))"
+proof - 
+  assume assm : "Ord(a)"
+  then have "0 \<in> Vset(succ(a))" 
+    apply (rule_tac VsetI) 
+    using Ord_rank Ord_0_le by auto
+  then show ?thesis unfolding MVset_def using zero_in_M by auto
+qed
+
+lemma MVset_pair : "Ord(a) \<Longrightarrow> <x, y> \<in> MVset(a) \<Longrightarrow> x \<in> MVset(a) \<and> y \<in> MVset(a)" 
+  unfolding MVset_def
+  using pair_in_M_iff
+  apply simp
+  apply(rule conjI, rule_tac j="rank(<x, y>)" in lt_trans, simp add:rank_pair1, simp)
+  apply(rule_tac j="rank(<x, y>)" in lt_trans, simp add:rank_pair2, simp)
+  done
+ 
+lemma domain_elem_in_M : "x \<in> M \<Longrightarrow> y \<in> domain(x) \<Longrightarrow> y \<in> M" 
+proof - 
+  assume assms : "x \<in> M" "y \<in> domain(x)"
+  then obtain p where "<y, p> \<in> x" by auto 
+  then have "<y, p> \<in> M" using assms transM by auto 
+  then show "y \<in> M" using pair_in_M_iff by auto 
+qed
+
+schematic_goal refl_pair_fm_auto:
+  assumes
+    "nth(0,env) = v" 
+    "env \<in> list(M)"
+ shows
+    "(\<exists>x \<in> M. pair(##M, x, x, v)) 
+     \<longleftrightarrow> sats(M,?fm(0),env)"
+  by (insert assms ; (rule sep_rules | simp)+)
+
+lemma refl_rel_closed :  "\<And> A. A \<in> M \<Longrightarrow> { <x, x> . x \<in> A } \<in> M" 
+proof - 
+  fix A assume assm : "A \<in> M" 
+  define fm where "fm \<equiv> Exists(pair_fm(0, 0, 1)) " 
+  have sep : "separation(##M, \<lambda>x. sats(M, fm, [x] @ []))" 
+    apply (rule_tac separation_ax) unfolding fm_def apply simp_all  
+    apply (simp del:FOL_sats_iff pair_abs add: fm_defs nat_simp_union) done 
+  then have H: "{ v \<in> A\<times>A. sats(M, fm, [v]@[]) } \<in> M"  
+    apply (rule_tac separation_notation) using assm cartprod_closed apply auto done 
+  
+  have "\<And>v. v \<in> A\<times>A \<Longrightarrow> sats(M, fm, [v]@[]) \<longleftrightarrow> (\<exists>x. v = <x, x>)"
+    apply (rule_tac Q="(\<exists>x \<in> M. pair(##M, x, x, v)) " in iff_trans) 
+    apply (rule iff_flip) unfolding fm_def
+    apply (rule_tac refl_pair_fm_auto) apply simp using assm transM cartprod_closed apply simp 
+    apply (rule_tac P="v \<in> M" in mp) using pair_abs pair_in_M_iff assm transM apply auto done 
+  then have "{ v \<in> A\<times>A. sats(M, fm, [v]@[]) } = { v \<in> A \<times> A. \<exists>x. v = <x, x> }" by auto
+  also have "... = { <x, x>. x \<in> A }" by auto
+  finally have " {v \<in> A \<times> A . M, [v] @ [] \<Turnstile> fm} = {\<langle>x, x\<rangle> . x \<in> A} " by simp 
+  then show "{\<langle>x, x\<rangle> . x \<in> A} \<in> M" using H by auto 
+qed 
+
+lemma id_closed : "\<And>A. A \<in> M \<Longrightarrow> id(A) \<in> M" 
+  unfolding id_def lam_def using refl_rel_closed by auto 
+
+lemma int_closed : 
+  "A \<in> M \<Longrightarrow> B \<in> M \<Longrightarrow> A \<inter> B \<in> M" 
+proof - 
+  assume assms : "A \<in> M" "B \<in> M" 
+  have "separation(##M, \<lambda>x. sats(M, Member(0, 1), [x] @ [B]))" 
+    apply(rule separation_ax) 
+    using assms 
+    apply simp_all
+    by (simp del:FOL_sats_iff pair_abs add: fm_defs nat_simp_union)  
+  then have H : "{ x \<in> A. sats(M, Member(0, 1), [x] @ [B]) } \<in> M" 
+    apply(rule separation_notation) 
+    using assms 
+    by auto 
+  have "{ x \<in> A. sats(M, Member(0, 1), [x] @ [B]) } = A \<inter> B" 
+    using assms transM by auto 
+  then show "A \<inter> B \<in> M" using H by auto
+qed
+
+lemma fst_closed : 
+  "x \<in> M \<Longrightarrow> fst(x) \<in> M" 
+  unfolding fst_def
+  apply(cases "\<exists>a b. x = <a, b>") 
+  apply clarify
+   apply(rename_tac a b, subst the_equality)
+  using pair_in_M_iff
+     apply auto[3]
+  apply(subst the_0)
+  using zero_in_M
+  by auto
+
+lemma snd_closed : 
+  "x \<in> M \<Longrightarrow> snd(x) \<in> M" 
+  unfolding snd_def
+  apply(cases "\<exists>a b. x = <a, b>") 
+  apply clarify
+   apply(rename_tac a b, subst the_equality)
+  using pair_in_M_iff
+     apply auto[3]
+  apply(subst the_0)
+  using zero_in_M
+  by auto
+
+lemma least_cong : 
+  "\<And>P Q a. a \<in> M \<Longrightarrow> (\<And>a. a \<in> M \<Longrightarrow> Ord(a) \<Longrightarrow> P(a) \<longleftrightarrow> Q(a)) \<Longrightarrow> least(##M, P, a) \<longleftrightarrow> least(##M, Q, a)" 
+  unfolding least_def 
+  by auto
+
+
+
+end
+end

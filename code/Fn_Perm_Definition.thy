@@ -2,10 +2,49 @@ theory Fn_Perm_Definition
   imports SymExt_ZF 
 begin 
 
-context M_ctm begin 
+context M_ZF_Fragment begin 
 
 definition finite_M where "finite_M(x) \<equiv> \<exists>n \<in> nat. inj(x, n) \<inter> M \<noteq> 0"  
 definition finite_M_fm where "finite_M_fm(N, x) \<equiv> Exists(Exists(And(Member(0, N#+2), injection_fm(x#+2, 0, 1))))"
+
+definition is_finite_function_fm where 
+  "is_finite_function_fm(d, r, N, f) \<equiv> 
+    And(function_fm(f), 
+    And(Exists(
+      And(domain_fm(f#+1, 0), 
+      And(subset_fm(0, d #+ 1), 
+          finite_M_fm(N #+ 1, 0)))), 
+        Exists(And(range_fm(f#+1, 0), subset_fm(0, r#+1)))))" 
+
+definition is_Fn_perm_elem_fm where (* n m l <n, m> fn <fn, m> (f a v) *)
+  "is_Fn_perm_elem_fm(f, a, v) \<equiv> 
+    Exists(Exists(Exists(Exists(Exists(Exists(
+      And(pair_fm(0, 1, 3), 
+      And(pair_fm(3, 2, a #+ 6), 
+      And(pair_fm(4, 1, 5), 
+      And(fun_apply_fm(f #+ 6, 0, 4), 
+          pair_fm(5, 2, v #+ 6)))))))))))" 
+
+definition is_Fn_perm_fm where 
+  "is_Fn_perm_fm(f, p, v) \<equiv> Forall(Iff(Member(0, v#+1), Exists(And(Member(0,p#+2),is_Fn_perm_elem_fm(f#+2, 0, 1)))))" 
+
+definition is_Fn_perm'_elem_fm where 
+  "is_Fn_perm'_elem_fm(f, p, v) \<equiv> Exists(And(is_Fn_perm_fm(f #+ 1, p #+ 1, 0), pair_fm(p #+ 1, 0, v #+ 1)))"
+
+definition is_Fn_perm'_fm where
+  "is_Fn_perm'_fm(f, fn, v) \<equiv> Forall(Iff(Member(0, v #+ 1), Exists(And(Member(0, fn#+2), is_Fn_perm'_elem_fm(f#+2, 0, 1)))))" 
+
+end 
+
+
+locale M_symmetric_system_Fn_Perm_Definition = M_symmetric_system_SymExt_ZF + 
+  assumes fn_perm_def_Fn_in_M_fm : "is_finite_function_fm(1, 2, 3, 0) \<in> \<Phi>" 
+  and fn_perm_def_Fn_leq_in_M_fm : "Exists(Exists(And(pair_fm(0, 1, 2), subset_fm(1, 0)))) \<in> \<Phi>" 
+  and fn_perm_def_nat_perms_in_M_fm : "bijection_fm(1, 1, 0) \<in> \<Phi>" 
+  and fn_perm_def_Fn_perm_in_M_fm : "is_Fn_perm_elem_fm(2, 0, 1) \<in> \<Phi>" 
+  and fn_perm_def_Fn_perm'_in_M_fm : "Exists(And(Member(0, 2), is_Fn_perm'_elem_fm(3, 0, 1))) \<in> \<Phi>" 
+  and fn_perm_def_Fn_perms_in_M_fm : "is_Fn_perm'_fm(0, 2, 1) \<in> \<Phi>" 
+begin
 
 lemma finite_M_fm_type : 
   fixes i j 
@@ -40,15 +79,6 @@ lemma sats_finite_M_fm_iff :
    apply(rename_tac n f, rule_tac x=n in bexI, force)
   using nat_in_M transM 
   by auto
-
-definition is_finite_function_fm where 
-  "is_finite_function_fm(d, r, N, f) \<equiv> 
-    And(function_fm(f), 
-    And(Exists(
-      And(domain_fm(f#+1, 0), 
-      And(subset_fm(0, d #+ 1), 
-          finite_M_fm(N #+ 1, 0)))), 
-        Exists(And(range_fm(f#+1, 0), subset_fm(0, r#+1)))))" 
 
 lemma is_finite_function_fm_type [simp] : 
   fixes i j k l 
@@ -119,17 +149,17 @@ lemma sats_is_finite_function_fm :
      apply force
     apply(rule iff_trans, rule sats_And_iff, simp add:assms, rule iff_conjI2)
      apply(rule iff_trans, rule sats_subset_fm)
-  using lt_nat_in_nat assms nth_type M_ctm_axioms M_ctm_def M_ctm_axioms_def
+  using lt_nat_in_nat assms nth_type trans_M
          apply auto[5]
     apply(rule sats_finite_M_fm_iff)
-  using lt_nat_in_nat assms nth_type M_ctm_axioms M_ctm_def M_ctm_axioms_def
+  using lt_nat_in_nat assms nth_type  
         apply auto[5]
    apply(rule iff_trans, rule sats_Exists_iff, simp add:assms, rule bex_iff)
    apply(rule iff_trans, rule sats_And_iff, simp add:assms, rule iff_conjI2)
   using sats_range_fm lt_nat_in_nat assms nth_type 
     apply auto[1]
   apply(rule iff_trans, rule sats_subset_fm)
-  using sats_range_fm lt_nat_in_nat assms nth_type M_ctm_axioms M_ctm_def M_ctm_axioms_def
+  using sats_range_fm lt_nat_in_nat assms nth_type trans_M
        apply auto[5]
   apply(rule iff_conjI2, simp)
   apply (rule iffI, clarsimp, rule conjI)
@@ -146,8 +176,8 @@ proof -
     unfolding X_def
     apply(rule separation_notation)
      apply(rule separation_ax, rule is_finite_function_fm_type)
-    using nat_in_M cartprod_closed zero_in_M succ_in_MI
-          apply auto[5]
+    using nat_in_M cartprod_closed zero_in_M succ_in_MI fn_perm_def_Fn_in_M_fm
+          apply auto[6]
      apply(rule le_trans, rule arity_is_finite_function_fm)
          apply auto[4]
      apply(rule Un_least_lt)+
@@ -175,9 +205,10 @@ proof -
     unfolding X_def
     apply(rule separation_notation)
      apply(rule separation_ax)
-       apply auto[2]
+    using fn_perm_def_Fn_leq_in_M_fm
+       apply auto[3]
      apply (simp del:FOL_sats_iff pair_abs add: fm_defs nat_simp_union)
-    using Fn_in_M cartprod_closed
+    using Fn_in_M cartprod_closed 
     by auto
   have "X = { <f, g> \<in> Fn \<times> Fn. g \<subseteq> f }" 
     unfolding X_def 
@@ -212,9 +243,17 @@ lemma Fn_forcing_notion : "forcing_notion(Fn, Fn_leq, 0)"
   apply(rule ballI, simp)
   done
 
-lemma Fn_forcing_data_partial : "forcing_data_partial(Fn, Fn_leq, 0, M, enum)" 
-  unfolding forcing_data_partial_def forcing_data_def forcing_data_partial_axioms_def forcing_data_axioms_def 
-  using Fn_forcing_notion M_ctm_axioms Fn_in_M Fn_leq_in_M Fn_leq_def Fn_partial_ord
+
+lemma Fn_forcing_data_Automorphism_M : "forcing_data_Automorphism_M(Fn, Fn_leq, 0, M, \<Phi>, enum)" 
+  unfolding forcing_data_Automorphism_M_def forcing_data_partial_def forcing_data_P_Names_M_def
+            forcing_data_Forces_Definition_def forcing_data_Names_def forcing_data_def 
+            forcing_data_axioms_def forcing_data_partial_axioms_def
+  using Fn_forcing_notion M_ZF_Fragment_Interface_axioms Fn_in_M Fn_leq_in_M forcing_data_Names_axioms 
+        forcing_data_Forces_Definition_axioms M_ZF_Fragment_RecFun_M_Memrel_axioms forcing_data_P_Names_M_axioms
+        Fn_partial_ord forcing_data_Automorphism_M_axioms 
+        forcing_data_Names_axioms forcing_data_Names_def forcing_data_Names_axioms_def forcing_data_Forces_Definition_axioms forcing_data_Forces_Definition_def  
+        forcing_data_P_Names_M_axioms forcing_data_P_Names_M_def
+        forcing_data_Automorphism_M_def Fn_leq_def
   by auto
 
 definition nat_perms where "nat_perms \<equiv> bij(nat, nat) \<inter> M" 
@@ -227,8 +266,8 @@ proof -
     unfolding X_def
     apply(rule separation_notation)
      apply(rule separation_ax)
-    using nat_in_M
-       apply auto[2]
+    using nat_in_M fn_perm_def_nat_perms_in_M_fm
+       apply auto[3]
     unfolding bijection_fm_def injection_fm_def surjection_fm_def
      apply (simp del:FOL_sats_iff pair_abs add: fm_defs nat_simp_union)
     apply(rule M_powerset)
@@ -267,15 +306,6 @@ proof -
   then show ?thesis using beq veq vH by auto
 qed
 
-
-definition is_Fn_perm_elem_fm where (* n m l <n, m> fn <fn, m> (f a v) *)
-  "is_Fn_perm_elem_fm(f, a, v) \<equiv> 
-    Exists(Exists(Exists(Exists(Exists(Exists(
-      And(pair_fm(0, 1, 3), 
-      And(pair_fm(3, 2, a #+ 6), 
-      And(pair_fm(4, 1, 5), 
-      And(fun_apply_fm(f #+ 6, 0, 4), 
-          pair_fm(5, 2, v #+ 6)))))))))))" 
 
 lemma is_Fn_perm_elem_fm_type : 
   fixes i j k
@@ -356,8 +386,8 @@ proof -
   have "strong_replacement(##M, \<lambda>x y. sats(M, is_Fn_perm_elem_fm(2, 0, 1), [x, y] @ [f]))" (is ?A)
     apply(rule replacement_ax)
     apply(rule is_Fn_perm_elem_fm_type)
-    using assms nat_perms_in_M transM
-        apply auto[4]
+    using assms nat_perms_in_M transM fn_perm_def_Fn_perm_in_M_fm
+        apply auto[5]
     apply(rule le_trans, rule arity_is_Fn_perm_elem_fm)
     using Un_least_lt 
     by auto
@@ -413,9 +443,6 @@ proof -
 
   then show ?thesis using YH by auto
 qed
-
-definition is_Fn_perm_fm where 
-  "is_Fn_perm_fm(f, p, v) \<equiv> Forall(Iff(Member(0, v#+1), Exists(And(Member(0,p#+2),is_Fn_perm_elem_fm(f#+2, 0, 1)))))" 
 
 lemma is_Fn_perm_fm_type : 
   fixes i j k 
@@ -498,9 +525,6 @@ proof -
   show ?thesis using I1 I2 I3 I4 by auto
 qed
 
-definition is_Fn_perm'_elem_fm where 
-  "is_Fn_perm'_elem_fm(f, p, v) \<equiv> Exists(And(is_Fn_perm_fm(f #+ 1, p #+ 1, 0), pair_fm(p #+ 1, 0, v #+ 1)))"
-
 lemma is_Fn_perm'_elem_fm_type: 
   fixes i j k 
   assumes "i \<in> nat" "j \<in> nat" "k \<in> nat" 
@@ -579,8 +603,8 @@ proof -
     apply(subgoal_tac "is_Fn_perm'_elem_fm(3, 0, 1) \<in> formula")
     unfolding X_def
     apply(rule separation_notation, rule separation_ax)
-    using assms nat_perms_in_M transM Fn_in_M
-        apply auto[2]
+    using assms nat_perms_in_M transM Fn_in_M fn_perm_def_Fn_perm'_in_M_fm
+        apply auto[3]
       apply simp
       apply(rule pred_le, simp, simp)
       apply(rule Un_least_lt)+
@@ -617,9 +641,6 @@ proof -
 
   finally show ?thesis using \<open>X \<in> M\<close> by auto
 qed
-
-definition is_Fn_perm'_fm where
-  "is_Fn_perm'_fm(f, fn, v) \<equiv> Forall(Iff(Member(0, v #+ 1), Exists(And(Member(0, fn#+2), is_Fn_perm'_elem_fm(f#+2, 0, 1)))))" 
 
 lemma is_Fn_perm'_fm_type : 
   fixes i j k 
@@ -713,8 +734,8 @@ proof -
   have "strong_replacement(##M, \<lambda>x y. sats(M, is_Fn_perm'_fm(0, 2, 1), [x, y] @ [Fn]))"
     apply(rule replacement_ax)
       apply(rule is_Fn_perm'_fm_type)
-    using Fn_in_M
-        apply auto[4]
+    using Fn_in_M fn_perm_def_Fn_perms_in_M_fm
+        apply auto[5]
     apply(rule le_trans, rule arity_is_Fn_perm'_fm)
     using Un_least_lt
     by auto

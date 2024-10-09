@@ -7,7 +7,7 @@ begin
 definition InEclose where "InEclose(y, x) \<equiv> y \<in> eclose(x)"  
 definition InEclose_fm where "InEclose_fm \<equiv> Exists(And(is_eclose_fm(2, 0), Member(1, 0)))"
 
-context M_ctm 
+context M_ZF_Fragment_RecFun_M 
 begin 
 
 lemma Relation_fm_InEclose : 
@@ -173,7 +173,9 @@ end
 
 definition is_memrel_wftrec_fm where "is_memrel_wftrec_fm(Gfm, i, j, k) \<equiv> is_wftrec_fm(Gfm, InEclose_fm, i, j, k)" 
 
-context M_ctm 
+locale M_ZF_Fragment_RecFun_M_Memrel = RecFun_M.M_ZF_Fragment_RecFun_M + 
+  assumes recfun_M_Memrel_preds_prel_fm : "is_preds_prel_elem_fm(InEclose_fm, 1, 2, 0) \<in> \<Phi>" 
+  and recfun_M_Memrel_preds_rel_sep_fm : "preds_rel_sep_fm(InEclose_fm) \<in> \<Phi>"
 begin 
 
 lemma is_memrel_wftrec_fm_type : 
@@ -213,7 +215,7 @@ lemma sats_is_memrel_wftrec_fm_iff :
   and HGeq: "\<And>h g x. h \<in> eclose(x) \<rightarrow> M \<Longrightarrow> g \<in> (eclose(x) \<times> {a}) \<rightarrow> M \<Longrightarrow> g \<in> M  
                \<Longrightarrow> x \<in> M \<Longrightarrow> (\<And>y. y \<in> eclose(x) \<Longrightarrow> h`y = g`<y, a>) \<Longrightarrow> H(x, h) = G(<x, a>, g)"  
   and sats_Gfm_iff : " (\<And>a0 a1 a2 env. a0 \<in> M \<Longrightarrow> a1 \<in> M \<Longrightarrow> a2 \<in> M \<Longrightarrow> env \<in> list(M) \<Longrightarrow> a0 = G(a2, a1) \<longleftrightarrow> sats(M, Gfm, [a0, a1, a2] @ env))"  
-          
+  and "rep_for_recfun_fm(Gfm, 0, 1, 2) \<in> \<Phi>"
   shows "sats(M, is_memrel_wftrec_fm(Gfm, i, j, k), env) \<longleftrightarrow> v = wftrec(Memrel(M)^+, x, H)" 
 proof - 
 
@@ -267,8 +269,9 @@ proof -
     apply(rename_tac h g x y, subgoal_tac "y \<in> Rrel(InEclose, M) -`` {x}", force)
     using Rrel_InEclose_vimage_eq
      apply force
-    apply(rule_tac a="field(Rrel(InEclose, M))" and b=M in ssubst, rule eq_flip, rule field_Rrel_InEclose, simp)
-    done
+       apply(rule_tac a="field(Rrel(InEclose, M))" and b=M in ssubst, rule eq_flip, rule field_Rrel_InEclose, simp)
+    using assms recfun_M_Memrel_preds_prel_fm recfun_M_Memrel_preds_rel_sep_fm
+    by auto
 
   then show ?thesis unfolding is_memrel_wftrec_fm_def  using Rrel_InEclose by auto
 qed
@@ -282,6 +285,7 @@ lemma memrel_wftrec_in_M :
   and HGeq: "\<And>h g x. h \<in> eclose(x) \<rightarrow> M \<Longrightarrow> g \<in> (eclose(x) \<times> {a}) \<rightarrow> M \<Longrightarrow> g \<in> M  
                \<Longrightarrow> x \<in> M \<Longrightarrow> (\<And>y. y \<in> eclose(x) \<Longrightarrow> h`y = g`<y, a>) \<Longrightarrow> H(x, h) = G(<x, a>, g)"  
   and sats_Gfm_iff : " (\<And>a0 a1 a2 env. a0 \<in> M \<Longrightarrow> a1 \<in> M \<Longrightarrow> a2 \<in> M \<Longrightarrow> env \<in> list(M) \<Longrightarrow> a0 = G(a2, a1) \<longleftrightarrow> sats(M, Gfm, [a0, a1, a2] @ env))" 
+  and "rep_for_recfun_fm(Gfm, 0, 1, 2) \<in> \<Phi>"
 
   shows "wftrec(Memrel(M)^+, x, H) \<in> M"
 
@@ -309,9 +313,10 @@ lemma memrel_wftrec_in_M :
    apply(rename_tac h g x y, subgoal_tac "y \<in> Rrel(InEclose, M) -`` {x}", force)
   using Rrel_InEclose_vimage_eq
    apply force
-  apply(rule_tac a="field(Rrel(InEclose, M))" and b=M in ssubst, rule eq_flip, rule field_Rrel_InEclose, simp)
-  done
-  
+     apply(rule_tac a="field(Rrel(InEclose, M))" and b=M in ssubst, rule eq_flip, rule field_Rrel_InEclose, simp)
+  using assms recfun_M_Memrel_preds_prel_fm recfun_M_Memrel_preds_rel_sep_fm
+  by auto
+
 lemma domain_elem_Memrel_trancl : 
   fixes x y 
   assumes "x \<in> M" "y \<in> domain(x)" 

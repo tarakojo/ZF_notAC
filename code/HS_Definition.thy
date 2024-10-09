@@ -1,10 +1,9 @@
 theory HS_Definition
   imports 
-    "Forcing/Forcing_Main" 
     Automorphism_Theorems
 begin 
 
-context forcing_data_partial
+context forcing_data_Automorphism_M
 begin
 
 definition is_P_auto_group where 
@@ -17,7 +16,7 @@ definition P_auto_subgroups where "P_auto_subgroups(G) \<equiv> { H \<in> Pow(G)
 
 end
 
-locale M_symmetric_system = forcing_data_partial + 
+locale M_symmetric_system = forcing_data_Automorphism_M + 
   fixes \<G> \<F> 
   assumes \<G>_in_M : "\<G> \<in> M"  
   and \<G>_P_auto_group : "is_P_auto_group(\<G>)"   

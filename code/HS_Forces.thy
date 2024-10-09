@@ -1,5 +1,8 @@
 theory HS_Forces 
-  imports SymExt_Definition Delta0
+  imports 
+    SymExt_Definition 
+    Delta0 
+    "Forcing/Forcing_Theorems" 
 begin
   
 definition
@@ -19,7 +22,15 @@ definition
   forcesHS :: "i\<Rightarrow>i" where
   "forcesHS(\<phi>) \<equiv> And(Member(0,1),forcesHS'(\<phi>))"
 
-context M_symmetric_system begin 
+locale M_symmetric_system_HS_Forces = M_symmetric_system_HS_M + forcing_data_Forces_Theorems  
+locale M_symmetric_system_HS_Forces_G_generic = M_symmetric_system_HS_Forces + G_generic 
+
+sublocale M_symmetric_system_HS_Forces_G_generic \<subseteq> M_symmetric_system_G_generic
+  unfolding M_symmetric_system_G_generic_def
+  using M_symmetric_system_HS_M_axioms G_generic_axioms
+  by auto
+
+context M_symmetric_system_HS_Forces begin 
 
 abbreviation ForcesHS :: "[i, i, i] \<Rightarrow> o"  ("_ \<tturnstile>HS _ _" [36,36,36] 60) where
   "p \<tturnstile>HS \<phi> env   \<equiv>   M, ([p,P,leq,one, \<langle>\<F>, \<G>, P, P_auto\<rangle>] @ env) \<Turnstile> forcesHS(\<phi>)"
@@ -456,7 +467,7 @@ qed
 
 
 lemma ForcesHS_separation : 
-  assumes "\<phi>\<in>formula" "arity(\<phi>)\<le>length(env)" "env\<in>list(M)"
+  assumes "\<phi>\<in>formula" "arity(\<phi>)\<le>length(env)" "env\<in>list(M)" "forcesHS(\<phi>) \<in> \<Phi>"
   shows "separation(##M, \<lambda>p. p \<tturnstile>HS \<phi> env)" 
 proof - 
   have "z\<in>P \<Longrightarrow> z\<in>M" for z
@@ -464,7 +475,7 @@ proof -
   moreover
   have "separation(##M, \<lambda>p. (M, [p] @ [P, leq, one, \<langle>\<F>, \<G>, P, P_auto\<rangle>] @ env \<Turnstile> forcesHS(\<phi>)))"
     apply(rule separation_ax)
-      apply(rule forcesHS_type, simp add:assms)
+      apply(rule forcesHS_type, simp add:assms, simp add:assms)
     using P_in_M leq_in_M one_in_M \<F>_in_M \<G>_in_M P_auto_in_M pair_in_M_iff assms 
      apply force 
     apply simp
@@ -478,7 +489,8 @@ lemma Collect_ForcesHS :
   assumes 
     fty: "\<phi>\<in>formula" and
     far: "arity(\<phi>)\<le>length(env)" and
-    envty: "env\<in>list(M)"
+    envty: "env\<in>list(M)" and
+    "forcesHS(\<phi>) \<in> \<Phi>" 
   shows
     "{p\<in>P . p \<tturnstile>HS \<phi> env} \<in> M"
 proof -
@@ -684,8 +696,8 @@ lemma ForcesHS_Nand_alt:
 
 lemma HS_truth_lemma_Neg:
   assumes 
-    "\<phi>\<in>formula" "M_generic(G)" "env\<in>list(HS)" "arity(\<phi>)\<le>length(env)" and
-    IH: "(\<exists>p\<in>G. p \<tturnstile>HS \<phi> env) \<longleftrightarrow> SymExt(G), map(val(G),env) \<Turnstile> \<phi>"
+    "\<phi>\<in>formula" "M_generic(G)" "env\<in>list(HS)" "arity(\<phi>)\<le>length(env)" "forcesHS(\<phi>) \<in> \<Phi>" "forcesHS(Neg(\<phi>)) \<in> \<Phi>" and
+    IH: "(\<exists>p\<in>G. p \<tturnstile>HS \<phi> env) \<longleftrightarrow> SymExt(G), map(val(G),env) \<Turnstile> \<phi>" 
   shows
     "(\<exists>p\<in>G. p \<tturnstile>HS Neg(\<phi>) env)  \<longleftrightarrow>  SymExt(G), map(val(G),env) \<Turnstile> Neg(\<phi>)"
 proof (intro iffI, elim bexE, rule ccontr) 
@@ -841,12 +853,16 @@ next
     by auto
 qed 
 
+end
+
 definition 
   ren_HS_truth_lemma :: "i\<Rightarrow>i" where
   "ren_HS_truth_lemma(\<phi>) \<equiv> 
     Exists(Exists(Exists(Exists(Exists(Exists(
     And(Equal(0,6),And(Equal(1,9),And(Equal(2,10),And(Equal(3,11),And(Equal(4,12),And(Equal(5,7),
     iterates(\<lambda>p. incr_bv(p)`6 , 7, \<phi>)))))))))))))"
+
+context M_symmetric_system_HS_Forces begin
 
 lemma ren_HS_truth_lemma_type[TC] :
   "\<phi>\<in>formula \<Longrightarrow> ren_HS_truth_lemma(\<phi>) \<in>formula" 
@@ -908,9 +924,17 @@ lemma arity_ren_HS_truth_lemma :
    apply(rule incr_bv_type)
   by auto
 
+end 
+
+definition HS_truth_lemma'_helper_fm where "HS_truth_lemma'_helper_fm(\<phi>) \<equiv>
+  Exists(And(is_HS_fm(5, 0), Forall(Implies(And(Member(0, 3), leq_fm(4, 0, 2)), Neg(ren_HS_truth_lemma(forcesHS(\<phi>)))))))" 
+
+context M_symmetric_system_HS_Forces 
+begin
+
 lemma HS_truth_lemma' :
   assumes
-    "\<phi>\<in>formula" "env\<in>list(M)" "arity(\<phi>) \<le> succ(length(env))" 
+    "\<phi>\<in>formula" "env\<in>list(M)" "arity(\<phi>) \<le> succ(length(env))" "HS_truth_lemma'_helper_fm(\<phi>) \<in> \<Phi>" 
   shows
     "separation(##M,\<lambda>d. \<exists>b\<in>HS. \<forall>q\<in>P. q\<preceq>d \<longrightarrow> \<not>(q \<tturnstile>HS \<phi> ([b]@env)))"
 proof -
@@ -990,7 +1014,9 @@ proof -
     apply(rule separation_ax)
     apply(rule Exists_type, rule And_type, rule is_HS_fm_type, simp, simp)
     using assms forcesHS_type is_HS_fm_type 
-      apply force
+        apply force
+    using assms HS_truth_lemma'_helper_fm_def
+       apply force
     using P_in_M leq_in_M one_in_M \<F>_in_M \<G>_in_M P_auto_in_M pair_in_M_iff assms
      apply force 
     using assms
@@ -1023,12 +1049,24 @@ proof -
     using I1 I2 I3 
     by auto
 qed
+ 
+end
+
+consts forcesHS_fms :: "i\<Rightarrow>i"
+primrec
+  "forcesHS_fms(Member(x, y)) = 0" 
+  "forcesHS_fms(Equal(x, y)) = 0" 
+  "forcesHS_fms(Nand(\<phi>, \<psi>)) = forcesHS_fms(\<phi>) \<union> forcesHS_fms(\<psi>) \<union> { forcesHS(And(\<phi>, \<psi>)), forcesHS(Neg(And(\<phi>, \<psi>))) }" 
+  "forcesHS_fms(Forall(\<phi>)) = forcesHS_fms(\<phi>) \<union> { forcesHS(\<phi>), forcesHS(Forall(\<phi>)), HS_truth_lemma'_helper_fm(\<phi>) }" 
+
+context M_symmetric_system_HS_Forces
+begin 
 
 lemma HS_truth_lemma:
   assumes 
     "\<phi>\<in>formula" "M_generic(G)"
   shows 
-     "\<And>env. env\<in>list(HS) \<Longrightarrow> arity(\<phi>)\<le>length(env) \<Longrightarrow> 
+     "\<And>env. env\<in>list(HS) \<Longrightarrow> arity(\<phi>)\<le>length(env) \<Longrightarrow> forcesHS_fms(\<phi>) \<subseteq> \<Phi> \<Longrightarrow> 
       (\<exists>p\<in>G. p \<tturnstile>HS \<phi> env) \<longleftrightarrow> SymExt(G), map(val(G),env) \<Turnstile> \<phi>"
   using assms(1)
 proof (induct)
@@ -1049,11 +1087,11 @@ proof (induct)
   have envmaptype : "map(val(G), env) \<in> list(SymExt(G))"
     apply(rule map_type)
     using assms1 SymExt_def
-    by auto
-                                             
-  have H: "M_symmetric_system_G_generic(P, leq, one, M, enum, \<G>, \<F>, G)"
-    unfolding M_symmetric_system_G_generic_def G_generic_def G_generic_axioms_def
-    using M_symmetric_system_axioms forcing_data_axioms assms
+    by auto 
+
+  interpret "M_symmetric_system_G_generic" P leq one M \<Phi> enum \<G> \<F> G 
+    unfolding M_symmetric_system_G_generic_def
+    using M_symmetric_system_HS_M_axioms G_generic_def forcing_data_axioms G_generic_axioms_def assms 
     by auto
 
   have I1: "(\<exists>p\<in>G. M, [p, P, leq, one, \<langle>\<F>, \<G>, P, P_auto\<rangle>] @ env \<Turnstile> forcesHS(Member(x, y))) \<longleftrightarrow> 
@@ -1063,12 +1101,19 @@ proof (induct)
     by auto
   have I2: "... \<longleftrightarrow> (\<exists>p \<in> G. p \<tturnstile> Member(x, y) env)" by auto
   have I3: "... \<longleftrightarrow> M[G], map(val(G), env) \<Turnstile> Member(x, y)" 
-    apply(rule truth_lemma)
+    apply(rule truth_lemma_mem)
     using assms1 assms envin 
-    by auto
+    apply auto[4]
+    apply(rule_tac b="arity(Member(x, y))" in lt_le_lt)
+    using assms1 assms envin ltI
+    apply auto[2]
+    apply(rule_tac b="arity(Member(x, y))" in lt_le_lt)
+    using assms1 assms envin ltI
+    apply auto[2]
+    done
   have I4 : "... \<longleftrightarrow> SymExt(G), map(val(G), env) \<Turnstile> Member(x, y)" 
     apply(rule iff_flip, rule \<Delta>0_sats_iff)
-    using H M_symmetric_system_G_generic.SymExt_subset_GenExt envmaptype Member_\<Delta>0 assms1 M_symmetric_system_G_generic.Transset_SymExt length_map 
+    using SymExt_subset_GenExt envmaptype Member_\<Delta>0 assms1 Transset_SymExt length_map  
     by auto
   show "(\<exists>p\<in>G. M, [p, P, leq, one, \<langle>\<F>, \<G>, P, P_auto\<rangle>] @ env \<Turnstile> forcesHS(Member(x, y))) \<longleftrightarrow>
           SymExt(G), map(val(G), env) \<Turnstile> Member(x, y)"
@@ -1078,12 +1123,7 @@ proof (induct)
 next
   case (Equal x y)
   then have assms1: "x \<in> nat" "y \<in> nat" "env \<in> list(HS)" "arity(Equal(x, y)) \<le> length(env)" by auto
-                                             
-  have H: "M_symmetric_system_G_generic(P, leq, one, M, enum, \<G>, \<F>, G)"
-    unfolding M_symmetric_system_G_generic_def G_generic_def G_generic_axioms_def
-    using M_symmetric_system_axioms forcing_data_axioms assms
-    by auto
-
+                    
   have GsubsetM : "G \<subseteq> M" 
     apply(rule_tac B=P in subset_trans)
     using assms M_generic_def filter_def P_in_M transM 
@@ -1100,6 +1140,11 @@ next
     using assms1 SymExt_def
     by auto
 
+  interpret "M_symmetric_system_G_generic" P leq one M \<Phi> enum \<G> \<F> G 
+    unfolding M_symmetric_system_G_generic_def
+    using M_symmetric_system_HS_M_axioms G_generic_def forcing_data_axioms G_generic_axioms_def assms 
+    by auto
+
   have I1: "(\<exists>p\<in>G. M, [p, P, leq, one, \<langle>\<F>, \<G>, P, P_auto\<rangle>] @ env \<Turnstile> forcesHS(Equal(x, y))) \<longleftrightarrow> 
              (\<exists>p\<in>G. M, [p, P, leq, one] @ env \<Turnstile> forces(Equal(x, y)))" 
     apply(rule bex_iff, rule sats_forcesHS_Equal)
@@ -1107,12 +1152,19 @@ next
     by auto
   have I2: "... \<longleftrightarrow> (\<exists>p \<in> G. p \<tturnstile> Equal(x, y) env)" by auto
   have I3: "... \<longleftrightarrow> M[G], map(val(G), env) \<Turnstile> Equal(x, y)" 
-    apply(rule truth_lemma)
+    apply(rule truth_lemma_eq)
     using assms1 assms envin 
-    by auto
+    apply auto[4]
+    apply(rule_tac b="arity(Equal(x, y))" in lt_le_lt)
+    using assms1 assms envin ltI
+    apply auto[2]
+    apply(rule_tac b="arity(Equal(x, y))" in lt_le_lt)
+    using assms1 assms envin ltI
+    apply auto[2]
+    done
   have I4 : "... \<longleftrightarrow> SymExt(G), map(val(G), env) \<Turnstile> Equal(x, y)" 
     apply(rule iff_flip, rule \<Delta>0_sats_iff)
-    using H M_symmetric_system_G_generic.SymExt_subset_GenExt envmaptype Member_\<Delta>0 assms1 M_symmetric_system_G_generic.Transset_SymExt length_map 
+    using SymExt_subset_GenExt envmaptype Member_\<Delta>0 assms1 Transset_SymExt length_map 
     by auto
   show "(\<exists>p\<in>G. M, [p, P, leq, one, \<langle>\<F>, \<G>, P, P_auto\<rangle>] @ env \<Turnstile> forcesHS(Equal(x, y))) \<longleftrightarrow>
           SymExt(G), map(val(G), env) \<Turnstile> Equal(x, y)"
@@ -1139,6 +1191,10 @@ next
      apply auto[2]
     done
 
+  have "forcesHS_fms(\<phi>) \<subseteq> \<Phi> \<and> forcesHS_fms(\<psi>) \<subseteq> \<Phi>" 
+    using Nand 
+    by force
+
   moreover 
   note \<open>M_generic(G)\<close>
   ultimately
@@ -1147,9 +1203,9 @@ next
      apply(rule bex_iff, rule ForcesHS_Nand_alt)
     using M_genericD assms envin Nand arityle
           apply auto[6]
-    apply(rule iff_trans, rule HS_truth_lemma_Neg)
-    using Nand assms 
-         apply auto[4]
+    apply(rule iff_trans, rule HS_truth_lemma_Neg) 
+    using Nand
+         apply auto[6]
      apply(rule HS_truth_lemma_And)
     using Nand arityle 
             apply auto[8]
@@ -1209,11 +1265,20 @@ next
     have "arity(Forall(\<phi>)) \<le> length(env)" 
       using pred_le \<open>\<phi>\<in>formula\<close> \<open>env\<in>list(M)\<close> by simp
     then
-    have "?D1\<in>M" using Collect_ForcesHS ar\<phi> \<open>\<phi>\<in>formula\<close> \<open>env\<in>list(M)\<close> by simp
+    have "?D1\<in>M" 
+      using Collect_ForcesHS ar\<phi> \<open>\<phi>\<in>formula\<close> \<open>env\<in>list(M)\<close> Forall
+      by auto
     moreover
-    have "?D2\<in>M" using \<open>env\<in>list(M)\<close> \<open>\<phi>\<in>formula\<close>  HS_truth_lemma' separation_closed ar\<phi>
-                        P_in_M
-      by simp
+    have "?D2\<in>M" 
+      apply(rule_tac separation_notation)
+      apply(rule HS_truth_lemma')
+      using \<open>env\<in>list(M)\<close> \<open>\<phi>\<in>formula\<close>  HS_truth_lemma' separation_closed ar\<phi>
+                        P_in_M Forall
+          apply auto[3]
+      using Forall 
+       apply force
+      using P_in_M
+      by auto
     ultimately
     have "D\<in>M" unfolding D_def using Un_closed by simp
     moreover
@@ -1308,7 +1373,7 @@ next
       have "q \<tturnstile>HS \<phi> ([b] @ env)"
         apply(rule_tac p=p in HS_strengthening_lemma)
         using \<open>b\<in>HS\<close> HS_iff P_name_in_M envin
-              apply auto[6]
+              apply auto[5]
          apply(rule_tac n="arity(\<phi>)" in natE, simp, simp, force, force)
         done
       moreover 
@@ -1321,20 +1386,20 @@ qed
 
 lemma definition_of_forcing_HS:
   assumes
-    "p\<in>P" "\<phi>\<in>formula" "env\<in>list(HS)" "arity(\<phi>)\<le>length(env)"
+    "p\<in>P" "\<phi>\<in>formula" "env\<in>list(HS)" "arity(\<phi>)\<le>length(env)" "forcesHS_fms(\<phi>) \<subseteq> \<Phi>"
   shows
     "(p \<tturnstile>HS \<phi> env) \<longleftrightarrow>
      (\<forall>G. M_generic(G) \<and> p\<in>G  \<longrightarrow>  SymExt(G), map(val(G),env) \<Turnstile> \<phi>)"
 proof (intro iffI allI impI, elim conjE)
   fix G
-  assume assms1:"(p \<tturnstile>HS \<phi> env)" "M_generic(G)" "p \<in> G"
+  assume assms1:"(p \<tturnstile>HS \<phi> env)" "M_generic(G)" "p \<in> G" 
   with assms 
   show "SymExt(G), map(val(G),env) \<Turnstile> \<phi>"
     apply(rule_tac iffD1)
      apply(rule HS_truth_lemma)
-    by auto
-next
-  
+    using assms
+    by auto    
+next 
   have envin : "env \<in> list(M)" 
     apply(rule_tac A="list(HS)" in subsetD, rule list_mono)
     using HS_iff P_name_in_M assms Forall

@@ -1,10 +1,11 @@
 theory P_Names
   imports 
-    "Forcing/Forcing_Main"
+    "Forcing/Forcing_Data"
     Utilities_M
-begin 
+    ZF_Fragment
+begin  
 
-context forcing_data
+context forcing_data_Forces_Definition
 begin 
 
 definition HP_set_succ :: "[i, i] \<Rightarrow> i" where 

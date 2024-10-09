@@ -481,6 +481,7 @@ lemma sats_ZFC_iff_sats_ZF_AC:
   "(N \<Turnstile> ZFC) \<longleftrightarrow> (N \<Turnstile> ZF) \<and> (N, [] \<Turnstile> AC)"
     unfolding ZFC_def ZFC_fin_def ZF_def by auto
 
+(*
 lemma M_ZF_iff_M_satT: "M_ZF(M) \<longleftrightarrow> (M \<Turnstile> ZF)"
 proof
   assume "M \<Turnstile> ZF"
@@ -518,6 +519,6 @@ next
   ultimately
   show "M \<Turnstile> ZF"
     unfolding ZF_def ZF_inf_def by blast
-qed
+qed*)
 
 end

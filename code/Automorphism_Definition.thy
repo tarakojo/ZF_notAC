@@ -1,11 +1,10 @@
 theory Automorphism_Definition
   imports 
-    "Forcing/Forcing_Main" 
     P_Names_M
 begin 
 
 locale forcing_data_partial = 
-  forcing_data + 
+  forcing_data_P_Names_M + 
   assumes leq_relation_on_P : "leq \<in> Pow(P \<times> P)" 
   and leq_partial_order : "partial_order_on(P, leq)" 
 begin

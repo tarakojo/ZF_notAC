@@ -13,100 +13,16 @@ lemma Transset_M :
   "Transset(M) \<Longrightarrow>  y\<in>x \<Longrightarrow> x \<in> M \<Longrightarrow> y \<in> M"
   by (simp add: Transset_def,auto)  
 
-
-locale M_ZF = 
-  fixes M 
-  assumes 
-    upair_ax:         "upair_ax(##M)"
-    and Union_ax:         "Union_ax(##M)"
-    and power_ax:         "power_ax(##M)"
-    and extensionality:   "extensionality(##M)"
-    and foundation_ax:    "foundation_ax(##M)"
-    and infinity_ax:      "infinity_ax(##M)"
-    and separation_ax:    "\<phi>\<in>formula \<Longrightarrow> env\<in>list(M) \<Longrightarrow> arity(\<phi>) \<le> 1 #+ length(env) \<Longrightarrow>
-                    separation(##M,\<lambda>x. sats(M,\<phi>,[x] @ env))" 
-    and replacement_ax:   "\<phi>\<in>formula \<Longrightarrow> env\<in>list(M) \<Longrightarrow> arity(\<phi>) \<le> 2 #+ length(env) \<Longrightarrow> 
-                    strong_replacement(##M,\<lambda>x y. sats(M,\<phi>,[x,y] @ env))" 
-
-locale M_ctm = M_ZF +
-  fixes enum
-  assumes M_countable:      "enum\<in>bij(nat,M)"
-    and trans_M:          "Transset(M)"
-
-begin
-interpretation intf: M_ZF_trans "M"
-  using M_ZF_trans.intro
-    trans_M upair_ax Union_ax power_ax extensionality
-    foundation_ax infinity_ax separation_ax[simplified] 
-    replacement_ax[simplified]
-  by simp
-
+context M_ZF_Fragment_Interface
+begin 
 
 lemmas transitivity = Transset_intf[OF trans_M]
 
-lemma zero_in_M:  "0 \<in> M" 
-  by (rule intf.zero_in_M)
-
-lemma tuples_in_M: "A\<in>M \<Longrightarrow> B\<in>M \<Longrightarrow> \<langle>A,B\<rangle>\<in>M" 
-  by (simp flip:setclass_iff)
-
-lemma nat_in_M : "nat \<in> M"
-  by (rule intf.nat_in_M)
+lemma tuples_in_M: "A\<in>M \<Longrightarrow> B\<in>M \<Longrightarrow> <A,B>\<in>M"
+  by (simp flip:setclass_iff )
 
 lemma n_in_M : "n\<in>nat \<Longrightarrow> n\<in>M"
   using nat_in_M transitivity by simp
-
-lemma mtriv: "M_trivial(##M)" 
-  by (rule intf.mtriv)
-
-lemma mtrans: "M_trans(##M)"
-  by (rule intf.mtrans)
-
-lemma mbasic: "M_basic(##M)"
-  by (rule intf.mbasic)
-
-lemma mtrancl: "M_trancl(##M)"
-  by (rule intf.mtrancl)
-
-lemma mdatatypes: "M_datatypes(##M)"
-  by (rule intf.mdatatypes)
-
-lemma meclose: "M_eclose(##M)"
-  by (rule intf.meclose)
-
-lemma meclose_pow: "M_eclose_pow(##M)"
-  by (rule intf.meclose_pow)
-
-
-
-end (* M_ctm *)
-
-(* M_ctm interface *)
-sublocale M_ctm \<subseteq> M_trivial "##M"
-  by  (rule mtriv)
-
-sublocale M_ctm \<subseteq> M_trans "##M"
-  by  (rule mtrans)
-
-sublocale M_ctm \<subseteq> M_basic "##M"
-  by  (rule mbasic)
-
-sublocale M_ctm \<subseteq> M_trancl "##M"
-  by  (rule mtrancl)
-
-sublocale M_ctm \<subseteq> M_datatypes "##M"
-  by  (rule mdatatypes)
-
-sublocale M_ctm \<subseteq> M_eclose "##M"
-  by  (rule meclose)
-
-sublocale M_ctm \<subseteq> M_eclose_pow "##M"
-  by  (rule meclose_pow)
-
-(* end interface *)
-
-context M_ctm
-begin
 
 subsection\<open>\<^term>\<open>Collects\<close> in $M$\<close>
 lemma Collect_in_M_0p :
@@ -115,7 +31,7 @@ lemma Collect_in_M_0p :
     Qarty : "arity(Q_fm) = 1" and
     Qsats : "\<And>x. x\<in>M \<Longrightarrow> sats(M,Q_fm,[x]) \<longleftrightarrow> is_Q(##M,x)" and
     Qabs  : "\<And>x. x\<in>M \<Longrightarrow> is_Q(##M,x) \<longleftrightarrow> Q(x)" and
-    "A\<in>M"
+    "A\<in>M" "Q_fm \<in> \<Phi>" 
   shows
     "Collect(A,Q)\<in>M" 
 proof -
@@ -125,7 +41,7 @@ proof -
   have 1:"Collect(A,is_Q(##M)) = Collect(A,Q)" 
     using Qabs Collect_cong[of "A" "A" "is_Q(##M)" "Q"] by simp
   have "separation(##M,is_Q(##M))"
-    using separation_ax Qsats Qarty Qfm
+    using separation_ax Qsats Qarty Qfm assms
       separation_cong[of "##M" "\<lambda>y. sats(M,Q_fm,[y])" "is_Q(##M)"]
     by simp
   then 
@@ -142,7 +58,7 @@ lemma Collect_in_M_2p :
     params_M : "y\<in>M" "z\<in>M" and
     Qsats : "\<And>x. x\<in>M \<Longrightarrow> sats(M,Q_fm,[x,y,z]) \<longleftrightarrow> is_Q(##M,x,y,z)" and
     Qabs  : "\<And>x. x\<in>M \<Longrightarrow> is_Q(##M,x,y,z) \<longleftrightarrow> Q(x,y,z)" and
-    "A\<in>M"
+    "A\<in>M" "Q_fm \<in> \<Phi>" 
   shows
     "Collect(A,\<lambda>x. Q(x,y,z))\<in>M" 
 proof -
@@ -152,7 +68,7 @@ proof -
   have 1:"Collect(A,\<lambda>x. is_Q(##M,x,y,z)) = Collect(A,\<lambda>x. Q(x,y,z))" 
     using Qabs Collect_cong[of "A" "A" "\<lambda>x. is_Q(##M,x,y,z)" "\<lambda>x. Q(x,y,z)"] by simp
   have "separation(##M,\<lambda>x. is_Q(##M,x,y,z))"
-    using separation_ax Qsats Qarty Qfm params_M
+    using separation_ax Qsats Qarty Qfm params_M assms
       separation_cong[of "##M" "\<lambda>x. sats(M,Q_fm,[x,y,z])" "\<lambda>x. is_Q(##M,x,y,z)"]
     by simp
   then 
@@ -169,7 +85,7 @@ lemma Collect_in_M_4p :
     params_M : "a1\<in>M" "a2\<in>M" "a3\<in>M" "a4\<in>M" and
     Qsats : "\<And>x. x\<in>M \<Longrightarrow> sats(M,Q_fm,[x,a1,a2,a3,a4]) \<longleftrightarrow> is_Q(##M,x,a1,a2,a3,a4)" and
     Qabs  : "\<And>x. x\<in>M \<Longrightarrow> is_Q(##M,x,a1,a2,a3,a4) \<longleftrightarrow> Q(x,a1,a2,a3,a4)" and
-    "A\<in>M"
+    "A\<in>M" "Q_fm \<in> \<Phi>" 
   shows
     "Collect(A,\<lambda>x. Q(x,a1,a2,a3,a4))\<in>M" 
 proof -
@@ -180,7 +96,7 @@ proof -
     using Qabs Collect_cong[of "A" "A" "\<lambda>x. is_Q(##M,x,a1,a2,a3,a4)" "\<lambda>x. Q(x,a1,a2,a3,a4)"] 
     by simp
   have "separation(##M,\<lambda>x. is_Q(##M,x,a1,a2,a3,a4))"
-    using separation_ax Qsats Qarty Qfm params_M
+    using separation_ax Qsats Qarty Qfm params_M assms
       separation_cong[of "##M" "\<lambda>x. sats(M,Q_fm,[x,a1,a2,a3,a4])" 
         "\<lambda>x. is_Q(##M,x,a1,a2,a3,a4)"]
     by simp
@@ -198,11 +114,11 @@ lemma Repl_in_M :
     fsats: "\<And>x y. x\<in>M \<Longrightarrow> y\<in>M \<Longrightarrow> sats(M,f_fm,[x,y]@env) \<longleftrightarrow> is_f(x,y)" and
     fabs:  "\<And>x y. x\<in>M \<Longrightarrow> y\<in>M \<Longrightarrow> is_f(x,y) \<longleftrightarrow> y = f(x)" and
     fclosed: "\<And>x. x\<in>A \<Longrightarrow> f(x) \<in> M"  and
-    "A\<in>M" "env\<in>list(M)" 
+    "A\<in>M" "env\<in>list(M)" "f_fm \<in> \<Phi>" 
   shows "{f(x). x\<in>A}\<in>M"
 proof -
   have "strong_replacement(##M, \<lambda>x y. sats(M,f_fm,[x,y]@env))"
-    using replacement_ax f_fm f_ar \<open>env\<in>list(M)\<close> by simp
+    using replacement_ax f_fm f_ar \<open>env\<in>list(M)\<close> assms by simp
   then
   have "strong_replacement(##M, \<lambda>x y. y = f(x))"
     using fsats fabs 
@@ -220,7 +136,7 @@ qed
 end (* M_ctm *)      
 
 subsection\<open>A forcing locale and generic filters\<close>
-locale forcing_data = forcing_notion + M_ctm +
+locale forcing_data = forcing_notion + M_ZF_Fragment_Interface +
   assumes P_in_M:           "P \<in> M"
     and leq_in_M:         "leq \<in> M"
 
@@ -365,5 +281,4 @@ lemma sats_compat_in_fm:
   unfolding compat_in_fm_def is_compat_in_def using assms by simp
 
 end (* forcing_data *)
-
 end

@@ -6,7 +6,43 @@ theory Forcing_Theorems
 
 begin
 
-context forcing_data
+definition forcing_theorems_IV240a_mem_Collect_fm where 
+  "forcing_theorems_IV240a_mem_Collect_fm = Exists
+     (Exists
+       (Exists
+         (And(Member(1, 4),
+              And(pair_fm(2, 1, 0), And(Member(0, 7), And(leq_fm(5, 3, 1), forces_eq_fm(4, 5, 3, 6, 2))))))))" 
+
+definition forcing_theorems_IV240b_eq_Collects_fm1 where
+  "forcing_theorems_IV240b_eq_Collects_fm1 \<equiv> Exists
+     (Exists
+       (Exists
+         (Exists
+           (And(domain_fm(7, 1),
+                And(domain_fm(8, 0),
+                    And(union_fm(1, 0, 2),
+                        And(Member(3, 2), And(forces_mem_fm(5, 6, 4, 3, 7), forces_nmem_fm(5, 6, 4, 3, 8))))))))))" 
+ 
+definition forcing_theorems_IV240b_eq_Collects_fm2 where
+  "forcing_theorems_IV240b_eq_Collects_fm2 \<equiv> Exists
+     (Exists
+       (Exists
+         (Exists
+           (And(domain_fm(7, 1),
+                And(domain_fm(8, 0),
+                    And(union_fm(1, 0, 2),
+                        And(Member(3, 2), And(forces_mem_fm(5, 6, 4, 3, 7), forces_nmem_fm(5, 6, 4, 3, 8))))))))))" 
+
+locale forcing_data_Forces_Theorems = forcing_data_Forces_Definition +
+  assumes foring_theorems_filter_generic_inter_dense_below_fm : "Or(Neg(compat_in_fm(1, 2, 3, 0)), Member(0, 4)) \<in> \<Phi>"
+  and forcing_theorems_IV240a_mem_Collect_fm : "forcing_theorems_IV240a_mem_Collect_fm \<in> \<Phi>" 
+  and forcing_theorems_Collect_forces_eq_in_M_fm : "forces_eq_fm(1, 2, 0, 3, 4) \<in> \<Phi>" 
+  and forcing_theorems_IV240b_eq_Collects_fm1 : "forcing_theorems_IV240b_eq_Collects_fm1 \<in> \<Phi>" 
+  and forcing_theorems_IV240b_eq_Collects_fm2 : "forcing_theorems_IV240b_eq_Collects_fm2 \<in> \<Phi>" 
+
+locale forcing_data_Forces_Theorems_G_generic = forcing_data_Forces_Theorems + G_generic 
+
+context forcing_data_Forces_Theorems
 begin
 
 subsection\<open>The forcing relation in context\<close>
@@ -18,7 +54,8 @@ lemma Collect_forces :
   assumes 
     fty: "\<phi>\<in>formula" and
     far: "arity(\<phi>)\<le>length(env)" and
-    envty: "env\<in>list(M)"
+    envty: "env\<in>list(M)" and
+    "forces(\<phi>) \<in> \<Phi>" 
   shows
     "{p\<in>P . p \<tturnstile> \<phi> env} \<in> M"
 proof -
@@ -26,7 +63,7 @@ proof -
     using P_in_M transitivity[of z P] by simp
   moreover
   have "separation(##M,\<lambda>p. (p \<tturnstile> \<phi> env))"
-        using separation_ax arity_forces far fty P_in_M leq_in_M one_in_M envty arity_forces_le
+    using separation_ax arity_forces far fty P_in_M leq_in_M one_in_M envty arity_forces_le assms
     by simp
   then 
   have "Collect(P,\<lambda>p. (p \<tturnstile> \<phi> env))\<in>M"
@@ -335,8 +372,10 @@ proof -
   have "(\<not> is_compat_in(##M,P,leq,p,q) \<or> q\<in>D) \<longleftrightarrow> p\<bottom>q \<or> q\<in>D" if "q\<in>M" for q
     unfolding compat_def using that compat_in_abs P_in_M leq_in_M 1 by simp
   ultimately
-  have "?D\<in>M" using Collect_in_M_4p[of ?d_fm _ _ _ _ _"\<lambda>x y z w h. w\<bottom>x \<or> x\<in>h"] 
-                    P_in_M leq_in_M \<open>D\<in>M\<close> by simp
+  have "?D\<in>M"
+    using Collect_in_M_4p[of ?d_fm _ _ _ _ _"\<lambda>x y z w h. w\<bottom>x \<or> x\<in>h"] 
+                    P_in_M leq_in_M \<open>D\<in>M\<close> foring_theorems_filter_generic_inter_dense_below_fm
+    by auto
   note asm = \<open>M_generic(G)\<close> \<open>dense(?D)\<close> \<open>?D\<subseteq>P\<close> \<open>?D\<in>M\<close>
   obtain x where "x\<in>G" "x\<in>?D" using M_generic_denseD[OF asm]
     by force (* by (erule bexE) does it, but the other automatic tools don't *)
@@ -347,6 +386,7 @@ proof -
   ultimately
   show ?thesis by auto
 qed
+
 
 subsection\<open>Auxiliary results for Lemma IV.2.40(a)\<close>
 lemma IV240a_mem_Collect:
@@ -362,24 +402,41 @@ proof -
   have "\<sigma>\<in>M \<and> r\<in>M" if "\<langle>\<sigma>, r\<rangle> \<in> \<tau>"  for \<sigma> r
     using that \<open>\<tau>\<in>M\<close> pair_in_M_iff transitivity[of "\<langle>\<sigma>,r\<rangle>" \<tau>] by simp
   then
-  have "?rel_pred(##M,q,P,leq,\<pi>,\<tau>) \<longleftrightarrow> (\<exists>\<sigma>. \<exists>r. r\<in>P \<and> \<langle>\<sigma>,r\<rangle> \<in> \<tau> \<and> q\<preceq>r \<and> forces_eq(q,\<pi>,\<sigma>))"
+  have H1: "?rel_pred(##M,q,P,leq,\<pi>,\<tau>) \<longleftrightarrow> (\<exists>\<sigma>. \<exists>r. r\<in>P \<and> \<langle>\<sigma>,r\<rangle> \<in> \<tau> \<and> q\<preceq>r \<and> forces_eq(q,\<pi>,\<sigma>))"
     if "q\<in>M" for q
     unfolding forces_eq_def using assms that P_in_M leq_in_M leq_abs forces_eq'_abs pair_in_M_iff 
     by auto
   moreover
-  have "(M, [q,P,leq,\<pi>,\<tau>] \<Turnstile> ?\<phi>) \<longleftrightarrow> ?rel_pred(##M,q,P,leq,\<pi>,\<tau>)" if "q\<in>M" for q
+  have H2: "(M, [q,P,leq,\<pi>,\<tau>] \<Turnstile> ?\<phi>) \<longleftrightarrow> ?rel_pred(##M,q,P,leq,\<pi>,\<tau>)" if "q\<in>M" for q
     using assms that sats_forces_eq'_fm sats_leq_fm P_in_M leq_in_M by simp
   moreover
+  have "(M, [q,P,leq,\<pi>,\<tau>] \<Turnstile> ?\<phi>) \<longleftrightarrow> (\<exists>\<sigma>. \<exists>r. r\<in>P \<and> \<langle>\<sigma>,r\<rangle> \<in> \<tau> \<and> q\<preceq>r \<and> forces_eq(q,\<pi>,\<sigma>))"  if "q\<in>M" for q 
+    apply(rule_tac Q="?rel_pred(##M,q,P,leq,\<pi>,\<tau>)" in iff_trans)
+    using H2 \<open>q\<in>M\<close>
+     apply force
+    using H1 \<open>q\<in>M\<close>
+    by auto
+  then
+  have H: "(M, [q,P,leq,\<pi>,\<tau>] \<Turnstile> ?\<phi>) \<longleftrightarrow> (\<exists>\<sigma>. \<exists>r. r\<in>P \<and> \<langle>\<sigma>,r\<rangle> \<in> \<tau> \<and> q\<preceq>r \<and> forces_eq'(P, leq, q,\<pi>,\<sigma>))"  if "q\<in>M" for q
+    unfolding forces_eq_def
+    using \<open>q\<in>M\<close> 
+    by auto
   have "?\<phi>\<in>formula" by simp
   moreover
   have "arity(?\<phi>)=5" 
     unfolding leq_fm_def pair_fm_def upair_fm_def
     using arity_forces_eq_fm by (simp add:nat_simp_union Un_commute)
-  ultimately
+  
   show ?thesis 
-    unfolding forces_eq_def using P_in_M leq_in_M assms 
-        Collect_in_M_4p[of ?\<phi> _ _ _ _ _ 
-            "\<lambda>q a1 a2 a3 a4. \<exists>\<sigma>. \<exists>r. r\<in>a1 \<and> \<langle>\<sigma>,r\<rangle> \<in> \<tau> \<and> q\<preceq>r \<and> forces_eq'(a1,a2,q,a3,\<sigma>)"] by simp
+    unfolding forces_eq_def 
+        apply(rule_tac Collect_in_M_4p[of ?\<phi> _ _ _ _ _ 
+            "\<lambda>q a1 a2 a3 a4. \<exists>\<sigma>. \<exists>r. r\<in>a1 \<and> \<langle>\<sigma>,r\<rangle> \<in> \<tau> \<and> q\<preceq>r \<and> forces_eq'(a1,a2,q,a3,\<sigma>)"])  
+    using P_in_M leq_in_M assms \<open>arity(?\<phi>)=5\<close>
+             apply auto[5]
+    using \<open>\<tau>\<in>M\<close>
+        apply force 
+    using H P_in_M forcing_theorems_IV240a_mem_Collect_fm forcing_theorems_IV240a_mem_Collect_fm_def
+    by auto
 qed
 
 (* Lemma IV.2.40(a), membership *)
@@ -650,12 +707,13 @@ end (* includes *)
 
 lemma Collect_forces_eq_in_M:
   assumes "\<tau> \<in> M" "\<theta> \<in> M"
-  shows "{p\<in>P. forces_eq(p,\<tau>,\<theta>)} \<in> M"
-  using assms Collect_in_M_4p[of "forces_eq_fm(1,2,0,3,4)" P leq \<tau> \<theta> 
+  shows "{p\<in>P. forces_eq(p,\<tau>,\<theta>)} \<in> M" 
+  using Collect_in_M_4p[of "forces_eq_fm(1,2,0,3,4)" P leq \<tau> \<theta> 
                                   "\<lambda>A x p l t1 t2. is_forces_eq(x,t1,t2)"
                                   "\<lambda> x p l t1 t2. forces_eq(x,t1,t2)" P] 
-        arity_forces_eq_fm P_in_M leq_in_M sats_forces_eq_fm forces_eq_abs forces_eq_fm_type 
-  by (simp add: nat_union_abs1 Un_commute)
+    assms arity_forces_eq_fm P_in_M leq_in_M sats_forces_eq_fm forces_eq_abs forces_eq_fm_type 
+    forcing_theorems_Collect_forces_eq_in_M_fm 
+  by auto
 
 lemma IV240b_eq_Collects:
   assumes "\<tau> \<in> M" "\<theta> \<in> M"
@@ -694,19 +752,25 @@ proof -
   have farit:"arity(?\<phi>)=5"
     unfolding forces_nmem_fm_def domain_fm_def pair_fm_def upair_fm_def union_fm_def
     using arity_forces_mem_fm by (simp add:nat_simp_union Un_commute)
-    show 
-    "{p \<in> P . \<exists>\<sigma>\<in>domain(\<tau>) \<union> domain(\<theta>). forces_mem(p, \<sigma>, \<tau>) \<and> forces_nmem(p, \<sigma>, \<theta>)} \<in> M"
-    and "{p \<in> P . \<exists>\<sigma>\<in>domain(\<tau>) \<union> domain(\<theta>). forces_nmem(p, \<sigma>, \<tau>) \<and> forces_mem(p, \<sigma>, \<theta>)} \<in> M"
-    unfolding forces_mem_def
-    using abs1 fty fsats1 farit P_in_M leq_in_M assms forces_nmem
+
+  have H1:"{p \<in> P . \<exists>\<sigma>\<in>domain(\<tau>) \<union> domain(\<theta>). forces_mem'(P, leq, p, \<sigma>, \<tau>) \<and> forces_nmem'(P, leq, p, \<sigma>, \<theta>)} \<in> M"
+    using abs1 fty fsats1 farit P_in_M leq_in_M assms forces_nmem 
+          forcing_theorems_IV240b_eq_Collects_fm1 forcing_theorems_IV240b_eq_Collects_fm1_def 
           Collect_in_M_4p[of ?\<phi> _ _ _ _ _ 
-          "\<lambda>x p l a1 a2. (\<exists>\<sigma>\<in>domain(a1) \<union> domain(a2). forces_mem'(p,l,x,\<sigma>,a1) \<and> 
-                                                     forces_nmem'(p,l,x,\<sigma>,a2))"]
+              "\<lambda>x p l a1 a2. (\<exists>\<sigma>\<in>domain(a1) \<union> domain(a2). forces_mem'(p,l,x,\<sigma>,a1) \<and>  forces_nmem'(p,l,x,\<sigma>,a2))"]
+    by auto 
+  have H2: "{p \<in> P . \<exists>\<sigma>\<in>domain(\<tau>) \<union> domain(\<theta>). forces_nmem'(P, leq,p, \<sigma>, \<tau>) \<and> forces_mem'(P, leq, p, \<sigma>, \<theta>)} \<in> M" 
     using abs2 fty fsats2 farit P_in_M leq_in_M assms forces_nmem domain_closed Un_closed
+          forcing_theorems_IV240b_eq_Collects_fm2 forcing_theorems_IV240b_eq_Collects_fm2_def 
           Collect_in_M_4p[of ?\<phi> P leq \<theta> \<tau> ?rel_pred 
           "\<lambda>x p l a2 a1. (\<exists>\<sigma>\<in>domain(a1) \<union> domain(a2). forces_nmem'(p,l,x,\<sigma>,a1) \<and> 
                                                      forces_mem'(p,l,x,\<sigma>,a2))" P]  
-    by simp_all
+    by auto 
+
+  show 
+    "{p \<in> P . \<exists>\<sigma>\<in>domain(\<tau>) \<union> domain(\<theta>). forces_mem(p, \<sigma>, \<tau>) \<and> forces_nmem(p, \<sigma>, \<theta>)} \<in> M"
+    and "{p \<in> P . \<exists>\<sigma>\<in>domain(\<tau>) \<union> domain(\<theta>). forces_nmem(p, \<sigma>, \<tau>) \<and> forces_mem(p, \<sigma>, \<theta>)} \<in> M"
+      using H1 H2 forces_nmem forces_mem_def by auto
 qed
 
 (* Lemma IV.2.40(b), equality *)
@@ -1106,7 +1170,7 @@ lemma Forces_Nand_alt:
 
 lemma truth_lemma_Neg:
   assumes 
-    "\<phi>\<in>formula" "M_generic(G)" "env\<in>list(M)" "arity(\<phi>)\<le>length(env)" and
+    "\<phi>\<in>formula" "M_generic(G)" "env\<in>list(M)" "arity(\<phi>)\<le>length(env)" "forces(\<phi>) \<in> \<Phi>" "forces(Neg(\<phi>)) \<in> \<Phi>" and
     IH: "(\<exists>p\<in>G. p \<tturnstile> \<phi> env) \<longleftrightarrow> M[G], map(val(G),env) \<Turnstile> \<phi>"
   shows
     "(\<exists>p\<in>G. p \<tturnstile> Neg(\<phi>) env)  \<longleftrightarrow>  M[G], map(val(G),env) \<Turnstile> Neg(\<phi>)"
@@ -1138,11 +1202,11 @@ next
   let ?D="{p\<in>P. (p \<tturnstile> \<phi> env) \<or> (p \<tturnstile> Neg(\<phi>) env)}"
   have "separation(##M,\<lambda>p. (p \<tturnstile> \<phi> env))" 
       using separation_ax arity_forces assms P_in_M leq_in_M one_in_M arity_forces_le
-    by simp
+      by auto
   moreover
-  have "separation(##M,\<lambda>p. (p \<tturnstile> Neg(\<phi>) env))"
+  have "separation(##M,\<lambda>p. (p \<tturnstile> Neg(\<phi>) env))"    
       using separation_ax arity_forces assms P_in_M leq_in_M one_in_M arity_forces_le
-    by simp
+      by simp
   ultimately
   have "separation(##M,\<lambda>p. (p \<tturnstile> \<phi> env) \<or> (p \<tturnstile> Neg(\<phi>) env))" 
     using separation_disj by simp
@@ -1222,12 +1286,16 @@ next
     using Forces_And[OF M_genericD assms(1-5)] by auto
 qed 
 
+end 
+
 definition 
   ren_truth_lemma :: "i\<Rightarrow>i" where
   "ren_truth_lemma(\<phi>) \<equiv> 
     Exists(Exists(Exists(Exists(Exists(
     And(Equal(0,5),And(Equal(1,8),And(Equal(2,9),And(Equal(3,10),And(Equal(4,6),
     iterates(\<lambda>p. incr_bv(p)`5 , 6, \<phi>)))))))))))"
+
+context forcing_data_Forces_Theorems begin
 
 lemma ren_truth_lemma_type[TC] :
   "\<phi>\<in>formula \<Longrightarrow> ren_truth_lemma(\<phi>) \<in>formula" 
@@ -1305,9 +1373,17 @@ lemma sats_ren_truth_lemma:
   unfolding ren_truth_lemma_def
   by (insert sats_incr_bv_iff [of _ _ M _ "[q,a1,a2,a3,b]"], simp)
 
+end 
+
+definition truth_lemma'_helper_fm where 
+  "truth_lemma'_helper_fm(\<phi>) \<equiv> Exists(Forall(Implies(And(Member(0, 3), leq_fm(4, 0, 2)), Neg(ren_truth_lemma(forces(\<phi>))))))"
+
+context forcing_data_Forces_Theorems begin 
+
 lemma truth_lemma' :
   assumes
     "\<phi>\<in>formula" "env\<in>list(M)" "arity(\<phi>) \<le> succ(length(env))" 
+    "truth_lemma'_helper_fm(\<phi>) \<in> \<Phi>" 
   shows
     "separation(##M,\<lambda>d. \<exists>b\<in>M. \<forall>q\<in>P. q\<preceq>d \<longrightarrow> \<not>(q \<tturnstile> \<phi> ([b]@env)))"
 proof -
@@ -1330,7 +1406,7 @@ proof -
   moreover
   have "?\<psi>\<in>formula" using assms by simp
   moreover
-  have "(M, [d,P,leq,one]@env \<Turnstile> ?\<psi>) \<longleftrightarrow> ?rel_pred(M,d,P,leq,one)" if "d\<in>M" for d
+  have H: "(M, [d,P,leq,one]@env \<Turnstile> ?\<psi>) \<longleftrightarrow> ?rel_pred(M,d,P,leq,one)" if "d\<in>M" for d
     using assms that P_in_M leq_in_M one_in_M sats_leq_fm sats_ren_truth_lemma
     by simp
   moreover
@@ -1361,18 +1437,30 @@ proof -
       using le_trans[OF  \<open>arity(?\<psi>) \<le> ?r\<close>  le_trans[OF i h]] nat_simp_union by simp
   qed
   ultimately
-  show ?thesis using assms P_in_M leq_in_M one_in_M 
-       separation_ax[of "?\<psi>" "[P,leq,one]@env"] 
-       separation_cong[of "##M" "\<lambda>y. (M, [y,P,leq,one]@env \<Turnstile>?\<psi>)"]
-    by simp
+  show ?thesis  
+    apply(rule_tac iffD1)
+     apply(rule separation_cong [of "##M" "\<lambda>y. (M, [y,P,leq,one]@env \<Turnstile>?\<psi>)"], force)
+    apply(simp, rule separation_consI, rule separation_ax)
+    using assms P_in_M leq_in_M one_in_M truth_lemma'_helper_fm_def
+    by auto
 qed
 
+end 
+
+consts forces_fms :: "i \<Rightarrow> i" 
+primrec 
+  "forces_fms(Member(x, y)) = 0"
+  "forces_fms(Equal(x, y)) = 0"
+  "forces_fms(Nand(\<phi>, \<psi>)) = forces_fms(\<phi>) \<union> forces_fms(\<psi>) \<union> { forces(And(\<phi>, \<psi>)), forces(Neg(And(\<phi>, \<psi>))) }"
+  "forces_fms(Forall(\<phi>)) = forces_fms(\<phi>) \<union> {forces(Forall(\<phi>)), truth_lemma'_helper_fm(\<phi>)}" 
+
+context forcing_data_Forces_Theorems begin
 
 lemma truth_lemma:
   assumes 
     "\<phi>\<in>formula" "M_generic(G)"
   shows 
-     "\<And>env. env\<in>list(M) \<Longrightarrow> arity(\<phi>)\<le>length(env) \<Longrightarrow> 
+     "\<And>env. env\<in>list(M) \<Longrightarrow> arity(\<phi>)\<le>length(env) \<Longrightarrow> forces_fms(\<phi>) \<subseteq> \<Phi> \<Longrightarrow>
       (\<exists>p\<in>G. p \<tturnstile> \<phi> env)   \<longleftrightarrow>   M[G], map(val(G),env) \<Turnstile> \<phi>"
   using assms(1)
 proof (induct)
@@ -1391,10 +1479,33 @@ next
   case (Nand \<phi> \<psi>)
   moreover 
   note \<open>M_generic(G)\<close>
-  ultimately
+
+  have bex_iff : "\<And>P Q A. (\<And>x. x \<in> A \<Longrightarrow> P(x) \<longleftrightarrow> Q(x)) \<Longrightarrow> (\<exists>x \<in> A. P(x)) \<longleftrightarrow> (\<exists>x \<in> A. Q(x))" by auto
+
+  have "arity(\<phi>) \<le> length(env) \<and> forces_fms(\<phi>) \<subseteq> \<Phi> \<and> arity(\<psi>) \<le> length(env) \<and> forces_fms(\<psi>) \<subseteq> \<Phi>"
+    using Nand arity_Nand_le[of \<phi> \<psi>] 
+    by auto
+
+  then have H: "(\<exists>p\<in>G. p \<tturnstile> \<phi> env) \<longleftrightarrow> M[G], map(\<lambda>a. val(G, a), env) \<Turnstile> \<phi>" 
+       "(\<exists>p\<in>G. p \<tturnstile> \<psi> env) \<longleftrightarrow> M[G], map(\<lambda>a. val(G, a), env) \<Turnstile> \<psi>" 
+    using Nand by auto 
+
   show ?case 
-    using truth_lemma_And truth_lemma_Neg Forces_Nand_alt 
-      M_genericD map_val_in_MG arity_Nand_le[of \<phi> \<psi>] by auto
+    apply(rule_tac iff_trans)
+    apply(rule bex_iff)
+     apply(rule Forces_Nand_alt) 
+    using assms M_genericD
+          apply auto[1]
+    using Nand arity_Nand_le[of \<phi> \<psi>] 
+         apply auto[5]
+    apply(rule iff_trans, rule truth_lemma_Neg)
+    using Nand assms
+           apply auto[6]
+     apply(rule truth_lemma_And)
+    using Nand assms arity_Nand_le[of \<phi> \<psi>] 
+            apply auto[6]
+    using Nand H map_val_in_MG
+    by auto
 next
   case (Forall \<phi>)
   with \<open>M_generic(G)\<close>
@@ -1410,9 +1521,14 @@ next
     with \<open>p\<in>G\<close> \<open>\<phi>\<in>formula\<close> \<open>env\<in>_\<close> \<open>arity(Forall(\<phi>)) \<le> length(env)\<close>
       Forall(2)[of "Cons(_,env)"] 
     show "M[G], map(val(G),env) \<Turnstile>  Forall(\<phi>)"
-      using pred_le2 map_val_in_MG
-      by (auto iff:GenExtD)
+      apply(subgoal_tac "forces_fms(\<phi>) \<subseteq> \<Phi>")
+      using pred_le2 map_val_in_MG 
+       apply (auto iff:GenExtD)
+      using Forall 
+      by auto
   next
+    have to_rin : "\<And>x. (##M)(x) \<Longrightarrow> x \<in> M" by auto
+
     assume "M[G], map(val(G),env) \<Turnstile> Forall(\<phi>)"
     let ?D1="{d\<in>P. (d \<tturnstile> Forall(\<phi>) env)}"
     let ?D2="{d\<in>P. \<exists>b\<in>M. \<forall>q\<in>P. q\<preceq>d \<longrightarrow> \<not>(q \<tturnstile> \<phi> ([b]@env))}"
@@ -1424,11 +1540,16 @@ next
     have "arity(Forall(\<phi>)) \<le> length(env)" 
       using pred_le \<open>\<phi>\<in>formula\<close> \<open>env\<in>list(M)\<close> by simp
     then
-    have "?D1\<in>M" using Collect_forces ar\<phi> \<open>\<phi>\<in>formula\<close> \<open>env\<in>list(M)\<close> by simp
+    have "?D1\<in>M" 
+      using Forall Collect_forces ar\<phi> \<open>\<phi>\<in>formula\<close> \<open>env\<in>list(M)\<close> by auto
     moreover
-    have "?D2\<in>M" using \<open>env\<in>list(M)\<close> \<open>\<phi>\<in>formula\<close>  truth_lemma' separation_closed ar\<phi>
-                        P_in_M
-      by simp
+    have "?D2\<in>M"
+      apply(rule to_rin, rule separation_closed)
+      apply(rule truth_lemma')
+      
+      using \<open>env\<in>list(M)\<close> \<open>\<phi>\<in>formula\<close>  truth_lemma' separation_closed ar\<phi>
+                        P_in_M Forall
+      by auto
     ultimately
     have "D\<in>M" unfolding D_def using Un_closed by simp
     moreover
@@ -1476,7 +1597,7 @@ next
       obtain b where "b\<in>M" "\<forall>q\<in>P. q\<preceq>d \<longrightarrow>\<not>(q \<tturnstile> \<phi> ([b] @ env))"
         by blast
       moreover from this(1) and  \<open>M[G], _ \<Turnstile>  Forall(\<phi>)\<close> and 
-        Forall(2)[of "Cons(b,env)"] Forall(1,3-4) \<open>M_generic(G)\<close>
+        Forall(2)[of "Cons(b,env)"] Forall(1,3-4) \<open>M_generic(G)\<close> Forall(5)
       obtain p where "p\<in>G" "p\<in>P" "p \<tturnstile> \<phi> ([b] @ env)" 
         using pred_le2 using map_val_in_MG by (auto iff:GenExtD)
       moreover
@@ -1497,7 +1618,7 @@ qed
 subsection\<open>The ``Definition of forcing''\<close>
 lemma definition_of_forcing:
   assumes
-    "p\<in>P" "\<phi>\<in>formula" "env\<in>list(M)" "arity(\<phi>)\<le>length(env)"
+    "p\<in>P" "\<phi>\<in>formula" "env\<in>list(M)" "arity(\<phi>)\<le>length(env)" "forces_fms(\<phi>) \<subseteq> \<Phi>"
   shows
     "(p \<tturnstile> \<phi> env) \<longleftrightarrow>
      (\<forall>G. M_generic(G) \<and> p\<in>G  \<longrightarrow>  M[G], map(val(G),env) \<Turnstile> \<phi>)"
@@ -1546,6 +1667,6 @@ next
 qed
 
 lemmas definability = forces_type 
-end (* forcing_data *)
+end 
 
 end

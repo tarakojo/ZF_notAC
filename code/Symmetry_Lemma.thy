@@ -1,10 +1,9 @@
 theory Symmetry_Lemma
   imports 
-    "Forcing/Forcing_Main" 
     HS_Forces
 begin 
 
-context M_symmetric_system
+context M_symmetric_system_HS_Forces
 begin
 
 lemma symmetry_lemma_base : 

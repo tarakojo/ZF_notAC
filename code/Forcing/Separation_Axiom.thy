@@ -3,7 +3,7 @@ theory Separation_Axiom
   imports Forcing_Theorems Separation_Rename
 begin
 
-context G_generic
+context forcing_data_Forces_Theorems_G_generic
 begin
 
 lemma map_val :
@@ -24,11 +24,15 @@ lemma map_val :
     then show ?case by force
 qed
 
+definition separation_MG_fms where 
+  "separation_MG_fms(\<phi>, l) \<equiv> 
+    forces_fms(And(Member(0,1 #+ l),\<phi>))
+    \<union> {Exists(Exists(And(pair_fm(0, 1, 2), sep_ren(l, forces(And(Member(0, 1 #+ l), \<phi>))))))}" 
 
 lemma Collect_sats_in_MG :
   assumes
     "c\<in>M[G]"
-    "\<phi> \<in> formula" "env\<in>list(M[G])" "arity(\<phi>) \<le> 1 #+ length(env)"
+    "\<phi> \<in> formula" "env\<in>list(M[G])" "arity(\<phi>) \<le> 1 #+ length(env)" "separation_MG_fms(\<phi>, length(env)) \<subseteq> \<Phi>" 
   shows    
     "{x\<in>c. (M[G], [x] @ env \<Turnstile> \<phi>)}\<in> M[G]"
 proof -  
@@ -138,22 +142,29 @@ proof -
         using  definition_of_forcing 
       proof (intro iffI)
         assume a1: "M,  [p,P, leq, one,\<theta>] @ nenv @ [\<pi>] \<Turnstile>  forces(?\<chi>)"
+
+        have H: "forces_fms(And(Member(0,1 #+ length(env)),\<phi>)) \<subseteq> \<Phi>" 
+          using assms separation_MG_fms_def
+          by auto 
         note definition_of_forcing \<open>arity(\<phi>)\<le> 1#+_\<close>
-        with \<open>nenv\<in>_\<close> \<open>arity(?\<chi>) \<le> length([\<theta>] @ nenv @ [\<pi>])\<close> \<open>env\<in>_\<close>
+        with \<open>nenv\<in>_\<close> \<open>arity(?\<chi>) \<le> length([\<theta>] @ nenv @ [\<pi>])\<close> \<open>env\<in>_\<close> H
         have "p \<in> P \<Longrightarrow> ?\<chi>\<in>formula \<Longrightarrow> [\<theta>,\<pi>] \<in> list(M) \<Longrightarrow>
                   M, [p,P, leq, one] @ [\<theta>]@ nenv@[\<pi>] \<Turnstile> forces(?\<chi>) \<Longrightarrow> 
-              \<forall>G. M_generic(G) \<and> p \<in> G \<longrightarrow> M[G],  map(val(G), [\<theta>] @ nenv @[\<pi>]) \<Turnstile>  ?\<chi>"
+              \<forall>G. M_generic(G) \<and> p \<in> G \<longrightarrow> M[G],  map(val(G), [\<theta>] @ nenv @[\<pi>]) \<Turnstile>  ?\<chi>" 
           by auto
         then
         show "\<forall>F. M_generic(F) \<and> p \<in> F \<longrightarrow> 
                   M[F],  map(val(F), [\<theta>] @ nenv @ [\<pi>]) \<Turnstile>  ?\<chi>"
           using  \<open>?\<chi>\<in>formula\<close> \<open>p\<in>P\<close> a1 \<open>\<theta>\<in>M\<close> \<open>\<pi>\<in>M\<close> by simp
       next
+        have H: "forces_fms(And(Member(0,1 #+ length(env)),\<phi>)) \<subseteq> \<Phi>" 
+          using assms separation_MG_fms_def
+          by auto 
         assume "\<forall>F. M_generic(F) \<and> p \<in> F \<longrightarrow> 
                    M[F],  map(val(F), [\<theta>] @ nenv @[\<pi>]) \<Turnstile>  ?\<chi>"
-        with definition_of_forcing [THEN iffD2] \<open>arity(?\<chi>) \<le> length([\<theta>] @ nenv @ [\<pi>])\<close>
+        with definition_of_forcing [THEN iffD2] \<open>arity(?\<chi>) \<le> length([\<theta>] @ nenv @ [\<pi>])\<close> H
         show "M,  [p, P, leq, one,\<theta>] @ nenv @ [\<pi>] \<Turnstile>  forces(?\<chi>)"
-          using  \<open>?\<chi>\<in>formula\<close> \<open>p\<in>P\<close> in_M' 
+          using  \<open>?\<chi>\<in>formula\<close> \<open>p\<in>P\<close> in_M' assms separation_MG_fms_def
           by auto
       qed
       finally 
@@ -227,7 +238,8 @@ proof -
   note  \<open>val(G,\<pi>) = c\<close> (* from the assumptions *)
   with \<open>?\<psi>\<in>formula\<close>  \<open>arity(?\<psi>) \<le> _\<close> in_M \<open>nenv \<in> _\<close> \<open>env \<in> _\<close> \<open>length(nenv) = _\<close> 
   have "?n\<in>M" 
-    using separation_ax leI separation_iff by auto 
+    using separation_ax leI separation_iff assms separation_MG_fms_def 
+    by auto
   from generic 
   have "filter(G)" "G\<subseteq>P" 
     unfolding M_generic_def filter_def by simp_all
@@ -303,11 +315,14 @@ proof -
     with  Eq4 \<open>val(G,\<theta>)=x\<close> \<open>val(G,\<pi>) = c\<close> \<open>x \<in> val(G,\<pi>)\<close> nth \<open>\<theta>\<in>M\<close>
     have Eq5: "M[G],  [val(G,\<theta>)] @ env @[val(G,\<pi>)] \<Turnstile> And(Member(0,1 #+ length(env)),\<phi>)" 
       by auto
+    have H: "forces_fms(And(Member(0,1 #+ length(env)),\<phi>)) \<subseteq> \<Phi>" 
+      using assms separation_MG_fms_def
+      by auto 
         (* Recall ?\<chi> = And(Member(0,1 #+ length(env)),\<phi>) *)
     with \<open>\<theta>\<in>M\<close> \<open>\<pi>\<in>M\<close>  Eq5 \<open>M_generic(G)\<close> \<open>\<phi>\<in>formula\<close> \<open>nenv \<in> _ \<close> \<open>env = _ \<close> map_nenv 
       \<open>arity(?\<chi>) \<le> length([\<theta>] @ nenv @ [\<pi>])\<close>
     have "(\<exists>r\<in>G. M,  [r,P,leq,one,\<theta>] @ nenv @[\<pi>] \<Turnstile> forces(?\<chi>))"
-      using truth_lemma  
+      using truth_lemma assms separation_MG_fms_def
       by auto
     then obtain r where      (* I can't "obtain" this directly *)
       "r\<in>G" "M,  [r,P,leq,one,\<theta>] @ nenv @ [\<pi>] \<Turnstile> forces(?\<chi>)" by auto
@@ -325,7 +340,7 @@ proof -
     with \<open>p\<in>P\<close> \<open>\<phi>\<in>formula\<close> \<open>\<theta>\<in>M\<close> \<open>\<pi>\<in>M\<close> \<open>nenv \<in> _\<close> \<open>arity(?\<chi>) \<le> length([\<theta>] @ nenv @ [\<pi>])\<close>
     have "\<forall>F. M_generic(F) \<and> p \<in> F \<longrightarrow> 
                  M[F],   map(val(F), [\<theta>] @ nenv @[\<pi>]) \<Turnstile>  ?\<chi>"
-      using definition_of_forcing
+      using definition_of_forcing H
       by simp
     with \<open>p\<in>P\<close> \<open>\<theta>\<in>M\<close>  
     have Eq6: "\<exists>\<theta>'\<in>M. \<exists>p'\<in>P.  \<langle>\<theta>,p\<rangle> = <\<theta>',p'> \<and> (\<forall>F. M_generic(F) \<and> p' \<in> F \<longrightarrow> 
@@ -374,7 +389,7 @@ qed
 
 theorem separation_in_MG:
   assumes 
-    "\<phi>\<in>formula" and "arity(\<phi>) \<le> 1 #+ length(env)" and "env\<in>list(M[G])"
+    "\<phi>\<in>formula" and "arity(\<phi>) \<le> 1 #+ length(env)" and "env\<in>list(M[G])" and " separation_MG_fms(\<phi>, length(env)) \<subseteq> \<Phi>"
   shows  
     "separation(##M[G],\<lambda>x. (M[G], [x] @ env \<Turnstile> \<phi>))"
 proof -
@@ -388,7 +403,7 @@ proof -
     moreover note \<open>\<phi> \<in> _\<close> \<open>arity(\<phi>) \<le> _\<close> \<open>env \<in> _\<close>
     ultimately
     have Eq1: "{x\<in>c. (M[G], [x] @ env \<Turnstile> \<phi>)} \<in> M[G]"
-      using Collect_sats_in_MG  by auto
+      using Collect_sats_in_MG assms  by auto
   }
   then 
   show ?thesis 

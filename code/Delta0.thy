@@ -3,6 +3,8 @@ theory Delta0
     Utilities_M
 begin 
 
+thm bool_of_o_def
+
 definition BExists' where "BExists'(n, \<phi>) \<equiv> Exists(And(Member(0, n), \<phi>))"  
 definition BExists where "BExists(n, \<phi>) \<equiv> BExists'(succ(n), \<phi>)" 
 definition BForall where "BForall(n, \<phi>) \<equiv> Neg(BExists(n, Neg(\<phi>)))" 

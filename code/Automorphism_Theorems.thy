@@ -1,10 +1,9 @@
 theory Automorphism_Theorems
   imports 
-    "Forcing/Forcing_Main" 
     Automorphism_M
 begin 
 
-context forcing_data_partial 
+context forcing_data_Automorphism_M
 begin 
 
 lemma Pn_auto_value_in_P_set : 

@@ -1,8 +1,12 @@
 theory SymExt_ZF
-  imports SymExt_Replacement
+  imports SymExt_Replacement "Forcing/Powerset_Axiom" "Forcing/Foundation_Axiom" 
 begin
 
-context M_symmetric_system_G_generic begin 
+locale M_symmetric_system_SymExt_ZF = M_symmetric_system_SymExt_Separation_Base + forcing_data_Powerset_Axiom_G_generic +
+  assumes SymExt_upair_fms : "SymExt_separation_fms(Or(Equal(0, 1), Equal(0, 2)), length([a, b])) \<subseteq> \<Phi>"  
+  and SymExt_Union_fms : "SymExt_separation_fms(Exists(And(Member(1, 0), Member(0, 2))), length([x])) \<subseteq> \<Phi>" 
+  and SymExt_powerset_fms : "SymExt_separation_fms(subset_fm(0, 1), 1) \<union> { is_least_index_of_Vset_contains_witness_fm(Equal(0, 1))} \<subseteq> \<Phi>"
+begin
 
 lemma zero_in_SymExt : "0 \<in> SymExt(G)" 
   using zero_in_M M_subset_SymExt by auto
@@ -29,8 +33,9 @@ proof -
     apply(rule SymExt_separation)
     using SH assms 
        apply auto[3]
-    apply(simp del:FOL_sats_iff pair_abs add: fm_defs nat_simp_union) 
-    done
+     apply(simp del:FOL_sats_iff pair_abs add: fm_defs nat_simp_union) 
+    using SymExt_upair_fms
+    by auto
   have "X = { x \<in> S. x = a \<or> x = b }" 
     unfolding X_def 
     apply(rule iff_eq)
@@ -98,8 +103,9 @@ proof -
     using SH assms 
        apply auto[3]
     unfolding BExists_def BExists'_def 
-    apply(simp del:FOL_sats_iff pair_abs add: fm_defs nat_simp_union) 
-    done
+     apply(simp del:FOL_sats_iff pair_abs add: fm_defs nat_simp_union) 
+    using SymExt_Union_fms
+    by auto
 
   have "T = { z \<in> S. \<exists>y \<in> SymExt(G). y \<in> x \<and> z \<in> y }" 
     unfolding T_def 
@@ -151,7 +157,7 @@ proof -
 
   have "\<exists>S. S \<in> M \<and> S \<subseteq> HS \<and> (\<forall>p\<in>G. \<forall>y\<in>domain(powx'). (\<exists>z\<in>HS. p \<tturnstile>HS Equal(0, 1) [y, z] @ []) \<longleftrightarrow> (\<exists>z\<in>S. p \<tturnstile>HS Equal(0, 1) [y, z] @ []))" 
     apply(rule ex_hs_subset_contains_witnesses)
-    using Un_least_lt powx'H
+    using Un_least_lt powx'H SymExt_powerset_fms
     by auto
   then obtain S where SH : "S \<in> M" "S \<subseteq> HS" "\<forall>p\<in>G. \<forall>y\<in>domain(powx'). (\<exists>z\<in>HS. p \<tturnstile>HS Equal(0, 1) [y, z]) \<longleftrightarrow> (\<exists>z\<in>S. p \<tturnstile>HS Equal(0, 1) [y, z])" 
     by auto
@@ -228,7 +234,7 @@ proof -
     using TH assms subset_fm_def 
        apply auto[3]
     apply(subst arity_subset_fm)
-    using Un_least_lt 
+    using Un_least_lt SymExt_powerset_fms
     by auto
 
   have "U = { y \<in> T. y \<subseteq> x }" 
@@ -307,6 +313,7 @@ lemma SymExt_infinity_ax : "infinity_ax(##SymExt(G))"
   using nat_in_M M_subset_SymExt 
   by auto
 
+(*
 lemma SymExt_M_ZF : "M_ZF(SymExt(G))" 
   unfolding M_ZF_def 
   apply(rule conjI)+
@@ -371,6 +378,7 @@ lemma SymExt_M_ZF_trans : "M_ZF_trans(SymExt(G))"
 
 theorem SymExt_sats_ZF : "SymExt(G) \<Turnstile> ZF" 
   using M_ZF_iff_M_satT SymExt_M_ZF by auto
+*)
 
 end
 end

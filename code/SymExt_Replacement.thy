@@ -4,8 +4,9 @@ theory SymExt_Replacement
     SymExt_Separation_Base
 begin 
 
-context M_symmetric_system_G_generic
+context M_symmetric_system_SymExt_Separation_Base
 begin
+ 
 
 definition is_MVset_fm where "is_MVset_fm(a, V) \<equiv> And(ordinal_fm(a), Exists(And(empty_fm(0), is_transrec_fm(is_HVfrom_fm(8, 2, 1, 0), succ(a), succ(V)))))" 
 
@@ -325,13 +326,13 @@ definition least_indexes_of_Vset_contains_witness where
 
 lemma least_indexes_of_Vset_contains_witness_in_M : 
   fixes \<phi> env x 
-  assumes "\<phi> \<in> formula" "env \<in> list(M)" "arity(\<phi>) \<le> 2 #+ length(env)" "x \<in> M" 
+  assumes "\<phi> \<in> formula" "env \<in> list(M)" "arity(\<phi>) \<le> 2 #+ length(env)" "x \<in> M" "is_least_index_of_Vset_contains_witness_fm(\<phi>) \<in> \<Phi>"
   shows "least_indexes_of_Vset_contains_witness(\<phi>, env, x) \<in> M" 
 proof -
   have strep : "strong_replacement(##M, \<lambda>u v. sats(M, is_least_index_of_Vset_contains_witness_fm(\<phi>), [u, v] @ [P, leq, one, <\<F>, \<G>, P, P_auto>] @ env))" 
     apply(rule replacement_ax, rule is_least_index_of_Vset_contains_witness_fm_type)
     using assms \<F>_in_M \<G>_in_M P_in_M P_auto_in_M leq_in_M one_in_M pair_in_M_iff
-      apply auto[2]
+      apply auto[3]
     apply(rule le_trans, rule arity_is_least_index_of_Vset_contains_witness_fm)
     using assms Un_least_lt
       apply simp_all
@@ -365,7 +366,7 @@ qed
 
 lemma ex_hs_subset_contains_witnesses : 
   fixes \<phi> env x 
-  assumes "\<phi> \<in> formula" "env \<in> list(M)" "arity(\<phi>) \<le> 2 #+ length(env)" "x \<in> M" 
+  assumes "\<phi> \<in> formula" "env \<in> list(M)" "arity(\<phi>) \<le> 2 #+ length(env)" "x \<in> M" "is_least_index_of_Vset_contains_witness_fm(\<phi>) \<in> \<Phi>"
   shows "\<exists>S. S \<in> M \<and> S \<subseteq> HS \<and> (\<forall>p \<in> G. \<forall>y \<in> domain(x). (\<exists>z \<in> HS. p \<tturnstile>HS \<phi> ([y, z] @ env)) \<longleftrightarrow> (\<exists>z \<in> S. p \<tturnstile>HS \<phi> ([y, z] @ env)))" 
 proof-  
   define A where "A \<equiv> least_indexes_of_Vset_contains_witness(\<phi>, env, x)" 
@@ -466,6 +467,7 @@ qed
 lemma ex_SymExt_elem_contains_witnesses : 
   fixes \<phi> env x 
   assumes "\<phi> \<in> formula" "env \<in> list(SymExt(G))" "arity(\<phi>) \<le> 2 #+ length(env)" "x \<in> SymExt(G)" 
+          "is_least_index_of_Vset_contains_witness_fm(\<phi>) \<in> \<Phi>" "forcesHS_fms(\<phi>) \<subseteq> \<Phi>"
   shows "\<exists>S \<in> SymExt(G). \<forall>y \<in> x. ((\<exists>z \<in> SymExt(G). sats(SymExt(G), \<phi>, [y, z] @ env)) \<longleftrightarrow> (\<exists>z \<in> S. sats(SymExt(G), \<phi>, [y, z] @ env)))"
 proof - 
   obtain x' where x'H : "x' \<in> HS" "val(G, x') = x" using SymExt_def assms by auto
@@ -531,9 +533,14 @@ proof -
   qed
 qed
 
+definition SymExt_replacement_fms where 
+  "SymExt_replacement_fms(\<phi>, l) \<equiv> 
+      forcesHS_fms(\<phi>) \<union> {is_least_index_of_Vset_contains_witness_fm(\<phi>)} 
+      \<union> SymExt_separation_fms(Exists(And(Member(0, 2 #+ l), \<phi>)), succ(l))" 
+
 lemma SymExt_replacement :
   fixes \<phi> env
-  assumes "\<phi> \<in> formula" "arity(\<phi>) \<le> 2 #+ length(env)" "env \<in> list(SymExt(G))" 
+  assumes "\<phi> \<in> formula" "arity(\<phi>) \<le> 2 #+ length(env)" "env \<in> list(SymExt(G))" "SymExt_replacement_fms(\<phi>, length(env)) \<subseteq> \<Phi>"
   shows "strong_replacement(##SymExt(G), \<lambda>x y. sats(SymExt(G), \<phi>, [x, y] @ env))" 
 
   unfolding strong_replacement_def 
@@ -544,7 +551,7 @@ proof(rule rallI, rule impI)
 
   have "\<exists>Y \<in> SymExt(G). \<forall>x \<in> X. ((\<exists>y \<in> SymExt(G). sats(SymExt(G), \<phi>, [x, y] @ env)) \<longleftrightarrow> (\<exists>y \<in> Y. sats(SymExt(G), \<phi>, [x, y] @ env)))"
     apply(rule ex_SymExt_elem_contains_witnesses)
-    using assms assms1
+    using assms assms1 SymExt_replacement_fms_def
     by auto
   then obtain Y where YH : "Y \<in> SymExt(G)" "\<forall>x \<in> X. ((\<exists>y \<in> SymExt(G). sats(SymExt(G), \<phi>, [x, y] @ env)) \<longleftrightarrow> (\<exists>y \<in> Y. sats(SymExt(G), \<phi>, [x, y] @ env)))" by auto
 
@@ -588,7 +595,7 @@ proof(rule rallI, rule impI)
 
   have "?A \<in> SymExt(G)" 
     apply(rule SymExt_separation)
-    using YH assms assms1 \<psi>_type arity_\<psi>
+    using YH assms assms1 \<psi>_type arity_\<psi> SymExt_replacement_fms_def \<psi>_def
     by auto
   then have "U \<in> SymExt(G)" using \<open>U = ?A\<close> by simp
 

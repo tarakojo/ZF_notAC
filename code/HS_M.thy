@@ -1,6 +1,5 @@
 theory HS_M
   imports 
-    "Forcing/Forcing_Main" 
     HS_Definition
 begin 
 
@@ -196,8 +195,43 @@ definition is_sym_fm where
   "is_sym_fm(p, G, x, s) \<equiv> 
     Forall(Iff(Member(0, s #+ 1), is_sym_elem_fm(p #+ 1, G #+ 1, x #+ 1, 0)))" 
 
+(* 
+  0 ... x 
+  1 ... <\<F>, \<G>, P, P_auto>
+  2 ... \<F> 
+  3 ... <\<G>, P, P_auto> 
+  4 ... \<G>
+  5 ... <P, P_auto> 
+  6 ... P 
+  7 ... P_auto 
+  8 ... domain(x) 
+  9 ... sym(x) 
+*) 
 
-context M_symmetric_system
+definition His_HS_M_cond_fm where 
+  "His_HS_M_cond_fm(x', g) \<equiv> 
+    Exists(Exists(Exists(Exists(Exists(Exists(Exists(Exists(Exists(Exists(
+      And(pair_fm(0, 1, x' #+ 10), 
+      And(pair_fm(2, 3, 1), 
+      And(pair_fm(4, 5, 3), 
+      And(pair_fm(6, 7, 5), 
+      And(domain_fm(0, 8), 
+      And(is_P_name_fm(6, 0), 
+      And(apply_all_1_fm(g #+ 10, 8, 1), 
+      And(is_sym_fm(6, 4, 0, 9), Member(9, 2)))))))))))))))))))" 
+
+definition His_HS_M_cond_fm_ren where "His_HS_M_cond_fm_ren(i, j) \<equiv> { <0, i>, <1, j> }" 
+definition His_HS_M_cond_fm' where "His_HS_M_cond_fm'(i, j) \<equiv> ren(His_HS_M_cond_fm(0, 1))`2`(succ(i) \<union> succ(j))`His_HS_M_cond_fm_ren(i, j)" 
+
+definition His_HS_M_fm where "His_HS_M_fm(x', g, v) \<equiv> Forall(Iff(Member(0, v #+ 1), And(His_HS_M_cond_fm'(x' #+ 1, g #+ 1), empty_fm(0))))" 
+
+definition is_HS_fm where 
+  "is_HS_fm(FGppauto, x) \<equiv> Exists(And(is_memrel_wftrec_fm(His_HS_M_fm(2, 1, 0), x #+ 1, FGppauto #+ 1, 0), is_1_fm(0)))" 
+
+locale M_symmetric_system_HS_M = M_symmetric_system  + 
+  assumes HS_M_is_sym_elem_fm : "is_sym_elem_fm(1,2,3,0) \<in> \<Phi>" 
+  and HS_M_is_HS_fm_rep_for_recfun : "rep_for_recfun_fm(His_HS_M_fm(2, 1, 0), 0, 1, 2) \<in> \<Phi>" 
+  and HS_M_HS_separation_is_HS_fm : "is_HS_fm(1, 0) \<in> \<Phi>" 
 begin
 
 lemma is_sym_fm_type : 
@@ -282,8 +316,8 @@ proof -
   have "separation(##M, \<lambda>v. sats(M, is_sym_elem_fm(1, 2, 3, 0), [v] @ [P, \<G>, x]))" 
     apply(rule separation_ax)
       apply(rule is_sym_elem_fm_type)
-    using P_in_M \<G>_in_M assms P_name_in_M
-         apply auto[5]
+    using P_in_M \<G>_in_M assms P_name_in_M HS_M_is_sym_elem_fm
+         apply auto[6]
     apply(rule le_trans, rule arity_is_sym_elem_fm)
         apply auto[4]
     apply simp 
@@ -309,33 +343,7 @@ qed
 
 end
 
-(* 
-  0 ... x 
-  1 ... <\<F>, \<G>, P, P_auto>
-  2 ... \<F> 
-  3 ... <\<G>, P, P_auto> 
-  4 ... \<G>
-  5 ... <P, P_auto> 
-  6 ... P 
-  7 ... P_auto 
-  8 ... domain(x) 
-  9 ... sym(x) 
-*) 
-
-definition His_HS_M_cond_fm where 
-  "His_HS_M_cond_fm(x', g) \<equiv> 
-    Exists(Exists(Exists(Exists(Exists(Exists(Exists(Exists(Exists(Exists(
-      And(pair_fm(0, 1, x' #+ 10), 
-      And(pair_fm(2, 3, 1), 
-      And(pair_fm(4, 5, 3), 
-      And(pair_fm(6, 7, 5), 
-      And(domain_fm(0, 8), 
-      And(is_P_name_fm(6, 0), 
-      And(apply_all_1_fm(g #+ 10, 8, 1), 
-      And(is_sym_fm(6, 4, 0, 9), Member(9, 2)))))))))))))))))))" 
-
-
-context M_symmetric_system
+context M_symmetric_system_HS_M
 begin
 
 lemma His_HS_M_cond_fm_type : 
@@ -390,10 +398,7 @@ lemma arity_His_HS_M_cond_fm :
 
 end
 
-definition His_HS_M_cond_fm_ren where "His_HS_M_cond_fm_ren(i, j) \<equiv> { <0, i>, <1, j> }" 
-definition His_HS_M_cond_fm' where "His_HS_M_cond_fm'(i, j) \<equiv> ren(His_HS_M_cond_fm(0, 1))`2`(succ(i) \<union> succ(j))`His_HS_M_cond_fm_ren(i, j)" 
-
-context M_symmetric_system
+context M_symmetric_system_HS_M
 begin
 
 lemma His_HS_M_cond_fm'_type : 
@@ -458,9 +463,7 @@ lemma sats_His_HS_M_cond_fm'_iff :
 
 end
 
-definition His_HS_M_fm where "His_HS_M_fm(x', g, v) \<equiv> Forall(Iff(Member(0, v #+ 1), And(His_HS_M_cond_fm'(x' #+ 1, g #+ 1), empty_fm(0))))" 
-
-context M_symmetric_system
+context M_symmetric_system_HS_M
 begin
 
 lemma His_HS_M_fm_type : 
@@ -555,10 +558,7 @@ qed
 
 end
 
-definition is_HS_fm where 
-  "is_HS_fm(FGppauto, x) \<equiv> Exists(And(is_memrel_wftrec_fm(His_HS_M_fm(2, 1, 0), x #+ 1, FGppauto #+ 1, 0), is_1_fm(0)))" 
-
-context M_symmetric_system
+context M_symmetric_system_HS_M
 begin
 
 lemma is_HS_fm_type : 
@@ -627,7 +627,7 @@ proof -
      apply(rule_tac iff_trans, rule_tac sats_Exists_iff, simp add:assms, rule_tac bex_iff)+
      apply(rule iff_trans, rule sats_And_iff, simp add:assms, rule iff_conjI2, simp add:assms)+
       apply(rename_tac symx domx pauto p ppauto G Gppauto F FGppauto x)
-      apply(rule_tac b="forcing_data.P_names(p, M)" and a=P_names in ssubst, force)
+      apply(rule_tac b="forcing_data_Forces_Definition.P_names(p, M)" and a=P_names in ssubst, force)
       apply(rule sats_is_P_name_fm_iff)
     using assms
           apply auto[5]
@@ -731,8 +731,9 @@ proof -
        apply(simp add:His_HS_M_def)
       apply(rule His_HS_eq)
              apply auto[5]
-     apply(rule iff_flip, rule sats_His_HS_M_fm_iff)
-           apply auto[7]
+      apply(rule iff_flip, rule sats_His_HS_M_fm_iff)
+    using HS_M_is_HS_fm_rep_for_recfun
+           apply auto[8]
     apply(rule sats_is_1_fm_iff)
     using assms 
     by auto
@@ -749,7 +750,7 @@ proof -
   have sep : "separation(##M, \<lambda>x. sats(M, is_HS_fm(1, 0), [x] @ [<\<F>, \<G>, P, P_auto>]))"
     apply(rule separation_ax)
     apply(rule is_HS_fm_type)
-    using assms \<F>_in_M \<G>_in_M P_in_M P_auto_in_M pair_in_M_iff  
+    using assms \<F>_in_M \<G>_in_M P_in_M P_auto_in_M pair_in_M_iff HS_M_HS_separation_is_HS_fm
        apply auto[4]
     apply(rule le_trans, rule arity_is_HS_fm, simp, simp)
     apply(rule Un_least_lt)

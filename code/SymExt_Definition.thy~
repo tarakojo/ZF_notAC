@@ -1,0 +1,79 @@
+theory SymExt_Definition
+  imports 
+    HS_Theorems
+begin 
+
+context M_symmetric_system 
+begin 
+
+definition SymExt where "SymExt(G) \<equiv> { val(G, x). x \<in> HS }" 
+
+end 
+
+
+locale M_symmetric_system_G_generic = M_symmetric_system + G_generic
+begin
+
+lemma M_subset_SymExt : "M \<subseteq> SymExt(G)" 
+proof (rule subsetI)
+  fix x assume assms : "x \<in> M" 
+  then have "check(x) \<in> HS" using check_in_HS by auto 
+  then have "val(G, check(x)) \<in> SymExt(G)" unfolding SymExt_def by auto 
+  then show "x \<in> SymExt(G)" using valcheck one_in_G assms one_in_P generic by auto 
+qed
+
+lemma SymExt_subset_GenExt : "SymExt(G) \<subseteq> GenExt(G)" 
+  apply(rule subsetI)
+  unfolding SymExt_def GenExt_def 
+  using HS_iff P_name_in_M 
+  by auto
+
+lemma Transset_SymExt : " Transset(SymExt(G))" 
+  unfolding Transset_def 
+proof (rule ballI; rule subsetI)
+  fix x y assume assms : "x \<in> SymExt(G)" "y \<in> x" 
+  then obtain x' where x'H : "x = val(G, x')" "x' \<in> HS" unfolding SymExt_def by auto
+  then have "\<exists>y' \<in> domain(x') . y = val(G, y')" using assms elem_of_val by blast 
+  then obtain y' where y'H : "y' \<in> domain(x')" "y = val(G, y')" using elem_of_val assms by auto
+  then have y'inHS : "y' \<in> HS" using HS_iff x'H by auto 
+  then show "y \<in> SymExt(G)" unfolding SymExt_def y'H by auto
+qed
+
+lemma nonempty_SymExt : "SymExt(G) \<noteq> 0" 
+  apply(subgoal_tac "0 \<in> SymExt(G)", force)
+  using zero_in_M M_subset_SymExt
+  by auto
+
+
+lemma ex_HS_name_list : 
+  fixes l 
+  assumes "l \<in> list(SymExt(G))" 
+  shows "\<exists>l' \<in> list(HS). map(val(G), l') = l" 
+
+  using assms
+proof(induct)
+  case Nil
+  then show ?case 
+    apply(rule_tac x=Nil in bexI)
+    by auto
+next
+  case (Cons h t)
+  then have H: "h \<in> SymExt(G) \<and> (\<exists>t'\<in>list(HS). map(\<lambda>a. val(G, a), t') = t)" by auto 
+  then obtain t' where t'H: "t' \<in> list(HS)" "map(\<lambda>a. val(G, a), t') = t" by auto 
+  obtain h' where h'H :"val(G, h') = h" "h' \<in> HS" 
+    using H
+    unfolding SymExt_def
+    by auto 
+  show ?case 
+    apply(rule_tac x="Cons(h', t')" in bexI)
+    using h'H t'H 
+    by auto
+qed
+
+lemma SymExt_trans : "x \<in> SymExt(G) \<Longrightarrow> y \<in> x \<Longrightarrow> y \<in> SymExt(G)" 
+  using Transset_SymExt 
+  unfolding Transset_def
+  by auto
+
+end
+end 

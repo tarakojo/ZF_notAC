@@ -1,13 +1,10 @@
 theory SymExt_Separation
   imports 
-    "Forcing/Forcing_Main" 
     HS_Forces
     Symmetry_Lemma
 begin 
 
-context M_symmetric_system_G_generic
-begin
-
+context M_symmetric_system_HS_Forces_G_generic begin 
 
 definition INTsym where "INTsym(l) \<equiv> (\<Inter>H \<in> set_of_list(map(sym, l)). H)"
 
@@ -130,9 +127,12 @@ lemma sats_sep_forces_pair_fm_iff :
   using assms HS_iff P_name_in_M
   by auto
 
+definition sep_forces_pair_in_HS_helper_fm where 
+  "sep_forces_pair_in_HS_helper_fm(\<phi>) = Exists(Exists(And(pair_fm(0, 1, 2), ren_sep_forces(forcesHS(\<phi>)))))" 
+
 lemma sep_forces_pair_in_HS : 
   fixes x env \<phi>
-  assumes "x \<in> HS" "env \<in> list(HS)" "\<phi> \<in> formula" "arity(\<phi>) \<le> succ(length(env))" 
+  assumes "x \<in> HS" "env \<in> list(HS)" "\<phi> \<in> formula" "arity(\<phi>) \<le> succ(length(env))" "sep_forces_pair_in_HS_helper_fm(\<phi>) \<in> \<Phi>" 
   shows "{ <y, p> \<in> domain(x) \<times> P. p \<tturnstile>HS \<phi> [y] @ env } \<in> HS"
 proof - 
   define X where "X \<equiv> { <y, p> \<in> domain(x) \<times> P. p \<tturnstile>HS \<phi> [y] @ env }" 
@@ -149,8 +149,8 @@ proof -
       apply(rule separation_notation)
        apply(rule separation_ax)
       unfolding sep_forces_pair_fm_def
-      using forcesHS_type ren_sep_forces_type assms 
-         apply force 
+      using forcesHS_type ren_sep_forces_type assms sep_forces_pair_in_HS_helper_fm_def
+         apply (force , simp)
       using pair_in_M_iff P_in_M leq_in_M one_in_M \<F>_in_M \<G>_in_M P_auto_in_M assms envin 
         apply force 
        apply simp
@@ -316,9 +316,14 @@ proof -
     by simp
 qed
 
+definition SymExt_separation_fms where 
+  "SymExt_separation_fms(\<phi>, l) = forcesHS_fms(And(Member(0, succ(l)), \<phi>)) 
+                               \<union> {sep_forces_pair_in_HS_helper_fm(And(Member(0, succ(l)), \<phi>))}" 
+
 lemma SymExt_separation : 
   fixes x env \<phi> 
   assumes "x \<in> SymExt(G)" "env \<in> list(SymExt(G))" "\<phi> \<in> formula" "arity(\<phi>) \<le> succ(length(env))" 
+          "SymExt_separation_fms(\<phi>, length(env)) \<subseteq> \<Phi>" 
   shows "{ y \<in> x. sats(SymExt(G), \<phi>, [y] @ env) } \<in> SymExt(G)"
 proof - 
   have "\<exists>env'\<in>list(HS). map(val(G), env') = env" 
@@ -347,7 +352,9 @@ proof -
     using assms x'H env'H leneq
       apply auto[2]
     apply(rule_tac j="succ(length(env))" in le_trans)
-    using assms x'H env'H leneq
+    using assms x'H env'H leneq 
+      apply auto[2]
+    using assms SymExt_separation_fms_def leneq
     by auto
   then have "val(G, X) \<in> SymExt(G)" using SymExt_def by auto
 
@@ -388,6 +395,8 @@ proof -
         apply auto[2]
       apply(rule_tac j="succ(length(env))" in le_trans)
       using assms env'H x'H 
+        apply auto[2]
+      using SymExt_separation_fms_def assms leneq
       by auto
     also have "... \<longleftrightarrow> (\<exists>y' \<in> domain(x'). val(G, y') = y \<and> y \<in> x \<and> sats(SymExt(G), \<phi>, [y] @ map(val(G), env' @ [x'])))"
       apply(rule bex_iff, rule iff_conjI2, simp)

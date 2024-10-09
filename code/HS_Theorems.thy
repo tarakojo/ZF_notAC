@@ -1,10 +1,9 @@
 theory HS_Theorems
   imports 
-    "Forcing/Forcing_Main" 
     HS_M
 begin 
 
-context M_symmetric_system
+context M_symmetric_system_HS_M
 begin
     
 lemma check_in_HS : "x \<in> M \<Longrightarrow> check(x) \<in> HS" 

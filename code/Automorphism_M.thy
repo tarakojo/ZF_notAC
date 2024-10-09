@@ -1,7 +1,5 @@
 theory Automorphism_M
   imports 
-    "Forcing/Forcing_Main" 
-    P_Names_M
     Automorphism_Definition
 begin 
 
@@ -37,8 +35,49 @@ definition is_P_auto_fm where
                                   Implies
                                    (fun_apply_fm(6, 4, 1),
                                     Implies(pair_fm(5, 4, 3), Implies(pair_fm(2, 1, 0), Iff(Member(3, 8), Member(0, 8)))))))))))))))  " 
+definition HPn_auto_M_fm where 
+  "HPn_auto_M_fm =  Exists
+             (Exists
+               (Exists
+                 (Exists
+                   (Exists
+                     (Exists
+                       (Exists
+                         (Exists
+                           (And(pair_fm(7, 6, 8),
+                                And(pair_fm(1, 0, 9),
+                                    And
+(pair_fm(3, 0, 4),
+ And(pair_fm(3, 2, 5),
+     And(Member(5, 1),
+         And(function_fm(0),
+             And(fun_apply_fm(0, 2, 6),
+                 fun_apply_fm(10, 4, 7))))))))))))))))"
 
-context forcing_data_partial 
+definition HPn_auto_M_fm' where 
+  "HPn_auto_M_fm' \<equiv> 
+  Forall
+             (Iff(Member(0, 1),
+                  Exists
+                   (Exists
+                     (Exists
+                       (Exists
+                         (Exists
+                           (Exists
+                             (Exists
+                               (Exists
+                                 (And(pair_fm(7, 6, 8),
+                                      And(pair_fm(1, 0, 11),
+                                          And(pair_fm(3, 0, 4),
+                                              And(pair_fm(3, 2, 5),
+ And(Member(5, 1),
+     And(function_fm(0), And(fun_apply_fm(0, 2, 6), fun_apply_fm(10, 4, 7)))))))))))))))))) " 
+
+
+locale forcing_data_Automorphism_M = forcing_data_partial + 
+  assumes is_P_auto_fm : "is_P_auto_fm \<in> \<Phi>" 
+  and HPn_auto_fm : "HPn_auto_fm \<in> \<Phi>" 
+  and Automorphism_M_rep_for_recfun_fm : "rep_for_recfun_fm(HPn_auto_M_fm', 0, 1, 2) \<in> \<Phi>" 
 begin 
 
 lemma is_P_auto_fm_sats_iff : 
@@ -68,6 +107,7 @@ lemma P_auto_in_M : "P_auto \<in> M"
 proof - 
   have "separation(##M, \<lambda>\<pi>. sats(M, is_P_auto_fm, [\<pi>]@[P, leq]))" 
     apply(rule_tac separation_ax) 
+    using is_P_auto_fm
     unfolding is_P_auto_fm_def
     using P_in_M leq_in_M 
       apply simp_all 
@@ -288,26 +328,9 @@ schematic_goal HPn_auto_M_fm_auto:
 
 end
 
-definition HPn_auto_M_fm where 
-  "HPn_auto_M_fm =  Exists
-             (Exists
-               (Exists
-                 (Exists
-                   (Exists
-                     (Exists
-                       (Exists
-                         (Exists
-                           (And(pair_fm(7, 6, 8),
-                                And(pair_fm(1, 0, 9),
-                                    And
-(pair_fm(3, 0, 4),
- And(pair_fm(3, 2, 5),
-     And(Member(5, 1),
-         And(function_fm(0),
-             And(fun_apply_fm(0, 2, 6),
-                 fun_apply_fm(10, 4, 7))))))))))))))))"
 
-context forcing_data_partial 
+
+context forcing_data_Automorphism_M
 begin 
 
 schematic_goal HPn_auto_M_fm'_auto:
@@ -324,27 +347,7 @@ schematic_goal HPn_auto_M_fm'_auto:
 
 end
 
-definition HPn_auto_M_fm' where 
-  "HPn_auto_M_fm' \<equiv> 
-  Forall
-             (Iff(Member(0, 1),
-                  Exists
-                   (Exists
-                     (Exists
-                       (Exists
-                         (Exists
-                           (Exists
-                             (Exists
-                               (Exists
-                                 (And(pair_fm(7, 6, 8),
-                                      And(pair_fm(1, 0, 11),
-                                          And(pair_fm(3, 0, 4),
-                                              And(pair_fm(3, 2, 5),
- And(Member(5, 1),
-     And(function_fm(0), And(fun_apply_fm(0, 2, 6), fun_apply_fm(10, 4, 7)))))))))))))))))) " 
-
-
-context forcing_data_partial 
+context forcing_data_Automorphism_M
 begin 
 
 definition HPn_auto_M where 
@@ -384,7 +387,7 @@ proof -
 
   have "separation(##M, \<lambda>elem . sats(M, HPn_auto_M_fm, [elem] @ [x_pi, g]))" 
     apply (rule_tac separation_ax) 
-    apply (simp add : HPn_auto_M_fm_def) 
+    apply (simp add : HPn_auto_M_fm_def, simp add:HPn_auto_fm) 
     apply (simp add : assms) 
     unfolding HPn_auto_M_fm_def 
     apply (simp del:FOL_sats_iff pair_abs add: fm_defs nat_simp_union) 
@@ -511,7 +514,7 @@ end
 definition is_Pn_auto_fm where "is_Pn_auto_fm(p, pi, x, v) \<equiv> And(is_P_name_fm(p, x), is_memrel_wftrec_fm(HPn_auto_M_fm', x, pi, v))" 
 
 
-context forcing_data_partial 
+context forcing_data_Automorphism_M
 begin 
 
 lemma is_Pn_auto_fm_type : 
@@ -577,10 +580,11 @@ proof -
       apply(rule HPn_auto_M_in_M)
         apply auto[3]
      apply(rule HPn_auto_M_eq)
-    using assms
+    using assms 
             apply auto[6]
     apply(rule iff_trans, rule iff_flip)
-     apply(rule HPn_auto_M_fm'_sats_iff)
+      apply(rule HPn_auto_M_fm'_sats_iff)
+    using Automorphism_M_rep_for_recfun_fm
     by auto
   also have "... \<longleftrightarrow> x \<in> P_names \<and> v = Pn_auto(\<pi>)`x" 
     apply(rule iff_conjI2, simp)
@@ -612,7 +616,8 @@ lemma Pn_auto_value_in_M :
            apply(simp add:P_auto_def)
   unfolding is_P_auto_def bij_def inj_def 
   apply auto[6]
-  apply(rule iff_trans, rule iff_flip, rule HPn_auto_M_fm'_sats_iff)
+   apply(rule iff_trans, rule iff_flip, rule HPn_auto_M_fm'_sats_iff)
+  using Automorphism_M_rep_for_recfun_fm
       apply auto
   done
 

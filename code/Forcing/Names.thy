@@ -268,7 +268,7 @@ proof(intro subsetI)
 qed
 
 
-context M_ctm
+context M_ZF_Fragment_Interface
 begin
 
 lemma upairM : "x \<in> M \<Longrightarrow> y \<in> M \<Longrightarrow> {x,y} \<in> M"
@@ -280,10 +280,11 @@ lemma singletonM : "a \<in> M \<Longrightarrow> {a} \<in> M"
 lemma Rep_simp : "Replace(u,\<lambda> y z . z = f(y)) = { f(y) . y \<in> u}"
   by(auto)
 
-end (* M_ctm *)
+end  
 
 subsection\<open>Values and check-names\<close>
-context forcing_data
+
+context forcing_data 
 begin
 
 definition
@@ -707,7 +708,69 @@ lemma sats_is_Hcheck_fm [simp]:
         is_Hcheck(nth(x,env),nth(y,env),nth(z,env),nth(u,env))"
   using sats_Replace_fm unfolding is_Hcheck_def is_Hcheck_fm_def
   by simp
+end 
 
+(* check if this should go to Relative! *)
+definition
+  is_singleton :: "[i\<Rightarrow>o,i,i] \<Rightarrow> o" where
+  "is_singleton(A,x,z) \<equiv> \<exists>c[A]. empty(A,c) \<and> is_cons(A,x,c,z)"
+
+lemma (in M_trivial) singleton_abs[simp] : "\<lbrakk> M(x) ; M(s) \<rbrakk> \<Longrightarrow> is_singleton(M,x,s) \<longleftrightarrow> s = {x}"
+  unfolding is_singleton_def using nonempty by simp
+
+definition
+  singleton_fm :: "[i,i] \<Rightarrow> i" where
+  "singleton_fm(i,j) \<equiv> Exists(And(empty_fm(0), cons_fm(succ(i),0,succ(j))))"
+
+lemma singleton_type[TC] : "\<lbrakk> x \<in> nat; y \<in> nat \<rbrakk> \<Longrightarrow> singleton_fm(x,y) \<in> formula"
+  unfolding singleton_fm_def by simp
+
+lemma is_singleton_iff_sats:
+  "\<lbrakk> nth(i,env) = x; nth(j,env) = y;
+          i \<in> nat; j\<in>nat ; env \<in> list(A)\<rbrakk>
+       \<Longrightarrow> is_singleton(##A,x,y) \<longleftrightarrow> sats(A, singleton_fm(i,j), env)"
+  unfolding is_singleton_def singleton_fm_def by simp
+
+context forcing_data 
+begin 
+
+(* Internalization and absoluteness of rcheck *)
+definition
+  is_rcheck :: "[i,i] \<Rightarrow> o" where
+  "is_rcheck(x,z) \<equiv> \<exists>r\<in>M. tran_closure(##M,r,z) \<and> (\<exists>ec\<in>M. membership(##M,ec,r) \<and>
+                           (\<exists>s\<in>M. is_singleton(##M,x,s) \<and>  is_eclose(##M,s,ec)))"
+
+lemma rcheck_abs :
+  "\<lbrakk> x\<in>M ; r\<in>M \<rbrakk> \<Longrightarrow> is_rcheck(x,r) \<longleftrightarrow> r = rcheck(x)"
+  unfolding rcheck_def is_rcheck_def
+  using singletonM trancl_closed Memrel_closed eclose_closed by simp
+
+schematic_goal rcheck_fm_auto:
+  assumes
+    "i \<in> nat" "j \<in> nat" "env \<in> list(M)"
+  shows
+    "is_rcheck(nth(i,env),nth(j,env)) \<longleftrightarrow> sats(M,?rch(i,j),env)"
+  unfolding is_rcheck_def
+  by (insert assms ; (rule sep_rules is_singleton_iff_sats is_eclose_iff_sats
+        trans_closure_fm_iff_sats | simp)+)
+
+synthesize "rcheck_fm" from_schematic rcheck_fm_auto
+
+(* \<exists>rch\<in>M. is_rcheck(x,rch) \<and> is_wfrec(##M,is_Hcheck(one),rch,x,z) *)
+definition
+  check_fm :: "[i,i,i] \<Rightarrow> i" where
+  "check_fm(x,o,z) \<equiv> Exists(And(rcheck_fm(1#+x,0),
+                      is_wfrec_fm(is_Hcheck_fm(6#+o,2,1,0),0,1#+x,1#+z)))"
+
+end
+
+locale forcing_data_Names = forcing_data + 
+  assumes names_PHcheck_fm : "PHcheck_fm(2,3,0,1) \<in> \<Phi>" 
+  and names_Hcheck_fm : "Exists(And(pair_fm(1,0,2), is_wfrec_fm(is_Hcheck_fm(8,2,1,0),4,1,0))) \<in> \<Phi>" 
+  and names_check_fm : "check_fm(0,2,1) \<in> \<Phi>" 
+  and names_G_dot_fm : "Exists(And(check_fm(1, 3, 0), pair_fm(0, 1, 2))) \<in> \<Phi>" 
+
+begin
 
 (* instance of replacement for hcheck *)
 lemma wfrec_Hcheck :
@@ -740,7 +803,7 @@ proof -
     by (simp add:nat_simp_union)
   then
   have "strong_replacement(##M,\<lambda>x z. sats(M,?f,[x,z,one,rcheck(X)]))"
-    using replacement_ax 1 artyf \<open>X\<in>M\<close> rcheck_in_M one_in_M by simp
+    using replacement_ax 1 artyf names_Hcheck_fm \<open>X\<in>M\<close> rcheck_in_M one_in_M by simp
   then
   have "strong_replacement(##M,\<lambda>x z.
           \<exists>y\<in>M. pair(##M,x,y,z) & is_wfrec(##M, is_Hcheck(one),rcheck(X), x, y))"
@@ -761,7 +824,7 @@ proof -
     by (simp add:nat_simp_union)
   with \<open>f\<in>M\<close>
   have "strong_replacement(##M,\<lambda>x y. sats(M,PHcheck_fm(2,3,0,1),[x,y,one,f]))"
-    using replacement_ax one_in_M by simp
+    using replacement_ax one_in_M names_PHcheck_fm by simp
   with \<open>f\<in>M\<close>
   show ?thesis using one_in_M unfolding strong_replacement_def univalent_def by simp
 qed
@@ -812,52 +875,10 @@ lemma check_in_M : "x\<in>M \<Longrightarrow> check(x) \<in> M"
     Hcheck_closed relation2_Hcheck trans_wfrec_closed[of "rcheck(x)" x "is_Hcheck(one)" Hcheck]
   by (simp flip: setclass_iff)
 
-end (* forcing_data *)
+end
 
-(* check if this should go to Relative! *)
-definition
-  is_singleton :: "[i\<Rightarrow>o,i,i] \<Rightarrow> o" where
-  "is_singleton(A,x,z) \<equiv> \<exists>c[A]. empty(A,c) \<and> is_cons(A,x,c,z)"
+context forcing_data_Names begin
 
-lemma (in M_trivial) singleton_abs[simp] : "\<lbrakk> M(x) ; M(s) \<rbrakk> \<Longrightarrow> is_singleton(M,x,s) \<longleftrightarrow> s = {x}"
-  unfolding is_singleton_def using nonempty by simp
-
-definition
-  singleton_fm :: "[i,i] \<Rightarrow> i" where
-  "singleton_fm(i,j) \<equiv> Exists(And(empty_fm(0), cons_fm(succ(i),0,succ(j))))"
-
-lemma singleton_type[TC] : "\<lbrakk> x \<in> nat; y \<in> nat \<rbrakk> \<Longrightarrow> singleton_fm(x,y) \<in> formula"
-  unfolding singleton_fm_def by simp
-
-lemma is_singleton_iff_sats:
-  "\<lbrakk> nth(i,env) = x; nth(j,env) = y;
-          i \<in> nat; j\<in>nat ; env \<in> list(A)\<rbrakk>
-       \<Longrightarrow> is_singleton(##A,x,y) \<longleftrightarrow> sats(A, singleton_fm(i,j), env)"
-  unfolding is_singleton_def singleton_fm_def by simp
-
-context forcing_data begin
-
-(* Internalization and absoluteness of rcheck *)
-definition
-  is_rcheck :: "[i,i] \<Rightarrow> o" where
-  "is_rcheck(x,z) \<equiv> \<exists>r\<in>M. tran_closure(##M,r,z) \<and> (\<exists>ec\<in>M. membership(##M,ec,r) \<and>
-                           (\<exists>s\<in>M. is_singleton(##M,x,s) \<and>  is_eclose(##M,s,ec)))"
-
-lemma rcheck_abs :
-  "\<lbrakk> x\<in>M ; r\<in>M \<rbrakk> \<Longrightarrow> is_rcheck(x,r) \<longleftrightarrow> r = rcheck(x)"
-  unfolding rcheck_def is_rcheck_def
-  using singletonM trancl_closed Memrel_closed eclose_closed by simp
-
-schematic_goal rcheck_fm_auto:
-  assumes
-    "i \<in> nat" "j \<in> nat" "env \<in> list(M)"
-  shows
-    "is_rcheck(nth(i,env),nth(j,env)) \<longleftrightarrow> sats(M,?rch(i,j),env)"
-  unfolding is_rcheck_def
-  by (insert assms ; (rule sep_rules is_singleton_iff_sats is_eclose_iff_sats
-        trans_closure_fm_iff_sats | simp)+)
-
-synthesize "rcheck_fm" from_schematic rcheck_fm_auto
 
 definition
   is_check :: "[i,i] \<Rightarrow> o" where
@@ -879,12 +900,6 @@ proof -
       Hcheck_closed relation2_Hcheck trans_wfrec_abs[of "rcheck(x)" x z "is_Hcheck(one)" Hcheck]
     by (simp flip: setclass_iff)
 qed
-
-(* \<exists>rch\<in>M. is_rcheck(x,rch) \<and> is_wfrec(##M,is_Hcheck(one),rch,x,z) *)
-definition
-  check_fm :: "[i,i,i] \<Rightarrow> i" where
-  "check_fm(x,o,z) \<equiv> Exists(And(rcheck_fm(1#+x,0),
-                      is_wfrec_fm(is_Hcheck_fm(6#+o,2,1,0),0,1#+x,1#+z)))"
 
 lemma check_fm_type[TC] :
   "\<lbrakk>x\<in>nat;o\<in>nat;z\<in>nat\<rbrakk> \<Longrightarrow> check_fm(x,o,z)\<in>formula"
@@ -924,8 +939,11 @@ proof -
   have "check(x)\<in>M" if "x\<in>P" for x
     using that Transset_intf[of M x P] trans_M check_in_M P_in_M by simp
   ultimately
-  show ?thesis using sats_check_fm check_abs P_in_M check_in_M one_in_M
-      Repl_in_M[of "check_fm(0,2,1)" "[one]" is_check check] by simp
+  show ?thesis 
+    apply(rule_tac Repl_in_M[of "check_fm(0,2,1)" "[one]" is_check check])
+    using sats_check_fm check_abs P_in_M check_in_M one_in_M names_check_fm
+      Repl_in_M[of "check_fm(0,2,1)" "[one]" is_check check] 
+    by auto
 qed
 
 lemma pair_check : "\<lbrakk> p\<in>M ; y\<in>M \<rbrakk>  \<Longrightarrow> (\<exists>c\<in>M. is_check(p,c) \<and> pair(##M,c,p,y)) \<longleftrightarrow> y = \<langle>check(p),p\<rangle>"
@@ -967,8 +985,9 @@ proof -
   ultimately
   show ?thesis
     unfolding G_dot_def
-    using one_in_M P_in_M Repl_in_M[of ?pcheck_fm "[one]"]
-    by simp
+    apply(rule_tac Repl_in_M[of ?pcheck_fm "[one]"])
+    using one_in_M P_in_M names_G_dot_fm
+    by auto
 qed
 
 

@@ -11,33 +11,10 @@ theory Interface
     Nat_Miscellanea
     Relative_Univ
     Synthetic_Definition
+    "Interface_Formulas" 
 begin
 
-syntax
-  "_sats"  :: "[i, i, i] \<Rightarrow> o"  ("(_, _ \<Turnstile> _)" [36,36,36] 60)
-translations
-  "(M,env \<Turnstile> \<phi>)" \<rightleftharpoons> "CONST sats(M,\<phi>,env)"
 
-abbreviation
-  dec10  :: i   ("10") where "10 \<equiv> succ(9)"
-
-abbreviation
-  dec11  :: i   ("11") where "11 \<equiv> succ(10)"
-
-abbreviation
-  dec12  :: i   ("12") where "12 \<equiv> succ(11)"
-
-abbreviation
-  dec13  :: i   ("13") where "13 \<equiv> succ(12)"
-
-abbreviation
-  dec14  :: i   ("14") where "14 \<equiv> succ(13)"
-
-
-definition
-  infinity_ax :: "(i \<Rightarrow> o) \<Rightarrow> o" where
-  "infinity_ax(M) \<equiv>
-      (\<exists>I[M]. (\<exists>z[M]. empty(M,z) \<and> z\<in>I) \<and> (\<forall>y[M]. y\<in>I \<longrightarrow> (\<exists>sy[M]. successor(M,y,sy) \<and> sy\<in>I)))"
 
 definition
   choice_ax :: "(i\<Rightarrow>o) \<Rightarrow> o" where
@@ -52,12 +29,6 @@ lemma choice_ax_abs :
 
 end (* M_basic *)
 
-definition
-  wellfounded_trancl :: "[i=>o,i,i,i] => o" where
-  "wellfounded_trancl(M,Z,r,p) \<equiv>
-      \<exists>w[M]. \<exists>wx[M]. \<exists>rp[M].
-               w \<in> Z & pair(M,w,p,wx) & tran_closure(M,r,rp) & wx \<in> rp"
-
 lemma empty_intf :
   "infinity_ax(M) \<Longrightarrow>
   (\<exists>z[M]. empty(M,z))"
@@ -67,20 +38,7 @@ lemma Transset_intf :
   "Transset(M) \<Longrightarrow>  y\<in>x \<Longrightarrow> x \<in> M \<Longrightarrow> y \<in> M"
   by (simp add: Transset_def,auto)
 
-locale M_ZF_trans =
-  fixes M
-  assumes
-    upair_ax:         "upair_ax(##M)"
-    and Union_ax:         "Union_ax(##M)"
-    and power_ax:         "power_ax(##M)"
-    and extensionality:   "extensionality(##M)"
-    and foundation_ax:    "foundation_ax(##M)"
-    and infinity_ax:      "infinity_ax(##M)"
-    and separation_ax:    "\<phi>\<in>formula \<Longrightarrow> env\<in>list(M) \<Longrightarrow> arity(\<phi>) \<le> 1 #+ length(env) \<Longrightarrow>
-                    separation(##M,\<lambda>x. sats(M,\<phi>,[x] @ env))"
-    and replacement_ax:   "\<phi>\<in>formula \<Longrightarrow> env\<in>list(M) \<Longrightarrow> arity(\<phi>) \<le> 2 #+ length(env) \<Longrightarrow>
-                    strong_replacement(##M,\<lambda>x y. sats(M,\<phi>,[x,y] @ env))"
-    and trans_M:          "Transset(M)"
+context M_ZF_Fragment_Interface
 begin
 
 
@@ -108,7 +66,6 @@ lemma mtrans :
   using Transset_intf[OF trans_M] zero_in_M exI[of "\<lambda>x. x\<in>M"]
   by unfold_locales auto
 
-
 lemma mtriv :
   "M_trivial(##M)"
   using trans_M M_trivial.intro mtrans M_trivial_axioms.intro upair_ax Union_ax
@@ -116,22 +73,13 @@ lemma mtriv :
 
 end
 
-sublocale M_ZF_trans \<subseteq> M_trivial "##M"
+sublocale M_ZF_Fragment_Interface \<subseteq> M_trivial "##M"
   by (rule mtriv)
 
-context M_ZF_trans
+context M_ZF_Fragment_Interface
 begin
 
 subsection\<open>Interface with \<^term>\<open>M_basic\<close>\<close>
-
-(* Inter_separation: "M(A) \<Longrightarrow> separation(M, \<lambda>x. \<forall> y[M]. y\<in>A \<Longrightarrow> x\<in>y)" *)
-schematic_goal inter_fm_auto:
-  assumes
-    "nth(i,env) = x" "nth(j,env) = B"
-    "i \<in> nat" "j \<in> nat" "env \<in> list(A)"
-  shows
-    "(\<forall>y\<in>A . y\<in>B \<longrightarrow> x\<in>y) \<longleftrightarrow> sats(A,?ifm(i,j),env)"
-  by (insert assms ; (rule sep_rules | simp)+)
 
 lemma inter_sep_intf :
   assumes
@@ -139,18 +87,19 @@ lemma inter_sep_intf :
   shows
     "separation(##M,\<lambda>x . \<forall>y\<in>M . y\<in>A \<longrightarrow> x\<in>y)"
 proof -
-  obtain ifm where
+  define ifm where "ifm \<equiv> \<lambda>a b. Forall(Implies(Member(0, succ(b)), Member(succ(a), 0)))" 
+  have
     fmsats:"\<And>env. env\<in>list(M) \<Longrightarrow> (\<forall> y\<in>M. y\<in>(nth(1,env)) \<longrightarrow> nth(0,env)\<in>y)
     \<longleftrightarrow> sats(M,ifm(0,1),env)"
     and
     "ifm(0,1) \<in> formula"
     and
     "arity(ifm(0,1)) = 2"
-    using \<open>A\<in>M\<close> inter_fm_auto
-    by (simp del:FOL_sats_iff add: nat_simp_union)
+    unfolding interface_inter_fm_def ifm_def
+    by (auto, simp del:FOL_sats_iff add: nat_simp_union)
   then
   have "\<forall>a\<in>M. separation(##M, \<lambda>x. sats(M,ifm(0,1) , [x, a]))"
-    using separation_ax by simp
+    using separation_ax interface_inter_fm ifm_def by simp
   moreover
   have "(\<forall>y\<in>M . y\<in>a \<longrightarrow> x\<in>y) \<longleftrightarrow> sats(M,ifm(0,1),[x,a])"
     if "a\<in>M" "x\<in>M" for a x
@@ -161,34 +110,25 @@ proof -
   with \<open>A\<in>M\<close> show ?thesis by simp
 qed
 
-
-(* Diff_separation: "M(B) \<Longrightarrow> separation(M, \<lambda>x. x \<notin> B)" *)
-schematic_goal diff_fm_auto:
-  assumes
-    "nth(i,env) = x" "nth(j,env) = B"
-    "i \<in> nat" "j \<in> nat" "env \<in> list(A)"
-  shows
-    "x\<notin>B \<longleftrightarrow> sats(A,?dfm(i,j),env)"
-  by (insert assms ; (rule sep_rules | simp)+)
-
 lemma diff_sep_intf :
   assumes
     "B\<in>M"
   shows
     "separation(##M,\<lambda>x . x\<notin>B)"
 proof -
-  obtain dfm where
+  define dfm where "dfm \<equiv> \<lambda>a b. Neg(Member(a, b))"
+  have
     fmsats:"\<And>env. env\<in>list(M) \<Longrightarrow> nth(0,env)\<notin>nth(1,env)
     \<longleftrightarrow> sats(M,dfm(0,1),env)"
     and
     "dfm(0,1) \<in> formula"
     and
     "arity(dfm(0,1)) = 2"
-    using \<open>B\<in>M\<close> diff_fm_auto
-    by (simp del:FOL_sats_iff add: nat_simp_union)
+    unfolding dfm_def
+    by auto
   then
   have "\<forall>b\<in>M. separation(##M, \<lambda>x. sats(M,dfm(0,1) , [x, b]))"
-    using separation_ax by simp
+    using separation_ax dfm_def interface_diff_fm by simp
   moreover
   have "x\<notin>b \<longleftrightarrow> sats(M,dfm(0,1),[x,b])"
     if "b\<in>M" "x\<in>M" for b x
@@ -207,7 +147,6 @@ schematic_goal cprod_fm_auto:
     "(\<exists>x\<in>A. x\<in>B \<and> (\<exists>y\<in>A. y\<in>C \<and> pair(##A,x,y,z))) \<longleftrightarrow> sats(A,?cpfm(i,j,h),env)"
   by (insert assms ; (rule sep_rules | simp)+)
 
-
 lemma cartprod_sep_intf :
   assumes
     "A\<in>M"
@@ -216,7 +155,10 @@ lemma cartprod_sep_intf :
   shows
     "separation(##M,\<lambda>z. \<exists>x\<in>M. x\<in>A \<and> (\<exists>y\<in>M. y\<in>B \<and> pair(##M,x,y,z)))"
 proof -
-  obtain cpfm where
+  define cpfm where "cpfm \<equiv> \<lambda> a b c. Exists
+        (And(Member(0, succ(b)),
+             Exists(And(Member(0, succ(succ(c))), pair_fm(1, 0, succ(succ(a)))))))"
+  have
     fmsats:"\<And>env. env\<in>list(M) \<Longrightarrow>
     (\<exists>x\<in>M. x\<in>nth(1,env) \<and> (\<exists>y\<in>M. y\<in>nth(2,env) \<and> pair(##M,x,y,nth(0,env))))
     \<longleftrightarrow> sats(M,cpfm(0,1,2),env)"
@@ -224,10 +166,12 @@ proof -
     "cpfm(0,1,2) \<in> formula"
     and
     "arity(cpfm(0,1,2)) = 3"
-    using cprod_fm_auto by (simp del:FOL_sats_iff add: fm_defs nat_simp_union)
+    unfolding cpfm_def
+    using cprod_fm_auto 
+    by (auto, simp del:FOL_sats_iff add: fm_defs nat_simp_union)
   then
   have "\<forall>a\<in>M. \<forall>b\<in>M. separation(##M, \<lambda>z. sats(M,cpfm(0,1,2) , [z, a, b]))"
-    using separation_ax by simp
+    using separation_ax cpfm_def interface_cpfm by force
   moreover
   have "(\<exists>x\<in>M. x\<in>a \<and> (\<exists>y\<in>M. y\<in>b \<and> pair(##M,x,y,z))) \<longleftrightarrow> sats(M,cpfm(0,1,2),[z,a,b])"
     if "a\<in>M" "b\<in>M" "z\<in>M" for a b z
@@ -254,7 +198,8 @@ lemma image_sep_intf :
   shows
     "separation(##M, \<lambda>y. \<exists>p\<in>M. p\<in>r & (\<exists>x\<in>M. x\<in>A & pair(##M,x,y,p)))"
 proof -
-  obtain imfm where
+  define imfm where "imfm \<equiv> \<lambda> a b c. Exists(And(Member(0, succ(b)), Exists(And(Member(0, succ(succ(c))), pair_fm(0, succ(succ(a)), 1)))))" 
+  have
     fmsats:"\<And>env. env\<in>list(M) \<Longrightarrow>
     (\<exists>p\<in>M. p\<in>nth(1,env) & (\<exists>x\<in>M. x\<in>nth(2,env) & pair(##M,x,nth(0,env),p)))
     \<longleftrightarrow> sats(M,imfm(0,1,2),env)"
@@ -262,10 +207,12 @@ proof -
     "imfm(0,1,2) \<in> formula"
     and
     "arity(imfm(0,1,2)) = 3"
-    using im_fm_auto by (simp del:FOL_sats_iff pair_abs add: fm_defs nat_simp_union)
+    unfolding imfm_def 
+    by (auto, simp del:FOL_sats_iff pair_abs add: fm_defs nat_simp_union)
   then
   have "\<forall>r\<in>M. \<forall>a\<in>M. separation(##M, \<lambda>y. sats(M,imfm(0,1,2) , [y,r,a]))"
-    using separation_ax by simp
+    using separation_ax imfm_def interface_imfm 
+    by auto
   moreover
   have "(\<exists>p\<in>M. p\<in>k & (\<exists>x\<in>M. x\<in>a & pair(##M,x,y,p))) \<longleftrightarrow> sats(M,imfm(0,1,2),[y,k,a])"
     if "k\<in>M" "a\<in>M" "y\<in>M" for k a y
@@ -292,7 +239,8 @@ lemma converse_sep_intf :
   shows
     "separation(##M,\<lambda>z. \<exists>p\<in>M. p\<in>R & (\<exists>x\<in>M.\<exists>y\<in>M. pair(##M,x,y,p) & pair(##M,y,x,z)))"
 proof -
-  obtain cfm where
+  define cfm where "cfm \<equiv> \<lambda>a b. Exists(And(Member(0, succ(b)), Exists(Exists(And(pair_fm(1, 0, 2), pair_fm(0, 1, succ(succ(succ(a)))))))))"
+  have
     fmsats:"\<And>env. env\<in>list(M) \<Longrightarrow>
     (\<exists>p\<in>M. p\<in>nth(1,env) & (\<exists>x\<in>M.\<exists>y\<in>M. pair(##M,x,y,p) & pair(##M,y,x,nth(0,env))))
     \<longleftrightarrow> sats(M,cfm(0,1),env)"
@@ -300,10 +248,12 @@ proof -
     "cfm(0,1) \<in> formula"
     and
     "arity(cfm(0,1)) = 2"
-    using con_fm_auto by (simp del:FOL_sats_iff pair_abs add: fm_defs nat_simp_union)
+    unfolding cfm_def
+    using con_fm_auto 
+    by (auto, simp del:FOL_sats_iff pair_abs add: fm_defs nat_simp_union)
   then
   have "\<forall>r\<in>M. separation(##M, \<lambda>z. sats(M,cfm(0,1) , [z,r]))"
-    using separation_ax by simp
+    using separation_ax cfm_def interface_cfm by simp
   moreover
   have "(\<exists>p\<in>M. p\<in>r & (\<exists>x\<in>M.\<exists>y\<in>M. pair(##M,x,y,p) & pair(##M,y,x,z))) \<longleftrightarrow>
           sats(M,cfm(0,1),[z,r])"
@@ -332,7 +282,8 @@ lemma restrict_sep_intf :
   shows
     "separation(##M,\<lambda>z. \<exists>x\<in>M. x\<in>A & (\<exists>y\<in>M. pair(##M,x,y,z)))"
 proof -
-  obtain rfm where
+  define rfm where "rfm \<equiv> \<lambda>a b. Exists(And(Member(0, succ(b)), Exists(pair_fm(1, 0, succ(succ(a))))))" 
+  have
     fmsats:"\<And>env. env\<in>list(M) \<Longrightarrow>
     (\<exists>x\<in>M. x\<in>nth(1,env) & (\<exists>y\<in>M. pair(##M,x,y,nth(0,env))))
     \<longleftrightarrow> sats(M,rfm(0,1),env)"
@@ -340,10 +291,14 @@ proof -
     "rfm(0,1) \<in> formula"
     and
     "arity(rfm(0,1)) = 2"
-    using rest_fm_auto by (simp del:FOL_sats_iff pair_abs add: fm_defs nat_simp_union)
+    unfolding rfm_def
+    using rest_fm_auto 
+    by (auto, simp del:FOL_sats_iff pair_abs add: fm_defs nat_simp_union)
   then
   have "\<forall>a\<in>M. separation(##M, \<lambda>z. sats(M,rfm(0,1) , [z,a]))"
-    using separation_ax by simp
+    unfolding rfm_def
+    using separation_ax interface_rfm rfm_def 
+    by auto
   moreover
   have "(\<exists>x\<in>M. x\<in>a & (\<exists>y\<in>M. pair(##M,x,y,z))) \<longleftrightarrow>
           sats(M,rfm(0,1),[z,a])"
@@ -355,17 +310,6 @@ proof -
   with \<open>A\<in>M\<close> show ?thesis by simp
 qed
 
-schematic_goal comp_fm_auto:
-  assumes
-    "nth(i,env) = xz" "nth(j,env) = S" "nth(h,env) = R"
-    "i \<in> nat" "j \<in> nat" "h \<in> nat" "env \<in> list(A)"
-  shows
-    "(\<exists>x\<in>A. \<exists>y\<in>A. \<exists>z\<in>A. \<exists>xy\<in>A. \<exists>yz\<in>A.
-              pair(##A,x,z,xz) & pair(##A,x,y,xy) & pair(##A,y,z,yz) & xy\<in>S & yz\<in>R)
-  \<longleftrightarrow> sats(A,?cfm(i,j,h),env)"
-  by (insert assms ; (rule sep_rules | simp)+)
-
-
 lemma comp_sep_intf :
   assumes
     "R\<in>M"
@@ -375,7 +319,8 @@ lemma comp_sep_intf :
     "separation(##M,\<lambda>xz. \<exists>x\<in>M. \<exists>y\<in>M. \<exists>z\<in>M. \<exists>xy\<in>M. \<exists>yz\<in>M.
               pair(##M,x,z,xz) & pair(##M,x,y,xy) & pair(##M,y,z,yz) & xy\<in>S & yz\<in>R)"
 proof -
-  obtain cfm where
+  define cfm where "cfm \<equiv> interface_comp_fm" 
+  have
     fmsats:"\<And>env. env\<in>list(M) \<Longrightarrow>
     (\<exists>x\<in>M. \<exists>y\<in>M. \<exists>z\<in>M. \<exists>xy\<in>M. \<exists>yz\<in>M. pair(##M,x,z,nth(0,env)) &
             pair(##M,x,y,xy) & pair(##M,y,z,yz) & xy\<in>nth(1,env) & yz\<in>nth(2,env))
@@ -384,10 +329,12 @@ proof -
     "cfm(0,1,2) \<in> formula"
     and
     "arity(cfm(0,1,2)) = 3"
-    using comp_fm_auto by (simp del:FOL_sats_iff pair_abs add: fm_defs nat_simp_union)
+    unfolding cfm_def interface_comp_fm_def
+    using comp_fm_auto
+    by (auto, simp del:FOL_sats_iff pair_abs add: fm_defs nat_simp_union)
   then
   have "\<forall>r\<in>M. \<forall>s\<in>M. separation(##M, \<lambda>y. sats(M,cfm(0,1,2) , [y,s,r]))"
-    using separation_ax by simp
+    using separation_ax cfm_def interface_comp_fm by simp
   moreover
   have "(\<exists>x\<in>M. \<exists>y\<in>M. \<exists>z\<in>M. \<exists>xy\<in>M. \<exists>yz\<in>M.
               pair(##M,x,z,xz) & pair(##M,x,y,xy) & pair(##M,y,z,yz) & xy\<in>s & yz\<in>r)
@@ -402,15 +349,6 @@ proof -
 qed
 
 
-schematic_goal pred_fm_auto:
-  assumes
-    "nth(i,env) = y" "nth(j,env) = R" "nth(h,env) = X"
-    "i \<in> nat" "j \<in> nat" "h \<in> nat" "env \<in> list(A)"
-  shows
-    "(\<exists>p\<in>A. p\<in>R & pair(##A,y,X,p)) \<longleftrightarrow> sats(A,?pfm(i,j,h),env)"
-  by (insert assms ; (rule sep_rules | simp)+)
-
-
 lemma pred_sep_intf:
   assumes
     "R\<in>M"
@@ -419,17 +357,20 @@ lemma pred_sep_intf:
   shows
     "separation(##M, \<lambda>y. \<exists>p\<in>M. p\<in>R & pair(##M,y,X,p))"
 proof -
-  obtain pfm where
+  define pfm where "pfm \<equiv> interface_pred_fm" 
+  have
     fmsats:"\<And>env. env\<in>list(M) \<Longrightarrow>
     (\<exists>p\<in>M. p\<in>nth(1,env) & pair(##M,nth(0,env),nth(2,env),p)) \<longleftrightarrow> sats(M,pfm(0,1,2),env)"
     and
     "pfm(0,1,2) \<in> formula"
     and
     "arity(pfm(0,1,2)) = 3"
-    using pred_fm_auto by (simp del:FOL_sats_iff pair_abs add: fm_defs nat_simp_union)
+    unfolding pfm_def interface_pred_fm_def
+    using pred_fm_auto 
+    by (auto, simp del:FOL_sats_iff pair_abs add: fm_defs nat_simp_union)
   then
   have "\<forall>x\<in>M. \<forall>r\<in>M. separation(##M, \<lambda>y. sats(M,pfm(0,1,2) , [y,r,x]))"
-    using separation_ax by simp
+    using separation_ax pfm_def interface_pred_fm by simp
   moreover
   have "(\<exists>p\<in>M. p\<in>r & pair(##M,y,x,p))
           \<longleftrightarrow> sats(M,pfm(0,1,2) , [y,r,x])"
@@ -441,30 +382,23 @@ proof -
   with \<open>X\<in>M\<close> \<open>R\<in>M\<close> show ?thesis by simp
 qed
 
-(* Memrel_separation:
-     "separation(M, \<lambda>z. \<exists>x[M]. \<exists>y[M]. pair(M,x,y,z) & x \<in> y)"
-*)
-schematic_goal mem_fm_auto:
-  assumes
-    "nth(i,env) = z" "i \<in> nat" "env \<in> list(A)"
-  shows
-    "(\<exists>x\<in>A. \<exists>y\<in>A. pair(##A,x,y,z) & x \<in> y) \<longleftrightarrow> sats(A,?mfm(i),env)"
-  by (insert assms ; (rule sep_rules | simp)+)
-
 lemma memrel_sep_intf:
   "separation(##M, \<lambda>z. \<exists>x\<in>M. \<exists>y\<in>M. pair(##M,x,y,z) & x \<in> y)"
 proof -
-  obtain mfm where
+  define mfm where "mfm \<equiv> interface_mem_fm" 
+  have
     fmsats:"\<And>env. env\<in>list(M) \<Longrightarrow>
     (\<exists>x\<in>M. \<exists>y\<in>M. pair(##M,x,y,nth(0,env)) & x \<in> y) \<longleftrightarrow> sats(M,mfm(0),env)"
     and
     "mfm(0) \<in> formula"
     and
     "arity(mfm(0)) = 1"
-    using mem_fm_auto by (simp del:FOL_sats_iff pair_abs add: fm_defs nat_simp_union)
+    unfolding mfm_def interface_mem_fm_def 
+    using mem_fm_auto 
+    by (auto, simp del:FOL_sats_iff pair_abs add: fm_defs nat_simp_union)
   then
   have "separation(##M, \<lambda>z. sats(M,mfm(0) , [z]))"
-    using separation_ax by simp
+    using separation_ax mfm_def interface_mem_fm by simp
   moreover
   have "(\<exists>x\<in>M. \<exists>y\<in>M. pair(##M,x,y,z) & x \<in> y) \<longleftrightarrow> sats(M,mfm(0),[z])"
     if "z\<in>M" for z
@@ -475,17 +409,6 @@ proof -
   then show ?thesis by simp
 qed
 
-schematic_goal recfun_fm_auto:
-  assumes
-    "nth(i1,env) = x" "nth(i2,env) = r" "nth(i3,env) = f" "nth(i4,env) = g" "nth(i5,env) = a"
-    "nth(i6,env) = b" "i1\<in>nat" "i2\<in>nat" "i3\<in>nat" "i4\<in>nat" "i5\<in>nat" "i6\<in>nat" "env \<in> list(A)"
-  shows
-    "(\<exists>xa\<in>A. \<exists>xb\<in>A. pair(##A,x,a,xa) & xa \<in> r & pair(##A,x,b,xb) & xb \<in> r &
-                  (\<exists>fx\<in>A. \<exists>gx\<in>A. fun_apply(##A,f,x,fx) & fun_apply(##A,g,x,gx) & fx \<noteq> gx))
-    \<longleftrightarrow> sats(A,?rffm(i1,i2,i3,i4,i5,i6),env)"
-  by (insert assms ; (rule sep_rules | simp)+)
-
-
 lemma is_recfun_sep_intf :
   assumes
     "r\<in>M" "f\<in>M" "g\<in>M" "a\<in>M" "b\<in>M"
@@ -495,7 +418,8 @@ lemma is_recfun_sep_intf :
                     (\<exists>fx\<in>M. \<exists>gx\<in>M. fun_apply(##M,f,x,fx) & fun_apply(##M,g,x,gx) &
                                      fx \<noteq> gx))"
 proof -
-  obtain rffm where
+  define rffm where "rffm \<equiv> interface_recfun_fm" 
+  have
     fmsats:"\<And>env. env\<in>list(M) \<Longrightarrow>
     (\<exists>xa\<in>M. \<exists>xb\<in>M. pair(##M,nth(0,env),nth(4,env),xa) & xa \<in> nth(1,env) &
     pair(##M,nth(0,env),nth(5,env),xb) & xb \<in> nth(1,env) & (\<exists>fx\<in>M. \<exists>gx\<in>M.
@@ -505,11 +429,13 @@ proof -
     "rffm(0,1,2,3,4,5) \<in> formula"
     and
     "arity(rffm(0,1,2,3,4,5)) = 6"
-    using recfun_fm_auto by (simp del:FOL_sats_iff pair_abs add: fm_defs nat_simp_union)
+    unfolding rffm_def interface_recfun_fm_def 
+    using recfun_fm_auto 
+    by (auto, simp del:FOL_sats_iff pair_abs add: fm_defs nat_simp_union)
   then
   have "\<forall>a1\<in>M. \<forall>a2\<in>M. \<forall>a3\<in>M. \<forall>a4\<in>M. \<forall>a5\<in>M.
         separation(##M, \<lambda>x. sats(M,rffm(0,1,2,3,4,5) , [x,a1,a2,a3,a4,a5]))"
-    using separation_ax by simp
+    using separation_ax interface_recfun_fm rffm_def by simp
   moreover
   have "(\<exists>xa\<in>M. \<exists>xb\<in>M. pair(##M,x,a4,xa) & xa \<in> a1 & pair(##M,x,a5,xb) & xb \<in> a1 &
           (\<exists>fx\<in>M. \<exists>gx\<in>M. fun_apply(##M,a2,x,fx) & fun_apply(##M,a3,x,gx) & fx \<noteq> gx))
@@ -527,15 +453,6 @@ qed
 
 (* Instance of Replacement for M_basic *)
 
-schematic_goal funsp_fm_auto:
-  assumes
-    "nth(i,env) = p" "nth(j,env) = z" "nth(h,env) = n"
-    "i \<in> nat" "j \<in> nat" "h \<in> nat" "env \<in> list(A)"
-  shows
-    "(\<exists>f\<in>A. \<exists>b\<in>A. \<exists>nb\<in>A. \<exists>cnbf\<in>A. pair(##A,f,b,p) & pair(##A,n,b,nb) & is_cons(##A,nb,f,cnbf) &
-    upair(##A,cnbf,cnbf,z)) \<longleftrightarrow> sats(A,?fsfm(i,j,h),env)"
-  by (insert assms ; (rule sep_rules | simp)+)
-
 
 lemma funspace_succ_rep_intf :
   assumes
@@ -546,16 +463,19 @@ lemma funspace_succ_rep_intf :
                 pair(##M,f,b,p) & pair(##M,n,b,nb) & is_cons(##M,nb,f,cnbf) &
                 upair(##M,cnbf,cnbf,z))"
 proof -
-  obtain fsfm where
+  define fsfm where "fsfm \<equiv> interface_funsp_fm" 
+  have
     fmsats:"env\<in>list(M) \<Longrightarrow>
     (\<exists>f\<in>M. \<exists>b\<in>M. \<exists>nb\<in>M. \<exists>cnbf\<in>M. pair(##M,f,b,nth(0,env)) & pair(##M,nth(2,env),b,nb)
       & is_cons(##M,nb,f,cnbf) & upair(##M,cnbf,cnbf,nth(1,env)))
     \<longleftrightarrow> sats(M,fsfm(0,1,2),env)"
     and "fsfm(0,1,2) \<in> formula" and "arity(fsfm(0,1,2)) = 3" for env
-    using funsp_fm_auto[of concl:M] by (simp del:FOL_sats_iff pair_abs add: fm_defs nat_simp_union)
+    unfolding fsfm_def interface_funsp_fm_def 
+    using funsp_fm_auto[of concl:M] 
+    by (auto, simp del:FOL_sats_iff pair_abs add: fm_defs nat_simp_union)
   then
   have "\<forall>n0\<in>M. strong_replacement(##M, \<lambda>p z. sats(M,fsfm(0,1,2) , [p,z,n0]))"
-    using replacement_ax by simp
+    using replacement_ax fsfm_def interface_funsp_fm by simp
   moreover
   have "(\<exists>f\<in>M. \<exists>b\<in>M. \<exists>nb\<in>M. \<exists>cnbf\<in>M. pair(##M,f,b,p) & pair(##M,n0,b,nb) &
           is_cons(##M,nb,f,cnbf) & upair(##M,cnbf,cnbf,z))
@@ -584,23 +504,12 @@ lemma mbasic : "M_basic(##M)"
 
 end
 
-sublocale M_ZF_trans \<subseteq> M_basic "##M"
+sublocale M_ZF_Fragment_Interface \<subseteq> M_basic "##M"
   by (rule mbasic)
 
 subsection\<open>Interface with \<^term>\<open>M_trancl\<close>\<close>
 
-(* rtran_closure_mem *)
-schematic_goal rtran_closure_mem_auto:
-  assumes
-    "nth(i,env) = p" "nth(j,env) = r"  "nth(k,env) = B"
-    "i \<in> nat" "j \<in> nat" "k \<in> nat" "env \<in> list(A)"
-  shows
-    "rtran_closure_mem(##A,B,r,p) \<longleftrightarrow> sats(A,?rcfm(i,j,k),env)"
-  unfolding rtran_closure_mem_def
-  by (insert assms ; (rule sep_rules | simp)+)
-
-
-lemma (in M_ZF_trans) rtrancl_separation_intf:
+lemma (in M_ZF_Fragment_Interface) rtrancl_separation_intf:
   assumes
     "r\<in>M"
     and
@@ -608,17 +517,20 @@ lemma (in M_ZF_trans) rtrancl_separation_intf:
   shows
     "separation (##M, rtran_closure_mem(##M,A,r))"
 proof -
-  obtain rcfm where
+  define rcfm where "rcfm \<equiv> interface_rtran_closure_mem_fm" 
+  have
     fmsats:"\<And>env. env\<in>list(M) \<Longrightarrow>
     (rtran_closure_mem(##M,nth(2,env),nth(1,env),nth(0,env))) \<longleftrightarrow> sats(M,rcfm(0,1,2),env)"
     and
     "rcfm(0,1,2) \<in> formula"
     and
     "arity(rcfm(0,1,2)) = 3"
-    using rtran_closure_mem_auto by (simp del:FOL_sats_iff pair_abs add: fm_defs nat_simp_union)
+    unfolding rcfm_def interface_rtran_closure_mem_fm_def
+    using rtran_closure_mem_auto 
+    by (auto, simp del:FOL_sats_iff pair_abs add: fm_defs nat_simp_union)
   then
   have "\<forall>x\<in>M. \<forall>a\<in>M. separation(##M, \<lambda>y. sats(M,rcfm(0,1,2) , [y,x,a]))"
-    using separation_ax by simp
+    using separation_ax rcfm_def interface_rtran_closure_mem_fm by simp
   moreover
   have "(rtran_closure_mem(##M,a,x,y))
           \<longleftrightarrow> sats(M,rcfm(0,1,2) , [y,x,a])"
@@ -630,36 +542,7 @@ proof -
   with \<open>r\<in>M\<close> \<open>A\<in>M\<close> show ?thesis by simp
 qed
 
-schematic_goal rtran_closure_fm_auto:
-  assumes
-    "nth(i,env) = r" "nth(j,env) = rp"
-    "i \<in> nat" "j \<in> nat" "env \<in> list(A)"
-  shows
-    "rtran_closure(##A,r,rp) \<longleftrightarrow> sats(A,?rtc(i,j),env)"
-  unfolding rtran_closure_def
-  by (insert assms ; (rule sep_rules rtran_closure_mem_auto | simp)+)
-
-schematic_goal trans_closure_fm_auto:
-  assumes
-    "nth(i,env) = r" "nth(j,env) = rp"
-    "i \<in> nat" "j \<in> nat" "env \<in> list(A)"
-  shows
-    "tran_closure(##A,r,rp) \<longleftrightarrow> sats(A,?tc(i,j),env)"
-  unfolding tran_closure_def
-  by (insert assms ; (rule sep_rules rtran_closure_fm_auto | simp))+
-
-synthesize "trans_closure_fm" from_schematic trans_closure_fm_auto
-
-schematic_goal wellfounded_trancl_fm_auto:
-  assumes
-    "nth(i,env) = p" "nth(j,env) = r"  "nth(k,env) = B"
-    "i \<in> nat" "j \<in> nat" "k \<in> nat" "env \<in> list(A)"
-  shows
-    "wellfounded_trancl(##A,B,r,p) \<longleftrightarrow> sats(A,?wtf(i,j,k),env)"
-  unfolding  wellfounded_trancl_def
-  by (insert assms ; (rule sep_rules trans_closure_fm_iff_sats | simp)+)
-
-lemma (in M_ZF_trans) wftrancl_separation_intf:
+lemma (in M_ZF_Fragment_Interface) wftrancl_separation_intf:
   assumes
     "r\<in>M"
     and
@@ -667,18 +550,24 @@ lemma (in M_ZF_trans) wftrancl_separation_intf:
   shows
     "separation (##M, wellfounded_trancl(##M,Z,r))"
 proof -
-  obtain rcfm where
+  define rcfm where "rcfm \<equiv> interface_wellfounded_trancl_fm" 
+  have
     fmsats:"\<And>env. env\<in>list(M) \<Longrightarrow>
     (wellfounded_trancl(##M,nth(2,env),nth(1,env),nth(0,env))) \<longleftrightarrow> sats(M,rcfm(0,1,2),env)"
     and
     "rcfm(0,1,2) \<in> formula"
     and
     "arity(rcfm(0,1,2)) = 3"
-    using wellfounded_trancl_fm_auto[of concl:M "nth(2,_)"] unfolding fm_defs trans_closure_fm_def
+    unfolding rcfm_def
+    using interface_wellfounded_trancl_fm_iff_sats
+      apply auto
+    unfolding interface_wellfounded_trancl_fm_def trans_closure_fm_def
     by (simp del:FOL_sats_iff pair_abs add: fm_defs nat_simp_union)
   then
   have "\<forall>x\<in>M. \<forall>z\<in>M. separation(##M, \<lambda>y. sats(M,rcfm(0,1,2) , [y,x,z]))"
-    using separation_ax by simp
+    unfolding rcfm_def
+    using separation_ax  interface_wellfounded_trancl_fm
+    by auto
   moreover
   have "(wellfounded_trancl(##M,z,x,y))
           \<longleftrightarrow> sats(M,rcfm(0,1,2) , [y,x,z])"
@@ -692,14 +581,14 @@ qed
 
 (* nat \<in> M *)
 
-lemma (in M_ZF_trans) finite_sep_intf:
+lemma (in M_ZF_Fragment_Interface) finite_sep_intf:
   "separation(##M, \<lambda>x. x\<in>nat)"
 proof -
   have "arity(finite_ordinal_fm(0)) = 1 "
     unfolding finite_ordinal_fm_def limit_ordinal_fm_def empty_fm_def succ_fm_def cons_fm_def
       union_fm_def upair_fm_def
     by (simp add: nat_union_abs1 Un_commute)
-  with separation_ax
+  with separation_ax finite_ordinal_fm
   have "(\<forall>v\<in>M. separation(##M,\<lambda>x. sats(M,finite_ordinal_fm(0),[x,v])))"
     by simp
   then have "(\<forall>v\<in>M. separation(##M,finite_ordinal(##M)))"
@@ -710,12 +599,12 @@ proof -
 qed
 
 
-lemma (in M_ZF_trans) nat_subset_I' :
+lemma (in M_ZF_Fragment_Interface) nat_subset_I' :
   "\<lbrakk> I\<in>M ; 0\<in>I ; \<And>x. x\<in>I \<Longrightarrow> succ(x)\<in>I \<rbrakk> \<Longrightarrow> nat \<subseteq> I"
   by (rule subsetI,induct_tac x,simp+)
 
 
-lemma (in M_ZF_trans) nat_subset_I :
+lemma (in M_ZF_Fragment_Interface) nat_subset_I :
   "\<exists>I\<in>M. nat \<subseteq> I"
 proof -
   have "\<exists>I\<in>M. 0\<in>I \<and> (\<forall>x\<in>M. x\<in>I \<longrightarrow> succ(x)\<in>I)"
@@ -730,7 +619,7 @@ proof -
   then show ?thesis using \<open>I\<in>M\<close> by auto
 qed
 
-lemma (in M_ZF_trans) nat_in_M :
+lemma (in M_ZF_Fragment_Interface) nat_in_M :
   "nat \<in> M"
 proof -
   have 1:"{x\<in>B . x\<in>A}=A" if "A\<subseteq>B" for A B
@@ -746,12 +635,12 @@ qed
   (* end nat \<in> M *)
 
 
-lemma (in M_ZF_trans) mtrancl : "M_trancl(##M)"
+lemma (in M_ZF_Fragment_Interface) mtrancl : "M_trancl(##M)"
   using  mbasic rtrancl_separation_intf wftrancl_separation_intf nat_in_M
     wellfounded_trancl_def
   by unfold_locales auto
 
-sublocale M_ZF_trans \<subseteq> M_trancl "##M"
+sublocale M_ZF_Fragment_Interface \<subseteq> M_trancl "##M"
   by (rule mtrancl)
 
 subsection\<open>Interface with \<^term>\<open>M_eclose\<close>\<close>
@@ -764,11 +653,11 @@ lemma repl_sats:
    strong_replacement(##M,P)"
   by (rule strong_replacement_cong,simp add:sat)
 
-lemma (in M_ZF_trans) nat_trans_M :
+lemma (in M_ZF_Fragment_Interface) nat_trans_M :
   "n\<in>M" if "n\<in>nat" for n
   using that nat_in_M Transset_intf[OF trans_M] by simp
 
-lemma (in M_ZF_trans) list_repl1_intf:
+lemma (in M_ZF_Fragment_Interface) list_repl1_intf:
   assumes
     "A\<in>M"
   shows
@@ -800,22 +689,28 @@ proof -
       if "y\<in>M" "x\<in>M" "z\<in>M" for y x z
       using  that sats_is_wfrec_fm 1 \<open>0\<in>M\<close> \<open>A\<in>M\<close> by simp
     let
-      ?f="Exists(And(pair_fm(1,0,2),
-               is_wfrec_fm(iterates_MH_fm(list_functor_fm(13,1,0),10,2,1,0),3,1,0)))"
+      ?f=interface_list_repl1_intf_fm
     have satsf:"sats(M, ?f, [x,z,Memrel(succ(n)),A,0])
         \<longleftrightarrow>
         (\<exists>y\<in>M. pair(##M,x,y,z) &
         is_wfrec(##M, iterates_MH(##M,is_list_functor(##M,A),0) , Memrel(succ(n)), x, y))"
       if "x\<in>M" "z\<in>M" for x z
-      using that 2 1 \<open>0\<in>M\<close> \<open>A\<in>M\<close> by (simp del:pair_abs)
+      unfolding interface_list_repl1_intf_fm_def
+      using that 2 1 \<open>0\<in>M\<close> \<open>A\<in>M\<close>  
+      by (simp del:pair_abs)
     have "arity(?f) = 5"
-      unfolding iterates_MH_fm_def is_wfrec_fm_def is_recfun_fm_def is_nat_case_fm_def
+      unfolding interface_list_repl1_intf_fm_def 
+        iterates_MH_fm_def is_wfrec_fm_def is_recfun_fm_def is_nat_case_fm_def
         restriction_fm_def list_functor_fm_def number1_fm_def cartprod_fm_def
         sum_fm_def quasinat_fm_def pre_image_fm_def fm_defs
       by (simp add:nat_simp_union)
     then
     have "strong_replacement(##M,\<lambda>x z. sats(M,?f,[x,z,Memrel(succ(n)),A,0]))"
-      using replacement_ax 1 \<open>A\<in>M\<close> \<open>0\<in>M\<close> by simp
+      apply(rule_tac strong_replacement_consI)
+      apply(rule replacement_ax)
+         apply(simp add:interface_list_repl1_intf_fm_def)
+      using replacement_ax 1 interface_list_repl1_intf_fm \<open>A\<in>M\<close> \<open>0\<in>M\<close>
+      by auto
     then
     have "strong_replacement(##M,\<lambda>x z.
           \<exists>y\<in>M. pair(##M,x,y,z) & is_wfrec(##M, iterates_MH(##M,is_list_functor(##M,A),0) ,
@@ -829,13 +724,14 @@ qed
 
 
 (* Iterates_replacement para predicados sin parámetros *)
-lemma (in M_ZF_trans) iterates_repl_intf :
+lemma (in M_ZF_Fragment_Interface) iterates_repl_intf :
   assumes
     "v\<in>M" and
     isfm:"is_F_fm \<in> formula" and
     arty:"arity(is_F_fm)=2" and
     satsf: "\<And>a b env'. \<lbrakk> a\<in>M ; b\<in>M ; env'\<in>list(M) \<rbrakk>
-              \<Longrightarrow> is_F(a,b) \<longleftrightarrow> sats(M, is_F_fm, [b,a]@env')"
+              \<Longrightarrow> is_F(a,b) \<longleftrightarrow> sats(M, is_F_fm, [b,a]@env')" and
+    inPhi : "interface_iterates_repl_intf_fm(is_F_fm) \<in> \<Phi>" 
   shows
     "iterates_replacement(##M,is_F,v)"
 proof -
@@ -866,21 +762,27 @@ proof -
       if "y\<in>M" "x\<in>M" "z\<in>M" for y x z
       using  that sats_is_wfrec_fm 1 \<open>v\<in>M\<close> by simp
     let
-      ?f="Exists(And(pair_fm(1,0,2),
-               is_wfrec_fm(iterates_MH_fm(is_F_fm,9,2,1,0),3,1,0)))"
+      ?f="interface_iterates_repl_intf_fm(is_F_fm)"
     have satsf:"sats(M, ?f, [x,z,Memrel(succ(n)),v])
         \<longleftrightarrow>
         (\<exists>y\<in>M. pair(##M,x,y,z) &
         is_wfrec(##M, iterates_MH(##M,is_F,v) , Memrel(succ(n)), x, y))"
       if "x\<in>M" "z\<in>M" for x z
-      using that 2 1 \<open>v\<in>M\<close> by (simp del:pair_abs)
+      unfolding interface_iterates_repl_intf_fm_def
+      using that 2 1 \<open>v\<in>M\<close> 
+      by (simp del:pair_abs)
     have "arity(?f) = 4"
-      unfolding iterates_MH_fm_def is_wfrec_fm_def is_recfun_fm_def is_nat_case_fm_def
+      unfolding interface_iterates_repl_intf_fm_def
+        iterates_MH_fm_def is_wfrec_fm_def is_recfun_fm_def is_nat_case_fm_def
         restriction_fm_def pre_image_fm_def quasinat_fm_def fm_defs
-      using arty by (simp add:nat_simp_union)
+      using arty
+      by (simp add:nat_simp_union)
     then
     have "strong_replacement(##M,\<lambda>x z. sats(M,?f,[x,z,Memrel(succ(n)),v]))"
-      using replacement_ax 1 \<open>v\<in>M\<close> \<open>is_F_fm\<in>formula\<close> by simp
+      apply(rule_tac strong_replacement_consI)
+      apply(rule replacement_ax, simp add:interface_iterates_repl_intf_fm_def)
+      using inPhi replacement_ax 1 \<open>v\<in>M\<close> \<open>is_F_fm\<in>formula\<close> 
+      by auto
     then
     have "strong_replacement(##M,\<lambda>x z.
           \<exists>y\<in>M. pair(##M,x,y,z) & is_wfrec(##M, iterates_MH(##M,is_F,v) ,
@@ -891,7 +793,7 @@ proof -
   show ?thesis unfolding iterates_replacement_def wfrec_replacement_def by simp
 qed
 
-lemma (in M_ZF_trans) formula_repl1_intf :
+lemma (in M_ZF_Fragment_Interface) formula_repl1_intf :
   "iterates_replacement(##M, is_formula_functor(##M), 0)"
 proof -
   have "0\<in>M"
@@ -904,10 +806,12 @@ proof -
         sats(M, formula_functor_fm(1,0), [b,a])"
     if "a\<in>M" "b\<in>M"  for a b
     using that by simp
-  then show ?thesis using \<open>0\<in>M\<close> 1 2 iterates_repl_intf by simp
+  then show ?thesis
+    using \<open>0\<in>M\<close> 1 2 iterates_repl_intf interface_iter_formula_functor_fm
+    by auto
 qed
 
-lemma (in M_ZF_trans) nth_repl_intf:
+lemma (in M_ZF_Fragment_Interface) nth_repl_intf:
   assumes
     "l \<in> M"
   shows
@@ -920,11 +824,11 @@ proof -
   have "is_tl(##M,a,b) \<longleftrightarrow> sats(M, tl_fm(1,0), [b,a])"
     if "a\<in>M" "b\<in>M" for a b
     using that by simp
-  then show ?thesis using \<open>l\<in>M\<close> 1 2 iterates_repl_intf by simp
+  then show ?thesis using \<open>l\<in>M\<close> 1 2 iterates_repl_intf interface_iter_nth_fm by auto
 qed
 
 
-lemma (in M_ZF_trans) eclose_repl1_intf:
+lemma (in M_ZF_Fragment_Interface) eclose_repl1_intf:
   assumes
     "A\<in>M"
   shows
@@ -936,7 +840,7 @@ proof -
   have "big_union(##M,a,b) \<longleftrightarrow> sats(M, big_union_fm(1,0), [b,a])"
     if "a\<in>M" "b\<in>M" for a b
     using that by simp
-  then show ?thesis using \<open>A\<in>M\<close> 1 2 iterates_repl_intf by simp
+  then show ?thesis using \<open>A\<in>M\<close> 1 2 iterates_repl_intf interface_iter_eclose_fm by simp
 qed
 
 (*
@@ -945,7 +849,7 @@ qed
          \<lambda>n y. n\<in>nat & is_iterates(M, is_list_functor(M,A), 0, n, y))"
 
 *)
-lemma (in M_ZF_trans) list_repl2_intf:
+lemma (in M_ZF_Fragment_Interface) list_repl2_intf:
   assumes
     "A\<in>M"
   shows
@@ -964,24 +868,29 @@ proof -
     if "n\<in>M" "y\<in>M" for n y
     using that \<open>0\<in>M\<close> \<open>A\<in>M\<close> nat_in_M
       sats_is_iterates_fm[of M "is_list_functor(##M,A)"] by simp
-  let ?f = "And(Member(0,4),is_iterates_fm(list_functor_fm(13,1,0),3,0,1))"
+  let ?f = interface_list_repl2_intf_fm
   have satsf:"sats(M, ?f,[n,y,A,0,nat] ) \<longleftrightarrow>
         n\<in>nat & is_iterates(##M, is_list_functor(##M,A), 0, n, y)"
     if "n\<in>M" "y\<in>M" for n y
-    using that \<open>0\<in>M\<close> \<open>A\<in>M\<close> nat_in_M 1 by simp
+    unfolding interface_list_repl2_intf_fm_def
+    using that \<open>0\<in>M\<close> \<open>A\<in>M\<close> nat_in_M 1 
+    by simp
   have "arity(?f) = 5"
-    unfolding is_iterates_fm_def restriction_fm_def list_functor_fm_def number1_fm_def Memrel_fm_def
+    unfolding interface_list_repl2_intf_fm_def 
+      is_iterates_fm_def restriction_fm_def list_functor_fm_def number1_fm_def Memrel_fm_def
       cartprod_fm_def sum_fm_def quasinat_fm_def pre_image_fm_def fm_defs is_wfrec_fm_def
       is_recfun_fm_def iterates_MH_fm_def is_nat_case_fm_def
     by (simp add:nat_simp_union)
   then
   have "strong_replacement(##M,\<lambda>n y. sats(M,?f,[n,y,A,0,nat]))"
-    using replacement_ax 1 nat_in_M \<open>A\<in>M\<close> \<open>0\<in>M\<close> by simp
+    apply(rule_tac strong_replacement_consI)
+    apply(rule replacement_ax, simp add:interface_list_repl2_intf_fm_def)
+    using 1 nat_in_M interface_list_repl2_intf_fm \<open>A\<in>M\<close> \<open>0\<in>M\<close> by auto
   then
   show ?thesis using repl_sats[of M ?f "[A,0,nat]"]  satsf  by simp
 qed
 
-lemma (in M_ZF_trans) formula_repl2_intf:
+lemma (in M_ZF_Fragment_Interface) formula_repl2_intf:
   "strong_replacement(##M,\<lambda>n y. n\<in>nat & is_iterates(##M, is_formula_functor(##M), 0, n, y))"
 proof -
   have "0\<in>M"
@@ -997,20 +906,25 @@ proof -
     if "n\<in>M" "y\<in>M" for n y
     using that \<open>0\<in>M\<close> nat_in_M
       sats_is_iterates_fm[of M "is_formula_functor(##M)"] by simp
-  let ?f = "And(Member(0,3),is_iterates_fm(formula_functor_fm(1,0),2,0,1))"
+  let ?f = interface_formula_functor2_fm
   have satsf:"sats(M, ?f,[n,y,0,nat] ) \<longleftrightarrow>
         n\<in>nat & is_iterates(##M, is_formula_functor(##M), 0, n, y)"
     if "n\<in>M" "y\<in>M" for n y
+    unfolding interface_formula_functor2_fm_def
     using that \<open>0\<in>M\<close> nat_in_M 1 by simp
   have artyf:"arity(?f) = 4"
-    unfolding is_iterates_fm_def formula_functor_fm_def fm_defs sum_fm_def quasinat_fm_def
+    unfolding interface_formula_functor2_fm_def
+      is_iterates_fm_def formula_functor_fm_def fm_defs sum_fm_def quasinat_fm_def
       cartprod_fm_def number1_fm_def Memrel_fm_def ordinal_fm_def transset_fm_def
       is_wfrec_fm_def is_recfun_fm_def iterates_MH_fm_def is_nat_case_fm_def subset_fm_def
       pre_image_fm_def restriction_fm_def
     by (simp add:nat_simp_union)
   then
   have "strong_replacement(##M,\<lambda>n y. sats(M,?f,[n,y,0,nat]))"
-    using replacement_ax 1 artyf \<open>0\<in>M\<close> nat_in_M by simp
+    apply(rule_tac strong_replacement_consI)
+    apply(rule replacement_ax, simp add: interface_formula_functor2_fm_def)
+    using interface_iter_formula_functor2_fm \<open>0\<in>M\<close> nat_in_M 
+    by auto
   then
   show ?thesis using repl_sats[of M ?f "[0,nat]"]  satsf  by simp
 qed
@@ -1021,7 +935,7 @@ qed
          \<lambda>n y. n\<in>nat & is_iterates(M, big_union(M), A, n, y))"
 *)
 
-lemma (in M_ZF_trans) eclose_repl2_intf:
+lemma (in M_ZF_Fragment_Interface) eclose_repl2_intf:
   assumes
     "A\<in>M"
   shows
@@ -1038,37 +952,42 @@ proof -
     if "n\<in>M" "y\<in>M" for n y
     using that \<open>A\<in>M\<close> nat_in_M
       sats_is_iterates_fm[of M "big_union(##M)"] by simp
-  let ?f = "And(Member(0,3),is_iterates_fm(big_union_fm(1,0),2,0,1))"
+  let ?f = interface_iter_eclose2_fm
   have satsf:"sats(M, ?f,[n,y,A,nat] ) \<longleftrightarrow>
         n\<in>nat & is_iterates(##M, big_union(##M), A, n, y)"
     if "n\<in>M" "y\<in>M" for n y
+    unfolding interface_iter_eclose2_fm_def
     using that \<open>A\<in>M\<close> nat_in_M 1 by simp
   have artyf:"arity(?f) = 4"
-    unfolding is_iterates_fm_def formula_functor_fm_def fm_defs sum_fm_def quasinat_fm_def
+    unfolding 
+      interface_iter_eclose2_fm_def
+      is_iterates_fm_def formula_functor_fm_def fm_defs sum_fm_def quasinat_fm_def
       cartprod_fm_def number1_fm_def Memrel_fm_def ordinal_fm_def transset_fm_def
       is_wfrec_fm_def is_recfun_fm_def iterates_MH_fm_def is_nat_case_fm_def subset_fm_def
       pre_image_fm_def restriction_fm_def
     by (simp add:nat_simp_union)
   then
   have "strong_replacement(##M,\<lambda>n y. sats(M,?f,[n,y,A,nat]))"
-    using replacement_ax 1 artyf \<open>A\<in>M\<close> nat_in_M by simp
+    apply(rule_tac strong_replacement_consI)
+    apply(rule replacement_ax, simp add:interface_iter_eclose2_fm_def)
+    using replacement_ax 1 artyf interface_iter_eclose2_fm \<open>A\<in>M\<close> nat_in_M by auto
   then
   show ?thesis using repl_sats[of M ?f "[A,nat]"]  satsf  by simp
 qed
 
-lemma (in M_ZF_trans) mdatatypes : "M_datatypes(##M)"
+lemma (in M_ZF_Fragment_Interface) mdatatypes : "M_datatypes(##M)"
   using  mtrancl list_repl1_intf list_repl2_intf formula_repl1_intf
     formula_repl2_intf nth_repl_intf
   by unfold_locales auto
 
-sublocale M_ZF_trans \<subseteq> M_datatypes "##M"
+sublocale M_ZF_Fragment_Interface \<subseteq> M_datatypes "##M"
   by (rule mdatatypes)
 
-lemma (in M_ZF_trans) meclose : "M_eclose(##M)"
+lemma (in M_ZF_Fragment_Interface) meclose : "M_eclose(##M)"
   using mdatatypes eclose_repl1_intf eclose_repl2_intf
   by unfold_locales auto
 
-sublocale M_ZF_trans \<subseteq> M_eclose "##M"
+sublocale M_ZF_Fragment_Interface \<subseteq> M_eclose "##M"
   by (rule meclose)
 
 (* Interface with locale M_eclose_pow *)
@@ -1081,13 +1000,6 @@ definition
 lemma powerset_type [TC]:
   "\<lbrakk> x \<in> nat; y \<in> nat \<rbrakk> \<Longrightarrow> powerset_fm(x,y) \<in> formula"
   by (simp add:powerset_fm_def)
-
-definition
-  is_powapply_fm :: "[i,i,i] \<Rightarrow> i" where
-  "is_powapply_fm(f,y,z) \<equiv>
-      Exists(And(fun_apply_fm(succ(f), succ(y), 0),
-            Forall(Iff(Member(0, succ(succ(z))),
-            Forall(Implies(Member(0, 1), Member(0, 2)))))))"
 
 lemma is_powapply_type [TC] :
   "\<lbrakk>f\<in>nat ; y\<in>nat; z\<in>nat\<rbrakk> \<Longrightarrow> is_powapply_fm(f,y,z)\<in>formula"
@@ -1103,7 +1015,7 @@ lemma sats_is_powapply_fm :
   using nth_closed assms by simp
 
 
-lemma (in M_ZF_trans) powapply_repl :
+lemma (in M_ZF_Fragment_Interface) powapply_repl :
   assumes
     "f\<in>M"
   shows
@@ -1114,7 +1026,7 @@ proof -
     by (simp add: fm_defs nat_simp_union)
   then
   have "\<forall>f0\<in>M. strong_replacement(##M, \<lambda>p z. sats(M,is_powapply_fm(2,0,1) , [p,z,f0]))"
-    using replacement_ax by simp
+    using replacement_ax interface_powapply_fm by simp
   moreover
   have "is_powapply(##M,f0,p,z) \<longleftrightarrow> sats(M,is_powapply_fm(2,0,1) , [p,z,f0])"
     if "p\<in>M" "z\<in>M" "f0\<in>M" for p z f0
@@ -1125,26 +1037,19 @@ proof -
   with \<open>f\<in>M\<close> show ?thesis by simp
 qed
 
-
-(*"PHrank(M,f,y,z) \<equiv> M(z) \<and> (\<exists>fy[M]. fun_apply(M,f,y,fy) \<and> successor(M,fy,z))"*)
-definition
-  PHrank_fm :: "[i,i,i] \<Rightarrow> i" where
-  "PHrank_fm(f,y,z) \<equiv> Exists(And(fun_apply_fm(succ(f),succ(y),0)
-                                 ,succ_fm(0,succ(z))))"
-
 lemma PHrank_type [TC]:
   "\<lbrakk> x \<in> nat; y \<in> nat; z \<in> nat \<rbrakk> \<Longrightarrow> PHrank_fm(x,y,z) \<in> formula"
   by (simp add:PHrank_fm_def)
 
 
-lemma (in M_ZF_trans) sats_PHrank_fm [simp]:
+lemma (in M_ZF_Fragment_Interface) sats_PHrank_fm [simp]:
   "\<lbrakk> x \<in> nat; y \<in> nat; z \<in> nat;  env \<in> list(M) \<rbrakk> 
     \<Longrightarrow> sats(M,PHrank_fm(x,y,z),env) \<longleftrightarrow>
         PHrank(##M,nth(x,env),nth(y,env),nth(z,env))"
   using zero_in_M Internalizations.nth_closed by (simp add: PHrank_def PHrank_fm_def)
 
 
-lemma (in M_ZF_trans) phrank_repl :
+lemma (in M_ZF_Fragment_Interface) phrank_repl :
   assumes
     "f\<in>M"
   shows
@@ -1155,25 +1060,18 @@ proof -
     by (simp add: fm_defs nat_simp_union)
   then
   have "\<forall>f0\<in>M. strong_replacement(##M, \<lambda>p z. sats(M,PHrank_fm(2,0,1) , [p,z,f0]))"
-    using replacement_ax by simp
+    using replacement_ax interface_PHrank_fm by simp
   then
   have "\<forall>f0\<in>M. strong_replacement(##M, PHrank(##M,f0))"
     unfolding strong_replacement_def univalent_def by simp
   with \<open>f\<in>M\<close> show ?thesis by simp
 qed
-
-
-(*"is_Hrank(M,x,f,hc) \<equiv> (\<exists>R[M]. big_union(M,R,hc) \<and>is_Replace(M,x,PHrank(M,f),R)) "*)
-definition
-  is_Hrank_fm :: "[i,i,i] \<Rightarrow> i" where
-  "is_Hrank_fm(x,f,hc) \<equiv> Exists(And(big_union_fm(0,succ(hc)),
-                                Replace_fm(succ(x),PHrank_fm(succ(succ(succ(f))),0,1),0)))"
-
+ 
 lemma is_Hrank_type [TC]:
   "\<lbrakk> x \<in> nat; y \<in> nat; z \<in> nat \<rbrakk> \<Longrightarrow> is_Hrank_fm(x,y,z) \<in> formula"
   by (simp add:is_Hrank_fm_def)
 
-lemma (in M_ZF_trans) sats_is_Hrank_fm [simp]:
+lemma (in M_ZF_Fragment_Interface) sats_is_Hrank_fm [simp]:
   "\<lbrakk> x \<in> nat; y \<in> nat; z \<in> nat; env \<in> list(M)\<rbrakk>
     \<Longrightarrow> sats(M,is_Hrank_fm(x,y,z),env) \<longleftrightarrow>
         is_Hrank(##M,nth(x,env),nth(y,env),nth(z,env))"
@@ -1181,7 +1079,7 @@ lemma (in M_ZF_trans) sats_is_Hrank_fm [simp]:
   by simp
 
 (* M(x) \<Longrightarrow> wfrec_replacement(M,is_Hrank(M),rrank(x)) *)
-lemma (in M_ZF_trans) wfrec_rank :
+lemma (in M_ZF_Fragment_Interface) wfrec_rank :
   assumes
     "X\<in>M"
   shows
@@ -1199,34 +1097,32 @@ proof -
     if "y\<in>M" "x\<in>M" "z\<in>M" for y x z
     using that \<open>X\<in>M\<close> rrank_in_M sats_is_wfrec_fm by simp
   let
-    ?f="Exists(And(pair_fm(1,0,2),is_wfrec_fm(is_Hrank_fm(2,1,0),3,1,0)))"
+    ?f=interface_wfrec_fm 
   have satsf:"sats(M, ?f, [x,z,rrank(X)])
               \<longleftrightarrow> (\<exists>y\<in>M. pair(##M,x,y,z) & is_wfrec(##M, is_Hrank(##M) , rrank(X), x, y))"
     if "x\<in>M" "z\<in>M" for x z
-    using that 1 \<open>X\<in>M\<close> rrank_in_M by (simp del:pair_abs)
+    unfolding interface_wfrec_fm_def
+    using that 1 \<open>X\<in>M\<close> rrank_in_M 
+    by (simp del:pair_abs)
   have "arity(?f) = 3"
-    unfolding is_wfrec_fm_def is_recfun_fm_def is_nat_case_fm_def is_Hrank_fm_def PHrank_fm_def
+    unfolding interface_wfrec_fm_def
+      is_wfrec_fm_def is_recfun_fm_def is_nat_case_fm_def is_Hrank_fm_def PHrank_fm_def
       restriction_fm_def list_functor_fm_def number1_fm_def cartprod_fm_def
       sum_fm_def quasinat_fm_def pre_image_fm_def fm_defs
     by (simp add:nat_simp_union)
   then
   have "strong_replacement(##M,\<lambda>x z. sats(M,?f,[x,z,rrank(X)]))"
-    using replacement_ax 1 \<open>X\<in>M\<close> rrank_in_M by simp
+    apply(rule_tac strong_replacement_consI)
+    apply(rule replacement_ax, simp add:interface_wfrec_fm_def)
+    using interface_wfrec_fm 1 \<open>X\<in>M\<close> rrank_in_M 
+    by auto
   then
   have "strong_replacement(##M,\<lambda>x z.
           \<exists>y\<in>M. pair(##M,x,y,z) & is_wfrec(##M, is_Hrank(##M) , rrank(X), x, y))"
     using repl_sats[of M ?f "[rrank(X)]"]  satsf by (simp del:pair_abs)
   then
   show ?thesis unfolding wfrec_replacement_def  by simp
-qed
-
-(*"is_HVfrom(M,A,x,f,h) \<equiv> \<exists>U[M]. \<exists>R[M].  union(M,A,U,h)
-        \<and> big_union(M,R,U) \<and> is_Replace(M,x,is_powapply(M,f),R)"*)
-definition
-  is_HVfrom_fm :: "[i,i,i,i] \<Rightarrow> i" where
-  "is_HVfrom_fm(A,x,f,h) \<equiv> Exists(Exists(And(union_fm(A #+ 2,1,h #+ 2),
-                            And(big_union_fm(0,1),
-                            Replace_fm(x #+ 2,is_powapply_fm(f #+ 4,0,1),0)))))"
+qed 
 
 lemma is_HVfrom_type [TC]:
   "\<lbrakk> A\<in>nat; x \<in> nat; f \<in> nat; h \<in> nat \<rbrakk> \<Longrightarrow> is_HVfrom_fm(A,x,f,h) \<in> formula"
@@ -1269,14 +1165,14 @@ schematic_goal is_Vset_iff_sats:
   by (rule sats_is_Vset_fm_auto(1); simp add:assms)
 
 
-lemma (in M_ZF_trans) memrel_eclose_sing :
+lemma (in M_ZF_Fragment_Interface) memrel_eclose_sing :
   "a\<in>M \<Longrightarrow> \<exists>sa\<in>M. \<exists>esa\<in>M. \<exists>mesa\<in>M.
        upair(##M,a,a,sa) & is_eclose(##M,sa,esa) & membership(##M,esa,mesa)"
   using upair_ax eclose_closed Memrel_closed unfolding upair_ax_def
   by (simp del:upair_abs)
 
 
-lemma (in M_ZF_trans) trans_repl_HVFrom :
+lemma (in M_ZF_Fragment_Interface) trans_repl_HVFrom :
   assumes
     "A\<in>M" "i\<in>M"
   shows
@@ -1307,7 +1203,7 @@ proof -
       by (simp add:nat_simp_union)
     then
     have "strong_replacement(##M,\<lambda>x z. sats(M,?f,[x,z,A,mesa]))"
-      using replacement_ax 1 \<open>A\<in>M\<close> \<open>mesa\<in>M\<close> by simp
+      using replacement_ax 1 interface_HVfrom_fm \<open>A\<in>M\<close> \<open>mesa\<in>M\<close> by simp
     then
     have "strong_replacement(##M,\<lambda>x z.
           \<exists>y\<in>M. pair(##M,x,y,z) & is_wfrec(##M, is_HVfrom(##M,A) , mesa, x, y))"
@@ -1321,14 +1217,14 @@ proof -
 qed
 
 
-lemma (in M_ZF_trans) meclose_pow : "M_eclose_pow(##M)"
+lemma (in M_ZF_Fragment_Interface) meclose_pow : "M_eclose_pow(##M)"
   using meclose power_ax powapply_repl phrank_repl trans_repl_HVFrom wfrec_rank
   by unfold_locales auto
 
-sublocale M_ZF_trans \<subseteq> M_eclose_pow "##M"
+sublocale M_ZF_Fragment_Interface \<subseteq> M_eclose_pow "##M"
   by (rule meclose_pow)
 
-lemma (in M_ZF_trans) repl_gen :
+lemma (in M_ZF_Fragment_Interface) repl_gen :
   assumes
     f_abs: "\<And>x y. \<lbrakk> x\<in>M; y\<in>M \<rbrakk> \<Longrightarrow> is_F(##M,x,y) \<longleftrightarrow> y = f(x)"
     and
@@ -1338,6 +1234,8 @@ lemma (in M_ZF_trans) repl_gen :
     f_form: "f_fm \<in> formula"
     and
     f_arty: "arity(f_fm) = 2"
+    and 
+    "f_fm \<in> \<Phi>"
     and
     "env\<in>list(M)"
   shows
@@ -1348,7 +1246,8 @@ proof -
   moreover
   from f_form f_arty
   have "strong_replacement(##M, \<lambda>x y. sats(M,f_fm,[x,y]@env))"
-    using \<open>env\<in>list(M)\<close> replacement_ax by simp
+    using assms replacement_ax
+    by auto
   ultimately
   have "strong_replacement(##M, is_F(##M))"
     using strong_replacement_cong[of "##M" "\<lambda>x y. sats(M,f_fm,[x,y]@env)" "is_F(##M)"] by simp
@@ -1357,9 +1256,9 @@ proof -
 qed
 
 (* Proof Scheme for instances of separation *)
-lemma (in M_ZF_trans) sep_in_M :
+lemma (in M_ZF_Fragment_Interface) sep_in_M :
   assumes
-    "\<phi> \<in> formula" "env\<in>list(M)"
+    "\<phi> \<in> formula" "env\<in>list(M)" "\<phi> \<in> \<Phi>" 
     "arity(\<phi>) \<le> 1 #+ length(env)" "A\<in>M" and
     satsQ: "\<And>x. x\<in>M \<Longrightarrow> sats(M,\<phi>,[x]@env) \<longleftrightarrow> Q(x)"
   shows
