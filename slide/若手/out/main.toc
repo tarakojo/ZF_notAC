@@ -1,6 +1,4 @@
 \beamer@sectionintoc {1}{Isabelle/ZFについて}{3}{0}{1}
-\beamer@sectionintoc {2}{集合論の形式化に関する\\先行研究 }{11}{0}{2}
-\beamer@sectionintoc {3}{本研究}{14}{0}{3}
-\beamer@sectionintoc {4}{証明概略}{21}{0}{4}
-\beamer@sectionintoc {5}{Isabelle/ZFによる形式化}{27}{0}{5}
-\beamer@sectionintoc {6}{まとめ}{38}{0}{6}
+\beamer@sectionintoc {2}{証明概略}{9}{0}{2}
+\beamer@sectionintoc {3}{Isabelle/ZFによる形式化}{15}{0}{3}
+\beamer@sectionintoc {4}{まとめ}{26}{0}{4}

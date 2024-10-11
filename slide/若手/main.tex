@@ -11,6 +11,7 @@ TODO :
 \RequirePackage{plautopatch} 
 \documentclass[17pt,aspectratio=169]{beamer} 
 \usepackage{amsmath}
+\usepackage{amssymb}
 \usepackage{graphicx}
 \usepackage{luatexja}
 \usepackage{luatexja-fontspec} 
@@ -25,6 +26,7 @@ TODO :
 \usepackage{enumitem}
 \setlist[itemize,1]{label=\textbullet, itemsep=17pt}  % 記号をもうちょっと大きくしたい
 \setlist[itemize,2]{label=\textasteriskcentered, itemsep=3pt} 
+\setlist[itemize,3]{label=\textendash, itemsep=3pt} 
 
 \usetheme{metropolis}  % Metropolisテーマを使用
 \setmainjfont{Yu Gothic Bold}  
@@ -69,16 +71,9 @@ TODO :
 \begin{document}
 \maketitle
 
-\begin{frame} {参考文献} 
-      
-    {\small
-        \begin{itemize}[itemsep=5pt]
-            \item Kenneth Kunen著, 藤田 博司 訳 (2008) \\「集合論: 独立性証明への案内」
-            \item Thomas Jech著 (2002) 「Set Theory」
-            \item Thomas Jech著 (2008) 「the Axiom of Choice」
-            \item Asaf Karagila著 (2023) \\ 「Lecture Notes: Forcing \& Symmetric Extensions」 \\
-                  {\small (https://karagila.org/files/Forcing-2023.pdf) }
-        \end{itemize}}
+\begin{frame}{概要}
+    aaaa
+%やったことと意義,背景
 \end{frame}
 
 \section{Isabelle/ZFについて}
@@ -86,9 +81,10 @@ TODO :
 \begin{frame}{定理証明支援系}
     \begin{columns}
         \begin{column}{0.65\textwidth}
-            \begin{itemize}
+            \begin{itemize}[itemsep=7pt]
                 \item 数学的証明の形式化や、\\ソフトウェアの正しさの証明\\などに用いられるシステム
                 \item プログラムを書くように\\定義・証明を記述する
+                \item Isabelleはその一種
             \end{itemize}
 
         \end{column}
@@ -96,8 +92,9 @@ TODO :
             \begin{figure}
                 \includegraphics[width=1.0\linewidth]{./images/isabelle_editor.png}
             \end{figure}
+            \vspace{-10pt}
             \begin{figure}
-                \includegraphics[width=1.0\linewidth]{./images/coq-proving.png}
+                \includegraphics[width=0.7\linewidth]{./images/isabelle_logo.png}
             \end{figure}
 
         \end{column}
@@ -114,119 +111,42 @@ TODO :
 %    https://read.seas.harvard.edu/~kohler/class/cs260r-17/klein10sel4.pdf
 %----------------------------------------------
 
-\begin{frame}{Isabelle}
-    \begin{columns}
-        \begin{column}{0.75\textwidth}
-            \begin{itemize}
-                \item 定理証明支援系の一つ
-                \item 初版は1986年
-                      {\small \begin{itemize}
-                          \item Lawrence Paulsonらによる
-                      \end{itemize} }
-                \item 現在も開発・利用が続けられている
-            \end{itemize}
-
-        \end{column}
-        \begin{column}{0.25\textwidth}
-            \begin{figure}
-                \includegraphics[width=1.0\linewidth]{./images/isabelle_logo.png}
-            \end{figure}
-        \end{column}
-    \end{columns}
-
-\end{frame}
-
-\begin{frame}{Isabelleの実績(1)}
-    \begin{columns}
-        \begin{column}{0.75\textwidth} 
-            ケプラー予想の形式的証明
-            {\small \begin{itemize}[itemsep=5pt]
-                \item 等しい大きさの球を空間に \\
-                        詰めるとき、どれだけぎっしり\\
-                        詰められるかについての予想
-                \item Thomas Halesと他21人による\\
-                        12年の共同研究 
-                % 2003年から2014年まで          
-                %ソースはwikipedia
-                %三次元ユークリッド空間における球充填に関する数学的な予想である。
-                %それによると、等しい大きさの球で空間を充填（パッキング）するとき、
-                %平均密度が立方最密充填配置（面心立方）
-                %ならびに六方最密充填配置を越えることはない。
-                %これらの配置の密度はおよそ74.05%である。
-                
-            \end{itemize} } 
-        \end{column}
-        \begin{column}{0.25\textwidth}
-            \begin{figure}
-                \hspace{-2cm}
-                \includegraphics[width=1.4\linewidth]{./images/kepler.png }
-            \end{figure}
-        \end{column}
-    \end{columns}
-\end{frame}
-
-\begin{frame}{Isabelleの実績(2)}
-    \vspace{3pt}
-    \begin{columns}
-        \begin{column}{0.75\textwidth} 
-
-            seL4マイクロカーネルの形式検証
+\begin{frame}{Isabelle {\small [Paulson 86]}}
+    \vspace{-5pt}
+    \begin{itemize}[itemsep=3pt]
+        \item 実績
             \vspace{-3pt}
-            {\small \begin{itemize}[itemsep=3pt]
-                \item マイクロカーネル...\\
-                    OSに必要な最低限の機能を\\
-                    提供するプログラム
-                \item 様々な安全性の検証
-                \begin{itemize}[itemsep=3pt]
-                    \item カーネルの設計の正しさ
-                    \item C言語による実装の正しさ
-                    \item ...
-                \end{itemize}
-
-                %2014年段階で10年以上開発・保守されている
-                %現在だと20年以上
+            \begin{itemize}[itemsep=2pt]
+                \item seL4カーネルの形式検証 {\small \,[Klein et al. 14]}
+                \item ALEXANDRIAプロジェクト{\small \,[Paulson 23]}
+                \item ケプラー予想の形式証明{\small (の一部)[Hales et al. 15]}
                 
-            \end{itemize} } 
-                
-        \end{column}
-        \begin{column}{0.25\textwidth}
-            \begin{figure}
-                \hspace{-2cm}
-                \includegraphics[width=1.3\linewidth]{./images/sel4-logo.png } 
-            \end{figure}
-        \end{column}
-    \end{columns}
-\end{frame}
-
-\begin{frame}{Archive of Formal Proofs}
-    \vspace{3pt}
+            \end{itemize}
+        \item Archive of Formal Proofs
+    \end{itemize}
+    
+    \vspace{-10pt}
     \begin{columns}
-        \begin{column}{0.75\textwidth} 
-            
-            {\small \begin{itemize}[itemsep=5pt]
-                \item Isabelleでの形式化された\\
-                      定理などのアーカイブ
-                \item 証明をWeb上で閲覧可能
-                \item 様々な分野の形式化
-                \begin{itemize}[itemsep=3pt]
-                    \item 数学 
-                    \item アルゴリズム
-                    \item ...
-                \end{itemize}
-            \end{itemize}}
-        \end{column}
         \begin{column}{0.25\textwidth}
+            \vspace{-7pt}
             \begin{figure}
-                \hspace{-2cm}
-                \includegraphics[width=1.3\linewidth]{./images/isabelle_archive.png }
+                \includegraphics[width=0.9\linewidth]{./images/sel4-logo.png}
+            \end{figure}
+        \end{column}
+        \begin{column}{0.33\textwidth}
+            \vspace{-8pt}
+            \begin{figure}
+                \includegraphics[width=0.6\linewidth]{./images/kepler2.png} %public domain
+            \end{figure}
+        \end{column}
+        \begin{column}{0.35\textwidth}
+            \vspace{-20pt} 
+            \begin{figure}
+                \includegraphics[width=0.8\linewidth]{./images/isabelle_archive.png}
             \end{figure}
         \end{column}
     \end{columns}
 \end{frame}
-
-
-
-%Pureの説明or画像があるといいかも
 
 \begin{frame}{Isabelle}
     \begin{itemize}
@@ -237,169 +157,92 @@ TODO :
                   \item First-Order Logic \\
                   \item \dots
               \end{itemize} }
+              \vspace{-10pt}
+        \item \textcolor{red}{Isabelle/ZF} $\cdots$ \\ 
+        一階述語論理とZF(C)公理系のフレームワーク
     \end{itemize}
-    \vspace{-10pt}
 \end{frame}
 
 % 簡単な定理証明の例を紹介するといいかも
 % apply-script, structured proofの説明
 
-\begin{frame}{Isabelle/ZF}
-    \begin{itemize}
-        \item Isabelle上で一階述語論理とZF(C)公理系を\\用いて証明を行うためのフレームワーク
-    \end{itemize}
-\end{frame}
-
 % ZFの公理を記述しているコードを紹介するといいかも
 % https://isabelle.in.tum.de/dist/library/FOL/ZF/ZF_Base.html ZFの公理のコード
 
-
-\section{集合論の形式化に関する\\先行研究 }
-
-\begin{frame}{先行研究 (Isabelle/ZF)}
-
-    %----------------------------------------------
-    %    IsabelleとLeanで先行研究がある
-    %    Isabelle/HOL上でZF集合論をやる研究もある
-    %----------------------------------------------
-
-    \begin{itemize}
+\begin{frame}{Isabelle/ZFにおける先行研究}
+ 
+    \begin{itemize}[itemsep=8pt]
         \vspace{10pt}
-
-        \item \textbf{構成可能集合の形式化}
+        \item CHのZFC上の独立性証明{\small [Gunther et al. 20,22]}
+            \vspace{3pt}
               {\small \begin{itemize}
-                      \item Lawrence C. Paulson(2002)
-                      \item ACがZF上相対的無矛盾であることの証明
-                  \end{itemize} }
-              % https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-551.pdf 論文リンク
-
-        \item 強制法の形式化 \& CHのZFC上の独立性証明
-              {\small \begin{itemize}
-                  \item Emmanuel Guntherら(2020,2022)
-                  \item Kunenの強制法の章を形式化
-                  \item c.t.m.の存在を仮定しその上のpreorderを用いる
+                \item 強制法の形式化 % 行数
+                \item CHの独立性証明
               \end{itemize} }
 
+        \item ACのZF上の相対的無矛盾性証明{\small [Paulson 02]}
+              {\small \begin{itemize}
+                      \item 構成可能宇宙を形式化
+                  \end{itemize} }
               % https://arxiv.org/pdf/2001.09715 強制法の形式化
               % https://cs.famaf.unc.edu.ar/~pedro/forcing/Independence_CH/document.pdf CHの独立性証明
     \end{itemize}
-\end{frame}
-
-\begin{frame}{先行研究 (Lean)}
-    \vspace{10pt}
-
     \begin{itemize}
-        \item 強制法の形式化 \& CHのZFC上の独立性証明
-              {\small \begin{itemize}
-                  \item Jesse Michael Han, Floris van Doorn(2020)
-                  \item flypitchプロジェクト
-                  \item ブール値モデルを用いた証明
-              \end{itemize} }
-
-        \item QuineのNFのZFC上の相対的無矛盾性証明
-              {\small \begin{itemize}
-                  \item Sky Wilshaw(2024)
-              \end{itemize} }
-
-              %----------------------------------------------
-              % https://leanprover-community.github.io/con-nf// 
-              % Leanの型理論は(ZFC+可算個の到達不能基数の存在)上無矛盾
-              % 到達不能基数の方の仮定は証明でいらないのでZFC上でいいらしい  
-              %----------------------------------------------
+        \item [\textcolor{red}{$\blacktriangleright$}] $\neg$ACの相対的無矛盾性証明は\\
+        形式化されていなかったので挑戦
     \end{itemize}
 \end{frame}
 
-\section{本研究}
-
-\begin{frame}{本研究}
-    \begin{itembox}[l]{やったこと}
-        \begin{center}
-            $\neg$ACがZF上相対的無矛盾であることの証明を\\Isabelle/ZFで形式化
-        \end{center}
-    \end{itembox}
-
-    背景
-    \vspace{-10pt}
-    {\small
-        \begin{itemize}
-            \setlength{\itemsep}{1pt}
-            \item コーエンはCHとACがZFから独立であることを示した
-            \item CHの独立性は形式化されている
-            \item ACもやりたい
-        \end{itemize}
-
-        %----------------------------------------------
-        % ただし、コーエンの証明そのままを形式化したわけではない
-        %----------------------------------------------
-    }
-\end{frame}
-
-\begin{frame}{本研究の方針}
-    \vspace{10pt}
-    Isabelle/ZFを用いる
-    {\small 
+\begin{frame}{本研究におけるIsabelle/ZFの利点}
     \begin{itemize}
-        \item 強制法の形式化がすでにある
-        \begin{itemize}
-            \item Lean3にもあるが、Lean3は開発終了
-            \item 最新版のLean4に移植できるかは不明
-            \item 利用できそうな形式化はIsabelle/ZFにしかない
-        \end{itemize}
-        \item 集合論に関する定義・補題・糖衣構文が豊富
+        \item 集合論に関する補題・糖衣構文が豊富
+        \item Guntherらの強制法の形式化が使える
+        {\small \begin{itemize}
+            \item ZFのc.t.m.の存在を仮定している
+            \begin{itemize}
+                \item c.t.m. $\cdots$ countable transitive model
+                \item この仮定により証明の形式化に\\ギャップが生じる(後述)
+            \end{itemize}
+        \end{itemize}}
     \end{itemize}
-    }
+    ※本研究では相性の良いKaragila(2023)の証明に従う
 \end{frame}
 
-\begin{frame}{本研究の方針}
-    \vspace{10pt}
-    証明の基本方針はAsaf Karagilaの講義ノートに従う
-    {\small \begin{itemize}
-        \item Lecture Notes: Forcing \& Symmetric Extensions (2023)
-        \item c.t.m.とpreorderを用いた証明
-        \item すでにある強制法の形式化と相性が良い
-    \end{itemize} }
-
-    %講義ノートの写真・リンクいる？
-    %The axiom of choiceも参考にしていることを書く？
-\end{frame}
-
-\begin{frame}{ギャップ}
-    \vspace{-15pt}
-    \,
-    {\small 
-    \begin{itemize}[itemsep=5pt]
-        \item 既存のIsabelle/ZFでの強制法の形式化は\\ZFのc.t.m.の存在を仮定したもの
-        \item これを用いるため、\\本研究でもZFのc.t.m.を仮定する
-        \item ZFのc.t.m.の存在は、Con(ZF)から証明できない
-        \item 本当の意味での相対的無矛盾性Con(ZF) $\rightarrow$ Con(ZF+$\neg$AC)\\
-        の証明とはギャップがある
-    \end{itemize}
-    }
-\end{frame}
-
-\begin{frame}{ギャップ}
-    c.t.m.を用いた議論の背景
-\end{frame}
-
-\begin{frame}{ギャップ}
-    \begin{itemize} 
-        \item Boolean-valued modelなど\\
-              別のアプローチをとれなかったのか？
-        \item 強制法の形式化部分で\\作業量が増えてしまうので断念
-    \end{itemize}    
-\end{frame}
 
 \section{証明概略}
 \begin{frame}{証明概略}
-    ZFのc.t.m.$M$から出発し、ZF+$\neg$ACのモデルを構成
-    \begin{itemize}
-        \item あるposet $\mathbb{P}$によるgeneric extension$M[G]$について\\
+    ZFのc.t.m. $M$から出発しZF+$\neg$ACのモデル$N$を構成
+    \begin{itemize}[itemsep=8pt]
+        \item あるposet $\mathbb{P}$によるgeneric extension $M[G]$の\\
               \textcolor{red}{symmetric extension}と呼ばれる\\
               部分モデル$N \subseteq M[G]$を構成
         \item $N$はZFを満たすが、整列可能定理を満たさない
     \end{itemize}
 \end{frame}
 
+\begin{frame}{symmetric extensionの定義(1)}
+    \vspace{-5pt}
+    \begin{itembox}[l]{定義 ($\Pbb$-name)}
+        {\small
+            \vspace{-5pt}
+            MをZFのc.t.m.とする
+            \vspace{-8pt}
+            \begin{itemize}[itemsep=1pt]
+                \item 最大元$1_{\Pbb}$をもつ疑順序集合$(\Pbb, \le_{\Pbb})$をposetという 
+                \item $M^{\Pbb}_{\alpha}$を再帰的に定義する 
+                    \begin{itemize}
+                       \item $M^{\Pbb}_0 = \emptyset$ 
+                       \item  $M^{\Pbb}_{\alpha+1} = \mathcal{P}^M(M^{\Pbb}_{\alpha} \times \Pbb)$ 
+                       \item  $M^{\Pbb}_{\alpha} = \bigcup_{\beta < \alpha} M^{\Pbb}_{\beta}$\,\,\,\,($\alpha$はlimit ordinal)
+                    \end{itemize}
+                \item $M^{\Pbb} = \bigcup_{\alpha \in \text{Ord}} M^{\Pbb}_{\alpha}$とし、$M^{\Pbb}$の元を$\Pbb$-nameという
+            \end{itemize}            
+        }
+    \end{itembox}
+\end{frame}
+
+\begin{comment}
+    
 \begin{frame}{symmetric extensionの定義(1)}
     \begin{itembox}[l]{定義 (自己同型)}
         {\small
@@ -416,18 +259,27 @@ TODO :
     \end{itembox}
 \end{frame}
 
+\end{comment}
 
 \begin{frame}{symmetric extensionの定義(2)}
-    \begin{itembox}[l]{定義(normal filter)}
+    \vspace{-7pt}
+    \begin{itembox}[l]{定義(normal filter / {\small 自己同型の拡張})}
         {\small
-            $\Gcal$を$\Pbb$の自己同型群とする \\
-            $\Gcal$の部分群の族$\Fcal$がnormal filterであるとは次を満たすこと
-            \begin{itemize}
-                \setlength{\itemsep}{3pt}
-                \item $H_1, H_2 \in \Fcal$に対して$H_1 \cap H_2 \in \Fcal$
-                \item super groupをとる操作で閉じている
-                \item $H \in \Fcal, \pi \in \Gcal$に対して$\pi H \pi^{-1} \in \Fcal$
-            \end{itemize} }
+            $\Gcal$を$\Pbb$の自己同型群とする  \\
+            \textbullet\,\,\,$\Gcal$の部分群の族$\Fcal$がnormal filterであるとは次を満たすこと
+            \vspace{-5pt}
+            \begin{itemize}[left=1cm]
+                \setlength{\itemsep}{0pt}
+                \item [\textasteriskcentered] $H_1, H_2 \in \Fcal$に対して$H_1 \cap H_2 \in \Fcal$
+                \item [\textasteriskcentered] super groupをとる操作で閉じている
+                \item [\textasteriskcentered] $H \in \Fcal, \pi \in \Gcal$に対して$\pi H \pi^{-1} \in \Fcal$
+            \end{itemize}
+            \vspace{-3pt}
+            \textbullet \,\,\,$\Pbb$の自己同型$\pi$を次のように$M^\Pbb$上の自己同型に拡張する
+            \vspace{-5pt}
+            $$ \pi \dot{x} = \{ (\pi \dot{y}, \pi p) | (\dot{y}, p) \in \dot{x} \} \text{ for } \dot{x} \in M^\Pbb $$
+        }
+            
     \end{itembox}
 \end{frame}
 
@@ -636,6 +488,32 @@ TODO :
 
 \appendix
 \setbeamertemplate{footline}{}
+
+\begin{frame}{ギャップ}
+    \vspace{-15pt}
+    \,
+    {\small 
+    \begin{itemize}[itemsep=5pt]
+        \item 既存のIsabelle/ZFでの強制法の形式化は\\ZFのc.t.m.の存在を仮定したもの
+        \item これを用いるため、\\本研究でもZFのc.t.m.を仮定する
+        \item ZFのc.t.m.の存在は、Con(ZF)から証明できない
+        \item 本当の意味での相対的無矛盾性Con(ZF) $\rightarrow$ Con(ZF+$\neg$AC)\\
+        の証明とはギャップがある
+    \end{itemize}
+    }
+\end{frame}
+
+\begin{frame}{ギャップ}
+    c.t.m.を用いた議論の背景
+\end{frame}
+
+\begin{frame}{ギャップ}
+    \begin{itemize} 
+        \item Boolean-valued modelなど\\
+              別のアプローチをとれなかったのか？
+        \item 強制法の形式化部分で\\作業量が増えてしまうので断念
+    \end{itemize}    
+\end{frame}
 
 
 \end{document}
