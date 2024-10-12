@@ -1,4 +1,4 @@
 \beamer@sectionintoc {1}{Isabelle/ZFについて}{3}{0}{1}
 \beamer@sectionintoc {2}{証明概略}{9}{0}{2}
-\beamer@sectionintoc {3}{Isabelle/ZFによる形式化}{15}{0}{3}
-\beamer@sectionintoc {4}{まとめ}{26}{0}{4}
+\beamer@sectionintoc {3}{Isabelle/ZFによる形式化}{17}{0}{3}
+\beamer@sectionintoc {4}{まとめ}{28}{0}{4}

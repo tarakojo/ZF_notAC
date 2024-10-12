@@ -176,13 +176,13 @@ TODO :
         \item CHのZFC上の独立性証明{\small [Gunther et al. 20,22]}
             \vspace{3pt}
               {\small \begin{itemize}
-                \item 強制法の形式化 % 行数
-                \item CHの独立性証明
+                \item 強制法の形式化 (13K行)
+                \item CHの独立性証明 (16K行)
               \end{itemize} }
 
         \item ACのZF上の相対的無矛盾性証明{\small [Paulson 02]}
               {\small \begin{itemize}
-                      \item 構成可能宇宙を形式化
+                      \item 構成可能宇宙を形式化 (12K行)
                   \end{itemize} }
               % https://arxiv.org/pdf/2001.09715 強制法の形式化
               % https://cs.famaf.unc.edu.ar/~pedro/forcing/Independence_CH/document.pdf CHの独立性証明
@@ -196,7 +196,7 @@ TODO :
 \begin{frame}{本研究におけるIsabelle/ZFの利点}
     \begin{itemize}
         \item 集合論に関する補題・糖衣構文が豊富
-        \item Guntherらの強制法の形式化が使える
+        \item 強制法の形式化{\small [Gunther et al. 20]}が使える
         {\small \begin{itemize}
             \item ZFのc.t.m.の存在を仮定している
             \begin{itemize}
@@ -205,30 +205,60 @@ TODO :
             \end{itemize}
         \end{itemize}}
     \end{itemize}
-    ※本研究では相性の良いKaragila(2023)の証明に従う
+    ※本研究では相性の良い証明{\small [Karagila 23]}に従う
 \end{frame}
 
 
 \section{証明概略}
 \begin{frame}{証明概略}
+    \vspace{-4pt}
     ZFのc.t.m. $M$から出発しZF+$\neg$ACのモデル$N$を構成
-    \begin{itemize}[itemsep=8pt]
+    \vspace{-6pt}
+    \begin{itemize}[itemsep=10pt]
         \item あるposet $\mathbb{P}$によるgeneric extension $M[G]$の\\
               \textcolor{red}{symmetric extension}と呼ばれる\\
               部分モデル$N \subseteq M[G]$を構成
         \item $N$はZFを満たすが、整列可能定理を満たさない
+        \vspace{6pt}
+        {\small \begin{itemize}
+            \item $N \vDash $ 「単射$\omega \rightarrow A$が存在しない無限集合$A$が存在」
+            \begin{itemize}
+                \item $N$ではこの$A$が整列できない
+                \item $N$ではAはDedekind有限な無限集合
+            \end{itemize}
+        \end{itemize}}
     \end{itemize}
 \end{frame}
 
-\begin{frame}{symmetric extensionの定義(1)}
+\begin{frame}{generic extensionの定義(1)}
+    \vspace{-7pt}
+    \begin{itembox}[l]{定義(c.t.m.)}
+        {\small
+            \begin{itemize}[itemsep=2pt]
+                \item $M$が推移的であるとは\\
+                      任意の$x \in M$, $y \in x$に対して$y \in M$であること
+                \item $M$がZFのc.t.m.であるとは\\
+                      $M$が可算で推移的なZFのモデルであること
+            \end{itemize}
+        }        
+    \end{itembox}
+
+    \begin{itembox}[l]{定義(poset)}
+        {\small
+            最大元$1_{\Pbb}$をもつ疑順序集合$(\Pbb, \le_{\Pbb})$をposetという
+        }
+    \end{itembox}
+\end{frame}
+
+
+\begin{frame}{generic extensionの定義(2)}
     \vspace{-5pt}
     \begin{itembox}[l]{定義 ($\Pbb$-name)}
         {\small
             \vspace{-5pt}
-            MをZFのc.t.m.とする
+            MをZFのc.t.m., $\Pbb \in M$をposetとする
             \vspace{-8pt}
-            \begin{itemize}[itemsep=1pt]
-                \item 最大元$1_{\Pbb}$をもつ疑順序集合$(\Pbb, \le_{\Pbb})$をposetという 
+            \begin{itemize}[itemsep=1pt] 
                 \item $M^{\Pbb}_{\alpha}$を再帰的に定義する 
                     \begin{itemize}
                        \item $M^{\Pbb}_0 = \emptyset$ 
@@ -236,32 +266,36 @@ TODO :
                        \item  $M^{\Pbb}_{\alpha} = \bigcup_{\beta < \alpha} M^{\Pbb}_{\beta}$\,\,\,\,($\alpha$はlimit ordinal)
                     \end{itemize}
                 \item $M^{\Pbb} = \bigcup_{\alpha \in \text{Ord}} M^{\Pbb}_{\alpha}$とし、$M^{\Pbb}$の元を$\Pbb$-nameという
+                \item $\Pbb$-nameは$\dot{x}, \dot{y}, \dot{z}, ...$で表す
             \end{itemize}            
         }
     \end{itembox}
 \end{frame}
 
-\begin{comment}
-    
-\begin{frame}{symmetric extensionの定義(1)}
-    \begin{itembox}[l]{定義 (自己同型)}
+\begin{frame}{generic extensionの定義(3)}
+    \vspace{-7pt}
+    \begin{itembox}[l]{定義 (generic extension)}
         {\small
-            $(\Pbb, \le_{\Pbb})$は半順序で、最大元$1_{\Pbb}$をもつとする \\
-            $\pi : \Pbb \rightarrow \Pbb$が自己同型であるとは次を満たすこと
-            \begin{itemize}
-                \setlength{\itemsep}{3pt}
-                \item $\pi$は全単射
-                \item $p, q \in \Pbb$に対して、$p \le_{\Pbb} q \Leftrightarrow \pi p \le_{\Pbb} \pi q$
+            \vspace{-5pt}
+            \textbullet $D \subset \Pbb$がdense$:\Leftrightarrow$ $p \in \Pbb$に対し$q \le_{\Pbb} p$なる$q \in D$が存在
+
+            \vspace{4pt}
+            \textbullet $G \subset \Pbb$が$M$-generic filterであるとは、以下を満たすこと
+            \vspace{-5pt}
+            \begin{itemize}[itemsep=0pt]
+                \item [\textasteriskcentered]$p \in \Pbb$, $q \in G$に対し、$q \le_{\Pbb} p$ならば$p \in G$
+                \item [\textasteriskcentered]$p, q \in G$に対し、$r \in G$が存在して$r \le_{\Pbb} p, q$
+                \item [\textasteriskcentered]$D \subset \Pbb$に対し、$D \in M$かつdenseならば$D \cap G \neq \emptyset$
             \end{itemize}
-            $\pi$は以下のように$M^\Pbb$上の自己同型に拡張される
-            $$ \pi \dot{x} = \{ (\pi \dot{y}, \pi p) | (\dot{y}, p) \in \dot{x} \} $$
+            \vspace{-3pt}
+            \textbullet $\dot{x} \in M^{\Pbb}$に対し、$\dot{x}_G := \{ \dot{y}_G \, | \, \dot{y} \in \bm{\mathbf{dom}}(\dot{x}), \exists p \in G. (\dot{y}, p) \in \dot{x} \}$ 
+
+            \textbullet $M[G] := \{ \dot{x}_G \, | \, \dot{x} \in M^{\Pbb} \}$をgeneric extensionという
         }
-    \end{itembox}
+    \end{itembox}    
 \end{frame}
 
-\end{comment}
-
-\begin{frame}{symmetric extensionの定義(2)}
+\begin{frame}{symmetric extensionの定義(1)}
     \vspace{-7pt}
     \begin{itembox}[l]{定義(normal filter / {\small 自己同型の拡張})}
         {\small
@@ -277,13 +311,13 @@ TODO :
             \vspace{-3pt}
             \textbullet \,\,\,$\Pbb$の自己同型$\pi$を次のように$M^\Pbb$上の自己同型に拡張する
             \vspace{-5pt}
-            $$ \pi \dot{x} = \{ (\pi \dot{y}, \pi p) | (\dot{y}, p) \in \dot{x} \} \text{ for } \dot{x} \in M^\Pbb $$
+            $$ \pi \dot{x} := \{ (\pi \dot{y}, \pi p) | (\dot{y}, p) \in \dot{x} \} \text{ for } \dot{x} \in M^\Pbb $$
         }
             
     \end{itembox}
 \end{frame}
 
-\begin{frame}{symmetric extensionの定義(3)}
+\begin{frame}{symmetric extensionの定義(2)}
     \begin{itembox}[l]{定義 (hereditarily symmetric)}
         {\small
             $\Fcal$を$\Gcal$のnormal filterとする
@@ -305,15 +339,19 @@ TODO :
     \end{itembox}
 \end{frame}
 
-\begin{frame}{symmetric extensionの定義(4)}
+\begin{frame}{symmetric extensionの定義(3)}
     \begin{itembox}[l]{定義 (symmetric extension)}
         {\small
-            $\Pbb$-generic filter $G$に対し、\\$\{ \dot{x}_G | \dot{x} \in \bm{\mathbf{HS}}_{\Fcal} \}$をsymmetric extensionという
+            $M$-generic filter $G$に対し、\\$\{ \dot{x}_G | \dot{x} \in \bm{\mathbf{HS}}_{\Fcal} \}$をsymmetric extensionという
         }
     \end{itembox}
 
     \begin{itemize}
         \item symmetric extensionは、ZFのモデルとなる
+        \item $\Pbb$, $\Gcal$, $\Fcal$をうまく選ぶと$\neg$ACも満たす
+        {\small \begin{itemize}
+            \item 今回は$\Pbb =$ ($\omega \times \omega \rightarrow \{0,1\}$の有限部分関数全体)
+        \end{itemize} }
     \end{itemize}
 \end{frame}
 
@@ -330,7 +368,7 @@ TODO :
     \vspace{-5pt}
     意味 \\
     {\small
-    \hspace{1cm} $M$をZFのc.t.m.とする。このとき、ある$N$があって、\\
+    \hspace{1cm} $M$をZFのc.t.m.とする。このとき、あるモデル$N$があって\\
     \hspace{1cm} $N$はZFを満たすが、整列可能定理を満たさない
     }
 \end{frame}
@@ -347,72 +385,74 @@ TODO :
 \end{frame}
 
 \begin{frame}{作業量}
-    \makebox[\textwidth]{約1万5千行のコード \hfill {\small 補題など(3千行)}}
-    {\small
-        \begin{itemize}[itemsep=8pt]
-            \item symmetric extensionの定義(3千行)
-            \item ZFのモデルであることの証明(5千行)
-            \item 特定のsymmetric extensionの構成(2千行)
-            \item それが$\neg$ACを満たすことの証明(2千行)
-        \end{itemize} }
-\end{frame}
-
-\begin{frame}{苦労した点\, {\normalsize 1.自明なことの確認}}
-
-    「自明なこと」の確認が非常に大変な場合がある
-
-    {\small
-    \begin{itemize}
-        \item 定義した関数が「本当に関数であること」
-        \item クラスに「本当にそれを表す論理式が存在すること」
-    \end{itemize}
-    }
-\end{frame}
-
-\begin{frame}{苦労した点\, {\normalsize 1.自明なことの確認}}
-    特に、「帰納的に定義された$M$内の関数」の場合
-
-    {\small
-    \begin{itemize}
-        \item そもそも「$M$の元であること」の確認も必要
-              {\footnotesize
-              \begin{itemize}
-                  \item 仮定とZFの公理からちゃんと構成できるか？
-              \end{itemize}}
-        \item このような関数を定義するための補題が2千行以上
-    \end{itemize}
-    }
-\end{frame}
-
-\begin{frame}{苦労した点\, {\normalsize 2.先行研究の定義}}
-    先行研究の強制関係の定義
+    約1万5千行のコード \hspace{0.6cm} {\small 補題など(3千行)}
     {\small
     \begin{itemize}[itemsep=8pt]
+        \item symmetric extensionの定義(3千行)
+        \item ZFのモデルであることの証明(5千行)
+        \item 特定のsymmetric extensionの構成(2千行)
+        \item それが$\neg$ACを満たすことの証明(2千行)
+    \end{itemize} 
+
+    ※Isabelle/ZFでの集合論の形式化の各先行研究と同じくらい
+    }
+\end{frame}
+
+\begin{frame}{苦労した点(1)\, {\normalsize 自明なことの確認が大変}}
+    \begin{itemize}[left=0cm]
+        \item クラスに「それを表す論理式が存在すること」
+        \item 定義した関数が「本当に関数であること」
+        \vspace{5pt}
+        {\small
+        \begin{itemize}
+            \item 特に「帰納的に定義された$M$内の関数」の場合
+            \vspace{5pt}
+            {\begin{itemize}[itemsep=5pt]
+                \item 仮定とZFからちゃんと構成できるか？
+                \item このような関数を定義するための補題が\\
+                      2千行以上
+            \end{itemize}}
+        \end{itemize}
+        }
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{苦労した点\, {\normalsize 1.自明なことの確認}}
+    
+\end{frame}
+
+\begin{frame}{苦労した点(2)\, {\normalsize 先行研究の強制関係の定義}}
+    \begin{itemize}[itemsep=9pt]
         \item よくあるfor allに対する強制関係の定義
               $$ p \Vdash \forall x \phi(x, \dot{x_1}, ..., \dot{x_n}) \Leftrightarrow \forall \dot{x} \in M^\Pbb(p \Vdash \phi(\dot{x}, \dot{x_1}, ..., \dot{x_n})) $$
-        \item 先行研究の定義
+        \item 先行研究{\small [Gunther et al. 20]}の定義
               $$ p \Vdash \forall x \phi(x, \dot{x_1}, ..., \dot{x_n}) \Leftrightarrow \forall x \in \textcolor{red}{M}(p \Vdash \phi(x, \dot{x_1}, ..., \dot{x_n})) $$
+              {\small 
+                \hspace{0.5cm}※この定義でうまくいくように修正されている
+              }
+        \item [\textcolor{red}{$\blacktriangleright$}] 帰納法に$\Pbb$-nameでないものが混入する...
     \end{itemize}
-    \vspace{-6pt}
-    \hspace{1cm}※この定義でうまくいくように他の部分も修正されている
-    }
 \end{frame}
 
-\begin{frame}{苦労した点\, {\normalsize 2.先行研究の定義}}
-    帰納法に$\Pbb$-nameでないものが混入する...
-    {
-    \small
-    \begin{itemize}[itemsep=8pt]
-        \item $\mathbf{val}(G, \cdot)$を$M$上の関数として定義している
-              $$\mathbf{val}(G, x) := \{ \mathbf{val}(G, y) | y \in \mathbf{dom}(x), \exists p \in G. (y, p) \in x \}$$
-        \item $x \in M$に対しある$\dot{z} \in M^\Pbb$があって$\mathbf{val}(x, G) = \mathbf{val}(\dot{z}, G)$
-              \vspace{5pt}
+\begin{frame}{解決策(2)}
+    \begin{itembox}[l]{先行研究{\small [Gunther et al. 20]}の$x_G$の定義}
+    {\small
+        $x \in M$に対し
+        \vspace{-5pt}
+        $$x_G := \{ y_G \, | \, y \in \bm{\mathbf{dom}}(x), \exists p \in G. (y, p) \in x \}$$
+    }
+    \end{itembox}
+    {\small 
+    \begin{itemize}[itemsep=8pt]          
+        \item $x \in M$に対し、ある$\dot{z} \in M^\Pbb$があって$x_G = \dot{z}_G$
+            \vspace{3pt}
+              {\small
               \begin{itemize}
-                  \item この事実を形式化して一度は困難を解決
-                  \item 最終的には別手法で「苦労した点3.」と同時に解決
-              \end{itemize}
+                  \item この事実を形式化
+                  \item 帰納法中で$x$の代わりに$\dot{z}$を使うことで一度は解決
+                  \item 最終的には解決策(3)で問題の帰納法自体不要に
+              \end{itemize}}
     \end{itemize}
-
     }
 \end{frame}
 

@@ -803,7 +803,6 @@ INPUT ./images/ZF_notAC_main_theorem.png
 INPUT ./images/ZF_notAC_main_theorem.png
 INPUT ./images/ZF_notAC_main_theorem.png
 INPUT c:/texlive/2023/texmf-dist/fonts/tfm/public/mlmodern/ec-mlmss12.tfm
-INPUT c:/texlive/2023/texmf-dist/fonts/tfm/public/mlmodern/ts1-mlmss12.tfm
 OUTPUT out/main.nav
 OUTPUT out/main.toc
 OUTPUT out/main.snm
