@@ -71,10 +71,19 @@
 \headcommand {\slideentry {4}{0}{5}{30/30}{}{0}}
 \headcommand {\beamer@framepages {30}{30}}
 \headcommand {\gdef \insertmainframenumber {25}}
-\headcommand {\beamer@partpages {31}{30}}
-\headcommand {\beamer@subsectionpages {31}{30}}
-\headcommand {\beamer@sectionpages {31}{30}}
-\headcommand {\beamer@documentpages {30}}
-\headcommand {\gdef \inserttotalframenumber {0}}
+\headcommand {\partentry {\translate {Appendix}}{1}}
+\headcommand {\beamer@partpages {1}{30}}
+\headcommand {\beamer@sectionpages {26}{30}}
+\headcommand {\beamer@subsectionpages {26}{30}}
+\headcommand {\beamer@appendixpages {31}}
+\headcommand {\slideentry {4}{0}{6}{31/31}{}{1}}
+\headcommand {\beamer@framepages {31}{31}}
+\headcommand {\slideentry {4}{0}{7}{32/32}{}{1}}
+\headcommand {\beamer@framepages {32}{32}}
+\headcommand {\beamer@partpages {31}{32}}
+\headcommand {\beamer@subsectionpages {31}{32}}
+\headcommand {\beamer@sectionpages {31}{32}}
+\headcommand {\beamer@documentpages {32}}
+\headcommand {\gdef \inserttotalframenumber {2}}
 \headcommand {\gdef \inserttotalframenumber {25}}
-\headcommand {\gdef \appendixtotalframenumber {0}}
+\headcommand {\gdef \appendixtotalframenumber {2}}

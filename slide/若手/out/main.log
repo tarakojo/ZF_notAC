@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.17.0 (TeX Live 2023)  (format=lualatex 2023.5.15)  14 OCT 2024 06:54
+This is LuaHBTeX, Version 1.17.0 (TeX Live 2023)  (format=lualatex 2023.5.15)  14 OCT 2024 07:31
  restricted system commands enabled.
  file:line:error style messages enabled.
 **c:/Users/tarak/source/repos/ZF-notAC/slide/若手/main.tex
@@ -1550,22 +1550,22 @@ LaTeX Font Warning: Font shape `JY3/YuGothicBold(0)/bx/n' undefined
 [3
 
 ]
-<./images/isabelle_editor.png, id=54, 1920.42468pt x 1122.44344pt>
+<./images/isabelle_editor.png, id=58, 1920.42468pt x 1122.44344pt>
 File: ./images/isabelle_editor.png Graphic file (type png)
 <use ./images/isabelle_editor.png>
 Package luatex.def Info: ./images/isabelle_editor.png  used on input line 125.
 (luatex.def)             Requested size: 139.42093pt x 81.47354pt.
-<./images/lean.png, id=55, 200.75pt x 200.75pt>
+<./images/lean.png, id=59, 200.75pt x 200.75pt>
 File: ./images/lean.png Graphic file (type png)
 <use ./images/lean.png>
 Package luatex.def Info: ./images/lean.png  used on input line 125.
 (luatex.def)             Requested size: 55.76752pt x 55.76544pt.
-<./images/isabelle_logo.png, id=56, 281.05pt x 281.05pt>
+<./images/isabelle_logo.png, id=60, 281.05pt x 281.05pt>
 File: ./images/isabelle_logo.png Graphic file (type png)
 <use ./images/isabelle_logo.png>
 Package luatex.def Info: ./images/isabelle_logo.png  used on input line 125.
 (luatex.def)             Requested size: 55.76752pt x 55.76729pt.
-<./images/coq.png, id=57, 200.75pt x 200.75pt>
+<./images/coq.png, id=61, 200.75pt x 200.75pt>
 File: ./images/coq.png Graphic file (type png)
 <use ./images/coq.png>
 Package luatex.def Info: ./images/coq.png  used on input line 125.
@@ -1605,12 +1605,12 @@ File: ./images/isabelle_logo.png Graphic file (type png)
 <use ./images/isabelle_logo.png>
 Package luatex.def Info: ./images/isabelle_logo.png  used on input line 163.
 (luatex.def)             Requested size: 69.70894pt x 69.7091pt.
-<./images/sel4-logo.png, id=68, 461.725pt x 461.725pt>
+<./images/sel4-logo.png, id=72, 461.725pt x 461.725pt>
 File: ./images/sel4-logo.png Graphic file (type png)
 <use ./images/sel4-logo.png>
 Package luatex.def Info: ./images/sel4-logo.png  used on input line 163.
 (luatex.def)             Requested size: 89.62556pt x 89.62386pt.
-<./images/isabelle_archive.png, id=69, 724.20563pt x 598.48593pt>
+<./images/isabelle_archive.png, id=73, 724.20563pt x 598.48593pt>
 File: ./images/isabelle_archive.png Graphic file (type png)
 <use ./images/isabelle_archive.png>
 Package luatex.def Info: ./images/isabelle_archive.png  used on input line 163.
@@ -1961,7 +1961,7 @@ LaTeX Font Warning: Font shape `JY3/YuGothicBold(0)/bx/n' undefined
 [16
 
 ]
-<./images/ZF_notAC_main_theorem.png, id=147, 714.41907pt x 107.65219pt>
+<./images/ZF_notAC_main_theorem.png, id=151, 714.41907pt x 107.65219pt>
 File: ./images/ZF_notAC_main_theorem.png Graphic file (type png)
 <use ./images/ZF_notAC_main_theorem.png>
 Package luatex.def Info: ./images/ZF_notAC_main_theorem.png  used on input line 391.
@@ -2376,6 +2376,60 @@ LaTeX Font Warning: Font shape `JY3/YuGothicBold(0)/bx/n' undefined
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `\translate ' on input line 630.
 
+
+LaTeX Font Warning: Font shape `JY3/YuGothicBold(0)/bx/n' undefined
+(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 645.
+
+
+LaTeX Font Warning: Font shape `JY3/YuGothicBold(0)/bx/n' undefined
+(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 645.
+
+
+LaTeX Font Warning: Font shape `JY3/YuGothicBold(0)/bx/n' undefined
+(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 645.
+
+
+LaTeX Font Warning: Font shape `JY3/YuGothicBold(0)/bx/n' undefined
+(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 645.
+
+
+LaTeX Font Warning: Font shape `JY3/YuGothicBold(0)/bx/n' undefined
+(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 645.
+
+
+LaTeX Font Warning: Font shape `JY3/YuGothicBold(0)/bx/n' undefined
+(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 645.
+
+[31
+
+]
+
+LaTeX Font Warning: Font shape `JY3/YuGothicBold(0)/bx/n' undefined
+(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 658.
+
+
+LaTeX Font Warning: Font shape `JY3/YuGothicBold(0)/bx/n' undefined
+(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 658.
+
+
+LaTeX Font Warning: Font shape `JY3/YuGothicBold(0)/bx/n' undefined
+(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 658.
+
+
+LaTeX Font Warning: Font shape `JY3/YuGothicBold(0)/bx/n' undefined
+(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 658.
+
+
+LaTeX Font Warning: Font shape `JY3/YuGothicBold(0)/bx/n' undefined
+(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 658.
+
+
+LaTeX Font Warning: Font shape `JY3/YuGothicBold(0)/bx/n' undefined
+(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 658.
+
+[32
+
+] Excluding 'comment' comment.
 \tf@nav=\write7
 
 \openout7 = main.nav
@@ -2390,23 +2444,23 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 88C1F5D91284102BCBC231EDD69D5560;410.
+(rerunfilecheck)             Checksum: 4F62FAE0ECAEAF9B88A8727A7C294455;491.
 )
 
 Here is how much of LuaTeX's memory you used:
- 33973 strings out of 478313
+ 33989 strings out of 478313
  125244,1977958 words of node,token memory allocated
- 19355 words of node memory still in use:
-   47 hlist, 8 vlist, 109 rule, 5 disc, 7 local_par, 4 math, 194 glue, 13 kern, 40 penalty, 164 glyph, 6524 attribute, 70 glue_spec, 634 attribute_list, 10 write, 49 user_defined, 1 pdf_dest, 24 pdf_colorstack nodes
-   avail lists: 1:7,2:12272,3:354,4:458,5:269,6:36,7:1564,8:43,9:537,10:25,11:70
- 52313 multiletter control sequences out of 65536+600000
- 158 fonts using 101505215 bytes
+ 18084 words of node memory still in use:
+   44 hlist, 8 vlist, 12 rule, 32 disc, 6 local_par, 130 glue, 24 kern, 31 penalty, 307 glyph, 5976 attribute, 70 glue_spec, 586 attribute_list, 4 write, 50 user_defined, 24 pdf_colorstack nodes
+   avail lists: 1:7,2:12868,3:369,4:457,5:260,6:37,7:1489,8:43,9:638,10:26,11:64
+ 52324 multiletter control sequences out of 65536+600000
+ 159 fonts using 101567959 bytes
  128i,11n,131p,1956b,1049s stack positions out of 10000i,1000n,20000p,200000b,200000s
 {c:/texlive/2023/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{c:/texlive/2023/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{c:/texlive/2023/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{c:/texlive/2023/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}{c:/texlive/2023/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{c:/texlive/2023/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}<c:/Windows/Fonts/YuGothB.ttc><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/latxfont/lcirclew.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/mlmodern/mlmbx10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/mlmodern/mlmbx12.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/mlmodern/mlmex10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/mlmodern/mlmmi10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/mlmodern/mlmmi12.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/mlmodern/mlmss10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/mlmodern/mlmss12.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/mlmodern/mlmss17.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/mlmodern/mlmssbx10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/mlmodern/mlmsy10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/mlmodern/mlmsy7.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on main.pdf (30 pages, 912994 bytes).
+Output written on main.pdf (32 pages, 920346 bytes).
 
-PDF statistics: 300 PDF objects out of 1000 (max. 8388607)
- 225 compressed objects within 3 object streams
- 65 named destinations out of 1000 (max. 131072)
- 48 words of extra memory for PDF output out of 10000 (max. 100000000)
+PDF statistics: 315 PDF objects out of 1000 (max. 8388607)
+ 238 compressed objects within 3 object streams
+ 70 named destinations out of 1000 (max. 131072)
+ 56 words of extra memory for PDF output out of 10000 (max. 100000000)
 
