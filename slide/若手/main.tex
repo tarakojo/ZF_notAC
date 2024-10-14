@@ -73,7 +73,7 @@ TODO :
 
 \begin{frame}{概要}
     \begin{itembox}[l]{やったこと}
-        $\neg$ACのZF上の相対的無矛盾性証明{\small (の一部)}を\\
+        $\neg$ACのZF上の相対的無矛盾性証明を\\
         Isabelle/ZFで形式化
     \end{itembox}
     {\small
@@ -402,13 +402,13 @@ TODO :
 \end{frame}
 
 \begin{frame}{作業量}
-    約1万5千行のコード \hspace{0.6cm} {\small 補題など(3千行)}
+    約1万5千行のコード \hspace{0.6cm} {\small 補題など(3K行)}
     {\small
     \begin{itemize}[itemsep=8pt]
-        \item symmetric extensionの定義(3千行)
-        \item ZFのモデルであることの証明(5千行)
-        \item 特定のsymmetric extensionの構成(2千行)
-        \item それが$\neg$ACを満たすことの証明(2千行)
+        \item symmetric extensionの定義(3K行)
+        \item ZFのモデルであることの証明(5K行)
+        \item 特定のsymmetric extensionの構成(2K行)
+        \item それが$\neg$ACを満たすことの証明(2K行)
     \end{itemize} 
 
     ※Isabelle/ZFでの集合論の形式化の各先行研究と同じくらい
@@ -545,8 +545,7 @@ TODO :
               \begin{itemize} 
                 \item このギャップを埋める部分が形式化できていない
                 \begin{itemize}
-                    \item 紙の上では十分かもしれないが、\\
-                          本当は形式化したい
+                    \item 本当は形式化したい
                 \end{itemize}
               \end{itemize}
     \end{itemize}
@@ -616,7 +615,7 @@ ctmの存在の仮定に関する形式化できていない部分がある
 \end{comment}
 
 \begin{frame}{まとめ}
-    $\neg$ACの相対無矛盾性証明{\small の一部}をIsabelle/ZFで形式化
+    $\neg$ACの相対無矛盾性証明をIsabelle/ZFで形式化
     {\small
     \begin{itemize}[itemsep=8pt]
         \item ZFのc.t.m.から出発し、\\ZF+$\neg$ACをみたすsymmetric extensionを構成
