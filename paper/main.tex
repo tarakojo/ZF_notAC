@@ -1,25 +1,22 @@
 \documentclass{article}
 
-% フォント関連パッケージ
-\usepackage{fontspec}
-\usepackage{luatexja}          
-\usepackage{luatexja-fontspec}  
-
-\setmainjfont{YUMINL}  % メインの日本語フォント
-
-% その他パッケージ
-\usepackage{amsmath} 
 \usepackage{graphicx} 
 \usepackage{luacode}  
 \usepackage{ascmac}
-\usepackage{amsthm} 
+\usepackage{comment}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{newtxtext, newtxmath}
 
-\theoremstyle{plain}
-\newtheorem{thm}{Theorem}
-\newtheorem*{thm*}{Theorem}
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{dfn}[thm]{Definition}
 
-\theoremstyle{definition}
-\newtheorem{dfn}{Definition}
+%短縮形
+\newcommand{\Pbb}{\mathbb{P}}
+\newcommand{\Gcal}{\mathcal{G}}
+\newcommand{\Fcal}{\mathcal{F}}
+\newcommand{\Ncal}{\mathcal{N}}
 
 \begin{document}
 
@@ -28,14 +25,211 @@
 \date{\today}
 \maketitle
 
-\chapter{Introduction}
+\section{Introduction}
 
-\chapter{Proof Outline}
+\section{Preliminaries}
+In this section, we introduce basic concepts of ZF set theory, forcing, and symmetric extensions.
+We use first-order logic with the language of set theory, which consists only of only two relation symbols $\in$ and $=$. 
+Formulas involving other mathmatical operators that may appear are considered abbreviations for formulas in this language.
+Parentheses in formulas are omitted where no confusion arises.
+Unless otherwise stated, "a statement holds" means "the statement holds in ZF".
 
-\chapter{Formalization in Isabelle/ZF} 
+\subsection{ZF set theory and the axiom of choice}
+\begin{dfn}
+  The axioms of ZF are the following statements:
+  \begin{itemize}
+    \item Extensionality: $\forall x \forall y (\forall z (z \in x \leftrightarrow z \in y) \rightarrow x = y)$
+    \item Pairing: $\forall x \forall y \exists z \forall w (w \in z \leftrightarrow w = x \lor w = y)$
+    \item Union: $\forall x \exists y \forall z (z \in y \leftrightarrow \exists w (z \in w \land w \in x))$
+    \item Power set: $\forall x \exists y \forall z (z \in y \leftrightarrow z \subseteq x)$
+    \item Infinity: $\exists x (\emptyset \in x \land \forall y (y \in x \rightarrow y \cup \{y\} \in x))$
+    \item Regularity: $\forall x(x \neq \emptyset \rightarrow \exists y (y \in x \land y \cap x = \emptyset))$
+    \item Infinity: $\forall x (x \neq \emptyset \rightarrow \exists y (y \in x \land \forall z (z \in x \rightarrow z \notin y)))$
+    \item Separation: $\forall p \forall x \exists y \forall z (z \in y \leftrightarrow z \in x \land \phi(z, p))$
+    \item Replacement: $\forall p (\forall x \forall y \forall z (\phi(x, y, p) \land \phi(x, z, p) \rightarrow y = z) \rightarrow \\ \forall X \exists Y \forall y (y \in Y \leftrightarrow \exists x (x \in X \land \phi(x, y, p))))$
+  \end{itemize}
+\end{dfn}
+Where separation and replacement are axiom schemas, representing infinitely many axioms for each formula $\phi$ with an appropriate arity.
+\begin{dfn} 
+  \emph{The axiom of choice (AC)} is the following statement: \\
+  $\forall x \exists f (\text{"} f \text{ is a function on } x \text{"} \land \forall y (y \in x \rightarrow f(y) \in y))$
+\end{dfn}
+Where the phrase "f is a function on x" is also considered an abbreviation in the language of set theory.
+Theory ZF + AC is denoted by ZFC.
+Next, we introduce the well-ordering theorem, as we treat AC in this form.
 
-\chapter{Defining Symmetric Extensions} 
+\begin{dfn}
+  We say that a linear ordering $<$ on a set $P$ is a \emph{well-ordering} if, every non-empty subset of $P$, it has a least element.
+\end{dfn}
 
-\chapter{}
+\begin{lem}
+  The axiom of choice is equivalent to the well-ordering theorem, which states that every set can be well-ordered.
+\end{lem}
+
+\subsection{Forcing}
+Forcing is a tequnique used in proving relative consistency and Independence.
+We introduce basic concepts of forcing in the context of the transitive countable model (c.t.m.) approach.
+In this approach, the relative consistency proof is achieved by using forcing to construct a extended model by adding new sets to an assumed c.t.m.
+Let $M$ be a c.t.m. of ZF and $(\Pbb, \leq_{\Pbb})$ be a pre-ordered set in $M$ with a maximum element $1_{\Pbb}$.
+
+\begin{dfn}
+  We define $M^{\Pbb}$, the set of \emph{$\Pbb$-names}, by transfinite recursion on ordinals:
+  \begin{enumerate}
+    \item $M^{\Pbb}_0 = \emptyset$
+    \item $M^{\Pbb}_{\alpha + 1} = \mathcal{P}^M(M^{\Pbb}_{\alpha} \times \Pbb)$
+    \item $M^{\Pbb}_{\alpha} = \bigcup_{\beta < \alpha} M^{\Pbb}_{\beta}$ for a limit ordinal $\alpha$
+    \item $M^{\Pbb} = \bigcup_{\alpha \in \text{Ord}} M^{\Pbb}_{\alpha}$
+  \end{enumerate}
+\end{dfn}
+Where $\mathcal{P}^M$ denotes the power set operation in $M$. 
+We often write a $\Pbb$-name with a dot, e.g., $\dot{x}$.
+
+\begin{dfn} %karagilaではタイポがある...
+  \,
+  \begin{enumerate}
+    \item We say that $D \subseteq \Pbb$ is \emph{dense} if, for every $p \in \Pbb$, there exists $q \in D$ such that $q \leq_{\Pbb} p$.
+    \item We say that $G \subseteq \Pbb$ is a \emph{filter} if following conditions hold:
+      \begin{itemize}
+        \item If $p \in G$, $q \in \Pbb$, and $p \leq_{\Pbb} q$, then $q \in G$
+        \item If $p, q \in G$, there exists $r \in G$ such that $r \leq_{\Pbb} p$ and $r \leq_{\Pbb} q$
+      \end{itemize}
+    \item We say that $G \subseteq$ is \emph{generic filter} on $\Pbb$ if $G$ is a filter and for any dense $D \subseteq \Pbb$, $D \cap G \neq \emptyset$.
+  \end{enumerate}
+\end{dfn}
+
+The following lemma shows that a generic filter actually exists.
+\begin{lem} 
+  For any $p \in \Pbb$, there exists a generic filter $G$ on $\Pbb$ such that $p \in G$.
+\end{lem}
+
+\begin{dfn} 
+  Let $G$ be a generic filter on $\Pbb$ and $\dot{x} \in M^{\Pbb}$. We define the \emph{interpretation} of $\dot{x}$ denoted by $\dot{x}_G$ recursively, 
+  $\dot{x}_G = \{\dot{y}_G \mid \exists p \in G (\langle \dot{y}, p \rangle \in \dot{x})\}$. 
+\end{dfn}
+
+We call a $Pbb$-name whose interpretation is a set $x$ a name of $x$ and denote it by $\dot{x}$.
+Note that a single set may have multiple names.
+
+\begin{dfn} 
+  Let $G$ be a generic filter on $\Pbb$. We define a \emph{generic extension} $M[G]$ as $\{x_G \mid \dot{x} \in M^{\Pbb}\}$.
+\end{dfn}
+
+\begin{thm} 
+  Let $G$ be a generic filter on $\Pbb$. Then, $M[G]$ is the smallest c.t.m. of ZF extending $M$ and containing $G$.
+\end{thm}
+
+By choosing $\Pbb$ appropriately, we can construct $M[G]$ with various properties.
+What holds or does not hold in $M[G]$ can be identified using the forcing relation.
+
+\begin{dfn} [Forcing relation]
+  ATODE
+\end{dfn}
+
+\subsection{Symmetric extensions}
+Symmetric extensions are substructures of generic extensions of a given c.t.m. of ZF 
+and are formed by interpreting only the hereditarily symmetric names.
+Let $M$ be a c.t.m. of ZF, $(\Pbb, \leq_{\Pbb})$ be a pre-ordered set in $M$ with the maximum element $1_{\Pbb}$.
+
+
+\begin{dfn} 
+  We say that $\pi : \Pbb \rightarrow \Pbb$ is an \emph{automorphism} if for all $p, q \in \Pbb$, $p \leq_{\Pbb} q \Leftrightarrow \pi p \leq_{\Pbb} \pi q$.
+  $\pi$ induces an bijection on $\Pbb$-names defined recursively as follows:
+  $$ \pi \dot{x} = \{ \langle \pi \dot{y}, \pi p \rangle \mid \langle \dot{y}, p \rangle \in \dot{x} \} $$
+\end{dfn}
+
+\begin{dfn} % lara
+  Let $\Gcal$ be a group of automorphisms of $\Pbb$. We say that $\Fcal$ is a \emph{normal filter} on $\Gcal$ if the following conditions hold:
+  \begin{enumerate}
+    \item $\Fcal$ is non-empty family of subgroups of $\Gcal$.
+    \item $\Fcal$ is closed under finite intersections and supergroups.
+    \item For every $H \in \Fcal$ and $\pi \in \Gcal$, $\pi H \pi^{-1} \in \Fcal$.
+  \end{enumerate}
+\end{dfn}
+
+We fix a group of automorphisms $\Gcal$ of $\Pbb$ and a normal filter $\Fcal$ on $\Gcal$.
+\begin{dfn} 
+  For every $\Pbb$-name $\dot{x}$, let $\text{sym}_{\Gcal}(\dot{x}) = \{ \pi \in \Gcal \mid \pi \dot{x} = \dot{x} \}$.
+  We say that $\Pbb$-name $\dot{x}$ is \emph{hereditarily $\Fcal$-symmetric} if $\text{sym}_{\Gcal}(\dot{x}) \in \Fcal$.
+  $\text{HS}_{\Fcal}$ denotes the set of all hereditarily $\Fcal$-symmetric $\Pbb$-names.
+\end{dfn}
+
+\begin{dfn} 
+  Let $G$ be a generic filter on $\Pbb$. The set $\text{HS}^{G}_{\Fcal} = \{ \dot{x}_G \mid \dot{x} \in \text{HS}_{\Fcal} \}$ is called a \emph{symmetric extension} of $M$.
+\end{dfn}
+
+\begin{thm}
+  Let $G$ be a generic filter on $\Pbb$. Then, the symmetric extension $\text{HS}^{G}_{\Fcal}$ is a c.t.m. of ZF and a substructure of $M[G]$.
+\end{thm}
+
+
+\begin{dfn} [HS forcing relation]
+  ATODE
+\end{dfn}
+
+\subsection{The basic Cohen model} % jech axoim of choice
+We construct a symmetric extension $\Ncal$ called the basic Cohen model which is a model of ZF + $\neg$AC using forcing.
+Let $M$ be a c.t.m. of ZF, $\Pbb$ be the set of all finite partial functions from $\omega \times \omega$ to $\{0, 1\}$, and $\leq_{\Pbb}$ be $\supseteq$.
+Note that the maximum element $1_{\Pbb}$ is the empty set. 
+Let $\pi$ be a bijection on $\omega$. $\pi$ induces an automorphism on $\Pbb$ defined as follows:
+
+$$dom(\pi p) = \{ (\pi n, m) \mid (n, m) \in dom(p) \}$$
+$$(\pi p)(\pi n, m) = p(n, m)$$
+
+This automorphism further induces an automorphism on $\Pbb$-names. 
+Let $\Gcal$ be the group of all such automorphisms.
+For every finite $e \subseteq \omega$, let 
+$$\text{fix}(e) = \{ \pi \in \Gcal \mid \forall n \in e (\pi n = n) \}$$
+Let $\Fcal$ be the set of all subgroups $H$ of $\Gcal$ such that there exists a finite $e \subseteq \omega$ with $\text{fix}(e) \subseteq H$.
+Note that $\Fcal$ is a normal filter on $\Gcal$. Let $\Ncal = \text{HS}^{G}_{\Fcal}$.
+Since $\Ncal$ is a symmetric extension of $M$, it is a c.t.m. of ZF. 
+
+\begin{thm}
+  $\Ncal$ does not satisfy the well-ordering theorem.
+\end{thm}
+
+We outline the proof of this theorem as follows. 
+For every $n \in \omega$, let $a_n$ be the following real number:
+$$a_n = \{ m \in \omega \mid \exists p \in G (p(n, m) = 1) \}$$
+Since $a_n$ are pairwise distinct, $A = \{ a_n \mid n \in \omega \}$ is an infinity set.
+$A$ and every $a_n$ are elements of $\Ncal$.
+$A$ serves as a counterexample to the well-ordering theorem in $\Ncal$.
+Suppose for contradiction that $A$ is well-ordered in $\Ncal$, there exists a injection $f$ from $\omega$ to $A$ in $\Ncal$.
+Let $\varphi(g,x,y)$ be a formula that represents the relation $g(x) = y$. 
+For every $n \in \omega$, There exists $i \in \omega$ such that $N \vDash \varphi(f, i, a_n)$.
+Thus there exists $p \in G$ and hereditarily $\Fcal$-symmetric names $\dot{f}, \dot{i}$ and $\dot{a_n}$ for each of $f, i, a_n$ such that $p \Vdash \varphi(\dot{f}, \dot{i}, \dot{a_n})$.
+By choosing $n$ and the names appropriately, we can find $\pi \in \Gcal$ such that the following conditions hold:
+\begin{enumerate}
+  \item $\pi \dot{f} = \dot{f}$
+  \item $\pi \dot{i} = \dot{i}$
+  \item $\pi n \ne n$
+  \item There exists a hereditarily $\Fcal$-symmetric name $\dot{a_{\pi n}}$ of $a_{\pi n}$ such that $\pi \dot{a_n} = \dot{a_{\pi n}}$
+\end{enumerate}
+
+
+
+
+
+
+
+\begin{comment}
+
+  理論Tが理論S上で相対的無矛盾であるとは、Tが無矛盾であると仮定したとき、Sも無矛盾であることを意味する。
+  
+  完全性定理より、ある理論が無矛盾であることを示すには、その理論のモデルが存在することを示せば十分である。
+  
+  c.t.m.アプローチ
+  本研究では、ZFのc.t.m.が存在することを仮定し、その上でZF + $\neg$ACのモデルを構成する。
+\end{comment}
+
+
+\section{Proof Outline}
+In this section, we give an outline of a relative consistency proof of the negation of AC with respect to ZF using c.t.m. approach.
+
+
+\begin{thebibliography}{9}
+  \bibitem{jech} Jech, T. (2002). Set Theory: The Third Millennium Edition, Revised and Expanded. Springer.
+  \bibitem{karagila} Karagila, A. (2023). Lecture Notes: Forcing \& Symmetric Extensions. % この引用でいい？
+  \bibitem{kunen} Kunen, K. (1980). Set Theory: An Introduction to Independence Proofs. North-Holland.
+\end{thebibliography}
 
 \end{document}
