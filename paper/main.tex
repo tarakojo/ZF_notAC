@@ -1,4 +1,7 @@
-\documentclass{article}
+\documentclass{report}
+
+\usepackage[style=numeric,backend=biber]{biblatex}
+\addbibresource{main.bib}
 
 \usepackage{graphicx} 
 \usepackage{luacode}  
@@ -8,7 +11,7 @@
 \usepackage{amsmath}
 \usepackage{newtxtext, newtxmath}
 
-\newtheorem{thm}{Theorem}[section]
+\newtheorem{thm}{Theorem}[chapter]
 \newtheorem{lem}[thm]{Lemma}
 \newtheorem{dfn}[thm]{Definition}
 
@@ -25,16 +28,57 @@
 \date{\today}
 \maketitle
 
-\section{Introduction}
 
-\section{Preliminaries}
-In this section, we introduce basic concepts of ZF set theory, forcing, and symmetric extensions.
+\clearpage
+\tableofcontents
+\clearpage
+\chapter{Introduction}
+
+The formalization of mathematics using proof assistants such as Isabelle, Coq, and Lean, has been actively conducted, leading to numerous achievements. 
+For instance, the proofs of the four color theorem, Kepler's conjecture, and the Feit-Thompson theorem have been formalized using proof assistants, enhancing the reliability of these proofs. 
+Additionally, various fields of mathematics, such as number theory, algebra, and topology, are also being formalized.
+However, the formalization related to axiomatic set theory is
+
+The independence of the axiom of choice(AC) from Zermelo-Fraenkel set theory(ZF) is a well-known result in the early history of axiomatic set theory,
+as well as the independence of the continuum hypothesis(CH) from ZF with AC(ZFC).
+Cohen invented the forcing method and proved them in 1963.
+Forcing is a powerful tool for exploring models of set theory and was subsequently further sophisticated by other researchers.
+
+Independence proofs of CH from ZFC has been formalized in Isabelle/ZF by Gunther et al. \cite{gunther_independence} and in Lean 3 by Han and van Doorn \cite{flypitch}.
+In these studies, forcing methods were formalized, and the independence of CH was proven by 
+showing the relative consistency of ZFC + CH and ZFC + $\neg$CH with ZFC.
+
+For AC, the relative consistency of ZFC with ZF has been formalized in Isabelle/ZF by Paulson \cite{paulson_AC}.
+However, the relative consistency of ZF + $\neg$AC with ZF has not been formalized.
+It can be proven by forcing, but the proof involves complexities that cannot be achieved by simply modifying the proof for CH.
+
+In this work, we formalized the relative consistency proof of ZF + $\neg$AC with ZF in Isabelle/ZF. 
+This work contributes to the formalization of axiomatic set theory, an area with relatively few prior works.
+It also serves as a new example of the formalization using forcing, which is a crucial tool in set theory.
+
+
+This work may provide insights into how the formalization of axiomatic set theory could be advanced.
+
+This work may serve as a basis for considering how the formalization of axiomatic set theory should proceed 
+and what advancements in formalization techniques could be beneficial in the future.
+
+In axiomatic set theory, discussions often shift between meta-level and object-level considerations, such as considering models of set theory within set theory itself. 
+Formalizing such discussions is considered a challenging task.
+
+
+\subsubsection{Outline}
+In Chapter 2, we introduce the set-theoretic preliminaries used in this study.
+
+
+
+\chapter{Set-Theoretic Preliminaries}
+In this chapter, we introduce the concepts of set theory used in the formalization of this study.
 We use first-order logic with the language of set theory, which consists only of only two relation symbols $\in$ and $=$. 
 Formulas involving other mathmatical operators that may appear are considered abbreviations for formulas in this language.
 Parentheses in formulas are omitted where no confusion arises.
 Unless otherwise stated, "a statement holds" means "the statement holds in ZF".
 
-\subsection{ZF set theory and the axiom of choice}
+\section{ZF Set Theory and the Axiom of Choice}
 \begin{dfn}
   The axioms of ZF are the following statements:
   \begin{itemize}
@@ -66,11 +110,11 @@ Next, we introduce the well-ordering theorem, as we treat AC in this form.
   The axiom of choice is equivalent to the well-ordering theorem, which states that every set can be well-ordered.
 \end{lem}
 
-\subsection{Forcing}
+\section{Forcing}
 Forcing is a tequnique used in proving relative consistency and Independence.
 We introduce basic concepts of forcing in the context of the transitive countable model (c.t.m.) approach.
 In this approach, the relative consistency proof is achieved by using forcing to construct a extended model by adding new sets to an assumed c.t.m.
-Let $M$ be a c.t.m. of ZF and $(\Pbb, \leq_{\Pbb})$ be a pre-ordered set in $M$ with a maximum element $1_{\Pbb}$.
+Let $M$ be a c.t.m. of ZF and $(\Pbb, \leq_{\Pbb})$ be a notion of forcing, which is a pre-ordered set in $M$ with a maximum element $1_{\Pbb}$.
 
 \begin{dfn}
   We define $M^{\Pbb}$, the set of \emph{$\Pbb$-names}, by transfinite recursion on ordinals:
@@ -125,7 +169,11 @@ What holds or does not hold in $M[G]$ can be identified using the forcing relati
   ATODE
 \end{dfn}
 
-\subsection{Symmetric extensions}
+\begin{thm} [Forcing relation and generic extensions]
+  ATODE
+\end{thm}
+
+\section{Symmetric Extensions}
 Symmetric extensions are substructures of generic extensions of a given c.t.m. of ZF 
 and are formed by interpreting only the hereditarily symmetric names.
 Let $M$ be a c.t.m. of ZF, $(\Pbb, \leq_{\Pbb})$ be a pre-ordered set in $M$ with the maximum element $1_{\Pbb}$.
@@ -161,13 +209,27 @@ We fix a group of automorphisms $\Gcal$ of $\Pbb$ and a normal filter $\Fcal$ on
   Let $G$ be a generic filter on $\Pbb$. Then, the symmetric extension $\text{HS}^{G}_{\Fcal}$ is a c.t.m. of ZF and a substructure of $M[G]$.
 \end{thm}
 
-
 \begin{dfn} [HS forcing relation]
   ATODE
 \end{dfn}
 
-\subsection{The basic Cohen model} % jech axoim of choice
-We construct a symmetric extension $\Ncal$ called the basic Cohen model which is a model of ZF + $\neg$AC using forcing.
+\begin{lem}[strengthening]
+  ATODE
+\end{lem}
+
+\begin{thm} [relation between HS forcing relations and symmetric extensions]
+  ATODE
+\end{thm}
+
+\begin{lem} [Symmetric Lemma]
+  ATODE
+\end{lem}
+
+\chapter{Outline of the Formalized Proof}
+We outline the formalized relative consistency proof of ZF + $\neg$AC. 
+In this proof, the relative consistency is proved by assuming the existence of a c.t.m. of ZF and constructing a model of ZF + $\neg$AC by forcing. 
+This model is a symmetric extension called the basic Cohen model.
+
 Let $M$ be a c.t.m. of ZF, $\Pbb$ be the set of all finite partial functions from $\omega \times \omega$ to $\{0, 1\}$, and $\leq_{\Pbb}$ be $\supseteq$.
 Note that the maximum element $1_{\Pbb}$ is the empty set. 
 Let $\pi$ be a bijection on $\omega$. $\pi$ induces an automorphism on $\Pbb$ defined as follows:
@@ -187,6 +249,7 @@ Since $\Ncal$ is a symmetric extension of $M$, it is a c.t.m. of ZF.
   $\Ncal$ does not satisfy the well-ordering theorem.
 \end{thm}
 
+\begin{proof}
 We outline the proof of this theorem as follows. 
 For every $n \in \omega$, let $a_n$ be the following real number:
 $$a_n = \{ m \in \omega \mid \exists p \in G (p(n, m) = 1) \}$$
@@ -196,40 +259,61 @@ $A$ serves as a counterexample to the well-ordering theorem in $\Ncal$.
 Suppose for contradiction that $A$ is well-ordered in $\Ncal$, there exists a injection $f$ from $\omega$ to $A$ in $\Ncal$.
 Let $\varphi(g,x,y)$ be a formula that represents the relation $g(x) = y$. 
 For every $n \in \omega$, There exists $i \in \omega$ such that $N \vDash \varphi(f, i, a_n)$.
-Thus there exists $p \in G$ and hereditarily $\Fcal$-symmetric names $\dot{f}, \dot{i}$ and $\dot{a_n}$ for each of $f, i, a_n$ such that $p \Vdash \varphi(\dot{f}, \dot{i}, \dot{a_n})$.
-By choosing $n$ and the names appropriately, we can find $\pi \in \Gcal$ such that the following conditions hold:
+Thus there exists $p \in G$ and hereditarily $\Fcal$-symmetric names $\dot{f}, \dot{i}$ and $\dot{a_n}$ for each of $f, i, a_n$ such that 
+$$p \Vdash_{\text{HS}} \varphi(\dot{f}, \dot{i}, \dot{a_n})$$
+By choosing $n$ and the names appropriately, we can find $\pi \in \Gcal$ such that the following conditions are additionally satisfied:
 \begin{enumerate}
   \item $\pi \dot{f} = \dot{f}$
   \item $\pi \dot{i} = \dot{i}$
   \item $\pi n \ne n$
   \item There exists a hereditarily $\Fcal$-symmetric name $\dot{a_{\pi n}}$ of $a_{\pi n}$ such that $\pi \dot{a_n} = \dot{a_{\pi n}}$
+  \item There exists $q \in G$ such that $q \leq_{\Pbb} p$ and $q \leq_{\Pbb} \pi p$
 \end{enumerate}
+By Lemma \ref{lem:symmetry_lemma}
+$$\pi p \Vdash_{\text{HS}} \varphi(\pi \dot{f}, \pi \dot{i}, \pi \dot{a_n})$$
+Thus 
+$$\pi p \Vdash_{\text{HS}} \varphi(\dot{f}, \dot{i}, \dot{a_{\pi n}})$$
+Therefore, by Lemma \ref{lem:strengthening}
+$$q \Vdash_{\text{HS}} \varphi(\dot{f}, \dot{i}, \dot{a_n}) \text{ and } q \Vdash_{\text{HS}} \varphi(\dot{f}, \dot{i}, \dot{a_{\pi n}})$$
+This means that $\Ncal \vDash \varphi(f, i, a_n)$ and $\Ncal \vDash \varphi(f, i, a_{\pi n})$, which implies that $f(i) = a_n$ and $f(i) = a_{\pi n}$.
+Since $a_n$ and $a_{\pi n}$ are distinct, this is a contradiction. 
+\end{proof}
+ 
+\chapter{Isabelle/ZF and Formalization in Prior Work}
+In this chapter, we introduce Isabelle/ZF, a proof assistant for ZF set theory, 
+and the results from prior work used in the formalization of this study.
+
+\section{Isabelle/ZF}
+\section{Internalized First-Order Formulas}
+\section{Forcing}  
+
+\chapter{Formalization of the Proof} 
+\section{Introduction to the Formalization}
+In this chapter, we 
 
 
+\section{Defining Symmetric Extensions}
+\subsection{$\Pbb$-names}
+\subsection{Automorphisms}
+\subsection{Hereditarily Symmetric Names}
+\subsection{Symmetric Extensions}
 
+\section{Proving that Symmetric Extensions are Models of ZF}
+\subsection{Relativized Forcing Relation $\Vdash_{\text{HS}}$}
+\subsection{The Symmetric Lemma}
+\subsection{Separation}
+\subsection{Replacement}
+\subsection{Other Axioms}
 
+\section{Defining the Basic Cohen Model}
+\subsection{The Notion of Forcing}
+\subsection{The Group of Automorphisms}
+\subsection{The Normal Filter}
 
+\section{Proving that the Basic Cohen Model satisfies $\neg$AC}
 
+\chapter{Conclusion and Future Work}
 
-\begin{comment}
-
-  理論Tが理論S上で相対的無矛盾であるとは、Tが無矛盾であると仮定したとき、Sも無矛盾であることを意味する。
-  
-  完全性定理より、ある理論が無矛盾であることを示すには、その理論のモデルが存在することを示せば十分である。
-  
-  c.t.m.アプローチ
-  本研究では、ZFのc.t.m.が存在することを仮定し、その上でZF + $\neg$ACのモデルを構成する。
-\end{comment}
-
-
-\section{Proof Outline}
-In this section, we give an outline of a relative consistency proof of the negation of AC with respect to ZF using c.t.m. approach.
-
-
-\begin{thebibliography}{9}
-  \bibitem{jech} Jech, T. (2002). Set Theory: The Third Millennium Edition, Revised and Expanded. Springer.
-  \bibitem{karagila} Karagila, A. (2023). Lecture Notes: Forcing \& Symmetric Extensions. % この引用でいい？
-  \bibitem{kunen} Kunen, K. (1980). Set Theory: An Introduction to Independence Proofs. North-Holland.
-\end{thebibliography}
-
+\printbibliography
 \end{document}
+ 

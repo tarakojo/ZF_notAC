@@ -1,0 +1,122 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.2 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{nty/global//global/global}
+    \entry{gunther_independence}{article}{}
+      \name{author}{4}{}{%
+        {{hash=82f3b48dfb9567e3068c9214c122719c}{%
+           family={Gunther},
+           familyi={G\bibinitperiod},
+           given={Emmanuel},
+           giveni={E\bibinitperiod}}}%
+        {{hash=46bd888eee5b3ea691dffc74217e809c}{%
+           family={Pagano},
+           familyi={P\bibinitperiod},
+           given={Miguel},
+           giveni={M\bibinitperiod}}}%
+        {{hash=6a68f14774922c029c16be28d2ad216d}{%
+           family={Terraf},
+           familyi={T\bibinitperiod},
+           given={Pedro\bibnamedelima Sánchez},
+           giveni={P\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
+        {{hash=84a21839a8fededa38084ef1387870ce}{%
+           family={Steinberg},
+           familyi={S\bibinitperiod},
+           given={Matías},
+           giveni={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{732a1ec4e456474b9ff95a45c31a79ba}
+      \strng{fullhash}{bd3b801ba372731d67e9338675c5f5bf}
+      \strng{bibnamehash}{732a1ec4e456474b9ff95a45c31a79ba}
+      \strng{authorbibnamehash}{732a1ec4e456474b9ff95a45c31a79ba}
+      \strng{authornamehash}{732a1ec4e456474b9ff95a45c31a79ba}
+      \strng{authorfullhash}{bd3b801ba372731d67e9338675c5f5bf}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{2150-914x}
+      \field{journaltitle}{Archive of Formal Proofs}
+      \field{month}{3}
+      \field{note}{\url{https://isa-afp.org/entries/Independence_CH.html}, Formal proof development}
+      \field{title}{The Independence of the Continuum Hypothesis in Isabelle/ZF}
+      \field{year}{2022}
+    \endentry
+    \entry{flypitch}{inproceedings}{}
+      \name{author}{2}{}{%
+        {{hash=9b8689c0a1d3ea61445d35eb4e71843a}{%
+           family={Han},
+           familyi={H\bibinitperiod},
+           given={Jesse\bibnamedelima Michael},
+           giveni={J\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+        {{hash=241ef3eeb33e764da3482b74049133fa}{%
+           family={Doorn},
+           familyi={D\bibinitperiod},
+           given={Floris},
+           giveni={F\bibinitperiod},
+           prefix={van},
+           prefixi={v\bibinitperiod}}}%
+      }
+      \strng{namehash}{dab5687bd36a2d042332bb5b868163c5}
+      \strng{fullhash}{dab5687bd36a2d042332bb5b868163c5}
+      \strng{bibnamehash}{dab5687bd36a2d042332bb5b868163c5}
+      \strng{authorbibnamehash}{dab5687bd36a2d042332bb5b868163c5}
+      \strng{authornamehash}{dab5687bd36a2d042332bb5b868163c5}
+      \strng{authorfullhash}{dab5687bd36a2d042332bb5b868163c5}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the 9th {ACM} {SIGPLAN} International Conference on Certified Programs and Proofs, {CPP} 2020, New Orleans, LA, {USA}, January 20-21, 2020}
+      \field{title}{A formal proof of the independence of the continuum hypothesis}
+      \field{year}{2020}
+    \endentry
+    \entry{paulson_AC}{article}{}
+      \name{author}{1}{}{%
+        {{hash=3c148717c5f0355213ec4ed493cbd64e}{%
+           family={Paulson},
+           familyi={P\bibinitperiod},
+           given={Lawrence\bibnamedelima C.},
+           giveni={L\bibinitperiod\bibinitdelim C\bibinitperiod}}}%
+      }
+      \strng{namehash}{3c148717c5f0355213ec4ed493cbd64e}
+      \strng{fullhash}{3c148717c5f0355213ec4ed493cbd64e}
+      \strng{bibnamehash}{3c148717c5f0355213ec4ed493cbd64e}
+      \strng{authorbibnamehash}{3c148717c5f0355213ec4ed493cbd64e}
+      \strng{authornamehash}{3c148717c5f0355213ec4ed493cbd64e}
+      \strng{authorfullhash}{3c148717c5f0355213ec4ed493cbd64e}
+      \field{sortinit}{P}
+      \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{LMS Journal of Computation and Mathematics, Volume 6, 2003, pp. 198-248}
+      \field{title}{The Relative Consistency of the Axiom of Choice Mechanized Using Isabelle/ZF}
+      \field{year}{2021}
+      \verb{doi}
+      \verb 10.1112/S1461157000000449
+      \endverb
+      \verb{eprint}
+      \verb arXiv:2104.12674
+      \endverb
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

@@ -1,3 +1,7 @@
 $pdflatex = 'lualatex';
 $pdf_mode = 1;   
 $bibtex = 'biber';   
+$use_biber = 1;
+
+$latex = 'lualatex %O %S';
+$bibtex_use = 2; 

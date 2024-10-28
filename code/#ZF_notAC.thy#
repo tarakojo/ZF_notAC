@@ -43,6 +43,7 @@ qed
 
 thm forcing_data.generic_filter_existence
 thm forcing_data_def
+thm forcing_data.strengthening_eq
 
 
 
