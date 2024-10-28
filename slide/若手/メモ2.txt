@@ -4,5 +4,5 @@
 概念の説明はCTM
 証明はBVMでやることが多いらしい
 -- complete boolean algebraを構成するのが難しい場合がある
-
+% Isabelle/ZFの巨大さは未開拓と言えるのか？
 

@@ -37,7 +37,6 @@
 The formalization of mathematics using proof assistants such as Isabelle, Coq, and Lean, has been actively conducted, leading to numerous achievements. 
 For instance, the proofs of the four color theorem, Kepler's conjecture, and the Feit-Thompson theorem have been formalized using proof assistants, enhancing the reliability of these proofs. 
 Additionally, various fields of mathematics, such as number theory, algebra, and topology, are also being formalized.
-However, the formalization related to axiomatic set theory is
 
 The independence of the axiom of choice(AC) from Zermelo-Fraenkel set theory(ZF) is a well-known result in the early history of axiomatic set theory,
 as well as the independence of the continuum hypothesis(CH) from ZF with AC(ZFC).
@@ -46,30 +45,39 @@ Forcing is a powerful tool for exploring models of set theory and was subsequent
 
 Independence proofs of CH from ZFC has been formalized in Isabelle/ZF by Gunther et al. \cite{gunther_independence} and in Lean 3 by Han and van Doorn \cite{flypitch}.
 In these studies, forcing methods were formalized, and the independence of CH was proven by 
-showing the relative consistency of ZFC + CH and ZFC + $\neg$CH with ZFC.
+showing the relative consistency of CH and $\neg$CH with ZFC.
 
-For AC, the relative consistency of ZFC with ZF has been formalized in Isabelle/ZF by Paulson \cite{paulson_AC}.
-However, the relative consistency of ZF + $\neg$AC with ZF has not been formalized.
+For AC, the relative consistency of AC with ZF has been formalized in Isabelle/ZF by Paulson \cite{paulson_AC_consistency}.
+However, the relative consistency of $\neg$AC with ZF has not been formalized.
 It can be proven by forcing, but the proof involves complexities that cannot be achieved by simply modifying the proof for CH.
 
-In this work, we formalized the relative consistency proof of ZF + $\neg$AC with ZF in Isabelle/ZF. 
-This work contributes to the formalization of axiomatic set theory, an area with relatively few prior works.
-It also serves as a new example of the formalization using forcing, which is a crucial tool in set theory.
+In this work, we formalized the relative consistency proof of $\neg$AC with ZF in Isabelle/ZF. 
+This work contributes to the formalization of axiomatic set theory and 
+serves as a new example of the formalization using forcing, which is a crucial tool in set theory.
+It also may provide insights into how the formalization of axiomatic set theory could be advanced.
 
 
-This work may provide insights into how the formalization of axiomatic set theory could be advanced.
+\subsubsection{Related works}
+Paulson et al. formalized an extensive part of ZF set theory 
+\cite{paulson_datatype_impl,paulson_reflection,paulson_AC_consistency,paulson_cardinal_AC,paulson_datatype}
+, including cardinal arithmetic, relativization, the reflection theorem, features for handling inductive definitions, and the relative consistency of AC with ZF.
+The proof of the relative consistency was achieved by constructing constructing Gödel's constructible universe.
 
-This work may serve as a basis for considering how the formalization of axiomatic set theory should proceed 
-and what advancements in formalization techniques could be beneficial in the future.
+Building on these results, Gunther et al. formalized forcing and a proof of the independence of CH \cite{gunther_forcing,gunther_independence} in Isabelle/ZF.
+In these formalizations, the countable transitive model (c.t.m.) approach was used, following Kunen's book \cite{kunen2011}.
 
-In axiomatic set theory, discussions often shift between meta-level and object-level considerations, such as considering models of set theory within set theory itself. 
-Formalizing such discussions is considered a challenging task.
+In Lean, Han and van Doorn also formalized forcing and the independence of CH \cite{flypitch} in Lean 3.
+using the Boolean-valued model approach, which is another approach to forcing.
+Additionally, in Lean 4, Holmes and Wilshaw formalized the complex parts of the consistency proof of Quine's New Foundations \cite{NF_consistency}, ensuring the correctness of the proof.
+
+\subsubsection{Our Approach}
 
 
-\subsubsection{Outline}
-In Chapter 2, we introduce the set-theoretic preliminaries used in this study.
+\subsubsection{Repository}
+Our source code is available at: \url{https://github.com/tarakojo/ZF_notAC}
 
 
+ 
 
 \chapter{Set-Theoretic Preliminaries}
 In this chapter, we introduce the concepts of set theory used in the formalization of this study.
@@ -314,6 +322,12 @@ In this chapter, we
 
 \chapter{Conclusion and Future Work}
 
+%  In axiomatic set theory, discussions often shift between meta-level and object-level considerations, 
+%  such as considering models of set theory within set theory itself. 
+%  This is one of the challenging aspects when formalizing axiomatic set theory. 
+%  In this formalization as well, this part was complex. 
+
+  
 \printbibliography
 \end{document}
  

@@ -1,12 +1,12 @@
 # Fdb version 4
-["biber out/main"] 1730111952 "out/main.bcf" "out/main.bbl" "out/main" 1730112738 0
-  "./main.bib" 1730102158 1305 dd654d66183eba28473fda6117927749 ""
-  "out/main.bcf" 1730112738 107898 1ccae4640bbe39b57925701e1f9c9113 "pdflatex"
+["biber out/main"] 1730131445 "out/main.bcf" "out/main.bbl" "out/main" 1730131530 0
+  "./main.bib" 1730130120 4359 3f3cdc35ec4ad8d868d881025e929bd4 ""
+  "out/main.bcf" 1730131530 108622 b278aadfa5661405115d832f2de96db5 "pdflatex"
   (generated)
   "out/main.bbl"
   "out/main.blg"
   (rewritten before read)
-["pdflatex"] 1730112736 "c:/Users/tarak/source/repos/ZF-notAC/paper/main.tex" "out/main.pdf" "main" 1730112738 0
+["pdflatex"] 1730131527 "c:/Users/tarak/source/repos/ZF-notAC/paper/main.tex" "out/main.pdf" "main" 1730131530 0
   "C:/texlive/2023/texmf-var/luatex-cache/generic/fonts/otl/lmmono10-regular.luc" 1728990908 81829 221342e52e908da26f022270654c88bc ""
   "C:/texlive/2023/texmf-var/luatex-cache/generic/fonts/otl/lmroman10-bold.luc" 1726375263 128402 ba4e34466919a50528858a3237d9e899 ""
   "C:/texlive/2023/texmf-var/luatex-cache/generic/fonts/otl/lmroman10-regular.luc" 1726375262 127319 862db57d80674f216368fc20a5b8fd18 ""
@@ -17,7 +17,7 @@
   "C:/texlive/2023/texmf-var/luatex-cache/generic/fonts/otl/texgyretermesx-regular.luc" 1726375775 313961 83aa4d644ad1ac93916cfa10b44b55fe ""
   "C:/texlive/2023/texmf-var/luatex-cache/generic/fonts/otl/texgyretermesx-slanted.luc" 1726375775 314349 c13e3d9d793104f352f6a493ddb70e45 ""
   "C:/texlive/2023/texmf-var/luatex-cache/generic/names/luaotfload-names.luc.gz" 1728645321 286307 f74b149589f480e448a6785e3b9e5468 ""
-  "c:/Users/tarak/source/repos/ZF-notAC/paper/main.tex" 1730112734 15377 f7c8fd107c7d8ab55b0a1114da60eb19 ""
+  "c:/Users/tarak/source/repos/ZF-notAC/paper/main.tex" 1730131526 16313 4ba900fac0ee9c90d05c7c124e4b430e ""
   "c:/texlive/2023/texmf-dist/fonts/opentype/public/lm/lmmono10-regular.otf" 1684131609 64684 c6f5a48921f83c1a51d9384f785ddd5a ""
   "c:/texlive/2023/texmf-dist/fonts/opentype/public/newtx/TeXGyreTermesX-Bold.otf" 1684132897 192848 978ae5fb0a99f4677c55c752c3446285 ""
   "c:/texlive/2023/texmf-dist/fonts/opentype/public/newtx/TeXGyreTermesX-Italic.otf" 1684132897 199896 752ef70d685c887ce4d68e6b05c2cb74 ""
@@ -201,11 +201,11 @@
   "c:/texlive/2023/texmf-dist/tex/luatex/luatexbase/luatexbase.sty" 1684131951 10170 b1a2248f43cab899e3fe36f676176865 ""
   "c:/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1684138125 4683009 81ac55e6554f9124653631026fb1fc4e ""
   "c:/texlive/2023/texmf-var/web2c/luahbtex/lualatex.fmt" 1684138368 11869899 25014e89a64adc0d9bbac3bb8f0ddd81 ""
-  "main.tex" 1730112734 15377 f7c8fd107c7d8ab55b0a1114da60eb19 ""
-  "out/main.aux" 1730112738 4500 10b92efdde2250f54fbe2db4ede76fd0 "pdflatex"
-  "out/main.bbl" 1730111953 4985 d2e4c79a20c61b86b6265d8b43f86426 "biber out/main"
-  "out/main.run.xml" 1730112738 2334 7e0c4f20985526cf631a0f99e8739206 "pdflatex"
-  "out/main.toc" 1730112738 2256 7c38347138af433aa8cf791a660e5aff "pdflatex"
+  "main.tex" 1730131526 16313 4ba900fac0ee9c90d05c7c124e4b430e ""
+  "out/main.aux" 1730131530 5981 c501d7c1435562fc4bf6dc51671c222f "pdflatex"
+  "out/main.bbl" 1730131447 15977 673813d2b86f86ed88ec810eeeb2b35d "biber out/main"
+  "out/main.run.xml" 1730131530 2334 7e0c4f20985526cf631a0f99e8739206 "pdflatex"
+  "out/main.toc" 1730131530 2360 15c80776ad1e4a24fc66502d9fa9d75d "pdflatex"
   (generated)
   "out/main.aux"
   "out/main.bcf"

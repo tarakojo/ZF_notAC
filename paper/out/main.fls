@@ -449,6 +449,7 @@ INPUT c:/texlive/2023/texmf-dist/fonts/tfm/public/newtx/ntxexa.tfm
 INPUT c:/texlive/2023/texmf-dist/fonts/vf/public/newtx/ntxexa.vf
 INPUT c:/texlive/2023/texmf-dist/fonts/tfm/public/newtx/txexas.tfm
 OUTPUT out/main.toc
+INPUT C:/texlive/2023/texmf-var/luatex-cache/generic/fonts/otl/lmmono10-regular.luc
 INPUT c:/texlive/2023/texmf-dist/fonts/tfm/public/newtx/ntx-Regular-tlf-ot1.tfm
 INPUT c:/texlive/2023/texmf-dist/fonts/vf/public/newtx/ntx-Regular-tlf-ot1.vf
 INPUT c:/texlive/2023/texmf-dist/fonts/tfm/public/newtx/txmiaX.tfm
@@ -533,7 +534,6 @@ INPUT c:/texlive/2023/texmf-dist/fonts/tfm/public/newtx/txexas.tfm
 INPUT c:/texlive/2023/texmf-dist/fonts/tfm/public/newtx/ntxexa.tfm
 INPUT c:/texlive/2023/texmf-dist/fonts/vf/public/newtx/ntxexa.vf
 INPUT c:/texlive/2023/texmf-dist/fonts/tfm/public/newtx/txexas.tfm
-INPUT C:/texlive/2023/texmf-var/luatex-cache/generic/fonts/otl/lmmono10-regular.luc
 INPUT ./out/main.aux
 INPUT ./out/main.run.xml
 OUTPUT out/main.run.xml

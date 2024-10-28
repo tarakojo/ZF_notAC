@@ -1,16 +1,81 @@
-@article{ 
-paulson_AC,
-Author = {Lawrence C. Paulson},
-Title = {The Relative Consistency of the Axiom of Choice Mechanized Using Isabelle/ZF},
-Year = {2021},
-Eprint = {arXiv:2104.12674},
-Howpublished = {LMS Journal of Computation and Mathematics, Volume 6, 2003, pp.
-  198-248},
-Doi = {10.1112/S1461157000000449},
+
+
+
+@article{paulson_cardinal_AC,
+  title     = {Mechanizing set theory: Cardinal arithmetic and the Axiom of Choice},
+  volume    = {17},
+  issn      = {1573-0670},
+  url       = {http://dx.doi.org/10.1007/BF00283132},
+  doi       = {10.1007/bf00283132},
+  number    = {3},
+  journal   = {Journal of Automated Reasoning},
+  publisher = {Springer Science and Business Media LLC},
+  author    = {Paulson,  LawrenceC. and Grabczewski,  Krzysztof},
+  year      = {1996},
+  month     = dec
 }
 
-@article{
-  gunther_independence,
+@inbook{paulson_reflection,
+  title     = {The Reflection Theorem: A Study in Meta-theoretic Reasoning},
+  isbn      = {9783540456209},
+  issn      = {0302-9743},
+  url       = {http://dx.doi.org/10.1007/3-540-45620-1_31},
+  doi       = {10.1007/3-540-45620-1_31},
+  booktitle = {Automated Deduction—CADE-18},
+  publisher = {Springer Berlin Heidelberg},
+  author    = {Paulson,  Lawrence C.},
+  year      = {2002},
+  pages     = {377–391}
+}
+
+@inbook{paulson_AC_consistency,
+  title     = {The Relative Consistency of the Axiom of Choice — Mechanized Using Isabelle/ZF},
+  isbn      = {9783540694076},
+  url       = {http://dx.doi.org/10.1007/978-3-540-69407-6_52},
+  doi       = {10.1007/978-3-540-69407-6_52},
+  booktitle = {Logic and Theory of Algorithms},
+  publisher = {Springer Berlin Heidelberg},
+  author    = {Paulson,  Lawrence C.},
+  pages     = {486–490}
+} 
+
+@inproceedings{paulson_datatype_impl,
+  author    = {Paulson, Lawrence C.},
+  editor    = {Bundy, Alan},
+  title     = {A fixedpoint approach to implementing (Co)inductive definitions},
+  booktitle = {Automated Deduction --- CADE-12},
+  year      = {1994},
+  publisher = {Springer Berlin Heidelberg},
+  address   = {Berlin, Heidelberg},
+  pages     = {148--161},
+  abstract  = {This paper presents a fixedpoint approach to inductive definitions. Instead of using a syntactic test such as `strictly positive,' the approach lets definitions involve any operators that have been proved monotone. It is conceptually simple, which has allowed the easy implementation of mutual recursion and other conveniences. It also handles coinductive definitions: simply replace the least fixedpoint by a greatest fixedpoint. This represents the first automated support for coinductive definitions.},
+  isbn      = {978-3-540-48467-7}
+}
+
+@inbook{paulson_datatype,
+  author    = {Plotkin, Gordon and Stirling, Colin P. and Tofte, Mads},
+  booktitle = {Proof, Language, and Interaction: Essays in Honour of Robin Milner},
+  title     = {A Fixedpoint Approach to (Co)Inductive and (Co)Datatype Definitions},
+  year      = {2000},
+  volume    = {},
+  number    = {},
+  pages     = {187-211},
+  keywords  = {},
+  doi       = {}
+} 
+
+@article{gunther_forcing,
+  author  = {Emmanuel Gunther and Miguel Pagano and Pedro Sánchez Terraf},
+  title   = {Formalization of Forcing in Isabelle/ZF},
+  journal = {Archive of Formal Proofs},
+  month   = {May},
+  year    = {2020},
+  note    = {\url{https://isa-afp.org/entries/Forcing.html},
+             Formal proof development},
+  ISSN    = {2150-914x},
+}
+
+@article{gunther_independence,
   author  = {Emmanuel Gunther and Miguel Pagano and Pedro Sánchez Terraf and Matías Steinberg},
   title   = {The Independence of the Continuum Hypothesis in Isabelle/ZF},
   journal = {Archive of Formal Proofs},
@@ -18,7 +83,7 @@ Doi = {10.1112/S1461157000000449},
   year    = {2022},
   note    = {\url{https://isa-afp.org/entries/Independence_CH.html},
              Formal proof development},
-  ISSN    = {2150-914x},
+  issn    = {2150-914x}
 }
 
 @inproceedings{flypitch,
@@ -32,4 +97,20 @@ Doi = {10.1112/S1461157000000449},
   crossref  = {DBLP:conf/cpp/2020},
   biburl    = {https://dblp.org/rec/bib/conf/cpp/HanD20},
   bibsource = {dblp computer science bibliography, https://dblp.org}
+}
+
+@BOOK{kunen2011,
+  title     = "Set Theory",
+  author    = "Kunen, Kenneth",
+  publisher = "College Publications",
+  month     =  nov,
+  year      =  2011,
+  address   = "London, England"
+}
+
+@misc{NF_consistency,
+Author = {M. Randall Holmes and Sky Wilshaw},
+Title = {NF is Consistent},
+Year = {2024},
+Eprint = {arXiv:1503.01406},
 }
