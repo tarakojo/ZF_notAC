@@ -1,32 +1,18 @@
 \contentsline {chapter}{\numberline {1}Introduction}{2}{}%
-\contentsline {subsubsection}{Related works}{2}{}%
-\contentsline {subsubsection}{Our Approach}{3}{}%
+\contentsline {subsubsection}{Our Approach}{2}{}%
+\contentsline {subsubsection}{Related works}{3}{}%
 \contentsline {subsubsection}{Repository}{3}{}%
 \contentsline {chapter}{\numberline {2}Set-Theoretic Preliminaries}{4}{}%
 \contentsline {section}{\numberline {2.1}ZF Set Theory and the Axiom of Choice}{4}{}%
 \contentsline {section}{\numberline {2.2}Forcing}{5}{}%
 \contentsline {section}{\numberline {2.3}Symmetric Extensions}{6}{}%
-\contentsline {chapter}{\numberline {3}Outline of the Formalized Proof}{7}{}%
-\contentsline {chapter}{\numberline {4}Isabelle/ZF and Formalization in Prior Work}{9}{}%
-\contentsline {section}{\numberline {4.1}Isabelle/ZF}{9}{}%
-\contentsline {section}{\numberline {4.2}Internalized First-Order Formulas}{9}{}%
-\contentsline {section}{\numberline {4.3}Forcing}{9}{}%
-\contentsline {chapter}{\numberline {5}Formalization of the Proof}{10}{}%
-\contentsline {section}{\numberline {5.1}Introduction to the Formalization}{10}{}%
-\contentsline {section}{\numberline {5.2}Defining Symmetric Extensions}{11}{}%
-\contentsline {subsection}{\numberline {5.2.1}$\mathbb {P}$-names}{11}{}%
-\contentsline {subsection}{\numberline {5.2.2}Automorphisms}{11}{}%
-\contentsline {subsection}{\numberline {5.2.3}Hereditarily Symmetric Names}{11}{}%
-\contentsline {subsection}{\numberline {5.2.4}Symmetric Extensions}{11}{}%
-\contentsline {section}{\numberline {5.3}Proving that Symmetric Extensions are Models of ZF}{11}{}%
-\contentsline {subsection}{\numberline {5.3.1}Relativized Forcing Relation $\Vdash _{\text {HS}}$}{11}{}%
-\contentsline {subsection}{\numberline {5.3.2}The Symmetric Lemma}{11}{}%
-\contentsline {subsection}{\numberline {5.3.3}Separation}{11}{}%
-\contentsline {subsection}{\numberline {5.3.4}Replacement}{11}{}%
-\contentsline {subsection}{\numberline {5.3.5}Other Axioms}{11}{}%
-\contentsline {section}{\numberline {5.4}Defining the Basic Cohen Model}{11}{}%
-\contentsline {subsection}{\numberline {5.4.1}The Notion of Forcing}{11}{}%
-\contentsline {subsection}{\numberline {5.4.2}The Group of Automorphisms}{11}{}%
-\contentsline {subsection}{\numberline {5.4.3}The Normal Filter}{11}{}%
-\contentsline {section}{\numberline {5.5}Proving that the Basic Cohen Model satisfies $\neg $AC}{11}{}%
+\contentsline {section}{\numberline {2.4}The c.t.m. Approach}{7}{}%
+\contentsline {chapter}{\numberline {3}Outline of the Formalized Proof}{8}{}%
+\contentsline {chapter}{\numberline {4}Isabelle/ZF and Formalization in Prior Work}{10}{}%
+\contentsline {chapter}{\numberline {5}Formalization of the Proof}{11}{}%
+\contentsline {section}{\numberline {5.1}Defining Symmetric Extensions}{11}{}%
+\contentsline {section}{\numberline {5.2}Proving that Symmetric Extensions are Models of ZF}{11}{}%
+\contentsline {section}{\numberline {5.3}Defining the Basic Cohen Model}{11}{}%
+\contentsline {section}{\numberline {5.4}Proving that the Basic Cohen Model satisfies $\neg $AC}{11}{}%
 \contentsline {chapter}{\numberline {6}Conclusion and Future Work}{12}{}%
+\contentsline {subsubsection}{Acknowledgements}{12}{}%

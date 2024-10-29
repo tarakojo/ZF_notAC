@@ -57,6 +57,28 @@ serves as a new example of the formalization using forcing, which is a crucial t
 It also may provide insights into how the formalization of axiomatic set theory could be advanced.
 
 
+\subsubsection{Our Approach}
+The primary reason we chose Isabelle/ZF for this formalization is that Isabelle/ZF is a mature proof assistant for ZF set theory,
+in particular, the formalization by Gunther et al. \cite{gunther_forcing} is a major advantage for this study.
+Although there is also a formalization of forcing in Lean 3 by Han and van Doorn \cite{flypitch}, development for Lean 3 has already ended.
+
+To use Gunther et al.'s formalization, we adopted the c.t.m. approach for our proof, as in their independence proof of CH.
+Specifically, we assumed the existence of a c.t.m. of ZF and constructed a model of ZF + $\neg$AC by forcing.
+This model is known as the basic Cohen model, which is a symmetric extension of assumed c.t.m.
+Our proof largely follows karagila's lecture note \cite{karagila}, with some parts also referencing Jech's books \cite{jech_set_theory,jech_AC}
+as these resources align well with this approach.
+
+The c.t.m. approach is a well-established method for relative consistency proofs in axiomatic set theory.
+The relative consistency of $\neg$AC with ZF means that if ZF is consistent, then ZF + $\neg$AC is also consistent.
+Assuming the consistency of ZF implies that a model of ZF exists, but strictly speaking, the existence of a c.t.m. cannot be derived from this assumption in ZF.
+However, as explained in section \ref{sec:ctm}, we can prove the relative consistency of $\neg$AC with ZF if 
+we can construct a model of ZF + $\neg$AC from a c.t.m. of ZF.
+This kind of reasoning always arises in the c.t.m. approach, and ideally, 
+we would like to formalize it as well, but this has not been achieved.
+
+
+
+
 \subsubsection{Related works}
 Paulson et al. formalized an extensive part of ZF set theory 
 \cite{paulson_datatype_impl,paulson_reflection,paulson_AC_consistency,paulson_cardinal_AC,paulson_datatype}
@@ -70,8 +92,11 @@ In Lean, Han and van Doorn also formalized forcing and the independence of CH \c
 using the Boolean-valued model approach, which is another approach to forcing.
 Additionally, in Lean 4, Holmes and Wilshaw formalized the complex parts of the consistency proof of Quine's New Foundations \cite{NF_consistency}, ensuring the correctness of the proof.
 
-\subsubsection{Our Approach}
 
+
+\begin{comment}
+  section2-...で説明するように、c.t.m.の存在はconzfからは導けないが、正当性が言えるのです
+\end{comment}
 
 \subsubsection{Repository}
 Our source code is available at: \url{https://github.com/tarakojo/ZF_notAC}
@@ -81,12 +106,14 @@ Our source code is available at: \url{https://github.com/tarakojo/ZF_notAC}
 
 \chapter{Set-Theoretic Preliminaries}
 In this chapter, we introduce the concepts of set theory used in the formalization of this study.
+Our meta-theory is ZF, within which we explore ZF itself.
+
+\section{ZF Set Theory and the Axiom of Choice}
+We introduce the axioms of ZF set theory and the axiom of choice(AC).
 We use first-order logic with the language of set theory, which consists only of only two relation symbols $\in$ and $=$. 
 Formulas involving other mathmatical operators that may appear are considered abbreviations for formulas in this language.
 Parentheses in formulas are omitted where no confusion arises.
-Unless otherwise stated, "a statement holds" means "the statement holds in ZF".
 
-\section{ZF Set Theory and the Axiom of Choice}
 \begin{dfn}
   The axioms of ZF are the following statements:
   \begin{itemize}
@@ -108,7 +135,7 @@ Where separation and replacement are axiom schemas, representing infinitely many
 \end{dfn}
 Where the phrase "f is a function on x" is also considered an abbreviation in the language of set theory.
 Theory ZF + AC is denoted by ZFC.
-Next, we introduce the well-ordering theorem, as we treat AC in this form.
+Additionally, we introduce the well-ordering theorem, as we treat AC in this form.
 
 \begin{dfn}
   We say that a linear ordering $<$ on a set $P$ is a \emph{well-ordering} if, every non-empty subset of $P$, it has a least element.
@@ -120,7 +147,7 @@ Next, we introduce the well-ordering theorem, as we treat AC in this form.
 
 \section{Forcing}
 Forcing is a tequnique used in proving relative consistency and Independence.
-We introduce basic concepts of forcing in the context of the transitive countable model (c.t.m.) approach.
+We introduce basic concepts of forcing in the context of the c.t.m. approach.
 In this approach, the relative consistency proof is achieved by using forcing to construct a extended model by adding new sets to an assumed c.t.m.
 Let $M$ be a c.t.m. of ZF and $(\Pbb, \leq_{\Pbb})$ be a notion of forcing, which is a pre-ordered set in $M$ with a maximum element $1_{\Pbb}$.
 
@@ -135,6 +162,8 @@ Let $M$ be a c.t.m. of ZF and $(\Pbb, \leq_{\Pbb})$ be a notion of forcing, whic
 \end{dfn}
 Where $\mathcal{P}^M$ denotes the power set operation in $M$. 
 We often write a $\Pbb$-name with a dot, e.g., $\dot{x}$.
+The least $\alpha$ such that $\dot{x} \in M^{\Pbb}_{\alpha + 1}$ is called the \emph{$\Pbb$-rank} of $\dot{x}$.
+This allows us to define functions and relations by recursion on $\Pbb$-names.
 
 \begin{dfn} %karagilaではタイポがある...
   \,
@@ -155,8 +184,8 @@ The following lemma shows that a generic filter actually exists.
 \end{lem}
 
 \begin{dfn} 
-  Let $G$ be a generic filter on $\Pbb$ and $\dot{x} \in M^{\Pbb}$. We define the \emph{interpretation} of $\dot{x}$ denoted by $\dot{x}_G$ recursively, 
-  $\dot{x}_G = \{\dot{y}_G \mid \exists p \in G (\langle \dot{y}, p \rangle \in \dot{x})\}$. 
+  Let $G$ be a generic filter on $\Pbb$ and $\dot{x} \in M^{\Pbb}$. We define the \emph{interpretation} of $\dot{x}$ denoted by $\dot{x}_G$ recursively with respect to the $\Pbb$-rank of $\dot{x}$:
+  $$\dot{x}_G = \{\dot{y}_G \mid \exists p \in G (\langle \dot{y}, p \rangle \in \dot{x})\}$$ 
 \end{dfn}
 
 We call a $Pbb$-name whose interpretation is a set $x$ a name of $x$ and denote it by $\dot{x}$.
@@ -172,9 +201,21 @@ Note that a single set may have multiple names.
 
 By choosing $\Pbb$ appropriately, we can construct $M[G]$ with various properties.
 What holds or does not hold in $M[G]$ can be identified using the forcing relation.
-
-\begin{dfn} [Forcing relation]
-  ATODE
+The forcing relation is defined recursively on formulas in a forcing language.
+The forcing language is an extension of tha language of set theory by adding the elements of $M^{\Pbb}$ as constants.
+\begin{dfn} %kunen
+  We define the \emph{forcing relation} $\Vdash$ for formulas in the forcing language and $p \in \Pbb$ recursively
+  \footnote{Specifically}
+  as follows:
+  \begin{enumerate}
+    \item $p \Vdash \dot{x} = \dot{y} \Leftrightarrow \forall \dot{z} \in \text{dom}(\dot{x}) \cup \text{dom}(\dot{y})\,
+\forall q \leq_{\Pbb} p \, (q \Vdash \dot{z} \in \dot{x} \leftrightarrow q \Vdash \dot{z} \in \dot{y})$
+    \item $p \Vdash \dot{x} \in \dot{y} \Leftrightarrow \forall q \leq_{\Pbb} p\, \exists r \leq_{\Pbb} q \, 
+    \exists s \in \Pbb \, \exists \dot{z} \in M^{\Pbb} \, (\langle \dot{z}, s \rangle \in \dot{y} \land r \leq_{\Pbb} s \land r \Vdash \dot{x} = \dot{z} )$
+    \item $p \Vdash \phi \land \psi \Leftrightarrow p \Vdash \phi \land p \Vdash \psi$
+    \item $p \Vdash \neg \phi \Leftrightarrow \forall q \leq_{\Pbb} p \, \neg (q \Vdash \phi)$
+    \item $p \Vdash \exists x \phi(x) \Leftrightarrow \forall q \leq_{\Pbb} p \, \exists r \leq_{\Pbb} q \, \exists \dot{x} \in M^{\Pbb} \, (r \Vdash \phi(\dot{x}))$
+  \end{enumerate}
 \end{dfn}
 
 \begin{thm} [Forcing relation and generic extensions]
@@ -233,6 +274,8 @@ We fix a group of automorphisms $\Gcal$ of $\Pbb$ and a normal filter $\Fcal$ on
   ATODE
 \end{lem}
 
+\section{The c.t.m. Approach}\label{sec:ctm}
+
 \chapter{Outline of the Formalized Proof}
 We outline the formalized relative consistency proof of ZF + $\neg$AC. 
 In this proof, the relative consistency is proved by assuming the existence of a c.t.m. of ZF and constructing a model of ZF + $\neg$AC by forcing. 
@@ -259,17 +302,17 @@ Since $\Ncal$ is a symmetric extension of $M$, it is a c.t.m. of ZF.
 
 \begin{proof}
 We outline the proof of this theorem as follows. 
-For every $n \in \omega$, let $a_n$ be the following real number:
+For every $n \in \omega$, let $a_n$ be the following real number (a subset of $\omega$):
 $$a_n = \{ m \in \omega \mid \exists p \in G (p(n, m) = 1) \}$$
 Since $a_n$ are pairwise distinct, $A = \{ a_n \mid n \in \omega \}$ is an infinity set.
 $A$ and every $a_n$ are elements of $\Ncal$.
 $A$ serves as a counterexample to the well-ordering theorem in $\Ncal$.
 Suppose for contradiction that $A$ is well-ordered in $\Ncal$, there exists a injection $f$ from $\omega$ to $A$ in $\Ncal$.
 Let $\varphi(g,x,y)$ be a formula that represents the relation $g(x) = y$. 
-For every $n \in \omega$, There exists $i \in \omega$ such that $N \vDash \varphi(f, i, a_n)$.
+For every $n \in \omega$ with $a_n \in \text{ran}(f)$, there exists $i \in \omega$ such that $N \vDash \varphi(f, i, a_n)$.
 Thus there exists $p \in G$ and hereditarily $\Fcal$-symmetric names $\dot{f}, \dot{i}$ and $\dot{a_n}$ for each of $f, i, a_n$ such that 
 $$p \Vdash_{\text{HS}} \varphi(\dot{f}, \dot{i}, \dot{a_n})$$
-By choosing $n$ and the names appropriately, we can find $\pi \in \Gcal$ such that the following conditions are additionally satisfied:
+By choosing $n$ and the names appropriately, we can find a bijection $\pi$ on $\omega$ such that the following conditions are additionally satisfied:
 \begin{enumerate}
   \item $\pi \dot{f} = \dot{f}$
   \item $\pi \dot{i} = \dot{i}$
@@ -277,6 +320,7 @@ By choosing $n$ and the names appropriately, we can find $\pi \in \Gcal$ such th
   \item There exists a hereditarily $\Fcal$-symmetric name $\dot{a_{\pi n}}$ of $a_{\pi n}$ such that $\pi \dot{a_n} = \dot{a_{\pi n}}$
   \item There exists $q \in G$ such that $q \leq_{\Pbb} p$ and $q \leq_{\Pbb} \pi p$
 \end{enumerate}
+Note that some occurence of $\pi$ in above conditions refer to the induced automorphism on $\Pbb$ or $\Pbb$-names..
 By Lemma \ref{lem:symmetry_lemma}
 $$\pi p \Vdash_{\text{HS}} \varphi(\pi \dot{f}, \pi \dot{i}, \pi \dot{a_n})$$
 Thus 
@@ -290,33 +334,36 @@ Since $a_n$ and $a_{\pi n}$ are distinct, this is a contradiction.
 \chapter{Isabelle/ZF and Formalization in Prior Work}
 In this chapter, we introduce Isabelle/ZF, a proof assistant for ZF set theory, 
 and the results from prior work used in the formalization of this study.
-
+\begin{comment}  
 \section{Isabelle/ZF}
 \section{Internalized First-Order Formulas}
 \section{Forcing}  
+\end{comment}
 
 \chapter{Formalization of the Proof} 
-\section{Introduction to the Formalization}
-In this chapter, we 
-
-
 \section{Defining Symmetric Extensions}
-\subsection{$\Pbb$-names}
+\begin{comment}
+  \subsection{$\Pbb$-names}
 \subsection{Automorphisms}
 \subsection{Hereditarily Symmetric Names}
 \subsection{Symmetric Extensions}
+\end{comment}
 
 \section{Proving that Symmetric Extensions are Models of ZF}
+\begin{comment}
 \subsection{Relativized Forcing Relation $\Vdash_{\text{HS}}$}
 \subsection{The Symmetric Lemma}
 \subsection{Separation}
 \subsection{Replacement}
 \subsection{Other Axioms}
+\end{comment}
 
 \section{Defining the Basic Cohen Model}
+\begin{comment}
 \subsection{The Notion of Forcing}
 \subsection{The Group of Automorphisms}
 \subsection{The Normal Filter}
+\end{comment}
 
 \section{Proving that the Basic Cohen Model satisfies $\neg$AC}
 
@@ -328,6 +375,8 @@ In this chapter, we
 %  In this formalization as well, this part was complex. 
 
   
+\subsubsection{Acknowledgements}
+
 \printbibliography
 \end{document}
  

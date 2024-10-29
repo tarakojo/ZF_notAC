@@ -2364,16 +2364,21 @@
     <bcf:citekey order="1" intorder="1">gunther_independence</bcf:citekey>
     <bcf:citekey order="2" intorder="1">flypitch</bcf:citekey>
     <bcf:citekey order="3" intorder="1">paulson_AC_consistency</bcf:citekey>
-    <bcf:citekey order="4" intorder="1">paulson_datatype_impl</bcf:citekey>
-    <bcf:citekey order="4" intorder="2">paulson_reflection</bcf:citekey>
-    <bcf:citekey order="4" intorder="3">paulson_AC_consistency</bcf:citekey>
-    <bcf:citekey order="4" intorder="4">paulson_cardinal_AC</bcf:citekey>
-    <bcf:citekey order="4" intorder="5">paulson_datatype</bcf:citekey>
-    <bcf:citekey order="5" intorder="1">gunther_forcing</bcf:citekey>
-    <bcf:citekey order="5" intorder="2">gunther_independence</bcf:citekey>
-    <bcf:citekey order="6" intorder="1">kunen2011</bcf:citekey>
-    <bcf:citekey order="7" intorder="1">flypitch</bcf:citekey>
-    <bcf:citekey order="8" intorder="1">NF_consistency</bcf:citekey>
+    <bcf:citekey order="4" intorder="1">gunther_forcing</bcf:citekey>
+    <bcf:citekey order="5" intorder="1">flypitch</bcf:citekey>
+    <bcf:citekey order="6" intorder="1">karagila</bcf:citekey>
+    <bcf:citekey order="7" intorder="1">jech_set_theory</bcf:citekey>
+    <bcf:citekey order="7" intorder="2">jech_AC</bcf:citekey>
+    <bcf:citekey order="8" intorder="1">paulson_datatype_impl</bcf:citekey>
+    <bcf:citekey order="8" intorder="2">paulson_reflection</bcf:citekey>
+    <bcf:citekey order="8" intorder="3">paulson_AC_consistency</bcf:citekey>
+    <bcf:citekey order="8" intorder="4">paulson_cardinal_AC</bcf:citekey>
+    <bcf:citekey order="8" intorder="5">paulson_datatype</bcf:citekey>
+    <bcf:citekey order="9" intorder="1">gunther_forcing</bcf:citekey>
+    <bcf:citekey order="9" intorder="2">gunther_independence</bcf:citekey>
+    <bcf:citekey order="10" intorder="1">kunen2011</bcf:citekey>
+    <bcf:citekey order="11" intorder="1">flypitch</bcf:citekey>
+    <bcf:citekey order="12" intorder="1">NF_consistency</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="nty">

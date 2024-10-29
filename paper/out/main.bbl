@@ -152,6 +152,70 @@
       \verb arXiv:1503.01406
       \endverb
     \endentry
+    \entry{jech_set_theory}{book}{}
+      \name{author}{1}{}{%
+        {{hash=1ea51a62907e839b389e5fd269d9ae60}{%
+           family={Jech},
+           familyi={J\bibinitperiod},
+           given={Thomas\bibnamedelima J},
+           giveni={T\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {en}%
+      }
+      \list{location}{1}{%
+        {Berlin, Germany}%
+      }
+      \list{publisher}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{1ea51a62907e839b389e5fd269d9ae60}
+      \strng{fullhash}{1ea51a62907e839b389e5fd269d9ae60}
+      \strng{bibnamehash}{1ea51a62907e839b389e5fd269d9ae60}
+      \strng{authorbibnamehash}{1ea51a62907e839b389e5fd269d9ae60}
+      \strng{authornamehash}{1ea51a62907e839b389e5fd269d9ae60}
+      \strng{authorfullhash}{1ea51a62907e839b389e5fd269d9ae60}
+      \field{extraname}{1}
+      \field{sortinit}{J}
+      \field{sortinithash}{b2f54a9081ace9966a7cb9413811edb4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{3}
+      \field{month}{10}
+      \field{series}{Springer Monographs in Mathematics}
+      \field{title}{Set Theory}
+      \field{year}{2002}
+    \endentry
+    \entry{jech_AC}{book}{}
+      \name{author}{1}{}{%
+        {{hash=1ea51a62907e839b389e5fd269d9ae60}{%
+           family={Jech},
+           familyi={J\bibinitperiod},
+           given={Thomas\bibnamedelima J},
+           giveni={T\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Mineola, NY}%
+      }
+      \list{publisher}{1}{%
+        {Dover Publications}%
+      }
+      \strng{namehash}{1ea51a62907e839b389e5fd269d9ae60}
+      \strng{fullhash}{1ea51a62907e839b389e5fd269d9ae60}
+      \strng{bibnamehash}{1ea51a62907e839b389e5fd269d9ae60}
+      \strng{authorbibnamehash}{1ea51a62907e839b389e5fd269d9ae60}
+      \strng{authornamehash}{1ea51a62907e839b389e5fd269d9ae60}
+      \strng{authorfullhash}{1ea51a62907e839b389e5fd269d9ae60}
+      \field{extraname}{2}
+      \field{sortinit}{J}
+      \field{sortinithash}{b2f54a9081ace9966a7cb9413811edb4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{7}
+      \field{series}{Dover Books on Mathematics}
+      \field{title}{The axiom of choice}
+      \field{year}{2008}
+    \endentry
     \entry{kunen2011}{book}{}
       \name{author}{1}{}{%
         {{hash=9bbbc8091281c78067693611cdfae8a1}{%
@@ -179,6 +243,20 @@
       \field{month}{11}
       \field{title}{Set Theory}
       \field{year}{2011}
+    \endentry
+    \entry{karagila}{misc}{}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{labeltitlesource}{title}
+      \field{note}{Accessed: 2024-10-29}
+      \field{title}{Lecture Notes: Forcing \& Symmetric Extensions}
+      \field{year}{2023}
+      \verb{urlraw}
+      \verb https://karagila.org/files/Forcing-2023.pdf
+      \endverb
+      \verb{url}
+      \verb https://karagila.org/files/Forcing-2023.pdf
+      \endverb
     \endentry
     \entry{paulson_datatype_impl}{inproceedings}{}
       \name{author}{1}{}{%
