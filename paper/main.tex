@@ -204,8 +204,12 @@ What holds or does not hold in $M[G]$ can be identified using the forcing relati
 The forcing relation is defined recursively on formulas in a forcing language.
 The forcing language is an extension of tha language of set theory by adding the elements of $M^{\Pbb}$ as constants.
 \begin{dfn} %kunen
-  We define the \emph{forcing relation} $\Vdash$ for formulas in the forcing language and $p \in \Pbb$ recursively
-  \footnote{Specifically}
+  We define the \emph{forcing relation} $\Vdash$ for formulas in the forcing language and $p \in \Pbb$ inductively
+  \footnote{
+    Specifically, the forcing relation is first defined for atomic formulas, and then for other formulas using structual induction. 
+    Thr 
+  
+  }
   as follows:
   \begin{enumerate}
     \item $p \Vdash \dot{x} = \dot{y} \Leftrightarrow \forall \dot{z} \in \text{dom}(\dot{x}) \cup \text{dom}(\dot{y})\,

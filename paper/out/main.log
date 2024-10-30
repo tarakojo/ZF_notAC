@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.17.0 (TeX Live 2023)  (format=lualatex 2023.5.15)  29 OCT 2024 23:13
+This is LuaHBTeX, Version 1.17.0 (TeX Live 2023)  (format=lualatex 2023.5.15)  29 OCT 2024 23:24
  restricted system commands enabled.
  file:line:error style messages enabled.
 **c:/Users/tarak/source/repos/ZF-notAC/paper/main.tex
@@ -841,28 +841,28 @@ Package fontspec Info: Font family 'TeXGyreTermesX(1)' created for font
 LaTeX Font Info:    Font shape `TU/TeXGyreTermesX(1)/m/n' will be
 (Font)              scaled to size 10.0pt on input line 208.
 LaTeX Font Info:    Font shape `TU/TeXGyreTermesX(0)/m/n' will be
-(Font)              scaled to size 8.0pt on input line 208.
+(Font)              scaled to size 8.0pt on input line 212.
 LaTeX Font Info:    Font shape `TU/TeXGyreTermesX(1)/m/n' will be
-(Font)              scaled to size 8.0pt on input line 208.
+(Font)              scaled to size 8.0pt on input line 212.
 [6]
-Overfull \hbox (9.30925pt too wide) in paragraph at lines 270--271
+Overfull \hbox (9.30925pt too wide) in paragraph at lines 274--275
 \TU/TeXGyreTermesX(0)/b/n/10 The-o-rem 2.20 \TU/TeXGyreTermesX(0)/m/n/10 (re-la-tion be-tween HS forc-ing re-la-tions and sym-met-ric ex-ten-sions)\TU/TeXGyreTermesX(0)/b/n/10 . \TU/TeXGyreTermesX(0)/m/it/10 ATODE 
  []
 
 [7]
 Chapter 3.
 LaTeX Font Info:    Font shape `TU/TeXGyreTermesX(0)/m/n' will be
-(Font)              scaled to size 7.3pt on input line 294.
+(Font)              scaled to size 7.3pt on input line 298.
 LaTeX Font Info:    Font shape `TU/TeXGyreTermesX(0)/m/n' will be
-(Font)              scaled to size 5.5pt on input line 294.
+(Font)              scaled to size 5.5pt on input line 298.
 [8
 
 ]
 
-LaTeX Warning: Reference `lem:symmetry_lemma' on page 9 undefined on input line 324.
+LaTeX Warning: Reference `lem:symmetry_lemma' on page 9 undefined on input line 328.
 
 
-LaTeX Warning: Reference `lem:strengthening' on page 9 undefined on input line 328.
+LaTeX Warning: Reference `lem:strengthening' on page 9 undefined on input line 332.
 
 [9]
 Chapter 4.
@@ -878,9 +878,9 @@ Chapter 6.
 
 ]
 LaTeX Font Info:    Font shape `TU/TeXGyreTermesX(0)/m/sc' will be
-(Font)              scaled to size 10.0pt on input line 380.
+(Font)              scaled to size 10.0pt on input line 384.
 
-Overfull \hbox (1.95334pt too wide) in paragraph at lines 381--381
+Overfull \hbox (1.95334pt too wide) in paragraph at lines 385--385
 \TU/TeXGyreTermesX(0)/m/n/10 son-ing''. In: \TU/TeXGyreTermesX(0)/m/it/10 Au-to-mated De-duc-tion—CADE-18\TU/TeXGyreTermesX(0)/m/n/10 . Springer Berlin Hei-del-berg, 2002,
  []
 
@@ -900,12 +900,12 @@ Here is how much of LuaTeX's memory you used:
  125161,1977958 words of node,token memory allocated
  614 words of node memory still in use:
    6 hlist, 2 vlist, 2 rule, 3 glue, 4 kern, 1 glyph, 18 attribute, 67 glue_spec, 18 attribute_list, 1 write nodes
-   avail lists: 1:1,2:653,3:274,4:11,5:685,6:50,7:5512,8:63,9:389,10:9,11:426
+   avail lists: 1:1,2:636,3:274,4:11,5:671,6:50,7:5512,8:63,9:388,10:9,11:426
  36400 multiletter control sequences out of 65536+600000
  228 fonts using 20558303 bytes
  71i,6n,98p,719b,1232s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/texlive/2023/texmf-dist/fonts/opentype/public/newtx/TeXGyreTermesX-Regular.otf>{c:/texlive/2023/texmf-dist/fonts/enc/dvips/newtx/ntx-ot1-tlf.enc}<c:/texlive/2023/texmf-dist/fonts/opentype/public/newtx/TeXGyreTermesX-Italic.otf><c:/texlive/2023/texmf-dist/fonts/opentype/public/lm/lmmono10-regular.otf><c:/texlive/2023/texmf-dist/fonts/opentype/public/newtx/TeXGyreTermesX-Bold.otf><c:/texlive/2023/texmf-dist/fonts/opentype/public/newtx/TeXGyreTermesX-Regular.otf><c:/texlive/2023/texmf-dist/fonts/type1/public/newtx/NewTXMI.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/newtx/NewTXMI7.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/newtx/txexs.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/newtx/txmiaX.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/txfonts/txsya.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/txfonts/txsyb.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/newtx/txsys.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/newtx/ztmr.pfb>
-Output written on main.pdf (15 pages, 133599 bytes).
+Output written on main.pdf (15 pages, 133703 bytes).
 
 PDF statistics: 120 PDF objects out of 1000 (max. 8388607)
  79 compressed objects within 1 object stream
