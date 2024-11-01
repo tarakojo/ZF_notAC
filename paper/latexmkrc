@@ -2,7 +2,7 @@
 $out_dir = 'out';
 $aux_dir = 'out';
 
-$pdflatex = 'lualatex';
+$pdflatex = 'lualatex -shell-escape';
 $pdf_mode = 1;   
 $bibtex = 'biber';   
 $use_biber = 1;
