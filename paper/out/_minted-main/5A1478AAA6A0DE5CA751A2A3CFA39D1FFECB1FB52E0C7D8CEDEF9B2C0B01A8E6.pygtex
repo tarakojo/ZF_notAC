@@ -1,0 +1,7 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+
+\PYG{+w}{  }\PYG{k}{theory}\PYG{+w}{ }\PYG{n}{ZF\PYGZus{}notAC\PYGZus{}main\PYGZus{}theorem}\PYG{+w}{ }\PYG{o}{:}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}x ∈ y\PYGZdq{}}
+\PYG{+w}{  }\PYG{k}{proof}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}
+\PYG{+w}{    }\PYG{k}{have}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}x ∈ y\PYGZdq{}}\PYG{+w}{ }\PYG{g+gr}{sorry}
+\PYG{+w}{  }\PYG{k}{qed}
+\end{Verbatim}
