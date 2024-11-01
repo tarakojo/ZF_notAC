@@ -1,0 +1,168 @@
+%
+\begin{isabellebody}%
+\setisabellecontext{Internalizations}%
+%
+\isadelimdocument
+%
+\endisadelimdocument
+%
+\isatagdocument
+%
+\isamarkupsection{Aids to internalize formulas%
+}
+\isamarkuptrue%
+%
+\endisatagdocument
+{\isafolddocument}%
+%
+\isadelimdocument
+%
+\endisadelimdocument
+%
+\isadelimtheory
+%
+\endisadelimtheory
+%
+\isatagtheory
+\isacommand{theory}\isamarkupfalse%
+\ Internalizations\isanewline
+\ \ \isakeyword{imports}\ \isanewline
+\ \ \ \ {\isachardoublequoteopen}ZF{\isacharminus}{\kern0pt}Constructible{\isachardot}{\kern0pt}DPow{\isacharunderscore}{\kern0pt}absolute{\isachardoublequoteclose}\ \isanewline
+\isakeyword{begin}%
+\endisatagtheory
+{\isafoldtheory}%
+%
+\isadelimtheory
+%
+\endisadelimtheory
+%
+\begin{isamarkuptext}%
+We found it useful to have slightly different versions of some 
+results in ZF-Constructible:%
+\end{isamarkuptext}\isamarkuptrue%
+\isacommand{lemma}\isamarkupfalse%
+\ nth{\isacharunderscore}{\kern0pt}closed\ {\isacharcolon}{\kern0pt}\isanewline
+\ \ \isakeyword{assumes}\ {\isachardoublequoteopen}{\isadigit{0}}{\isasymin}A{\isachardoublequoteclose}\ {\isachardoublequoteopen}env{\isasymin}list{\isacharparenleft}{\kern0pt}A{\isacharparenright}{\kern0pt}{\isachardoublequoteclose}\isanewline
+\ \ \isakeyword{shows}\ {\isachardoublequoteopen}nth{\isacharparenleft}{\kern0pt}n{\isacharcomma}{\kern0pt}env{\isacharparenright}{\kern0pt}{\isasymin}A{\isachardoublequoteclose}\ \isanewline
+%
+\isadelimproof
+\ \ %
+\endisadelimproof
+%
+\isatagproof
+\isacommand{using}\isamarkupfalse%
+\ assms{\isacharparenleft}{\kern0pt}{\isadigit{2}}{\isacharcomma}{\kern0pt}{\isadigit{1}}{\isacharparenright}{\kern0pt}\ \isacommand{unfolding}\isamarkupfalse%
+\ nth{\isacharunderscore}{\kern0pt}def\ \isacommand{by}\isamarkupfalse%
+\ {\isacharparenleft}{\kern0pt}induct\ env{\isacharsemicolon}{\kern0pt}\ simp{\isacharparenright}{\kern0pt}%
+\endisatagproof
+{\isafoldproof}%
+%
+\isadelimproof
+\isanewline
+%
+\endisadelimproof
+\isanewline
+\isacommand{lemmas}\isamarkupfalse%
+\ FOL{\isacharunderscore}{\kern0pt}sats{\isacharunderscore}{\kern0pt}iff\ {\isacharequal}{\kern0pt}\ sats{\isacharunderscore}{\kern0pt}Nand{\isacharunderscore}{\kern0pt}iff\ sats{\isacharunderscore}{\kern0pt}Forall{\isacharunderscore}{\kern0pt}iff\ sats{\isacharunderscore}{\kern0pt}Neg{\isacharunderscore}{\kern0pt}iff\ sats{\isacharunderscore}{\kern0pt}And{\isacharunderscore}{\kern0pt}iff\isanewline
+\ \ sats{\isacharunderscore}{\kern0pt}Or{\isacharunderscore}{\kern0pt}iff\ sats{\isacharunderscore}{\kern0pt}Implies{\isacharunderscore}{\kern0pt}iff\ sats{\isacharunderscore}{\kern0pt}Iff{\isacharunderscore}{\kern0pt}iff\ sats{\isacharunderscore}{\kern0pt}Exists{\isacharunderscore}{\kern0pt}iff\ \isanewline
+\isanewline
+\isacommand{lemma}\isamarkupfalse%
+\ nth{\isacharunderscore}{\kern0pt}ConsI{\isacharcolon}{\kern0pt}\ {\isachardoublequoteopen}{\isasymlbrakk}nth{\isacharparenleft}{\kern0pt}n{\isacharcomma}{\kern0pt}l{\isacharparenright}{\kern0pt}\ {\isacharequal}{\kern0pt}\ x{\isacharsemicolon}{\kern0pt}\ n\ {\isasymin}\ nat{\isasymrbrakk}\ {\isasymLongrightarrow}\ nth{\isacharparenleft}{\kern0pt}succ{\isacharparenleft}{\kern0pt}n{\isacharparenright}{\kern0pt}{\isacharcomma}{\kern0pt}\ Cons{\isacharparenleft}{\kern0pt}a{\isacharcomma}{\kern0pt}l{\isacharparenright}{\kern0pt}{\isacharparenright}{\kern0pt}\ {\isacharequal}{\kern0pt}\ x{\isachardoublequoteclose}\isanewline
+%
+\isadelimproof
+%
+\endisadelimproof
+%
+\isatagproof
+\isacommand{by}\isamarkupfalse%
+\ simp%
+\endisatagproof
+{\isafoldproof}%
+%
+\isadelimproof
+\isanewline
+%
+\endisadelimproof
+\isanewline
+\isacommand{lemmas}\isamarkupfalse%
+\ nth{\isacharunderscore}{\kern0pt}rules\ {\isacharequal}{\kern0pt}\ nth{\isacharunderscore}{\kern0pt}{\isadigit{0}}\ nth{\isacharunderscore}{\kern0pt}ConsI\ nat{\isacharunderscore}{\kern0pt}{\isadigit{0}}I\ nat{\isacharunderscore}{\kern0pt}succI\isanewline
+\isacommand{lemmas}\isamarkupfalse%
+\ sep{\isacharunderscore}{\kern0pt}rules\ {\isacharequal}{\kern0pt}\ nth{\isacharunderscore}{\kern0pt}{\isadigit{0}}\ nth{\isacharunderscore}{\kern0pt}ConsI\ FOL{\isacharunderscore}{\kern0pt}iff{\isacharunderscore}{\kern0pt}sats\ function{\isacharunderscore}{\kern0pt}iff{\isacharunderscore}{\kern0pt}sats\isanewline
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ fun{\isacharunderscore}{\kern0pt}plus{\isacharunderscore}{\kern0pt}iff{\isacharunderscore}{\kern0pt}sats\ successor{\isacharunderscore}{\kern0pt}iff{\isacharunderscore}{\kern0pt}sats\isanewline
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ omega{\isacharunderscore}{\kern0pt}iff{\isacharunderscore}{\kern0pt}sats\ FOL{\isacharunderscore}{\kern0pt}sats{\isacharunderscore}{\kern0pt}iff\ Replace{\isacharunderscore}{\kern0pt}iff{\isacharunderscore}{\kern0pt}sats%
+\begin{isamarkuptext}%
+Also a different compilation of lemmas (term\isa{sep{\isacharunderscore}{\kern0pt}rules}) used in formula
+ synthesis%
+\end{isamarkuptext}\isamarkuptrue%
+\isacommand{lemmas}\isamarkupfalse%
+\ fm{\isacharunderscore}{\kern0pt}defs\ {\isacharequal}{\kern0pt}\ omega{\isacharunderscore}{\kern0pt}fm{\isacharunderscore}{\kern0pt}def\ limit{\isacharunderscore}{\kern0pt}ordinal{\isacharunderscore}{\kern0pt}fm{\isacharunderscore}{\kern0pt}def\ empty{\isacharunderscore}{\kern0pt}fm{\isacharunderscore}{\kern0pt}def\ typed{\isacharunderscore}{\kern0pt}function{\isacharunderscore}{\kern0pt}fm{\isacharunderscore}{\kern0pt}def\isanewline
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pair{\isacharunderscore}{\kern0pt}fm{\isacharunderscore}{\kern0pt}def\ upair{\isacharunderscore}{\kern0pt}fm{\isacharunderscore}{\kern0pt}def\ domain{\isacharunderscore}{\kern0pt}fm{\isacharunderscore}{\kern0pt}def\ function{\isacharunderscore}{\kern0pt}fm{\isacharunderscore}{\kern0pt}def\ succ{\isacharunderscore}{\kern0pt}fm{\isacharunderscore}{\kern0pt}def\isanewline
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cons{\isacharunderscore}{\kern0pt}fm{\isacharunderscore}{\kern0pt}def\ fun{\isacharunderscore}{\kern0pt}apply{\isacharunderscore}{\kern0pt}fm{\isacharunderscore}{\kern0pt}def\ image{\isacharunderscore}{\kern0pt}fm{\isacharunderscore}{\kern0pt}def\ big{\isacharunderscore}{\kern0pt}union{\isacharunderscore}{\kern0pt}fm{\isacharunderscore}{\kern0pt}def\ union{\isacharunderscore}{\kern0pt}fm{\isacharunderscore}{\kern0pt}def\isanewline
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ relation{\isacharunderscore}{\kern0pt}fm{\isacharunderscore}{\kern0pt}def\ composition{\isacharunderscore}{\kern0pt}fm{\isacharunderscore}{\kern0pt}def\ field{\isacharunderscore}{\kern0pt}fm{\isacharunderscore}{\kern0pt}def\ ordinal{\isacharunderscore}{\kern0pt}fm{\isacharunderscore}{\kern0pt}def\ range{\isacharunderscore}{\kern0pt}fm{\isacharunderscore}{\kern0pt}def\isanewline
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ transset{\isacharunderscore}{\kern0pt}fm{\isacharunderscore}{\kern0pt}def\ subset{\isacharunderscore}{\kern0pt}fm{\isacharunderscore}{\kern0pt}def\ Replace{\isacharunderscore}{\kern0pt}fm{\isacharunderscore}{\kern0pt}def\isanewline
+\isanewline
+%
+\isadelimtheory
+\isanewline
+%
+\endisadelimtheory
+%
+\isatagtheory
+\isacommand{end}\isamarkupfalse%
+%
+\endisatagtheory
+{\isafoldtheory}%
+%
+\isadelimtheory
+%
+\endisadelimtheory
+%
+\end{isabellebody}%
+\endinput
+%:%file=~/source/repos/ZF-notAC/code/Forcing/Internalizations.thy%:%
+%:%11=1%:%
+%:%27=2%:%
+%:%28=2%:%
+%:%29=3%:%
+%:%30=4%:%
+%:%31=5%:%
+%:%40=7%:%
+%:%41=8%:%
+%:%43=9%:%
+%:%44=9%:%
+%:%45=10%:%
+%:%46=11%:%
+%:%49=12%:%
+%:%53=12%:%
+%:%54=12%:%
+%:%55=12%:%
+%:%56=12%:%
+%:%61=12%:%
+%:%64=13%:%
+%:%65=14%:%
+%:%66=14%:%
+%:%67=15%:%
+%:%68=16%:%
+%:%69=17%:%
+%:%70=17%:%
+%:%77=18%:%
+%:%78=18%:%
+%:%83=18%:%
+%:%86=19%:%
+%:%87=20%:%
+%:%88=20%:%
+%:%89=21%:%
+%:%90=21%:%
+%:%91=22%:%
+%:%92=23%:%
+%:%94=25%:%
+%:%95=26%:%
+%:%97=27%:%
+%:%98=27%:%
+%:%99=28%:%
+%:%100=29%:%
+%:%101=30%:%
+%:%102=31%:%
+%:%103=32%:%
+%:%106=33%:%
+%:%111=34%:%

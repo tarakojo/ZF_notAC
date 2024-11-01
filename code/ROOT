@@ -1,0 +1,20 @@
+
+session code = "ZF-Constructible" +
+  options [document = pdf, document_output = "output"]
+(*theories [document = false]
+    A
+    B
+  theories
+    C
+    D*)
+
+  directories
+    "Forcing"
+
+  theories 
+    ZF_notAC
+    
+  document_files
+    "root.tex"
+
+    

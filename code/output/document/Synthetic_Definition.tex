@@ -1,0 +1,200 @@
+%
+\begin{isabellebody}%
+\setisabellecontext{Synthetic{\isacharunderscore}{\kern0pt}Definition}%
+%
+\isadelimdocument
+%
+\endisadelimdocument
+%
+\isatagdocument
+%
+\isamarkupsection{Automatic synthesis of formulas%
+}
+\isamarkuptrue%
+%
+\endisatagdocument
+{\isafolddocument}%
+%
+\isadelimdocument
+%
+\endisadelimdocument
+%
+\isadelimtheory
+%
+\endisadelimtheory
+%
+\isatagtheory
+\isacommand{theory}\isamarkupfalse%
+\ Synthetic{\isacharunderscore}{\kern0pt}Definition\isanewline
+\ \ \isakeyword{imports}\ Utils\isanewline
+\ \ \isakeyword{keywords}\ {\isachardoublequoteopen}synthesize{\isachardoublequoteclose}\ {\isacharcolon}{\kern0pt}{\isacharcolon}{\kern0pt}\ thy{\isacharunderscore}{\kern0pt}decl\ {\isacharpercent}{\kern0pt}\ {\isachardoublequoteopen}ML{\isachardoublequoteclose}\isanewline
+\ \ \ \ \isakeyword{and}\ {\isachardoublequoteopen}synthesize{\isacharunderscore}{\kern0pt}notc{\isachardoublequoteclose}\ {\isacharcolon}{\kern0pt}{\isacharcolon}{\kern0pt}\ thy{\isacharunderscore}{\kern0pt}decl\ {\isacharpercent}{\kern0pt}\ {\isachardoublequoteopen}ML{\isachardoublequoteclose}\isanewline
+\ \ \ \ \isakeyword{and}\ {\isachardoublequoteopen}from{\isacharunderscore}{\kern0pt}schematic{\isachardoublequoteclose}\isanewline
+\isakeyword{begin}%
+\endisatagtheory
+{\isafoldtheory}%
+%
+\isadelimtheory
+\isanewline
+%
+\endisadelimtheory
+%
+\isadelimML
+\isanewline
+%
+\endisadelimML
+%
+\isatagML
+\isacommand{ML}\isamarkupfalse%
+{\isacartoucheopen}\isanewline
+val\ {\isachardollar}{\kern0pt}{\isacharbackquote}{\kern0pt}\ {\isacharequal}{\kern0pt}\ curry\ {\isacharparenleft}{\kern0pt}{\isacharparenleft}{\kern0pt}op\ {\isachardollar}{\kern0pt}{\isacharparenright}{\kern0pt}\ o\ swap{\isacharparenright}{\kern0pt}\isanewline
+infix\ {\isachardollar}{\kern0pt}{\isacharbackquote}{\kern0pt}\isanewline
+\isanewline
+fun\ pair\ f\ g\ x\ {\isacharequal}{\kern0pt}\ {\isacharparenleft}{\kern0pt}f\ x{\isacharcomma}{\kern0pt}\ g\ x{\isacharparenright}{\kern0pt}\isanewline
+\isanewline
+fun\ print{\isacharunderscore}{\kern0pt}theorem\ pos\ {\isacharparenleft}{\kern0pt}thms{\isacharcomma}{\kern0pt}\ lthy{\isacharparenright}{\kern0pt}\ {\isacharequal}{\kern0pt}\isanewline
+\ \ {\isacharparenleft}{\kern0pt}Proof{\isacharunderscore}{\kern0pt}Display{\isachardot}{\kern0pt}print{\isacharunderscore}{\kern0pt}theorem\ pos\ lthy\ thms{\isacharsemicolon}{\kern0pt}\ lthy{\isacharparenright}{\kern0pt}\isanewline
+\isanewline
+fun\ prove{\isacharunderscore}{\kern0pt}tc{\isacharunderscore}{\kern0pt}form\ goal\ thms\ ctxt\ {\isacharequal}{\kern0pt}\isanewline
+\ \ Goal{\isachardot}{\kern0pt}prove\ ctxt\ {\isacharbrackleft}{\kern0pt}{\isacharbrackright}{\kern0pt}\ {\isacharbrackleft}{\kern0pt}{\isacharbrackright}{\kern0pt}\ goal\isanewline
+\ \ \ \ {\isacharparenleft}{\kern0pt}fn\ {\isacharbraceleft}{\kern0pt}context\ {\isacharequal}{\kern0pt}\ ctxt{\isacharprime}{\kern0pt}{\isacharcomma}{\kern0pt}\ {\isachardot}{\kern0pt}{\isachardot}{\kern0pt}{\isachardot}{\kern0pt}{\isacharbraceright}{\kern0pt}\ {\isacharequal}{\kern0pt}{\isachargreater}{\kern0pt}\isanewline
+\ \ \ \ \ \ rewrite{\isacharunderscore}{\kern0pt}goal{\isacharunderscore}{\kern0pt}tac\ ctxt{\isacharprime}{\kern0pt}\ thms\ {\isadigit{1}}\isanewline
+\ \ \ \ \ \ THEN\ TypeCheck{\isachardot}{\kern0pt}typecheck{\isacharunderscore}{\kern0pt}tac\ ctxt{\isacharprime}{\kern0pt}{\isacharparenright}{\kern0pt}\isanewline
+\isanewline
+fun\ prove{\isacharunderscore}{\kern0pt}sats\ goal\ thms\ thm{\isacharunderscore}{\kern0pt}auto\ ctxt\ {\isacharequal}{\kern0pt}\isanewline
+\ \ Goal{\isachardot}{\kern0pt}prove\ ctxt\ {\isacharbrackleft}{\kern0pt}{\isacharbrackright}{\kern0pt}\ {\isacharbrackleft}{\kern0pt}{\isacharbrackright}{\kern0pt}\ goal\isanewline
+\ \ \ \ {\isacharparenleft}{\kern0pt}fn\ {\isacharbraceleft}{\kern0pt}context\ {\isacharequal}{\kern0pt}\ ctxt{\isacharprime}{\kern0pt}{\isacharcomma}{\kern0pt}\ {\isachardot}{\kern0pt}{\isachardot}{\kern0pt}{\isachardot}{\kern0pt}{\isacharbraceright}{\kern0pt}\ {\isacharequal}{\kern0pt}{\isachargreater}{\kern0pt}\isanewline
+\ \ \ \ \ \ let\ val\ ctxt{\isacharprime}{\kern0pt}{\isacharprime}{\kern0pt}\ {\isacharequal}{\kern0pt}\ ctxt{\isacharprime}{\kern0pt}\ {\isacharbar}{\kern0pt}{\isachargreater}{\kern0pt}\ Simplifier{\isachardot}{\kern0pt}add{\isacharunderscore}{\kern0pt}simp\ {\isacharparenleft}{\kern0pt}thm{\isacharunderscore}{\kern0pt}auto\ {\isacharbar}{\kern0pt}{\isachargreater}{\kern0pt}\ hd{\isacharparenright}{\kern0pt}\ in\isanewline
+\ \ \ \ \ \ \ \ rewrite{\isacharunderscore}{\kern0pt}goal{\isacharunderscore}{\kern0pt}tac\ ctxt{\isacharprime}{\kern0pt}{\isacharprime}{\kern0pt}\ thms\ {\isadigit{1}}\isanewline
+\ \ \ \ \ \ \ \ THEN\ PARALLEL{\isacharunderscore}{\kern0pt}ALLGOALS\ {\isacharparenleft}{\kern0pt}asm{\isacharunderscore}{\kern0pt}simp{\isacharunderscore}{\kern0pt}tac\ ctxt{\isacharprime}{\kern0pt}{\isacharprime}{\kern0pt}{\isacharparenright}{\kern0pt}\isanewline
+\ \ \ \ \ \ \ \ THEN\ TypeCheck{\isachardot}{\kern0pt}typecheck{\isacharunderscore}{\kern0pt}tac\ ctxt{\isacharprime}{\kern0pt}{\isacharprime}{\kern0pt}\isanewline
+\ \ \ \ \ \ end{\isacharparenright}{\kern0pt}\isanewline
+\isanewline
+fun\ is{\isacharunderscore}{\kern0pt}mem\ \isactrlConstUNDERSCORE {\isasymopen}mem\ for\ {\isacharunderscore}{\kern0pt}\ {\isacharunderscore}{\kern0pt}{\isasymclose}\ {\isacharequal}{\kern0pt}\ true\isanewline
+\ \ {\isacharbar}{\kern0pt}\ is{\isacharunderscore}{\kern0pt}mem\ {\isacharunderscore}{\kern0pt}\ {\isacharequal}{\kern0pt}\ false\isanewline
+\isanewline
+fun\ synth{\isacharunderscore}{\kern0pt}thm{\isacharunderscore}{\kern0pt}sats\ def{\isacharunderscore}{\kern0pt}name\ term\ lhs\ set\ env\ hyps\ vars\ vs\ pos\ thm{\isacharunderscore}{\kern0pt}auto\ lthy\ {\isacharequal}{\kern0pt}\isanewline
+let\ val\ {\isacharparenleft}{\kern0pt}{\isacharunderscore}{\kern0pt}{\isacharcomma}{\kern0pt}tm{\isacharcomma}{\kern0pt}ctxt{\isadigit{1}}{\isacharparenright}{\kern0pt}\ {\isacharequal}{\kern0pt}\ Utils{\isachardot}{\kern0pt}thm{\isacharunderscore}{\kern0pt}concl{\isacharunderscore}{\kern0pt}tm\ lthy\ term\isanewline
+\ \ \ \ val\ {\isacharparenleft}{\kern0pt}thm{\isacharunderscore}{\kern0pt}refs{\isacharcomma}{\kern0pt}ctxt{\isadigit{2}}{\isacharparenright}{\kern0pt}\ {\isacharequal}{\kern0pt}\ Variable{\isachardot}{\kern0pt}import\ true\ {\isacharbrackleft}{\kern0pt}Proof{\isacharunderscore}{\kern0pt}Context{\isachardot}{\kern0pt}get{\isacharunderscore}{\kern0pt}thm\ lthy\ term{\isacharbrackright}{\kern0pt}\ ctxt{\isadigit{1}}\ {\isacharbar}{\kern0pt}{\isachargreater}{\kern0pt}{\isachargreater}{\kern0pt}\ {\isacharhash}{\kern0pt}{\isadigit{2}}\isanewline
+\ \ \ \ val\ vs{\isacharprime}{\kern0pt}\ {\isacharequal}{\kern0pt}\ map\ {\isacharparenleft}{\kern0pt}Thm{\isachardot}{\kern0pt}term{\isacharunderscore}{\kern0pt}of\ o\ {\isacharhash}{\kern0pt}{\isadigit{2}}{\isacharparenright}{\kern0pt}\ vs\isanewline
+\ \ \ \ val\ vars{\isacharprime}{\kern0pt}\ {\isacharequal}{\kern0pt}\ map\ {\isacharparenleft}{\kern0pt}Thm{\isachardot}{\kern0pt}term{\isacharunderscore}{\kern0pt}of\ o\ {\isacharhash}{\kern0pt}{\isadigit{2}}{\isacharparenright}{\kern0pt}\ vars\isanewline
+\ \ \ \ val\ r{\isacharunderscore}{\kern0pt}tm\ {\isacharequal}{\kern0pt}\ tm\ {\isacharbar}{\kern0pt}{\isachargreater}{\kern0pt}\ Utils{\isachardot}{\kern0pt}dest{\isacharunderscore}{\kern0pt}lhs{\isacharunderscore}{\kern0pt}def\ {\isacharbar}{\kern0pt}{\isachargreater}{\kern0pt}\ fold\ {\isacharparenleft}{\kern0pt}op\ {\isachardollar}{\kern0pt}{\isacharbackquote}{\kern0pt}{\isacharparenright}{\kern0pt}\ vs{\isacharprime}{\kern0pt}\isanewline
+\ \ \ \ val\ sats\ {\isacharequal}{\kern0pt}\ \isactrlConst {\isasymopen}apply\ for\ \isactrlConst {\isasymopen}satisfies\ for\ set\ r{\isacharunderscore}{\kern0pt}tm{\isasymclose}\ env{\isasymclose}\isanewline
+\ \ \ \ val\ rhs\ {\isacharequal}{\kern0pt}\ \isactrlConst {\isasymopen}IFOL{\isachardot}{\kern0pt}eq\ \isactrlType {\isasymopen}i{\isasymclose}\ for\ sats\ \isactrlConst {\isasymopen}succ\ for\ \isactrlConst {\isasymopen}zero{\isasymclose}{\isasymclose}{\isasymclose}\isanewline
+\ \ \ \ val\ concl\ {\isacharequal}{\kern0pt}\ \isactrlConst {\isasymopen}iff\ for\ lhs\ rhs{\isasymclose}\isanewline
+\ \ \ \ val\ g{\isacharunderscore}{\kern0pt}iff\ {\isacharequal}{\kern0pt}\ Logic{\isachardot}{\kern0pt}list{\isacharunderscore}{\kern0pt}implies{\isacharparenleft}{\kern0pt}hyps{\isacharcomma}{\kern0pt}\ Utils{\isachardot}{\kern0pt}tp\ concl{\isacharparenright}{\kern0pt}\isanewline
+\ \ \ \ val\ thm\ {\isacharequal}{\kern0pt}\ prove{\isacharunderscore}{\kern0pt}sats\ g{\isacharunderscore}{\kern0pt}iff\ thm{\isacharunderscore}{\kern0pt}refs\ thm{\isacharunderscore}{\kern0pt}auto\ ctxt{\isadigit{2}}\isanewline
+\ \ \ \ val\ name\ {\isacharequal}{\kern0pt}\ Binding{\isachardot}{\kern0pt}name\ {\isacharparenleft}{\kern0pt}def{\isacharunderscore}{\kern0pt}name\ {\isacharcircum}{\kern0pt}\ {\isachardoublequote}{\kern0pt}{\isacharunderscore}{\kern0pt}iff{\isacharunderscore}{\kern0pt}sats{\isachardoublequote}{\kern0pt}{\isacharparenright}{\kern0pt}\isanewline
+\ \ \ \ val\ thm\ {\isacharequal}{\kern0pt}\ Utils{\isachardot}{\kern0pt}fix{\isacharunderscore}{\kern0pt}vars\ thm\ {\isacharparenleft}{\kern0pt}map\ {\isacharparenleft}{\kern0pt}{\isacharhash}{\kern0pt}{\isadigit{1}}\ o\ dest{\isacharunderscore}{\kern0pt}Free{\isacharparenright}{\kern0pt}\ vars{\isacharprime}{\kern0pt}{\isacharparenright}{\kern0pt}\ lthy\isanewline
+\ in\isanewline
+\ \ \ Local{\isacharunderscore}{\kern0pt}Theory{\isachardot}{\kern0pt}note\ {\isacharparenleft}{\kern0pt}{\isacharparenleft}{\kern0pt}name{\isacharcomma}{\kern0pt}\ {\isacharbrackleft}{\kern0pt}{\isacharbrackright}{\kern0pt}{\isacharparenright}{\kern0pt}{\isacharcomma}{\kern0pt}\ {\isacharbrackleft}{\kern0pt}thm{\isacharbrackright}{\kern0pt}{\isacharparenright}{\kern0pt}\ lthy\ {\isacharbar}{\kern0pt}{\isachargreater}{\kern0pt}\ print{\isacharunderscore}{\kern0pt}theorem\ pos\isanewline
+\ end\isanewline
+\isanewline
+fun\ synth{\isacharunderscore}{\kern0pt}thm{\isacharunderscore}{\kern0pt}tc\ def{\isacharunderscore}{\kern0pt}name\ term\ hyps\ vars\ pos\ lthy\ {\isacharequal}{\kern0pt}\isanewline
+let\ val\ {\isacharparenleft}{\kern0pt}{\isacharunderscore}{\kern0pt}{\isacharcomma}{\kern0pt}tm{\isacharcomma}{\kern0pt}ctxt{\isadigit{1}}{\isacharparenright}{\kern0pt}\ {\isacharequal}{\kern0pt}\ Utils{\isachardot}{\kern0pt}thm{\isacharunderscore}{\kern0pt}concl{\isacharunderscore}{\kern0pt}tm\ lthy\ term\isanewline
+\ \ \ \ val\ {\isacharparenleft}{\kern0pt}thm{\isacharunderscore}{\kern0pt}refs{\isacharcomma}{\kern0pt}ctxt{\isadigit{2}}{\isacharparenright}{\kern0pt}\ {\isacharequal}{\kern0pt}\ Variable{\isachardot}{\kern0pt}import\ true\ {\isacharbrackleft}{\kern0pt}Proof{\isacharunderscore}{\kern0pt}Context{\isachardot}{\kern0pt}get{\isacharunderscore}{\kern0pt}thm\ lthy\ term{\isacharbrackright}{\kern0pt}\ ctxt{\isadigit{1}}\isanewline
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ {\isacharbar}{\kern0pt}{\isachargreater}{\kern0pt}{\isachargreater}{\kern0pt}\ {\isacharhash}{\kern0pt}{\isadigit{2}}\isanewline
+\ \ \ \ val\ vars{\isacharprime}{\kern0pt}\ {\isacharequal}{\kern0pt}\ map\ {\isacharparenleft}{\kern0pt}Thm{\isachardot}{\kern0pt}term{\isacharunderscore}{\kern0pt}of\ o\ {\isacharhash}{\kern0pt}{\isadigit{2}}{\isacharparenright}{\kern0pt}\ vars\isanewline
+\ \ \ \ val\ tc{\isacharunderscore}{\kern0pt}attrib\ {\isacharequal}{\kern0pt}\ {\isacharat}{\kern0pt}{\isacharbraceleft}{\kern0pt}attributes\ {\isacharbrackleft}{\kern0pt}TC{\isacharbrackright}{\kern0pt}{\isacharbraceright}{\kern0pt}\isanewline
+\ \ \ \ val\ r{\isacharunderscore}{\kern0pt}tm\ {\isacharequal}{\kern0pt}\ tm\ {\isacharbar}{\kern0pt}{\isachargreater}{\kern0pt}\ Utils{\isachardot}{\kern0pt}dest{\isacharunderscore}{\kern0pt}lhs{\isacharunderscore}{\kern0pt}def\ {\isacharbar}{\kern0pt}{\isachargreater}{\kern0pt}\ fold\ {\isacharparenleft}{\kern0pt}op\ {\isachardollar}{\kern0pt}{\isacharbackquote}{\kern0pt}{\isacharparenright}{\kern0pt}\ vars{\isacharprime}{\kern0pt}\isanewline
+\ \ \ \ val\ concl\ {\isacharequal}{\kern0pt}\ \isactrlConst {\isasymopen}mem\ for\ r{\isacharunderscore}{\kern0pt}tm\ \isactrlConst {\isasymopen}formula{\isasymclose}{\isasymclose}\isanewline
+\ \ \ \ val\ g\ {\isacharequal}{\kern0pt}\ Logic{\isachardot}{\kern0pt}list{\isacharunderscore}{\kern0pt}implies{\isacharparenleft}{\kern0pt}hyps{\isacharcomma}{\kern0pt}\ Utils{\isachardot}{\kern0pt}tp\ concl{\isacharparenright}{\kern0pt}\isanewline
+\ \ \ \ val\ thm\ {\isacharequal}{\kern0pt}\ prove{\isacharunderscore}{\kern0pt}tc{\isacharunderscore}{\kern0pt}form\ g\ thm{\isacharunderscore}{\kern0pt}refs\ ctxt{\isadigit{2}}\isanewline
+\ \ \ \ val\ name\ {\isacharequal}{\kern0pt}\ Binding{\isachardot}{\kern0pt}name\ {\isacharparenleft}{\kern0pt}def{\isacharunderscore}{\kern0pt}name\ {\isacharcircum}{\kern0pt}\ {\isachardoublequote}{\kern0pt}{\isacharunderscore}{\kern0pt}type{\isachardoublequote}{\kern0pt}{\isacharparenright}{\kern0pt}\isanewline
+\ \ \ \ val\ thm\ {\isacharequal}{\kern0pt}\ Utils{\isachardot}{\kern0pt}fix{\isacharunderscore}{\kern0pt}vars\ thm\ {\isacharparenleft}{\kern0pt}map\ {\isacharparenleft}{\kern0pt}{\isacharhash}{\kern0pt}{\isadigit{1}}\ o\ dest{\isacharunderscore}{\kern0pt}Free{\isacharparenright}{\kern0pt}\ vars{\isacharprime}{\kern0pt}{\isacharparenright}{\kern0pt}\ ctxt{\isadigit{2}}\isanewline
+\ in\isanewline
+\ \ \ Local{\isacharunderscore}{\kern0pt}Theory{\isachardot}{\kern0pt}note\ {\isacharparenleft}{\kern0pt}{\isacharparenleft}{\kern0pt}name{\isacharcomma}{\kern0pt}\ tc{\isacharunderscore}{\kern0pt}attrib{\isacharparenright}{\kern0pt}{\isacharcomma}{\kern0pt}\ {\isacharbrackleft}{\kern0pt}thm{\isacharbrackright}{\kern0pt}{\isacharparenright}{\kern0pt}\ lthy\ {\isacharbar}{\kern0pt}{\isachargreater}{\kern0pt}\ print{\isacharunderscore}{\kern0pt}theorem\ pos\isanewline
+\ end\isanewline
+\isanewline
+\isanewline
+fun\ synthetic{\isacharunderscore}{\kern0pt}def\ def{\isacharunderscore}{\kern0pt}name\ thmref\ pos\ tc\ auto\ thy\ {\isacharequal}{\kern0pt}\isanewline
+\ \ let\isanewline
+\ \ \ \ val\ {\isacharparenleft}{\kern0pt}thm{\isacharunderscore}{\kern0pt}ref{\isacharcomma}{\kern0pt}{\isacharunderscore}{\kern0pt}{\isacharparenright}{\kern0pt}\ {\isacharequal}{\kern0pt}\ thmref\ {\isacharbar}{\kern0pt}{\isachargreater}{\kern0pt}{\isachargreater}{\kern0pt}\ Facts{\isachardot}{\kern0pt}ref{\isacharunderscore}{\kern0pt}name\isanewline
+\ \ \ \ val\ thm\ {\isacharequal}{\kern0pt}\ Proof{\isacharunderscore}{\kern0pt}Context{\isachardot}{\kern0pt}get{\isacharunderscore}{\kern0pt}thm\ thy\ thm{\isacharunderscore}{\kern0pt}ref{\isacharsemicolon}{\kern0pt}\isanewline
+\ \ \ \ val\ thm{\isacharunderscore}{\kern0pt}vars\ {\isacharequal}{\kern0pt}\ rev\ {\isacharparenleft}{\kern0pt}Term{\isachardot}{\kern0pt}add{\isacharunderscore}{\kern0pt}vars\ {\isacharparenleft}{\kern0pt}Thm{\isachardot}{\kern0pt}full{\isacharunderscore}{\kern0pt}prop{\isacharunderscore}{\kern0pt}of\ thm{\isacharparenright}{\kern0pt}\ {\isacharbrackleft}{\kern0pt}{\isacharbrackright}{\kern0pt}{\isacharparenright}{\kern0pt}{\isacharsemicolon}{\kern0pt}\isanewline
+\ \ \ \ val\ {\isacharparenleft}{\kern0pt}{\isacharparenleft}{\kern0pt}{\isacharparenleft}{\kern0pt}{\isacharunderscore}{\kern0pt}{\isacharcomma}{\kern0pt}inst{\isacharparenright}{\kern0pt}{\isacharcomma}{\kern0pt}thm{\isacharunderscore}{\kern0pt}tms{\isacharparenright}{\kern0pt}{\isacharcomma}{\kern0pt}{\isacharunderscore}{\kern0pt}{\isacharparenright}{\kern0pt}\ {\isacharequal}{\kern0pt}\ Variable{\isachardot}{\kern0pt}import\ true\ {\isacharbrackleft}{\kern0pt}thm{\isacharbrackright}{\kern0pt}\ thy\isanewline
+\ \ \ \ val\ vars\ {\isacharequal}{\kern0pt}\ map\ {\isacharparenleft}{\kern0pt}fn\ v\ {\isacharequal}{\kern0pt}{\isachargreater}{\kern0pt}\ {\isacharparenleft}{\kern0pt}v{\isacharcomma}{\kern0pt}\ the\ {\isacharparenleft}{\kern0pt}Vars{\isachardot}{\kern0pt}lookup\ inst\ v{\isacharparenright}{\kern0pt}{\isacharparenright}{\kern0pt}{\isacharparenright}{\kern0pt}\ thm{\isacharunderscore}{\kern0pt}vars{\isacharsemicolon}{\kern0pt}\isanewline
+\ \ \ \ val\ {\isacharparenleft}{\kern0pt}tm{\isacharcomma}{\kern0pt}hyps{\isacharparenright}{\kern0pt}\ {\isacharequal}{\kern0pt}\ thm{\isacharunderscore}{\kern0pt}tms\ {\isacharbar}{\kern0pt}{\isachargreater}{\kern0pt}\ hd\ {\isacharbar}{\kern0pt}{\isachargreater}{\kern0pt}\ pair\ Thm{\isachardot}{\kern0pt}concl{\isacharunderscore}{\kern0pt}of\ Thm{\isachardot}{\kern0pt}prems{\isacharunderscore}{\kern0pt}of\isanewline
+\ \ \ \ val\ {\isacharparenleft}{\kern0pt}lhs{\isacharcomma}{\kern0pt}rhs{\isacharparenright}{\kern0pt}\ {\isacharequal}{\kern0pt}\ tm\ {\isacharbar}{\kern0pt}{\isachargreater}{\kern0pt}\ Utils{\isachardot}{\kern0pt}dest{\isacharunderscore}{\kern0pt}iff{\isacharunderscore}{\kern0pt}tms\ o\ Utils{\isachardot}{\kern0pt}dest{\isacharunderscore}{\kern0pt}trueprop\isanewline
+\ \ \ \ val\ {\isacharparenleft}{\kern0pt}{\isacharparenleft}{\kern0pt}set{\isacharcomma}{\kern0pt}t{\isacharparenright}{\kern0pt}{\isacharcomma}{\kern0pt}env{\isacharparenright}{\kern0pt}\ {\isacharequal}{\kern0pt}\ rhs\ {\isacharbar}{\kern0pt}{\isachargreater}{\kern0pt}\ Utils{\isachardot}{\kern0pt}dest{\isacharunderscore}{\kern0pt}sats{\isacharunderscore}{\kern0pt}frm\isanewline
+\ \ \ \ fun\ relevant\ ts\ \isactrlConstUNDERSCORE {\isasymopen}mem\ for\ t\ {\isacharunderscore}{\kern0pt}{\isasymclose}\ {\isacharequal}{\kern0pt}\ not\ {\isacharparenleft}{\kern0pt}Term{\isachardot}{\kern0pt}is{\isacharunderscore}{\kern0pt}Free\ t{\isacharparenright}{\kern0pt}\ orelse\isanewline
+\ \ \ \ \ \ \ \ \ \ member\ {\isacharparenleft}{\kern0pt}op\ {\isacharequal}{\kern0pt}{\isacharparenright}{\kern0pt}\ ts\ {\isacharparenleft}{\kern0pt}t\ {\isacharbar}{\kern0pt}{\isachargreater}{\kern0pt}\ Term{\isachardot}{\kern0pt}dest{\isacharunderscore}{\kern0pt}Free\ {\isacharbar}{\kern0pt}{\isachargreater}{\kern0pt}\ {\isacharhash}{\kern0pt}{\isadigit{1}}{\isacharparenright}{\kern0pt}\isanewline
+\ \ \ \ \ \ {\isacharbar}{\kern0pt}\ relevant\ {\isacharunderscore}{\kern0pt}\ {\isacharunderscore}{\kern0pt}\ {\isacharequal}{\kern0pt}\ false\isanewline
+\ \ \ \ val\ t{\isacharunderscore}{\kern0pt}vars\ {\isacharequal}{\kern0pt}\ sort{\isacharunderscore}{\kern0pt}strings\ {\isacharparenleft}{\kern0pt}Term{\isachardot}{\kern0pt}add{\isacharunderscore}{\kern0pt}free{\isacharunderscore}{\kern0pt}names\ t\ {\isacharbrackleft}{\kern0pt}{\isacharbrackright}{\kern0pt}{\isacharparenright}{\kern0pt}\isanewline
+\ \ \ \ val\ vs\ {\isacharequal}{\kern0pt}\ filter\ {\isacharparenleft}{\kern0pt}member\ {\isacharparenleft}{\kern0pt}op\ {\isacharequal}{\kern0pt}{\isacharparenright}{\kern0pt}\ t{\isacharunderscore}{\kern0pt}vars\ o\ {\isacharhash}{\kern0pt}{\isadigit{1}}\ o\ {\isacharhash}{\kern0pt}{\isadigit{1}}\ o\ {\isacharhash}{\kern0pt}{\isadigit{1}}{\isacharparenright}{\kern0pt}\ vars\isanewline
+\ \ \ \ val\ at\ {\isacharequal}{\kern0pt}\ fold{\isacharunderscore}{\kern0pt}rev\ {\isacharparenleft}{\kern0pt}lambda\ o\ Thm{\isachardot}{\kern0pt}term{\isacharunderscore}{\kern0pt}of\ o\ {\isacharhash}{\kern0pt}{\isadigit{2}}{\isacharparenright}{\kern0pt}\ vs\ t\isanewline
+\ \ \ \ val\ hyps{\isacharprime}{\kern0pt}\ {\isacharequal}{\kern0pt}\ filter\ {\isacharparenleft}{\kern0pt}relevant\ t{\isacharunderscore}{\kern0pt}vars\ o\ Utils{\isachardot}{\kern0pt}dest{\isacharunderscore}{\kern0pt}trueprop{\isacharparenright}{\kern0pt}\ hyps\isanewline
+\ \ in\isanewline
+\ \ \ \ Local{\isacharunderscore}{\kern0pt}Theory{\isachardot}{\kern0pt}define\ {\isacharparenleft}{\kern0pt}{\isacharparenleft}{\kern0pt}Binding{\isachardot}{\kern0pt}name\ def{\isacharunderscore}{\kern0pt}name{\isacharcomma}{\kern0pt}\ NoSyn{\isacharparenright}{\kern0pt}{\isacharcomma}{\kern0pt}\isanewline
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ {\isacharparenleft}{\kern0pt}{\isacharparenleft}{\kern0pt}Binding{\isachardot}{\kern0pt}name\ {\isacharparenleft}{\kern0pt}def{\isacharunderscore}{\kern0pt}name\ {\isacharcircum}{\kern0pt}\ {\isachardoublequote}{\kern0pt}{\isacharunderscore}{\kern0pt}def{\isachardoublequote}{\kern0pt}{\isacharparenright}{\kern0pt}{\isacharcomma}{\kern0pt}\ {\isacharbrackleft}{\kern0pt}{\isacharbrackright}{\kern0pt}{\isacharparenright}{\kern0pt}{\isacharcomma}{\kern0pt}\ at{\isacharparenright}{\kern0pt}{\isacharparenright}{\kern0pt}\ thy\ {\isacharbar}{\kern0pt}{\isachargreater}{\kern0pt}\ {\isacharhash}{\kern0pt}{\isadigit{2}}\ {\isacharbar}{\kern0pt}{\isachargreater}{\kern0pt}\isanewline
+\ \ \ \ {\isacharparenleft}{\kern0pt}if\ tc\ then\ synth{\isacharunderscore}{\kern0pt}thm{\isacharunderscore}{\kern0pt}tc\ def{\isacharunderscore}{\kern0pt}name\ {\isacharparenleft}{\kern0pt}def{\isacharunderscore}{\kern0pt}name\ {\isacharcircum}{\kern0pt}\ {\isachardoublequote}{\kern0pt}{\isacharunderscore}{\kern0pt}def{\isachardoublequote}{\kern0pt}{\isacharparenright}{\kern0pt}\ hyps{\isacharprime}{\kern0pt}\ vs\ pos\ else\ I{\isacharparenright}{\kern0pt}\ {\isacharbar}{\kern0pt}{\isachargreater}{\kern0pt}\isanewline
+\ \ \ \ {\isacharparenleft}{\kern0pt}if\ auto\ then\ synth{\isacharunderscore}{\kern0pt}thm{\isacharunderscore}{\kern0pt}sats\ def{\isacharunderscore}{\kern0pt}name\ {\isacharparenleft}{\kern0pt}def{\isacharunderscore}{\kern0pt}name\ {\isacharcircum}{\kern0pt}\ {\isachardoublequote}{\kern0pt}{\isacharunderscore}{\kern0pt}def{\isachardoublequote}{\kern0pt}{\isacharparenright}{\kern0pt}\ lhs\ set\ env\ hyps\ vars\ vs\ pos\ thm{\isacharunderscore}{\kern0pt}tms\ else\ I{\isacharparenright}{\kern0pt}\isanewline
+\isanewline
+end\isanewline
+{\isacartoucheclose}\isanewline
+\isacommand{ML}\isamarkupfalse%
+{\isacartoucheopen}\isanewline
+\isanewline
+local\isanewline
+\ \ val\ synth{\isacharunderscore}{\kern0pt}constdecl\ {\isacharequal}{\kern0pt}\isanewline
+\ \ \ \ \ \ \ Parse{\isachardot}{\kern0pt}position\ {\isacharparenleft}{\kern0pt}Parse{\isachardot}{\kern0pt}string\ {\isacharminus}{\kern0pt}{\isacharminus}{\kern0pt}\ {\isacharparenleft}{\kern0pt}{\isacharparenleft}{\kern0pt}Parse{\isachardot}{\kern0pt}{\isachardollar}{\kern0pt}{\isachardollar}{\kern0pt}{\isachardollar}{\kern0pt}\ {\isachardoublequote}{\kern0pt}from{\isacharunderscore}{\kern0pt}schematic{\isachardoublequote}{\kern0pt}\ {\isacharbar}{\kern0pt}{\isacharminus}{\kern0pt}{\isacharminus}{\kern0pt}\ Parse{\isachardot}{\kern0pt}thm{\isacharparenright}{\kern0pt}{\isacharparenright}{\kern0pt}{\isacharparenright}{\kern0pt}{\isacharsemicolon}{\kern0pt}\isanewline
+\isanewline
+\ \ val\ {\isacharunderscore}{\kern0pt}\ {\isacharequal}{\kern0pt}\isanewline
+\ \ \ \ \ Outer{\isacharunderscore}{\kern0pt}Syntax{\isachardot}{\kern0pt}local{\isacharunderscore}{\kern0pt}theory\ \isactrlcommandUNDERSCOREkeyword {\isasymopen}synthesize{\isasymclose}\ {\isachardoublequote}{\kern0pt}ML\ setup\ for\ synthetic\ definitions{\isachardoublequote}{\kern0pt}\isanewline
+\ \ \ \ \ \ \ {\isacharparenleft}{\kern0pt}synth{\isacharunderscore}{\kern0pt}constdecl\ {\isachargreater}{\kern0pt}{\isachargreater}{\kern0pt}\ {\isacharparenleft}{\kern0pt}fn\ {\isacharparenleft}{\kern0pt}{\isacharparenleft}{\kern0pt}bndg{\isacharcomma}{\kern0pt}thm{\isacharparenright}{\kern0pt}{\isacharcomma}{\kern0pt}p{\isacharparenright}{\kern0pt}\ {\isacharequal}{\kern0pt}{\isachargreater}{\kern0pt}\ synthetic{\isacharunderscore}{\kern0pt}def\ bndg\ thm\ p\ true\ true{\isacharparenright}{\kern0pt}{\isacharparenright}{\kern0pt}\isanewline
+\isanewline
+\ \ val\ {\isacharunderscore}{\kern0pt}\ {\isacharequal}{\kern0pt}\isanewline
+\ \ \ \ \ Outer{\isacharunderscore}{\kern0pt}Syntax{\isachardot}{\kern0pt}local{\isacharunderscore}{\kern0pt}theory\ \isactrlcommandUNDERSCOREkeyword {\isasymopen}synthesize{\isacharunderscore}{\kern0pt}notc{\isasymclose}\ {\isachardoublequote}{\kern0pt}ML\ setup\ for\ synthetic\ definitions{\isachardoublequote}{\kern0pt}\isanewline
+\ \ \ \ \ \ \ {\isacharparenleft}{\kern0pt}synth{\isacharunderscore}{\kern0pt}constdecl\ {\isachargreater}{\kern0pt}{\isachargreater}{\kern0pt}\ {\isacharparenleft}{\kern0pt}fn\ {\isacharparenleft}{\kern0pt}{\isacharparenleft}{\kern0pt}bndg{\isacharcomma}{\kern0pt}thm{\isacharparenright}{\kern0pt}{\isacharcomma}{\kern0pt}p{\isacharparenright}{\kern0pt}\ {\isacharequal}{\kern0pt}{\isachargreater}{\kern0pt}\ synthetic{\isacharunderscore}{\kern0pt}def\ bndg\ thm\ p\ false\ false{\isacharparenright}{\kern0pt}{\isacharparenright}{\kern0pt}\isanewline
+\isanewline
+in\isanewline
+\isanewline
+end\isanewline
+{\isacartoucheclose}%
+\endisatagML
+{\isafoldML}%
+%
+\isadelimML
+%
+\endisadelimML
+%
+\begin{isamarkuptext}%
+The \isatt{s{\kern0pt}y{\kern0pt}n{\kern0pt}t{\kern0pt}h{\kern0pt}e{\kern0pt}t{\kern0pt}i{\kern0pt}c{\kern0pt}{\char`\_}{\kern0pt}d{\kern0pt}e{\kern0pt}f{\kern0pt}} function extracts definitions from
+schematic goals. A new definition is added to the context.%
+\end{isamarkuptext}\isamarkuptrue%
+%
+\isadelimtheory
+%
+\endisadelimtheory
+%
+\isatagtheory
+\isacommand{end}\isamarkupfalse%
+%
+\endisatagtheory
+{\isafoldtheory}%
+%
+\isadelimtheory
+%
+\endisadelimtheory
+%
+\end{isabellebody}%
+\endinput
+%:%file=~/source/repos/ZF-notAC/code/Forcing/Synthetic_Definition.thy%:%
+%:%11=1%:%
+%:%27=3%:%
+%:%28=3%:%
+%:%29=4%:%
+%:%30=5%:%
+%:%31=6%:%
+%:%32=7%:%
+%:%33=8%:%
+%:%38=8%:%
+%:%43=9%:%
+%:%48=10%:%
+%:%49=10%:%
+%:%134=95%:%
+%:%135=96%:%
+%:%136=96%:%
+%:%162=114%:%
+%:%163=115%:%
+%:%171=127%:%

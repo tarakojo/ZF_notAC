@@ -1,0 +1,25 @@
+# Fdb version 4
+["latex"] 1730438271 "c:/Users/tarak/source/repos/ZF-notAC/code/document/root.tex" "out/root.dvi" "root" 1730438271 2
+  "c:/Users/tarak/source/repos/ZF-notAC/code/document/root.tex" 1730432167 1344 503bff14e2777b923ae5bbb81d696c55 ""
+  "c:/texlive/2023/texmf-dist/fonts/map/fontname/texfonts.map" 1684129764 3524 cb3e574dea2d1052e39280babc910dc8 ""
+  "c:/texlive/2023/texmf-dist/fonts/tfm/jknappen/ec/ecrm1095.tfm" 1684129134 3584 929cdff2b7a8c11bd4d49fd68cb0ae70 ""
+  "c:/texlive/2023/texmf-dist/fonts/tfm/public/cm/cmr10.tfm" 1684128271 1296 45809c5a464d5f32c8f98ba97c1bb47f ""
+  "c:/texlive/2023/texmf-dist/fonts/tfm/public/latex-fonts/lasy6.tfm" 1684131218 520 4889cce2180234b97cad636b6039c722 ""
+  "c:/texlive/2023/texmf-dist/tex/generic/ulem/ulem.sty" 1684137464 15682 94f55b803e160cf7fb6e4d77d07cfe1d ""
+  "c:/texlive/2023/texmf-dist/tex/latex/base/article.cls" 1684131133 20144 d5ecf0a5140c8d8d8b72cbe86e320eff ""
+  "c:/texlive/2023/texmf-dist/tex/latex/base/fontenc.sty" 1684131133 5119 4ce42f43368f652f9c9522d943cce8e4 ""
+  "c:/texlive/2023/texmf-dist/tex/latex/base/size11.clo" 1684131133 8464 63bf71cc1214ffdd38288da73a7ca182 ""
+  "c:/texlive/2023/texmf-dist/tex/latex/isabelle/isabelle.sty" 1730436487 9818 170af429f7c0c85372392057aa1eecb6 ""
+  "c:/texlive/2023/texmf-dist/tex/latex/isabellesym/isabellesym.sty" 1730436684 30331 66b294d3bf6842239ec86f14a7d9a223 ""
+  "c:/texlive/2023/texmf-dist/web2c/texmf.cnf" 1684126680 40967 d940221f8762fd5848760382d97d1226 ""
+  "c:/texlive/2023/texmf-var/web2c/pdftex/latex.fmt" 1684138443 7890054 f7ac99e91395c7b16d0ee0b94f0cc17d ""
+  "c:/texlive/2023/texmf.cnf" 1684138078 713 e69b156964470283e0530f5060668171 ""
+  "out/pdfsetup.sty" 0 -1 0 ""
+  "out/root.aux" 1730438271 34 3985256e7290058c681f74d7a3565a19 "latex"
+  "pdfsetup.sty" 0 -1 0 ""
+  "root.tex" 1730432167 1344 503bff14e2777b923ae5bbb81d696c55 ""
+  (generated)
+  "out/root.aux"
+  "out/root.dvi"
+  "out/root.log"
+  (rewritten before read)

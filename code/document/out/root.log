@@ -1,0 +1,68 @@
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=latex 2023.5.15)  1 NOV 2024 14:17
+entering extended mode
+ restricted \write18 enabled.
+ file:line:error style messages enabled.
+ %&-line parsing enabled.
+**c:/Users/tarak/source/repos/ZF-notAC/code/document/root.tex
+(c:/Users/tarak/source/repos/ZF-notAC/code/document/root.tex
+LaTeX2e <2022-11-01> patch level 1
+L3 programming layer <2023-05-11> (c:/texlive/2023/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2022/07/02 v1.4n Standard LaTeX document class
+(c:/texlive/2023/texmf-dist/tex/latex/base/size11.clo
+File: size11.clo 2022/07/02 v1.4n Standard LaTeX file (size option)
+)
+\c@part=\count185
+\c@section=\count186
+\c@subsection=\count187
+\c@subsubsection=\count188
+\c@paragraph=\count189
+\c@subparagraph=\count190
+\c@figure=\count191
+\c@table=\count192
+\abovecaptionskip=\skip48
+\belowcaptionskip=\skip49
+\bibindent=\dimen140
+) (c:/texlive/2023/texmf-dist/tex/latex/base/fontenc.sty
+Package: fontenc 2021/04/29 v2.0v Standard LaTeX package
+) (c:/texlive/2023/texmf-dist/tex/latex/isabelle/isabelle.sty
+\symbbbfont=\mathgroup4
+LaTeX Font Info:    Overwriting symbol font `bbbfont' in version `bold'
+(Font)                  U/txmia/m/it --> U/txmia/bx/it on input line 44.
+\isa@parindent=\dimen141
+\isa@parskip=\dimen142
+(c:/texlive/2023/texmf-dist/tex/generic/ulem/ulem.sty
+\UL@box=\box51
+\UL@hyphenbox=\box52
+\UL@skip=\skip50
+\UL@hook=\toks16
+\UL@height=\dimen143
+\UL@pe=\count193
+\UL@pixel=\dimen144
+\ULC@box=\box53
+Package: ulem 2019/11/18
+\ULdepth=\dimen145
+)) (c:/texlive/2023/texmf-dist/tex/latex/isabellesym/isabellesym.sty)
+
+! LaTeX Error: File `pdfsetup.sty' not found.
+
+Type X to quit or <RETURN> to proceed,
+or enter new name. (Default extension: sty)
+
+Enter file name: 
+c:/Users/tarak/source/repos/ZF-notAC/code/document/root.tex:28: Emergency stop.
+<read *> 
+         
+l.28 ^^M
+        
+*** (cannot \read from terminal in nonstop modes)
+
+ 
+Here is how much of TeX's memory you used:
+ 1305 strings out of 476048
+ 16162 string characters out of 5794073
+ 1850990 words of memory out of 5000000
+ 21807 multiletter control sequences out of 15000+600000
+ 513462 words of font info for 35 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 48i,0n,48p,249b,38s stack positions out of 10000i,1000n,20000p,200000b,200000s
+No pages of output.

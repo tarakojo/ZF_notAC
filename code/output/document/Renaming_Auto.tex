@@ -1,0 +1,133 @@
+%
+\begin{isabellebody}%
+\setisabellecontext{Renaming{\isacharunderscore}{\kern0pt}Auto}%
+%
+\isadelimtheory
+%
+\endisadelimtheory
+%
+\isatagtheory
+\isacommand{theory}\isamarkupfalse%
+\ Renaming{\isacharunderscore}{\kern0pt}Auto\isanewline
+\ \ \isakeyword{imports}\isanewline
+\ \ \ \ Renaming\isanewline
+\ \ \ \ Utils\isanewline
+\ \ \ \ ZF{\isachardot}{\kern0pt}Finite\isanewline
+\ \ \ \ ZF{\isachardot}{\kern0pt}List\isanewline
+\ \ \isakeyword{keywords}\ {\isachardoublequoteopen}rename{\isachardoublequoteclose}\ {\isacharcolon}{\kern0pt}{\isacharcolon}{\kern0pt}\ thy{\isacharunderscore}{\kern0pt}decl\ {\isacharpercent}{\kern0pt}\ {\isachardoublequoteopen}ML{\isachardoublequoteclose}\isanewline
+\ \ \ \ \isakeyword{and}\ {\isachardoublequoteopen}simple{\isacharunderscore}{\kern0pt}rename{\isachardoublequoteclose}\ {\isacharcolon}{\kern0pt}{\isacharcolon}{\kern0pt}\ thy{\isacharunderscore}{\kern0pt}decl\ {\isacharpercent}{\kern0pt}\ {\isachardoublequoteopen}ML{\isachardoublequoteclose}\isanewline
+\ \ \ \ \isakeyword{and}\ {\isachardoublequoteopen}src{\isachardoublequoteclose}\isanewline
+\ \ \ \ \isakeyword{and}\ {\isachardoublequoteopen}tgt{\isachardoublequoteclose}\isanewline
+\ \ \isakeyword{abbrevs}\ {\isachardoublequoteopen}simple{\isacharunderscore}{\kern0pt}rename{\isachardoublequoteclose}\ {\isacharequal}{\kern0pt}\ {\isachardoublequoteopen}{\isachardoublequoteclose}\isanewline
+\isakeyword{begin}%
+\endisatagtheory
+{\isafoldtheory}%
+%
+\isadelimtheory
+\isanewline
+%
+\endisadelimtheory
+\isanewline
+\isacommand{lemmas}\isamarkupfalse%
+\ app{\isacharunderscore}{\kern0pt}fun\ {\isacharequal}{\kern0pt}\ apply{\isacharunderscore}{\kern0pt}iff{\isacharbrackleft}{\kern0pt}THEN\ iffD{\isadigit{1}}{\isacharbrackright}{\kern0pt}\isanewline
+\isacommand{lemmas}\isamarkupfalse%
+\ nat{\isacharunderscore}{\kern0pt}succI\ {\isacharequal}{\kern0pt}\ nat{\isacharunderscore}{\kern0pt}succ{\isacharunderscore}{\kern0pt}iff{\isacharbrackleft}{\kern0pt}THEN\ iffD{\isadigit{2}}{\isacharbrackright}{\kern0pt}\isanewline
+%
+\isadelimML
+\isanewline
+%
+\endisadelimML
+%
+\isatagML
+\isacommand{ML{\isacharunderscore}{\kern0pt}file}\isamarkupfalse%
+\ {\isacartoucheopen}renaming{\isachardot}{\kern0pt}ML{\isacartoucheclose}\isanewline
+\isacommand{ML}\isamarkupfalse%
+{\isacartoucheopen}\isanewline
+\ \ fun\ renaming{\isacharunderscore}{\kern0pt}def\ mk{\isacharunderscore}{\kern0pt}ren\ name\ from\ to\ ctxt\ {\isacharequal}{\kern0pt}\isanewline
+\ \ \ \ let\ val\ to\ {\isacharequal}{\kern0pt}\ to\ {\isacharbar}{\kern0pt}{\isachargreater}{\kern0pt}\ Syntax{\isachardot}{\kern0pt}read{\isacharunderscore}{\kern0pt}term\ ctxt\isanewline
+\ \ \ \ \ \ \ \ val\ from\ {\isacharequal}{\kern0pt}\ from\ {\isacharbar}{\kern0pt}{\isachargreater}{\kern0pt}\ Syntax{\isachardot}{\kern0pt}read{\isacharunderscore}{\kern0pt}term\ ctxt\isanewline
+\ \ \ \ \ \ \ \ val\ {\isacharparenleft}{\kern0pt}tc{\isacharunderscore}{\kern0pt}lemma{\isacharcomma}{\kern0pt}action{\isacharunderscore}{\kern0pt}lemma{\isacharcomma}{\kern0pt}fvs{\isacharcomma}{\kern0pt}r{\isacharparenright}{\kern0pt}\ {\isacharequal}{\kern0pt}\ mk{\isacharunderscore}{\kern0pt}ren\ from\ to\ ctxt\isanewline
+\ \ \ \ \ \ \ \ val\ {\isacharparenleft}{\kern0pt}tc{\isacharunderscore}{\kern0pt}lemma{\isacharcomma}{\kern0pt}action{\isacharunderscore}{\kern0pt}lemma{\isacharparenright}{\kern0pt}\ {\isacharequal}{\kern0pt}\isanewline
+\ \ \ \ \ \ \ \ \ \ {\isacharparenleft}{\kern0pt}Renaming{\isachardot}{\kern0pt}fix{\isacharunderscore}{\kern0pt}vars\ tc{\isacharunderscore}{\kern0pt}lemma\ fvs\ ctxt{\isacharcomma}{\kern0pt}\ Renaming{\isachardot}{\kern0pt}fix{\isacharunderscore}{\kern0pt}vars\ action{\isacharunderscore}{\kern0pt}lemma\ fvs\ ctxt{\isacharparenright}{\kern0pt}\isanewline
+\ \ \ \ \ \ \ \ val\ ren{\isacharunderscore}{\kern0pt}fun{\isacharunderscore}{\kern0pt}name\ {\isacharequal}{\kern0pt}\ Binding{\isachardot}{\kern0pt}name\ {\isacharparenleft}{\kern0pt}name\ {\isacharcircum}{\kern0pt}\ {\isachardoublequote}{\kern0pt}{\isacharunderscore}{\kern0pt}fn{\isachardoublequote}{\kern0pt}{\isacharparenright}{\kern0pt}\isanewline
+\ \ \ \ \ \ \ \ val\ ren{\isacharunderscore}{\kern0pt}fun{\isacharunderscore}{\kern0pt}def\ {\isacharequal}{\kern0pt}\ \ Binding{\isachardot}{\kern0pt}name\ {\isacharparenleft}{\kern0pt}name\ {\isacharcircum}{\kern0pt}\ {\isachardoublequote}{\kern0pt}{\isacharunderscore}{\kern0pt}fn{\isacharunderscore}{\kern0pt}def{\isachardoublequote}{\kern0pt}{\isacharparenright}{\kern0pt}\isanewline
+\ \ \ \ \ \ \ \ val\ ren{\isacharunderscore}{\kern0pt}thm\ {\isacharequal}{\kern0pt}\ Binding{\isachardot}{\kern0pt}name\ {\isacharparenleft}{\kern0pt}name\ {\isacharcircum}{\kern0pt}\ {\isachardoublequote}{\kern0pt}{\isacharunderscore}{\kern0pt}thm{\isachardoublequote}{\kern0pt}{\isacharparenright}{\kern0pt}\isanewline
+\ \ \ \ in\isanewline
+\ \ \ \ \ \ Local{\isacharunderscore}{\kern0pt}Theory{\isachardot}{\kern0pt}note\ \ \ {\isacharparenleft}{\kern0pt}{\isacharparenleft}{\kern0pt}ren{\isacharunderscore}{\kern0pt}thm{\isacharcomma}{\kern0pt}\ {\isacharbrackleft}{\kern0pt}{\isacharbrackright}{\kern0pt}{\isacharparenright}{\kern0pt}{\isacharcomma}{\kern0pt}\ {\isacharbrackleft}{\kern0pt}tc{\isacharunderscore}{\kern0pt}lemma{\isacharcomma}{\kern0pt}action{\isacharunderscore}{\kern0pt}lemma{\isacharbrackright}{\kern0pt}{\isacharparenright}{\kern0pt}\ ctxt\ {\isacharbar}{\kern0pt}{\isachargreater}{\kern0pt}\ snd\ {\isacharbar}{\kern0pt}{\isachargreater}{\kern0pt}\isanewline
+\ \ \ \ \ \ Local{\isacharunderscore}{\kern0pt}Theory{\isachardot}{\kern0pt}define\ {\isacharparenleft}{\kern0pt}{\isacharparenleft}{\kern0pt}ren{\isacharunderscore}{\kern0pt}fun{\isacharunderscore}{\kern0pt}name{\isacharcomma}{\kern0pt}\ NoSyn{\isacharparenright}{\kern0pt}{\isacharcomma}{\kern0pt}\ {\isacharparenleft}{\kern0pt}{\isacharparenleft}{\kern0pt}ren{\isacharunderscore}{\kern0pt}fun{\isacharunderscore}{\kern0pt}def{\isacharcomma}{\kern0pt}\ {\isacharbrackleft}{\kern0pt}{\isacharbrackright}{\kern0pt}{\isacharparenright}{\kern0pt}{\isacharcomma}{\kern0pt}\ r{\isacharparenright}{\kern0pt}{\isacharparenright}{\kern0pt}\ {\isacharbar}{\kern0pt}{\isachargreater}{\kern0pt}\ snd\ \ \ \ \ \ \isanewline
+\ \ end{\isacharsemicolon}{\kern0pt}\isanewline
+{\isacartoucheclose}\isanewline
+\isanewline
+\isacommand{ML}\isamarkupfalse%
+{\isacartoucheopen}\isanewline
+local\isanewline
+\isanewline
+\ \ val\ ren{\isacharunderscore}{\kern0pt}parser\ {\isacharequal}{\kern0pt}\ Parse{\isachardot}{\kern0pt}position\ {\isacharparenleft}{\kern0pt}Parse{\isachardot}{\kern0pt}string\ {\isacharminus}{\kern0pt}{\isacharminus}{\kern0pt}\isanewline
+\ \ \ \ \ \ {\isacharparenleft}{\kern0pt}Parse{\isachardot}{\kern0pt}{\isachardollar}{\kern0pt}{\isachardollar}{\kern0pt}{\isachardollar}{\kern0pt}\ {\isachardoublequote}{\kern0pt}src{\isachardoublequote}{\kern0pt}\ {\isacharbar}{\kern0pt}{\isacharminus}{\kern0pt}{\isacharminus}{\kern0pt}\ Parse{\isachardot}{\kern0pt}string\ {\isacharminus}{\kern0pt}{\isacharminus}{\kern0pt}{\isacharbar}{\kern0pt}\ Parse{\isachardot}{\kern0pt}{\isachardollar}{\kern0pt}{\isachardollar}{\kern0pt}{\isachardollar}{\kern0pt}\ {\isachardoublequote}{\kern0pt}tgt{\isachardoublequote}{\kern0pt}\ {\isacharminus}{\kern0pt}{\isacharminus}{\kern0pt}\ Parse{\isachardot}{\kern0pt}string{\isacharparenright}{\kern0pt}{\isacharparenright}{\kern0pt}{\isacharsemicolon}{\kern0pt}\isanewline
+\isanewline
+\ \ val\ {\isacharunderscore}{\kern0pt}\ {\isacharequal}{\kern0pt}\isanewline
+\ \ \ Outer{\isacharunderscore}{\kern0pt}Syntax{\isachardot}{\kern0pt}local{\isacharunderscore}{\kern0pt}theory\ \isactrlcommandUNDERSCOREkeyword {\isasymopen}rename{\isasymclose}\ {\isachardoublequote}{\kern0pt}ML\ setup\ for\ synthetic\ definitions{\isachardoublequote}{\kern0pt}\isanewline
+\ \ \ \ \ {\isacharparenleft}{\kern0pt}ren{\isacharunderscore}{\kern0pt}parser\ {\isachargreater}{\kern0pt}{\isachargreater}{\kern0pt}\ {\isacharparenleft}{\kern0pt}fn\ {\isacharparenleft}{\kern0pt}{\isacharparenleft}{\kern0pt}name{\isacharcomma}{\kern0pt}{\isacharparenleft}{\kern0pt}from{\isacharcomma}{\kern0pt}to{\isacharparenright}{\kern0pt}{\isacharparenright}{\kern0pt}{\isacharcomma}{\kern0pt}{\isacharunderscore}{\kern0pt}{\isacharparenright}{\kern0pt}\ {\isacharequal}{\kern0pt}{\isachargreater}{\kern0pt}\ renaming{\isacharunderscore}{\kern0pt}def\ Renaming{\isachardot}{\kern0pt}sum{\isacharunderscore}{\kern0pt}rename\ name\ from\ to\ {\isacharparenright}{\kern0pt}{\isacharparenright}{\kern0pt}\isanewline
+\isanewline
+\ \ val\ {\isacharunderscore}{\kern0pt}\ {\isacharequal}{\kern0pt}\isanewline
+\ \ \ Outer{\isacharunderscore}{\kern0pt}Syntax{\isachardot}{\kern0pt}local{\isacharunderscore}{\kern0pt}theory\ \isactrlcommandUNDERSCOREkeyword {\isasymopen}simple{\isacharunderscore}{\kern0pt}rename{\isasymclose}\ {\isachardoublequote}{\kern0pt}ML\ setup\ for\ synthetic\ definitions{\isachardoublequote}{\kern0pt}\isanewline
+\ \ \ \ \ {\isacharparenleft}{\kern0pt}ren{\isacharunderscore}{\kern0pt}parser\ {\isachargreater}{\kern0pt}{\isachargreater}{\kern0pt}\ {\isacharparenleft}{\kern0pt}fn\ {\isacharparenleft}{\kern0pt}{\isacharparenleft}{\kern0pt}name{\isacharcomma}{\kern0pt}{\isacharparenleft}{\kern0pt}from{\isacharcomma}{\kern0pt}to{\isacharparenright}{\kern0pt}{\isacharparenright}{\kern0pt}{\isacharcomma}{\kern0pt}{\isacharunderscore}{\kern0pt}{\isacharparenright}{\kern0pt}\ {\isacharequal}{\kern0pt}{\isachargreater}{\kern0pt}\ renaming{\isacharunderscore}{\kern0pt}def\ Renaming{\isachardot}{\kern0pt}ren{\isacharunderscore}{\kern0pt}thm\ name\ from\ to\ {\isacharparenright}{\kern0pt}{\isacharparenright}{\kern0pt}\isanewline
+\isanewline
+in\isanewline
+end\isanewline
+{\isacartoucheclose}%
+\endisatagML
+{\isafoldML}%
+%
+\isadelimML
+\isanewline
+%
+\endisadelimML
+%
+\isadelimtheory
+%
+\endisadelimtheory
+%
+\isatagtheory
+\isacommand{end}\isamarkupfalse%
+%
+\endisatagtheory
+{\isafoldtheory}%
+%
+\isadelimtheory
+%
+\endisadelimtheory
+%
+\end{isabellebody}%
+\endinput
+%:%file=~/source/repos/ZF-notAC/code/Forcing/Renaming_Auto.thy%:%
+%:%10=1%:%
+%:%11=1%:%
+%:%12=2%:%
+%:%13=3%:%
+%:%14=4%:%
+%:%15=5%:%
+%:%16=6%:%
+%:%17=7%:%
+%:%18=8%:%
+%:%19=9%:%
+%:%20=10%:%
+%:%21=11%:%
+%:%22=12%:%
+%:%27=12%:%
+%:%30=13%:%
+%:%31=14%:%
+%:%32=14%:%
+%:%33=15%:%
+%:%34=15%:%
+%:%37=16%:%
+%:%42=17%:%
+%:%43=17%:%
+%:%44=18%:%
+%:%45=18%:%
+%:%59=32%:%
+%:%60=33%:%
+%:%61=34%:%
+%:%62=34%:%
+%:%83=50%:%
+%:%92=51%:%

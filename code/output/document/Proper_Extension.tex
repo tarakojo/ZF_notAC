@@ -1,0 +1,342 @@
+%
+\begin{isabellebody}%
+\setisabellecontext{Proper{\isacharunderscore}{\kern0pt}Extension}%
+%
+\isadelimdocument
+%
+\endisadelimdocument
+%
+\isatagdocument
+%
+\isamarkupsection{Separative notions and proper extensions%
+}
+\isamarkuptrue%
+%
+\endisatagdocument
+{\isafolddocument}%
+%
+\isadelimdocument
+%
+\endisadelimdocument
+%
+\isadelimtheory
+%
+\endisadelimtheory
+%
+\isatagtheory
+\isacommand{theory}\isamarkupfalse%
+\ Proper{\isacharunderscore}{\kern0pt}Extension\isanewline
+\ \ \isakeyword{imports}\isanewline
+\ \ \ \ Names\isanewline
+\isanewline
+\isakeyword{begin}%
+\endisatagtheory
+{\isafoldtheory}%
+%
+\isadelimtheory
+%
+\endisadelimtheory
+%
+\begin{isamarkuptext}%
+The key ingredient to obtain a proper extension is to have
+a \emph{separative preorder}:%
+\end{isamarkuptext}\isamarkuptrue%
+\isacommand{locale}\isamarkupfalse%
+\ separative{\isacharunderscore}{\kern0pt}notion\ {\isacharequal}{\kern0pt}\ forcing{\isacharunderscore}{\kern0pt}notion\ {\isacharplus}{\kern0pt}\isanewline
+\ \ \isakeyword{assumes}\ separative{\isacharcolon}{\kern0pt}\ {\isachardoublequoteopen}p{\isasymin}P\ {\isasymLongrightarrow}\ {\isasymexists}q{\isasymin}P{\isachardot}{\kern0pt}\ {\isasymexists}r{\isasymin}P{\isachardot}{\kern0pt}\ q\ {\isasympreceq}\ p\ {\isasymand}\ r\ {\isasympreceq}\ p\ {\isasymand}\ q\ {\isasymbottom}\ r{\isachardoublequoteclose}\isanewline
+\isakeyword{begin}%
+\begin{isamarkuptext}%
+For separative preorders, the complement of every filter is
+dense. Hence an $M$-generic filter can't belong to the ground model.%
+\end{isamarkuptext}\isamarkuptrue%
+\isacommand{lemma}\isamarkupfalse%
+\ filter{\isacharunderscore}{\kern0pt}complement{\isacharunderscore}{\kern0pt}dense{\isacharcolon}{\kern0pt}\isanewline
+\ \ \isakeyword{assumes}\ {\isachardoublequoteopen}filter{\isacharparenleft}{\kern0pt}G{\isacharparenright}{\kern0pt}{\isachardoublequoteclose}\ \isakeyword{shows}\ {\isachardoublequoteopen}dense{\isacharparenleft}{\kern0pt}P\ {\isacharminus}{\kern0pt}\ G{\isacharparenright}{\kern0pt}{\isachardoublequoteclose}\isanewline
+%
+\isadelimproof
+%
+\endisadelimproof
+%
+\isatagproof
+\isacommand{proof}\isamarkupfalse%
+\isanewline
+\ \ \isacommand{fix}\isamarkupfalse%
+\ p\isanewline
+\ \ \isacommand{assume}\isamarkupfalse%
+\ {\isachardoublequoteopen}p{\isasymin}P{\isachardoublequoteclose}\isanewline
+\ \ \isacommand{show}\isamarkupfalse%
+\ {\isachardoublequoteopen}{\isasymexists}d{\isasymin}P\ {\isacharminus}{\kern0pt}\ G{\isachardot}{\kern0pt}\ d\ {\isasympreceq}\ p{\isachardoublequoteclose}\isanewline
+\ \ \isacommand{proof}\isamarkupfalse%
+\ {\isacharparenleft}{\kern0pt}cases\ {\isachardoublequoteopen}p{\isasymin}G{\isachardoublequoteclose}{\isacharparenright}{\kern0pt}\isanewline
+\ \ \ \ \isacommand{case}\isamarkupfalse%
+\ True\isanewline
+\ \ \ \ \isacommand{note}\isamarkupfalse%
+\ {\isacartoucheopen}p{\isasymin}P{\isacartoucheclose}\ assms\isanewline
+\ \ \ \ \isacommand{moreover}\isamarkupfalse%
+\isanewline
+\ \ \ \ \isacommand{obtain}\isamarkupfalse%
+\ q\ r\ \isakeyword{where}\ {\isachardoublequoteopen}q\ {\isasympreceq}\ p{\isachardoublequoteclose}\ {\isachardoublequoteopen}r\ {\isasympreceq}\ p{\isachardoublequoteclose}\ {\isachardoublequoteopen}q\ {\isasymbottom}\ r{\isachardoublequoteclose}\ {\isachardoublequoteopen}q{\isasymin}P{\isachardoublequoteclose}\ {\isachardoublequoteopen}r{\isasymin}P{\isachardoublequoteclose}\ \isanewline
+\ \ \ \ \ \ \isacommand{using}\isamarkupfalse%
+\ separative{\isacharbrackleft}{\kern0pt}OF\ {\isacartoucheopen}p{\isasymin}P{\isacartoucheclose}{\isacharbrackright}{\kern0pt}\isanewline
+\ \ \ \ \ \ \isacommand{by}\isamarkupfalse%
+\ force\isanewline
+\ \ \ \ \isacommand{with}\isamarkupfalse%
+\ {\isacartoucheopen}filter{\isacharparenleft}{\kern0pt}G{\isacharparenright}{\kern0pt}{\isacartoucheclose}\isanewline
+\ \ \ \ \isacommand{obtain}\isamarkupfalse%
+\ s\ \isakeyword{where}\ {\isachardoublequoteopen}s\ {\isasympreceq}\ p{\isachardoublequoteclose}\ {\isachardoublequoteopen}s\ {\isasymnotin}\ G{\isachardoublequoteclose}\ {\isachardoublequoteopen}s\ {\isasymin}\ P{\isachardoublequoteclose}\isanewline
+\ \ \ \ \ \ \isacommand{using}\isamarkupfalse%
+\ filter{\isacharunderscore}{\kern0pt}imp{\isacharunderscore}{\kern0pt}compat{\isacharbrackleft}{\kern0pt}of\ G\ q\ r{\isacharbrackright}{\kern0pt}\isanewline
+\ \ \ \ \ \ \isacommand{by}\isamarkupfalse%
+\ auto\isanewline
+\ \ \ \ \isacommand{then}\isamarkupfalse%
+\isanewline
+\ \ \ \ \isacommand{show}\isamarkupfalse%
+\ {\isacharquery}{\kern0pt}thesis\ \isacommand{by}\isamarkupfalse%
+\ blast\isanewline
+\ \ \isacommand{next}\isamarkupfalse%
+\isanewline
+\ \ \ \ \isacommand{case}\isamarkupfalse%
+\ False\isanewline
+\ \ \ \ \isacommand{with}\isamarkupfalse%
+\ {\isacartoucheopen}p{\isasymin}P{\isacartoucheclose}\ \isanewline
+\ \ \ \ \isacommand{show}\isamarkupfalse%
+\ {\isacharquery}{\kern0pt}thesis\ \isacommand{using}\isamarkupfalse%
+\ leq{\isacharunderscore}{\kern0pt}reflI\ \isacommand{unfolding}\isamarkupfalse%
+\ Diff{\isacharunderscore}{\kern0pt}def\ \isacommand{by}\isamarkupfalse%
+\ auto\isanewline
+\ \ \isacommand{qed}\isamarkupfalse%
+\isanewline
+\isacommand{qed}\isamarkupfalse%
+%
+\endisatagproof
+{\isafoldproof}%
+%
+\isadelimproof
+\isanewline
+%
+\endisadelimproof
+\isanewline
+\isacommand{end}\isamarkupfalse%
+\ \isanewline
+\isanewline
+\isacommand{locale}\isamarkupfalse%
+\ ctm{\isacharunderscore}{\kern0pt}separative\ {\isacharequal}{\kern0pt}\ forcing{\isacharunderscore}{\kern0pt}data\ {\isacharplus}{\kern0pt}\ separative{\isacharunderscore}{\kern0pt}notion\isanewline
+\isakeyword{begin}\isanewline
+\isanewline
+\isacommand{lemma}\isamarkupfalse%
+\ generic{\isacharunderscore}{\kern0pt}not{\isacharunderscore}{\kern0pt}in{\isacharunderscore}{\kern0pt}M{\isacharcolon}{\kern0pt}\ \isakeyword{assumes}\ {\isachardoublequoteopen}M{\isacharunderscore}{\kern0pt}generic{\isacharparenleft}{\kern0pt}G{\isacharparenright}{\kern0pt}{\isachardoublequoteclose}\ \ \isakeyword{shows}\ {\isachardoublequoteopen}G\ {\isasymnotin}\ M{\isachardoublequoteclose}\isanewline
+%
+\isadelimproof
+%
+\endisadelimproof
+%
+\isatagproof
+\isacommand{proof}\isamarkupfalse%
+\isanewline
+\ \ \isacommand{assume}\isamarkupfalse%
+\ {\isachardoublequoteopen}G{\isasymin}M{\isachardoublequoteclose}\isanewline
+\ \ \isacommand{then}\isamarkupfalse%
+\isanewline
+\ \ \isacommand{have}\isamarkupfalse%
+\ {\isachardoublequoteopen}P\ {\isacharminus}{\kern0pt}\ G\ {\isasymin}\ M{\isachardoublequoteclose}\ \isanewline
+\ \ \ \ \isacommand{using}\isamarkupfalse%
+\ P{\isacharunderscore}{\kern0pt}in{\isacharunderscore}{\kern0pt}M\ Diff{\isacharunderscore}{\kern0pt}closed\ \isacommand{by}\isamarkupfalse%
+\ simp\isanewline
+\ \ \isacommand{moreover}\isamarkupfalse%
+\isanewline
+\ \ \isacommand{have}\isamarkupfalse%
+\ {\isachardoublequoteopen}{\isasymnot}{\isacharparenleft}{\kern0pt}{\isasymexists}q{\isasymin}G{\isachardot}{\kern0pt}\ q\ {\isasymin}\ P\ {\isacharminus}{\kern0pt}\ G{\isacharparenright}{\kern0pt}{\isachardoublequoteclose}\ {\isachardoublequoteopen}{\isacharparenleft}{\kern0pt}P\ {\isacharminus}{\kern0pt}\ G{\isacharparenright}{\kern0pt}\ {\isasymsubseteq}\ P{\isachardoublequoteclose}\isanewline
+\ \ \ \ \isacommand{unfolding}\isamarkupfalse%
+\ Diff{\isacharunderscore}{\kern0pt}def\ \isacommand{by}\isamarkupfalse%
+\ auto\isanewline
+\ \ \isacommand{moreover}\isamarkupfalse%
+\isanewline
+\ \ \isacommand{note}\isamarkupfalse%
+\ assms\isanewline
+\ \ \isacommand{ultimately}\isamarkupfalse%
+\isanewline
+\ \ \isacommand{show}\isamarkupfalse%
+\ {\isachardoublequoteopen}False{\isachardoublequoteclose}\isanewline
+\ \ \ \ \isacommand{using}\isamarkupfalse%
+\ filter{\isacharunderscore}{\kern0pt}complement{\isacharunderscore}{\kern0pt}dense{\isacharbrackleft}{\kern0pt}of\ G{\isacharbrackright}{\kern0pt}\ M{\isacharunderscore}{\kern0pt}generic{\isacharunderscore}{\kern0pt}denseD{\isacharbrackleft}{\kern0pt}of\ G\ {\isachardoublequoteopen}P{\isacharminus}{\kern0pt}G{\isachardoublequoteclose}{\isacharbrackright}{\kern0pt}\ \isanewline
+\ \ \ \ \ \ M{\isacharunderscore}{\kern0pt}generic{\isacharunderscore}{\kern0pt}def\ \isacommand{by}\isamarkupfalse%
+\ simp\ %
+\isamarkupcmt{need to put generic ==> filter in claset%
+}\isanewline
+\isacommand{qed}\isamarkupfalse%
+%
+\endisatagproof
+{\isafoldproof}%
+%
+\isadelimproof
+\isanewline
+%
+\endisadelimproof
+\isanewline
+\isacommand{theorem}\isamarkupfalse%
+\ proper{\isacharunderscore}{\kern0pt}extension{\isacharcolon}{\kern0pt}\ \isakeyword{assumes}\ {\isachardoublequoteopen}M{\isacharunderscore}{\kern0pt}generic{\isacharparenleft}{\kern0pt}G{\isacharparenright}{\kern0pt}{\isachardoublequoteclose}\ \isakeyword{shows}\ {\isachardoublequoteopen}M\ {\isasymnoteq}\ M{\isacharbrackleft}{\kern0pt}G{\isacharbrackright}{\kern0pt}{\isachardoublequoteclose}\isanewline
+%
+\isadelimproof
+\ \ %
+\endisadelimproof
+%
+\isatagproof
+\isacommand{using}\isamarkupfalse%
+\ assms\ G{\isacharunderscore}{\kern0pt}in{\isacharunderscore}{\kern0pt}Gen{\isacharunderscore}{\kern0pt}Ext{\isacharbrackleft}{\kern0pt}of\ G{\isacharbrackright}{\kern0pt}\ one{\isacharunderscore}{\kern0pt}in{\isacharunderscore}{\kern0pt}G{\isacharbrackleft}{\kern0pt}of\ G{\isacharbrackright}{\kern0pt}\ generic{\isacharunderscore}{\kern0pt}not{\isacharunderscore}{\kern0pt}in{\isacharunderscore}{\kern0pt}M\isanewline
+\ \ \isacommand{by}\isamarkupfalse%
+\ force%
+\endisatagproof
+{\isafoldproof}%
+%
+\isadelimproof
+\isanewline
+%
+\endisadelimproof
+\isanewline
+\isacommand{end}\isamarkupfalse%
+\ \isanewline
+%
+\isadelimtheory
+\isanewline
+%
+\endisadelimtheory
+%
+\isatagtheory
+\isacommand{end}\isamarkupfalse%
+%
+\endisatagtheory
+{\isafoldtheory}%
+%
+\isadelimtheory
+%
+\endisadelimtheory
+%
+\end{isabellebody}%
+\endinput
+%:%file=~/source/repos/ZF-notAC/code/Forcing/Proper_Extension.thy%:%
+%:%11=1%:%
+%:%27=2%:%
+%:%28=2%:%
+%:%29=3%:%
+%:%30=4%:%
+%:%31=5%:%
+%:%32=6%:%
+%:%41=8%:%
+%:%42=9%:%
+%:%44=11%:%
+%:%45=11%:%
+%:%46=12%:%
+%:%47=13%:%
+%:%49=15%:%
+%:%50=16%:%
+%:%52=18%:%
+%:%53=18%:%
+%:%54=19%:%
+%:%61=20%:%
+%:%62=20%:%
+%:%63=21%:%
+%:%64=21%:%
+%:%65=22%:%
+%:%66=22%:%
+%:%67=23%:%
+%:%68=23%:%
+%:%69=24%:%
+%:%70=24%:%
+%:%71=25%:%
+%:%72=25%:%
+%:%73=26%:%
+%:%74=26%:%
+%:%75=27%:%
+%:%76=27%:%
+%:%77=28%:%
+%:%78=28%:%
+%:%79=29%:%
+%:%80=29%:%
+%:%81=30%:%
+%:%82=30%:%
+%:%83=31%:%
+%:%84=31%:%
+%:%85=32%:%
+%:%86=32%:%
+%:%87=33%:%
+%:%88=33%:%
+%:%89=34%:%
+%:%90=34%:%
+%:%91=35%:%
+%:%92=35%:%
+%:%93=36%:%
+%:%94=36%:%
+%:%95=36%:%
+%:%96=37%:%
+%:%97=37%:%
+%:%98=38%:%
+%:%99=38%:%
+%:%100=39%:%
+%:%101=39%:%
+%:%102=40%:%
+%:%103=40%:%
+%:%104=40%:%
+%:%105=40%:%
+%:%106=40%:%
+%:%107=41%:%
+%:%108=41%:%
+%:%109=42%:%
+%:%115=42%:%
+%:%118=43%:%
+%:%119=44%:%
+%:%120=44%:%
+%:%121=45%:%
+%:%122=46%:%
+%:%123=46%:%
+%:%124=47%:%
+%:%125=48%:%
+%:%126=49%:%
+%:%127=49%:%
+%:%134=50%:%
+%:%135=50%:%
+%:%136=51%:%
+%:%137=51%:%
+%:%138=52%:%
+%:%139=52%:%
+%:%140=53%:%
+%:%141=53%:%
+%:%142=54%:%
+%:%143=54%:%
+%:%144=54%:%
+%:%145=55%:%
+%:%146=55%:%
+%:%147=56%:%
+%:%148=56%:%
+%:%149=57%:%
+%:%150=57%:%
+%:%151=57%:%
+%:%152=58%:%
+%:%153=58%:%
+%:%154=59%:%
+%:%155=59%:%
+%:%156=60%:%
+%:%157=60%:%
+%:%158=61%:%
+%:%159=61%:%
+%:%160=62%:%
+%:%161=62%:%
+%:%162=63%:%
+%:%163=63%:%
+%:%164=63%:%
+%:%165=63%:%
+%:%166=64%:%
+%:%172=64%:%
+%:%175=65%:%
+%:%176=66%:%
+%:%177=66%:%
+%:%180=67%:%
+%:%184=67%:%
+%:%185=67%:%
+%:%186=68%:%
+%:%187=68%:%
+%:%192=68%:%
+%:%195=69%:%
+%:%196=70%:%
+%:%197=70%:%
+%:%200=71%:%
+%:%205=72%:%
