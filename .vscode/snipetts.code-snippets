@@ -1,0 +1,117 @@
+{
+	// Place your ZF_notAC ワークスペース snippets here. Each snippet is defined under a snippet name and has a scope, prefix, body and 
+	// description. Add comma separated ids of the languages where the snippet is applicable in the scope field. If scope 
+	// is left empty or omitted, the snippet gets applied to all languages. The prefix is what is 
+	// used to trigger the snippet and the body will be expanded and inserted. Possible variables are: 
+	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. 
+	// Placeholders with the same ids are connected.
+	// Example:
+	// "Print to console": {
+	// 	"scope": "javascript,typescript",
+	// 	"prefix": "log",
+	// 	"body": [
+	// 		"console.log('$1');",
+	// 		"$2"
+	// 	],
+	// 	"description": "Log output to console"
+	// }
+
+	"isabelleminted": {
+		"prefix": "isa",
+		"body": [
+			"\\begin{isaframe}",
+			"\\begin{minted}[breaklines]{isabelle}",
+			"$0",
+			"\\end{minted}",
+			"\\end{isaframe}"
+		],
+		"description": "minted environment for Isabelle"
+	},
+
+	"texttt": {
+		"prefix": "tt",
+		"body": [
+			"\\texttt{$0}"
+		],
+		"description": "texttt"
+	},
+
+	"texttt-quote": {
+		"prefix": "ttq",
+		"body": [
+			"\\texttt{\"$0\"}"
+		],
+		"description": "texttt quote"
+	},
+
+	"Pbb": {
+		"prefix": "pb",
+		"body": [
+			"\\mathbb{P}"
+		]
+	},
+
+	"Pbbm": {
+		"prefix": "pbm",
+		"body": [
+			"$\\mathbb{P}$"
+		]
+	},
+
+	"Gcal": {
+		"prefix": "gc",
+		"body": [
+			"\\mathcal{G}"
+		]
+	},
+
+	"Gcaltt" :{
+		"prefix": "gt",
+		"body": [
+			"𝒢"
+		]
+	},
+
+	"Gcalm": {
+		"prefix": "gcm",
+		"body": [
+			"$\\mathcal{G}$"
+		]
+	},
+
+	"Fcal": {
+		"prefix": "fc",
+		"body": [
+			"\\mathcal{F}"
+		]
+	},
+
+	"Fcalm": {
+		"prefix": "fcm",
+		"body": [
+			"$\\mathcal{F}$"
+		]
+	},
+
+	"Fcaltt": {
+		"prefix": "ft",
+		"body": [
+			"ℱ"
+		]
+	},
+
+	"Ncal": {
+		"prefix": "nc",
+		"body": [
+			"\\mathcal{N}"
+		]
+	},
+
+	"Ncalm": {
+		"prefix": "ncm",
+		"body": [
+			"$\\mathcal{N}$"
+		]
+	},
+	
+}

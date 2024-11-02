@@ -6,11 +6,20 @@
 \usepackage{comment}
 \usepackage{amsthm}
 \usepackage{amsmath}
+\usepackage{amssymb}
 \usepackage{xcolor}
-\usepackage{newtxtext,newtxmath}
+
+\usepackage{mdframed}
+% isabelleコードの枠
+\newenvironment{isaframe}{\begin{mdframed}[topline=false, rightline=false, bottomline=false]}{\end{mdframed}}
 
 \usepackage{fontspec}
-\setmonofont{NOTOSANSMATH-REGULAR.TTF}
+% コード用フォントはとりあえずこれで
+% 等幅じゃないけど見やすい
+\setmonofont{TeXGyreDejaVuMath-Regular}[Scale=0.75]
+
+% fontspecは先にしないとエラーが出る
+\usepackage{newtxtext,newtxmath}
 
 % 参考文献
 \usepackage[style=numeric,backend=biber]{biblatex}
@@ -20,110 +29,15 @@
 \usepackage{hyperref}
 \hypersetup{luatex, pdfencoding=auto}
 
-% Isabelle --------------------------------------------------------------------------------------------
-
-
+% コード表示
 \usepackage[outputdir=out]{minted} 
-
-% https://astahfrom.github.io/cartouches/
-
-\def\isadelimtheory{}\def\endisadelimtheory{}
-\def\isatagtheory{}\def\endisatagtheory{}
-\def\isadelimML{}\def\endisadelimML{}
-\def\isadelimdocument{}\def\endisadelimdocument{}
-\def\isatagML{}\def\endisatagML{}
-\def\isatagdocument{}\def\endisatagdocument{}
-\def\isafoldML{}
-\def\isadelimproof{}\def\endisadelimproof{}
-\def\isatagproof{}\def\endisatagproof{}
-\def\isafoldproof{}
-\usepackage{isabelle,isabellesym}
-\isabellestyle{it} % optional
-\newcommand{\SNIPTEXT}[1]{#1} % remove #1 to ignore text commands
-\newcommand{\SNIP}[2]{\expandafter\newcommand\csname snippet--#1\endcsname{#2}}
- 
-\input{snips} % assuming the snippets are saved as snips.tex
- 
-% \GetSnip{name} gets the snippet defined by `name' or produces a warning that it does not exist.
-\newcommand{\GetSnip}[1]{%
-    \ifcsname snippet--#1\endcsname%
-        \csname snippet--#1\endcsname%
-    \else%
-        \PackageWarning{snips}{Snippet ``#1'' is undefined.}%
-        \emph{Warning: Snippet ``#1'' is undefined.}%
-    \fi%
-}
-
-% \RawCartouche{name}{line}{n}: content of cartouche `n' on line `line' of snippet `name'
-\newcommand{\RawCartouche}[3]{\GetSnip{#1-#2-#3}}
-
-% \Cartouche{name}{line}{n}: enclosed cartouche `n' on line `line' of snippet `name'
-\newcommand{\Cartouche}[3]{%
-    {\isacartoucheopen}%
-    \RawCartouche{#1}{#2}{#3}%
-    {\isacartoucheclose}%
-}
-
-% \Snippet{name}: the full snippet `name'
-\newcommand{\Snippet}[1]{{%
-  \newcount\i
-  \i=0
-  \loop
-    \GetSnip{#1-\the\i}%
-    \advance \i 1
-  \ifcsname snippet--#1-\the\i\endcsname
-  \repeat
-}}
-
-% \SnippetPart{n}{m}{name}: the snippet `name' from line `n' to line `m' inclusive
-\newcommand{\SnippetPart}[3]{{%
-  \newcount\i
-  \i=#1
-  \loop
-    \ifnum \i=#2
-      \renewcommand{\isanewline}{}%
-    \fi
-    \GetSnip{#3-\the\i}%
-    \advance \i 1
-    \ifnum \i>#2 {}
-    \else \repeat
-}}
-% -----------------------------------------------------------------------------------------------------
-\usepackage{listingsutf8}
-\definecolor{isarblue}{HTML}{006699}
-\definecolor{isargreen}{HTML}{009966}
-\lstdefinelanguage{isabelle}{%
-    keywords=[1]{type_synonym,datatype,fun,abbreviation,definition,proof,lemma,theorem,corollary},
-    keywordstyle=[1]\bfseries\color{isarblue},
-    keywords=[2]{where,assumes,shows,and,theorem,lemma},
-    keywordstyle=[2]\bfseries\color{isargreen},
-    keywords=[3]{if,then,else,case,of,SOME,let,in,O},
-    keywordstyle=[3]\color{isarblue},
-}
-\lstset{%
-  language=isabelle,
-  escapeinside={&}{&},
-  columns=fixed,
-  extendedchars,
-  basewidth={0.5em,0.45em},
-  basicstyle=\ttfamily,
-  mathescape,
-  inputencoding=utf8
-}
 
 % 定理
 \newtheorem{thm}{Theorem}[section]
 \newtheorem{lem}[thm]{Lemma}
 \newtheorem{dfn}[thm]{Definition}
 \newtheorem{cor}[thm]{Corollary}
-
-%短縮形
-\newcommand{\Pbb}{\mathbb{P}}
-\newcommand{\Gcal}{\mathcal{G}}
-\newcommand{\Fcal}{\mathcal{F}}
-\newcommand{\Ncal}{\mathcal{N}}
-\newcommand{\ctm}{c.t.m.\ }
-
+ 
 \begin{document}
 
 \title{MyTitle}
@@ -165,18 +79,18 @@ The primary reason we chose Isabelle/ZF for this formalization is that Isabelle/
 in particular, the formalization by Gunther et al. \cite{gunther_forcing} is a major advantage for this study.
 Although there is also a formalization of forcing in Lean 3 by Han and van Doorn \cite{flypitch}, development for Lean 3 has already ended.
 
-To use Gunther et al.'s formalization, we adopted the \ctm approach for our proof, as in their independence proof of CH.
-Specifically, we assumed the existence of a \ctm of ZF and constructed a model of ZF + $\neg$AC by forcing.
-This model is known as the basic Cohen model, which is a symmetric extension of assumed \ctm
+To use Gunther et al.'s formalization, we adopted the c.t.m.\  approach for our proof, as in their independence proof of CH.
+Specifically, we assumed the existence of a c.t.m.\  of ZF and constructed a model of ZF + $\neg$AC by forcing.
+This model is known as the basic Cohen model, which is a symmetric extension of assumed c.t.m.\ 
 Our proof largely follows karagila's lecture note \cite{karagila}, with some parts also referencing Jech's books \cite{jech_set_theory,jech_AC}
 as these resources align well with this approach.
 
-The \ctm approach is a well-established method for relative consistency proofs in axiomatic set theory.
+The c.t.m.\  approach is a well-established method for relative consistency proofs in axiomatic set theory.
 The relative consistency of $\neg$AC with ZF means that if ZF is consistent, then ZF + $\neg$AC is also consistent.
-Assuming the consistency of ZF implies that a model of ZF exists, but strictly speaking, the existence of a \ctm cannot be derived from this assumption in ZF.
+Assuming the consistency of ZF implies that a model of ZF exists, but strictly speaking, the existence of a c.t.m.\  cannot be derived from this assumption in ZF.
 However, as explained in section \ref{subsection:ctm}, we can prove the relative consistency of $\neg$AC with ZF if 
-we can construct a model of ZF + $\neg$AC from a \ctm of ZF.
-This kind of reasoning always arises in the \ctm approach, and ideally, 
+we can construct a model of ZF + $\neg$AC from a c.t.m.\  of ZF.
+This kind of reasoning always arises in the c.t.m.\  approach, and ideally, 
 we would like to formalize it as well, but this has not been achieved.
 
 
@@ -198,7 +112,7 @@ Additionally, in Lean 4, Holmes and Wilshaw formalized the complex parts of the 
 
 
 \begin{comment}
-  section2-...で説明するように、\ctmの存在はconzfからは導けないが、正当性が言えるのです
+  section2-...で説明するように、c.t.m.\ の存在はconzfからは導けないが、正当性が言えるのです
 \end{comment}
 
 \subsubsection{Repository}
@@ -208,7 +122,7 @@ Our source code is available at: \url{https://github.com/tarakojo/ZF_notAC}
 \section{Set-Theoretic Preliminaries}
 In this section, we introduce the concepts of set theory used in the formalization of this study.
 Our meta-theory is ZF, within which we explore ZF itself. 
-Basically, our definition and theorems combine Kunen\cite{kunen2011} and karagila's lecture note\cite{karagila},
+Basically, our definition and theorems combine Kunen\cite{kunen2011}, karagila's lecture note\cite{karagila}, and Jech's book\cite{jech_AC}
 adapted to the formalized form in Isabelle/ZF.
 
 
@@ -251,178 +165,185 @@ Additionally, we introduce the well-ordering theorem, as we treat AC in this for
 
 \subsection{Forcing}
 Forcing is a tequnique used in proving relative consistency and Independence.
-We introduce basic concepts of forcing in the context of the \ctm approach.
-In this approach, the relative consistency proof is achieved by using forcing to construct a extended model by adding new sets to an assumed \ctm
-Let $M$ be a \ctm of ZF and $(\Pbb, \leq_{\Pbb})$ be a notion of forcing, which is a pre-ordered set in $M$ with a maximum element $1_{\Pbb}$.
+We introduce basic concepts of forcing in the context of the c.t.m.\  approach.
+In this approach, the relative consistency proof is achieved by using forcing to construct a extended model by adding new sets to an assumed c.t.m.\ 
+Let $M$ be a c.t.m.\  of ZF and $(\mathbb{P}, \leq_{\mathbb{P}})$ be a notion of forcing, which is a pre-ordered set in $M$ with a maximum element $1_{\mathbb{P}}$.
 
 \begin{dfn}
-  We define $M^{\Pbb}$, the set of \emph{$\Pbb$-names}, by transfinite recursion on ordinals:
+  We define $M^{\mathbb{P}}$, the set of \emph{$\mathbb{P}$-names}, by transfinite recursion on ordinals:
   \begin{enumerate}
-    \item $M^{\Pbb}_0 = \emptyset$
-    \item $M^{\Pbb}_{\alpha + 1} = \mathcal{P}^M(M^{\Pbb}_{\alpha} \times \Pbb)$
-    \item $M^{\Pbb}_{\alpha} = \bigcup_{\beta < \alpha} M^{\Pbb}_{\beta}$ for a limit ordinal $\alpha$
-    \item $M^{\Pbb} = \bigcup_{\alpha \in \mathrm{Ord}} M^{\Pbb}_{\alpha}$
+    \item $M^{\mathbb{P}}_0 = \emptyset$
+    \item $M^{\mathbb{P}}_{\alpha + 1} = \mathcal{P}^M(M^{\mathbb{P}}_{\alpha} \times \mathbb{P})$
+    \item $M^{\mathbb{P}}_{\alpha} = \bigcup_{\beta < \alpha} M^{\mathbb{P}}_{\beta}$ for a limit ordinal $\alpha$
+    \item $M^{\mathbb{P}} = \bigcup_{\alpha \in \mathrm{Ord}} M^{\mathbb{P}}_{\alpha}$
   \end{enumerate}
 \end{dfn}
 Where $\mathcal{P}^M$ denotes the power set operation in $M$. 
-We often write a $\Pbb$-name with a dot, e.g., $\dot{x}$.
-The least $\alpha$ such that $\dot{x} \in M^{\Pbb}_{\alpha + 1}$ is called the \emph{$\Pbb$-rank} of $\dot{x}$.
-This allows us to define functions and relations by recursion on $\Pbb$-names.
+We often write a $\mathbb{P}$-name with a dot, e.g., $\dot{x}$.
+The least $\alpha$ such that $\dot{x} \in M^{\mathbb{P}}_{\alpha + 1}$ is called the \emph{$\mathbb{P}$-rank} of $\dot{x}$.
+This allows us to define functions and relations by recursion on $\mathbb{P}$-names.
 
-\begin{dfn} %karagilaではタイポがある...
+\begin{dfn}  
   \,
   \begin{enumerate}
-    \item We say that $D \subseteq \Pbb$ is \emph{dense} if, for every $p \in \Pbb$, there exists $q \in D$ such that $q \leq_{\Pbb} p$.
-    \item We say that $G \subseteq \Pbb$ is a \emph{filter} if following conditions hold:
+    \item We say that $D \subseteq \mathbb{P}$ is \emph{dense} if, for every $p \in \mathbb{P}$, there exists $q \in D$ such that $q \leq_{\mathbb{P}} p$.
+    \item We say that $G \subseteq \mathbb{P}$ is a \emph{filter} if following conditions hold:
       \begin{itemize}
-        \item If $p \in G$, $q \in \Pbb$, and $p \leq_{\Pbb} q$, then $q \in G$
-        \item If $p, q \in G$, there exists $r \in G$ such that $r \leq_{\Pbb} p$ and $r \leq_{\Pbb} q$
+        \item If $p \in G$, $q \in \mathbb{P}$, and $p \leq_{\mathbb{P}} q$, then $q \in G$
+        \item If $p, q \in G$, there exists $r \in G$ such that $r \leq_{\mathbb{P}} p$ and $r \leq_{\mathbb{P}} q$
       \end{itemize}
-    \item We say that $G \subseteq$ is \emph{generic filter} on $\Pbb$ if $G$ is a filter and for any dense $D \subseteq \Pbb$, $D \cap G \neq \emptyset$.
+    \item We say that $G \subseteq$ is \emph{generic filter} on $\mathbb{P}$ if $G$ is a filter and for any dense $D \subseteq \mathbb{P}$, $D \cap G \neq \emptyset$.
   \end{enumerate}
 \end{dfn}
 
 The following lemma shows that a generic filter actually exists.
 \begin{lem} 
-  For any $p \in \Pbb$, there exists a generic filter $G$ on $\Pbb$ such that $p \in G$.
+  For any $p \in \mathbb{P}$, there exists a generic filter $G$ on $\mathbb{P}$ such that $p \in G$.
 \end{lem}
 
 \begin{dfn} 
-  Let $G$ be a generic filter on $\Pbb$ and $\dot{x} \in M^{\Pbb}$. We define the \emph{interpretation} of $\dot{x}$ denoted by $\dot{x}^G$ recursively with respect to the $\Pbb$-rank of $\dot{x}$:
+  Let $G$ be a generic filter on $\mathbb{P}$ and $\dot{x} \in M^{\mathbb{P}}$. We define the \emph{interpretation} of $\dot{x}$ denoted by $\dot{x}^G$ recursively with respect to the $\mathbb{P}$-rank of $\dot{x}$:
   $$\dot{x}^G = \{\dot{y}^G \mid \exists p \in G (\langle \dot{y}, p \rangle \in \dot{x})\}$$ 
 \end{dfn}
 
-We call a $Pbb$-name whose interpretation is a set $x$ a name of $x$ and denote it by $\dot{x}$.
+We call a $\mathbb{P}$-name whose interpretation is a set $x$ a name of $x$ and denote it by $\dot{x}$.
 Note that a single set may have multiple names.
 
 \begin{dfn} 
-  Let $G$ be a generic filter on $\Pbb$. We define a \emph{generic extension} $M[G]$ as $\{x^G \mid \dot{x} \in M^{\Pbb}\}$.
+  Let $G$ be a generic filter on $\mathbb{P}$. We define a \emph{generic extension} $M[G]$ as $\{x^G \mid \dot{x} \in M^{\mathbb{P}}\}$.
 \end{dfn}
 
 \begin{thm} 
-  Let $G$ be a generic filter on $\Pbb$. Then, $M[G]$ is the smallest \ctm of ZF extending $M$ and containing $G$.
+  Let $G$ be a generic filter on $\mathbb{P}$. Then, $M[G]$ is the smallest c.t.m.\  of ZF extending $M$ and containing $G$.
 \end{thm}
 
-By choosing $\Pbb$ appropriately, we can construct $M[G]$ with various properties.
+By choosing $\mathbb{P}$ appropriately, we can construct $M[G]$ with various properties.
 What holds or does not hold in $M[G]$ can be identified using the forcing relation.
 The forcing relation is defined recursively on formulas in a forcing language.
-The forcing language is an extension of tha language of set theory by adding the elements of $M^{\Pbb}$ as constants.
+The forcing language is an extension of tha language of set theory by adding the elements of $M^{\mathbb{P}}$ as constants.
 \begin{dfn} %kunen
-  We define the \emph{forcing relation} $\Vdash$ for formulas in the forcing language and $p \in \Pbb$ inductively
+  We define the \emph{forcing relation} $\Vdash$ for formulas in the forcing language and $p \in \mathbb{P}$ inductively
   \footnote{
     Specifically, the forcing relation is first defined for atomic formulas $\dot{x} = \dot{y}$ and $\dot{x} \in \dot{y}$ by mutual recursion,
-    inductively on the $\Pbb$-rank of $\dot{x}$ and $\dot{y}$.
+    inductively on the $\mathbb{P}$-rank of $\dot{x}$ and $\dot{y}$.
     Then, the definition is extended to all formulas in the forcing language by induction on the complexity of formulas.
   }
   as follows:
   \begin{enumerate}
     \item $p \Vdash \dot{x} = \dot{y} \Leftrightarrow \forall \dot{z} \in \mathrm{dom}(\dot{x}) \cup \mathrm{dom}(\dot{y})\,
-\forall q \leq_{\Pbb} p \, (q \Vdash \dot{z} \in \dot{x} \leftrightarrow q \Vdash \dot{z} \in \dot{y})$
-    \item $p \Vdash \dot{x} \in \dot{y} \Leftrightarrow \forall q \leq_{\Pbb} p\, \exists r \leq_{\Pbb} q \, 
-    \exists s \in \Pbb \, \exists \dot{z} \in M^{\Pbb} \, (\langle \dot{z}, s \rangle \in \dot{y} \land r \leq_{\Pbb} s \land r \Vdash \dot{x} = \dot{z} )$
+\forall q \leq_{\mathbb{P}} p \, (q \Vdash \dot{z} \in \dot{x} \leftrightarrow q \Vdash \dot{z} \in \dot{y})$
+    \item $p \Vdash \dot{x} \in \dot{y} \Leftrightarrow \forall q \leq_{\mathbb{P}} p\, \exists r \leq_{\mathbb{P}} q \, 
+    \exists s \in \mathbb{P} \, \exists \dot{z} \in M^{\mathbb{P}} \, (\langle \dot{z}, s \rangle \in \dot{y} \land r \leq_{\mathbb{P}} s \land r \Vdash \dot{x} = \dot{z} )$
     \item $p \Vdash \phi \land \psi \Leftrightarrow p \Vdash \phi \land p \Vdash \psi$
-    \item $p \Vdash \neg \phi \Leftrightarrow \forall q \leq_{\Pbb} p \, \neg (q \Vdash \phi)$
-    \item $p \Vdash \exists x \phi(x) \Leftrightarrow \forall q \leq_{\Pbb} p \, \exists r \leq_{\Pbb} q \, \exists \dot{x} \in M^{\Pbb} \, (r \Vdash \phi(\dot{x}))$
+    \item $p \Vdash \neg \phi \Leftrightarrow \forall q \leq_{\mathbb{P}} p \, \neg (q \Vdash \phi)$
+    \item $p \Vdash \exists x \phi(x) \Leftrightarrow \forall q \leq_{\mathbb{P}} p \, \exists r \leq_{\mathbb{P}} q \, \exists \dot{x} \in M^{\mathbb{P}} \, (r \Vdash \phi(\dot{x}))$
   \end{enumerate}
 \end{dfn}
 
 \begin{thm}
-  Let $G$ be a generic filter on $\Pbb$, $\varphi$ be a formula, and $\dot{x} \in M^{\Pbb}$, then 
+  Let $G$ be a generic filter on $\mathbb{P}$, $\varphi$ be a formula, and $\dot{x} \in M^{\mathbb{P}}$, then 
   $$M[G] \vDash \varphi(\dot{x}^G) \Leftrightarrow \exists p \in G \, (p \Vdash \varphi(\dot{x}))$$
 \end{thm}
 
 \begin{cor}
-  Let $p \in \Pbb$, $\varphi$ be a formula and $\dot{x} \in M^{\Pbb}$, then
+  Let $p \in \mathbb{P}$, $\varphi$ be a formula and $\dot{x} \in M^{\mathbb{P}}$, then
   $$p \Vdash \varphi(\dot{x}) \Leftrightarrow \text{for any generic filter } G \text{ containing } p, M[G] \vDash \varphi(\dot{x}^G)$$
 \end{cor}
 
 \subsection{Symmetric Extensions}
-Symmetric extensions are substructures of generic extensions of a given \ctm of ZF 
+Symmetric extensions are substructures of generic extensions of a given c.t.m.\  of ZF 
 and are formed by interpreting only the hereditarily symmetric names.
-Let $M$ be a \ctm of ZF, $(\Pbb, \leq_{\Pbb})$ be a pre-ordered set in $M$ with the maximum element $1_{\Pbb}$.
+Let $M$ be a c.t.m.\  of ZF, $(\mathbb{P}, \leq_{\mathbb{P}})$ be a pre-ordered set in $M$ with the maximum element $1_{\mathbb{P}}$.
 
-\begin{dfn} 
-  We say that $\pi : \Pbb \rightarrow \Pbb$ is an \emph{automorphism} if for all $p, q \in \Pbb$, $p \leq_{\Pbb} q \Leftrightarrow \pi p \leq_{\Pbb} \pi q$.
-  $\pi$ induces an bijection on $\Pbb$-names defined recursively as follows:
+\begin{dfn} \label{dfn:automorphism}
+  We say that $\pi : \mathbb{P} \rightarrow \mathbb{P}$ is an \emph{automorphism} if for all $p, q \in \mathbb{P}$, $p \leq_{\mathbb{P}} q \Leftrightarrow \pi p \leq_{\mathbb{P}} \pi q$.
+  $\pi$ induces an bijection on $\mathbb{P}$-names defined recursively as follows:
   $$ \pi \dot{x} = \{ \langle \pi \dot{y}, \pi p \rangle \mid \langle \dot{y}, p \rangle \in \dot{x} \} $$
 \end{dfn}
 
-\begin{dfn} % lara
-  Let $\Gcal$ be a group of automorphisms of $\Pbb$. We say that $\Fcal$ is a \emph{normal filter} on $\Gcal$ if the following conditions hold:
+\begin{dfn} 
+  Let $\mathcal{G}$ be a group of automorphisms of $\mathbb{P}$. We say that $\mathcal{F}$ is a \emph{normal filter} on $\mathcal{G}$ if the following conditions hold:
   \begin{enumerate}
-    \item $\Fcal$ is non-empty family of subgroups of $\Gcal$.
-    \item $\Fcal$ is closed under finite intersections and supergroups.
-    \item For every $H \in \Fcal$ and $\pi \in \Gcal$, $\pi H \pi^{-1} \in \Fcal$.
+    \item $\mathcal{F}$ is non-empty family of subgroups of $\mathcal{G}$.
+    \item $\mathcal{F}$ is closed under finite intersections and supergroups.
+    \item For every $H \in \mathcal{F}$ and $\pi \in \mathcal{G}$, $\pi H \pi^{-1} \in \mathcal{F}$.
   \end{enumerate}
 \end{dfn}
 
-We fix a group of automorphisms $\Gcal$ of $\Pbb$ and a normal filter $\Fcal$ on $\Gcal$.
+We fix a group of automorphisms $\mathcal{G}$ of $\mathbb{P}$ and a normal filter $\mathcal{F}$ on $\mathcal{G}$.
 \begin{dfn} 
-  For every $\Pbb$-name $\dot{x}$, let $\mathrm{sym}_{\Gcal}(\dot{x}) = \{ \pi \in \Gcal \mid \pi \dot{x} = \dot{x} \}$.
-  We say that $\Pbb$-name $\dot{x}$ is \emph{hereditarily $\Fcal$-symmetric} if $\mathrm{sym}_{\Gcal}(\dot{x}) \in \Fcal$.
-  $\mathrm{HS}_{\Fcal}$ denotes the set of all hereditarily $\Fcal$-symmetric $\Pbb$-names.
+  For every $\mathbb{P}$-name $\dot{x}$, let $\mathrm{sym}(\dot{x}) = \{ \pi \in \mathcal{G} \mid \pi \dot{x} = \dot{x} \}$.
+  We say that $\mathbb{P}$-name $\dot{x}$ is \emph{symmetric} if $\mathrm{sym}(\dot{x}) \in \mathcal{F}$.
+\end{dfn}
+
+\begin{dfn} \label{dfn:hereditarily_symmetric}
+  We define the set of all hereditarily symmetric names $\mathrm{HS}$ recursively as follows:
+  \begin{enumerate}
+    \item $0 \in \mathrm{HS}$
+    \item if $\mathrm{dom}(\dot{x}) \subseteq \mathrm{HS}$ and $\dot{x}$ is symmetric, then $\dot{x} \in \mathrm{HS}$
+  \end{enumerate}
 \end{dfn}
 
 \begin{dfn} 
-  Let $G$ be a generic filter on $\Pbb$. The set $\mathrm{HS}^{G}_{\Fcal} = \{ \dot{x}^G \mid \dot{x} \in \mathrm{HS}_{\Fcal} \}$ is called a \emph{symmetric extension} of $M$.
+  Let $G$ be a generic filter on $\mathbb{P}$. The set $\mathrm{HS}^{G} = \{ \dot{x}^G \mid \dot{x} \in \mathrm{HS} \}$ is called a \emph{symmetric extension} of $M$.
 \end{dfn}
 
 \begin{thm}
-  Let $G$ be a generic filter on $\Pbb$. Then, the symmetric extension $\mathrm{HS}^{G}_{\Fcal}$ is a \ctm of ZF and a substructure of $M[G]$.
+  Let $G$ be a generic filter on $\mathbb{P}$. Then, the symmetric extension $\mathrm{HS}^{G}$ is a c.t.m.\  of ZF and a substructure of $M[G]$.
 \end{thm}
 
 \begin{dfn}
-  The relativized forcing relation $\Vdash_{\mathrm{HS}}$ is defined as the forcing relation $\Vdash$ with $M^{\Pbb}$ in its definition replaced by $\mathrm{HS}_{\Fcal}$.
+  The relativized forcing relation $\Vdash_{\mathrm{HS}}$ is defined as the forcing relation $\Vdash$ with $M^{\mathbb{P}}$ in its definition replaced by $\mathrm{HS}$.
 \end{dfn}
 
 The relation $\Vdash_{\mathrm{HS}}$ acts as the forcing relation for symmetric extensions.
 
 \begin{thm}\label{thm:symmetry_main_thm}
-  Let $G$ be a generic filter on $\Pbb$, $\Ncal$ be a symmetric extension generated by $G$, $\varphi$ be a formula, and $\dot{x} \in \mathrm{HS}_{\Fcal}$, then
-  $$\Ncal \vDash \varphi(\dot{x}) \Leftrightarrow \exists p \in G \, (p \Vdash_{\mathrm{HS}} \varphi(\dot{x}))$$
+  Let $G$ be a generic filter on $\mathbb{P}$, $\mathcal{N}$ be a symmetric extension generated by $G$, $\varphi$ be a formula, and $\dot{x} \in \mathrm{HS}$, then
+  $$\mathcal{N} \vDash \varphi(\dot{x}) \Leftrightarrow \exists p \in G \, (p \Vdash_{\mathrm{HS}} \varphi(\dot{x}))$$
 \end{thm}
 
 \begin{cor}\label{cor:symmetry_main_cor}
-  Let $p \in \Pbb$, $\varphi$ be a formula, and $\dot{x} \in \mathrm{HS}_{\Fcal}$, then
-  $$p \Vdash_{\mathrm{HS}} \varphi(\dot{x}) \Leftrightarrow \text{for any generic filter } G \text{ containing } p, \Ncal \vDash \varphi(\dot{x}^G)$$
-  Where $\Ncal$ is the symmetric extension generated by $G$.
+  Let $p \in \mathbb{P}$, $\varphi$ be a formula, and $\dot{x} \in \mathrm{HS}$, then
+  $$p \Vdash_{\mathrm{HS}} \varphi(\dot{x}) \Leftrightarrow \text{for any generic filter } G \text{ containing } p, \mathcal{N} \vDash \varphi(\dot{x}^G)$$
+  Where $\mathcal{N}$ is the symmetric extension generated by $G$.
 \end{cor}
 
 The following lemmas also holds for the forcing relation $\Vdash$, but we only state them for $\Vdash_{\mathrm{HS}}$.
 
 \begin{lem}\label{lem:strengthening}
-  Let $p, q \in \Pbb$, $\varphi$ be a formula. If $q \leq_{\Pbb} p$ and $p \Vdash_{\mathrm{HS}} \varphi$, then $q \Vdash_{\mathrm{HS}} \varphi$.
+  Let $p, q \in \mathbb{P}$, $\varphi$ be a formula. If $q \leq_{\mathbb{P}} p$ and $p \Vdash_{\mathrm{HS}} \varphi$, then $q \Vdash_{\mathrm{HS}} \varphi$.
 \end{lem}
 
 \begin{lem}\label{lem:symmetry_lemma}
-  Let $\pi$ be an automorphism of $\Pbb$, $\dot{x}_0, \ldots, \dot{x}_n \in \mathrm{HS}_{\Fcal}$, and $\varphi$ be a formula, then
+  Let $\pi$ be an automorphism of $\mathbb{P}$, $\dot{x}_0, \ldots, \dot{x}_n \in \mathrm{HS}$, and $\varphi$ be a formula, then
   $$p \Vdash_{\mathrm{HS}} \varphi(\dot{x}_0, \ldots, \dot{x}_n) \Leftrightarrow \pi p \Vdash_{\mathrm{HS}} \varphi(\pi \dot{x}_0, \ldots, \pi \dot{x}_n)$$
 \end{lem}
 
-\subsection{The \ctm Approach}\label{subsection:ctm}
+\subsection{The c.t.m.\  Approach}\label{subsection:ctm}
 
 \section{Outline for the Informal Proof}\label{sec:outline}
 We outline an informal proof of the relative consistency of $\neg$AC with ZF which we will formalize in the next chapter.
-In this proof, the relative consistency is proved by assuming the existence of a \ctm of ZF and constructing a model of ZF + $\neg$AC by forcing. 
+In this proof, the relative consistency is proved by assuming the existence of a c.t.m.\  of ZF and constructing a model of ZF + $\neg$AC by forcing. 
 This model is a symmetric extension called the basic Cohen model.
 
-Let $M$ be a \ctm of ZF, $\Pbb$ be the set of all finite partial functions from $\omega \times \omega$ to $\{0, 1\}$, and $\leq_{\Pbb}$ be $\supseteq$.
-Note that the maximum element $1_{\Pbb}$ is the empty set. 
-Let $\pi$ be a bijection on $\omega$. $\pi$ induces an automorphism on $\Pbb$ defined as follows:
+Let $M$ be a c.t.m.\  of ZF, $\mathbb{P}$ be the set of all finite partial functions from $\omega \times \omega$ to $\{0, 1\}$, and $\leq_{\mathbb{P}}$ be $\supseteq$.
+Note that the maximum element $1_{\mathbb{P}}$ is the empty set. 
+Let $\pi$ be a bijection on $\omega$. $\pi$ induces an automorphism on $\mathbb{P}$ defined as follows:
 
 $$\mathrm{dom}(\pi p) = \{ (\pi n, m) \mid (n, m) \in \mathrm{dom}(p) \}$$
 $$(\pi p)(\pi n, m) = p(n, m)$$
 
-This automorphism further induces an automorphism on $\Pbb$-names. 
-Let $\Gcal$ be the group of all such automorphisms.
+This automorphism further induces an automorphism on $\mathbb{P}$-names. 
+Let $\mathcal{G}$ be the group of all such automorphisms.
 For every finite $e \subseteq \omega$, let 
-$$\mathrm{fix}(e) = \{ \pi \in \Gcal \mid \forall n \in e (\pi n = n) \}$$
-Let $\Fcal$ be the set of all subgroups $H$ of $\Gcal$ such that there exists a finite $e \subseteq \omega$ with $\mathrm{fix}(e) \subseteq H$.
-Note that $\Fcal$ is a normal filter on $\Gcal$. Let $\Ncal = \mathrm{HS}^{G}_{\Fcal}$.
-Since $\Ncal$ is a symmetric extension of $M$, it is a \ctm of ZF. 
+$$\mathrm{fix}(e) = \{ \pi \in \mathcal{G} \mid \forall n \in e (\pi n = n) \}$$
+Let $\mathcal{F}$ be the set of all subgroups $H$ of $\mathcal{G}$ such that there exists a finite $e \subseteq \omega$ with $\mathrm{fix}(e) \subseteq H$.
+Note that $\mathcal{F}$ is a normal filter on $\mathcal{G}$. Let $\mathcal{N} = \mathrm{HS}^{G}$.
+Since $\mathcal{N}$ is a symmetric extension of $M$, it is a c.t.m.\  of ZF. 
 
 \begin{thm}
-  $\Ncal$ does not satisfy the well-ordering theorem.
+  $\mathcal{N}$ does not satisfy the well-ordering theorem.
 \end{thm}
 
 \begin{proof}
@@ -430,35 +351,36 @@ We outline the proof of this theorem as follows.
 For every $n \in \omega$, let $a_n$ be the following real number (a subset of $\omega$):
 $$a_n = \{ m \in \omega \mid \exists p \in G (p(n, m) = 1) \}$$
 Since $a_n$ are pairwise distinct, $A = \{ a_n \mid n \in \omega \}$ is an infinity set.
-$A$ and every $a_n$ are elements of $\Ncal$.
-$A$ serves as a counterexample to the well-ordering theorem in $\Ncal$.
-Suppose for contradiction that $A$ is well-ordered in $\Ncal$, there exists a injection $f$ from $\omega$ to $A$ in $\Ncal$.
+$A$ and every $a_n$ are elements of $\mathcal{N}$.
+$A$ serves as a counterexample to the well-ordering theorem in $\mathcal{N}$.
+Suppose for contradiction that $A$ is well-ordered in $\mathcal{N}$, there exists a injection $f$ from $\omega$ to $A$ in $\mathcal{N}$.
 Let $\varphi(g,x,y)$ be a formula that represents the relation $g(x) = y$. 
 For every $n \in \omega$ with $a_n \in \mathrm{ran}(f)$, there exists $i \in \omega$ such that $N \vDash \varphi(f, i, a_n)$.
-Thus there exists $p \in G$ and hereditarily $\Fcal$-symmetric names $\dot{f}, \dot{i}$ and $\dot{a_n}$ for each of $f, i, a_n$ such that 
+Thus there exists $p \in G$ and hereditarily symmetric names $\dot{f}, \dot{i}$ and $\dot{a_n}$ for each of $f, i, a_n$ such that 
 $$p \Vdash_{\mathrm{HS}} \varphi(\dot{f}, \dot{i}, \dot{a_n})$$
 By choosing $n$ and the names appropriately, we can find a bijection $\pi$ on $\omega$ such that the following conditions are additionally satisfied:
 \begin{enumerate}
   \item $\pi \dot{f} = \dot{f}$
   \item $\pi \dot{i} = \dot{i}$
   \item $\pi n \ne n$
-  \item There exists a hereditarily $\Fcal$-symmetric name $\dot{a_{\pi n}}$ of $a_{\pi n}$ such that $\pi \dot{a_n} = \dot{a_{\pi n}}$
-  \item There exists $q \in G$ such that $q \leq_{\Pbb} p$ and $q \leq_{\Pbb} \pi p$
+  \item There exists a hereditarily symmetric name $\dot{a_{\pi n}}$ of $a_{\pi n}$ such that $\pi \dot{a_n} = \dot{a_{\pi n}}$
+  \item There exists $q \in G$ such that $q \leq_{\mathbb{P}} p$ and $q \leq_{\mathbb{P}} \pi p$
 \end{enumerate}
-Note that some occurence of $\pi$ in above conditions refer to the induced automorphism on $\Pbb$ or $\Pbb$-names..
+Note that some occurence of $\pi$ in above conditions refer to the induced automorphism on $\mathbb{P}$ or $\mathbb{P}$-names..
 By Lemma \ref{lem:symmetry_lemma}
 $$\pi p \Vdash_{\mathrm{HS}} \varphi(\pi \dot{f}, \pi \dot{i}, \pi \dot{a_n})$$
 Thus 
 $$\pi p \Vdash_{\mathrm{HS}} \varphi(\dot{f}, \dot{i}, \dot{a_{\pi n}})$$
 Therefore, by Lemma \ref{lem:strengthening}
 $$q \Vdash_{\mathrm{HS}} \varphi(\dot{f}, \dot{i}, \dot{a_n}) \mathrm{ and } q \Vdash_{\mathrm{HS}} \varphi(\dot{f}, \dot{i}, \dot{a_{\pi n}})$$
-This means that $\Ncal \vDash \varphi(f, i, a_n)$ and $\Ncal \vDash \varphi(f, i, a_{\pi n})$, which implies that $f(i) = a_n$ and $f(i) = a_{\pi n}$.
+This means that $\mathcal{N} \vDash \varphi(f, i, a_n)$ and $\mathcal{N} \vDash \varphi(f, i, a_{\pi n})$, which implies that $f(i) = a_n$ and $f(i) = a_{\pi n}$.
 Since $a_n$ and $a_{\pi n}$ are distinct, this is a contradiction. 
 \end{proof}
  
 \section{Isabelle/ZF and Formalization in Prior Work}
 In this section, we introduce Isabelle/ZF, a proof assistant for ZF set theory, 
 and the results from prior work used in the formalization of this study.
+\subsubsection{The locale \texttt{"forcing\_data"} by Gunther et al.}
 \begin{comment}  
 \section{Isabelle/ZF}
 \section{Internalized First-Order Formulas}
@@ -467,48 +389,176 @@ and the results from prior work used in the formalization of this study.
 
 \chapter{Formalization of the Proof} 
 In this chapter, we present the formalization of the relative consistency proof of $\neg$AC with ZF in Isabelle/ZF.
-We follow the outline presented in section \ref{sec:outline} and use the \ctm approach.
-We reuse the formalizations from prior work, such as first order formulas, satisfaction relation, utilities for inductive definitions by Paulson \cite{paulson_datatype_impl,paulson_reflection,paulson_AC_consistency,paulson_cardinal_AC,paulson_datatype} 
-and forcing relation by Gunther et al. \cite{gunther_forcing}.
+We follow the outline presented in section \ref{sec:outline}.
+We choose \emph{ZF-Constructible} by Paulson \cite{paulson_AC_consistency} as Isabelle theory 
+\footnote{Note that this does not mean assuming $V=L$.}
+, which includes the ZF axioms along with useful definitions and lemmas built on top of them.
+We also reuse the formalization of forcing by Gunther et al. \cite{gunther_forcing}.
 
 \section{Defining Symmetric Extensions}
-First, we define symmetric extensions in Isabelle/ZF.
-We define automorphisms on $\Pbb$, the group of automorphisms $\Gcal$, and the normal filter $\Fcal$.
-Basically, we work within the locale ∈.
+First, we define symmetric extensions in Isabelle/ZF,
+formalizing automorphisms, normal filters, and hereditarily symmetric names.
 
-\lstset{inputencoding=utf8/utf8}
-\lstinputlisting[language=C++]{aaaa.thy}
+\subsubsection{$\mathbb{P}$-names}
+We begin our work within the locale \texttt{"forcing\_data"} by Gunther et al. \cite{gunther_forcing}, 
+in which a c.t.m.\  \texttt{"M"} and a notion of forcing \texttt{"P"} are fixed.
+The relation $\leq_{\mathbb{P}}$ is denoted by \texttt{"leq"} and 
+a maximum element $1_{\mathbb{P}}$ is denoted by \texttt{"one"}.
 
-\begin{lstlisting}
-  theory ZF_notAC_main_theorem : "x = y" 
-  proof - 
-    have "x = y" sorry
-  qed 
+Gunther et al. did not provide an excplicit formalization of the set of $\mathbb{P}$-names $M^{\mathbb{P}}$ in their work.
+In this study, since we need to consider a subset of $M^{\mathbb{P}}$, we define $M^{\mathbb{P}}$ explicitly.
+We define $M^{\mathbb{P}}_{\alpha}$ as \texttt{"P\_set(α)"} and $M^{\mathbb{P}}$ as \texttt{"P\_names"} as follows:
+
+\begin{isaframe}
+\begin{minted}[breaklines]{isabelle}
+definition HP_set_succ :: "[i, i] ⇒ i" where 
+    "HP_set_succ(a, X) ≡ Pow(X × P) ∩ M" 
+
+definition P_set :: "i ⇒ i" where 
+    "P_set(a) ≡ transrec2(a, 0, HP_set_succ)" 
+
+definition P_names :: "i" where "P_names ≡ { x ∈ M . ∃ a. Ord(a) ∧ x ∈ P_set(a) }" 
+\end{minted}
+\end{isaframe} 
+
+Where \texttt{"transrec2(α, x, H)"} is the function defined in \emph{ZF} library
+that returns \texttt{x} when \texttt{α} is 0;
+when \texttt{α} is a successor ordinal, it returns \texttt{H(β, transrec2(β, x, H))} where \texttt{β} is the predecessor of \texttt{α};
+and when \texttt{α} is a limit ordinal, it returns $\bigcup$\texttt{β∈α. transrec2(β, x, H)}.
+Note that in Isabelle/ZF, the notation \texttt{"\{ x ∈ A. P(x) \}"} denotes
+the set of elements in \texttt{A} that satisfy the predicate \texttt{P}.
+
+\subsubsection{Automorphisms}
+To simplify the formalization, we declare and work within the locale \texttt{"forcing\_data\_partial"}, 
+where $\mathbb{P}$ is assumed to be a partially ordered set. 
+Note that \texttt{"one"} is the unique maximum element of $\mathbb{P}$ in this locale.
+
+\begin{isaframe}
+\begin{minted}[breaklines]{isabelle}
+locale forcing_data_partial = forcing_data + 
+    assumes leq_relation_on_P : "leq ∈ Pow(P × P)" 
+    and leq_partial_order : "partial_order_on(P, leq)" 
+\end{minted}
+\end{isaframe}
+
+We define the set of automorphisms on $\mathbb{P}$, denoted by \texttt{"P\_auto"}, as follows:
+\begin{isaframe}
+\begin{minted}[breaklines]{isabelle}
+definition is_P_auto :: "i ⇒ o" where
+    "is_P_auto(π) ≡ π ∈ M ∧ π ∈ bij(P, P) ∧ (∀ p ∈ P. ∀q ∈ P. p ≼ q ⟷ π`p ≼ π`q)"  
+
+definition P_auto where "P_auto ≡ { π ∈ P → P. is_P_auto(π) }" 
+\end{minted}
+\end{isaframe}
+
+Where \texttt{"bij(A, B)"} is the set of bijections from \texttt{A} to \texttt{B}
+and \texttt{"f`x"} denotes the function application of \texttt{f} to \texttt{x}.
+We denote the induced automorphism on $\mathbb{P}$-names by \texttt{π} as \texttt{"Pn\_auto(π)"}.
+Our definition of \texttt{"Pn\_auto"} satisfies the equality given in Definition \ref{dfn:automorphism}.
+
+\begin{isaframe}
+\begin{minted}[breaklines]{isabelle}
+lemma Pn_auto : 
+    "x ∈ P_names ⟹ Pn_auto(π)`x = { <Pn_auto(π)`y, π`p> . <y, p> ∈ x}"  
+\end{minted}
+\end{isaframe}
+
+
+\subsubsection{Groups of Automorphisms and Normal Filters}
+First, we define the set of all subgroups of a group of automorphisms \texttt{G} that are in \texttt{"M"}.
+\begin{isaframe}
+\begin{minted}[breaklines]{isabelle}
+  definition is_P_auto_group where 
+      "is_P_auto_group(G) ≡ 
+        G ⊆ { π ∈ P → P. is_P_auto(π) } 
+      ∧ (∀π ∈ G. ∀τ ∈ G. π O τ ∈ G) 
+      ∧ (∀π ∈ G. converse(π) ∈ G)"   
   
-lemma P_name_induct : 
-"∀x ∈ P_names. (∀y. ∀ p. <y, p> ∈ x ⟶ Q(y)) ⟶ Q(x) ⟹ x ∈ P_names ⟹ Q(x)"
-proof (rule_tac P_rank_induct, clarify)
-\end{lstlisting}
-\begin{minted}[linenos]{isabelle}
-  
-  theory ZF_notAC_main_theorem : "x ∈ y"
-  proof - 
-    have "x ∈ y" sorry
-  qed
-      \end{minted}
+  definition P_auto_subgroups where 
+      "P_auto_subgroups(G) ≡ { H ∈ Pow(G) ∩ M. is_P_auto_group(H) }" 
+\end{minted}
+\end{isaframe}
+Where \texttt{"π O τ"} denotes the composition of \texttt{π} and \texttt{τ}.
+Then, we declare a locale \texttt{"M\_symmetric\_system"} that fixes a group of automorphisms \texttt{"𝒢"} and a normal filter \texttt{"ℱ"} on \texttt{"𝒢"}.
+\begin{isaframe}
+\begin{minted}[breaklines]{isabelle}
+locale M_symmetric_system = forcing_data_partial + 
+    fixes 𝒢 ℱ 
+    assumes 𝒢_in_M : "𝒢 ∈ M"  
+    and 𝒢_P_auto_group : "is_P_auto_group(𝒢)"   
+    and ℱ_in_M : "ℱ ∈ M"
+    and ℱ_subset : "ℱ ⊆ P_auto_subgroups(𝒢)" 
+    and ℱ_nonempty : "ℱ ≠ 0" 
+    and ℱ_closed_under_intersection : "∀A ∈ ℱ. ∀B ∈ ℱ. A ∩ B ∈ ℱ" 
+    and ℱ_closed_under_supergroup : 
+        "∀A ∈ ℱ. ∀B ∈ P_auto_subgroups(𝒢). A ⊆ B ⟶ B ∈ ℱ" 
+    and ℱ_normal : "∀H ∈ ℱ. ∀π ∈ 𝒢. { π O τ O converse(π). τ ∈ H } ∈ ℱ" 
+\end{minted}
+\end{isaframe}
 
-\begin{isabelle}
-  \texttt{
-\Snippet{ZF-notAC:theorem:ZF-notAC-main-theorem}
-  }
-\end{isabelle}
+\subsubsection{Hereditarily Symmetric Names}
+We continue our work within the locale \texttt{"M\_symmetric\_system"}.
+We define the set of hereditarily symmetric names \texttt{"HS"} 
+\begin{isaframe}
+\begin{minted}[breaklines]{isabelle}
+definition sym where "sym(x) ≡ { π ∈ 𝒢. Pn_auto(π)`x = x }"  
 
-\begin{comment}
-  \subsection{$\Pbb$-names}
-\subsection{Automorphisms}
-\subsection{Hereditarily Symmetric Names}
-\subsection{Symmetric Extensions}
-\end{comment}
+definition symmetric where "symmetric(x) ≡ sym(x) ∈ ℱ"  
+
+definition HHS_set_succ where 
+  "HHS_set_succ(a, X) ≡ { x ∈ P_set(succ(a)). domain(x) ⊆ X ∧ symmetric(x) }" 
+
+definition HS_set where "HS_set(a) ≡ transrec2(a, 0, HHS_set_succ)"
+
+definition HS where "HS ≡ { x ∈ P_names. ∃a. Ord(a) ∧ x ∈ HS_set(a) }" 
+\end{minted}
+\end{isaframe}
+
+The following lemma shows our definition of \texttt{"HS"} is equivalent to Definition \ref{dfn:hereditarily_symmetric}.
+
+\begin{isaframe}
+\begin{minted}[breaklines]{isabelle}
+lemma HS_iff: "x ∈ HS ⟷ x ∈ P_names ∧ domain(x) ⊆ HS ∧ symmetric(x)" 
+\end{minted}
+\end{isaframe}
+
+\subsubsection{Symmetric Extensions}
+Finally, we define symmetric extensions.
+
+\begin{isaframe}
+\begin{minted}[breaklines]{isabelle}
+definition SymExt where "SymExt(G) ≡ { val(G, x). x ∈ HS }" 
+\end{minted}
+\end{isaframe}
+
+Where \texttt{"val(G, x)"} is the interpretation $x^G$ formalized by Gunther et al. \cite{gunther_forcing}.
+
+We declare a locale \texttt{"M\_symmetric\_system\_G\_generic"},
+which combines the locale \texttt{"M\_symmetric\_system"} and the locale \texttt{"G\_generic"}.
+\texttt{"G\_generic"} is a locale, defined by Gunther et al. \cite{gunther_forcing}, fixes a generic filter \texttt{"G"} on \texttt{"P"}.
+
+\begin{isaframe}
+\begin{minted}[breaklines]{isabelle}
+locale M_symmetric_system_G_generic = M_symmetric_system + G_generic
+\end{minted}
+\end{isaframe}
+
+The following lemmas can be proved relatively easily in this locale.
+
+\begin{isaframe}
+\begin{minted}[breaklines]{isabelle}
+lemma M_subset_SymExt : "M ⊆ SymExt(G)" 
+lemma SymExt_subset_GenExt : "SymExt(G) ⊆ GenExt(G)" 
+lemma Transset_SymExt : "Transset(SymExt(G))" 
+lemma SymExt_countable : "nat ≈ SymExt(G)" 
+\end{minted}
+\end{isaframe}
+
+Where \texttt{"GenExt(G)"} is the generic extension generated by \texttt{"G"}, 
+\texttt{"Transset(A)"} denotes that \texttt{"A"} is transitive, and
+\texttt{"nat ≈ A"} denotes that \texttt{"A"} has the same cardinality as the set of natural numbers.
+
+
 
 \section{Proving that Symmetric Extensions are Models of ZF}
 \begin{comment}

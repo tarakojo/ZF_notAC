@@ -1,0 +1,461 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.2 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{nty/global//global/global}
+    \entry{gunther_forcing}{article}{}
+      \name{author}{3}{}{%
+        {{hash=82f3b48dfb9567e3068c9214c122719c}{%
+           family={Gunther},
+           familyi={G\bibinitperiod},
+           given={Emmanuel},
+           giveni={E\bibinitperiod}}}%
+        {{hash=46bd888eee5b3ea691dffc74217e809c}{%
+           family={Pagano},
+           familyi={P\bibinitperiod},
+           given={Miguel},
+           giveni={M\bibinitperiod}}}%
+        {{hash=6a68f14774922c029c16be28d2ad216d}{%
+           family={Terraf},
+           familyi={T\bibinitperiod},
+           given={Pedro\bibnamedelima Sánchez},
+           giveni={P\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
+      }
+      \strng{namehash}{7142706f10809dcb6949f4b3077d4f30}
+      \strng{fullhash}{7142706f10809dcb6949f4b3077d4f30}
+      \strng{bibnamehash}{7142706f10809dcb6949f4b3077d4f30}
+      \strng{authorbibnamehash}{7142706f10809dcb6949f4b3077d4f30}
+      \strng{authornamehash}{7142706f10809dcb6949f4b3077d4f30}
+      \strng{authorfullhash}{7142706f10809dcb6949f4b3077d4f30}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{2150-914x}
+      \field{journaltitle}{Archive of Formal Proofs}
+      \field{month}{5}
+      \field{note}{\url{https://isa-afp.org/entries/Forcing.html}, Formal proof development}
+      \field{title}{Formalization of Forcing in Isabelle/ZF}
+      \field{year}{2020}
+    \endentry
+    \entry{gunther_independence}{article}{}
+      \name{author}{4}{}{%
+        {{hash=82f3b48dfb9567e3068c9214c122719c}{%
+           family={Gunther},
+           familyi={G\bibinitperiod},
+           given={Emmanuel},
+           giveni={E\bibinitperiod}}}%
+        {{hash=46bd888eee5b3ea691dffc74217e809c}{%
+           family={Pagano},
+           familyi={P\bibinitperiod},
+           given={Miguel},
+           giveni={M\bibinitperiod}}}%
+        {{hash=6a68f14774922c029c16be28d2ad216d}{%
+           family={Terraf},
+           familyi={T\bibinitperiod},
+           given={Pedro\bibnamedelima Sánchez},
+           giveni={P\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
+        {{hash=84a21839a8fededa38084ef1387870ce}{%
+           family={Steinberg},
+           familyi={S\bibinitperiod},
+           given={Matías},
+           giveni={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{732a1ec4e456474b9ff95a45c31a79ba}
+      \strng{fullhash}{bd3b801ba372731d67e9338675c5f5bf}
+      \strng{bibnamehash}{732a1ec4e456474b9ff95a45c31a79ba}
+      \strng{authorbibnamehash}{732a1ec4e456474b9ff95a45c31a79ba}
+      \strng{authornamehash}{732a1ec4e456474b9ff95a45c31a79ba}
+      \strng{authorfullhash}{bd3b801ba372731d67e9338675c5f5bf}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{2150-914x}
+      \field{journaltitle}{Archive of Formal Proofs}
+      \field{month}{3}
+      \field{note}{\url{https://isa-afp.org/entries/Independence_CH.html}, Formal proof development}
+      \field{title}{The Independence of the Continuum Hypothesis in Isabelle/ZF}
+      \field{year}{2022}
+    \endentry
+    \entry{flypitch}{inproceedings}{}
+      \name{author}{2}{}{%
+        {{hash=9b8689c0a1d3ea61445d35eb4e71843a}{%
+           family={Han},
+           familyi={H\bibinitperiod},
+           given={Jesse\bibnamedelima Michael},
+           giveni={J\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+        {{hash=241ef3eeb33e764da3482b74049133fa}{%
+           family={Doorn},
+           familyi={D\bibinitperiod},
+           given={Floris},
+           giveni={F\bibinitperiod},
+           prefix={van},
+           prefixi={v\bibinitperiod}}}%
+      }
+      \strng{namehash}{dab5687bd36a2d042332bb5b868163c5}
+      \strng{fullhash}{dab5687bd36a2d042332bb5b868163c5}
+      \strng{bibnamehash}{dab5687bd36a2d042332bb5b868163c5}
+      \strng{authorbibnamehash}{dab5687bd36a2d042332bb5b868163c5}
+      \strng{authornamehash}{dab5687bd36a2d042332bb5b868163c5}
+      \strng{authorfullhash}{dab5687bd36a2d042332bb5b868163c5}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the 9th {ACM} {SIGPLAN} International Conference on Certified Programs and Proofs, {CPP} 2020, New Orleans, LA, {USA}, January 20-21, 2020}
+      \field{title}{A formal proof of the independence of the continuum hypothesis}
+      \field{year}{2020}
+    \endentry
+    \entry{NF_consistency}{misc}{}
+      \name{author}{2}{}{%
+        {{hash=432d6d9b1e5ece343f85180d2cd1639f}{%
+           family={Holmes},
+           familyi={H\bibinitperiod},
+           given={M.\bibnamedelimi Randall},
+           giveni={M\bibinitperiod\bibinitdelim R\bibinitperiod}}}%
+        {{hash=82c6c2ec5811ce45b4318d5d282eb76c}{%
+           family={Wilshaw},
+           familyi={W\bibinitperiod},
+           given={Sky},
+           giveni={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{99623369830fdaa0006182ad1379fc10}
+      \strng{fullhash}{99623369830fdaa0006182ad1379fc10}
+      \strng{bibnamehash}{99623369830fdaa0006182ad1379fc10}
+      \strng{authorbibnamehash}{99623369830fdaa0006182ad1379fc10}
+      \strng{authornamehash}{99623369830fdaa0006182ad1379fc10}
+      \strng{authorfullhash}{99623369830fdaa0006182ad1379fc10}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{NF is Consistent}
+      \field{year}{2024}
+      \verb{eprint}
+      \verb arXiv:1503.01406
+      \endverb
+    \endentry
+    \entry{jech_set_theory}{book}{}
+      \name{author}{1}{}{%
+        {{hash=1ea51a62907e839b389e5fd269d9ae60}{%
+           family={Jech},
+           familyi={J\bibinitperiod},
+           given={Thomas\bibnamedelima J},
+           giveni={T\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {en}%
+      }
+      \list{location}{1}{%
+        {Berlin, Germany}%
+      }
+      \list{publisher}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{1ea51a62907e839b389e5fd269d9ae60}
+      \strng{fullhash}{1ea51a62907e839b389e5fd269d9ae60}
+      \strng{bibnamehash}{1ea51a62907e839b389e5fd269d9ae60}
+      \strng{authorbibnamehash}{1ea51a62907e839b389e5fd269d9ae60}
+      \strng{authornamehash}{1ea51a62907e839b389e5fd269d9ae60}
+      \strng{authorfullhash}{1ea51a62907e839b389e5fd269d9ae60}
+      \field{extraname}{1}
+      \field{sortinit}{J}
+      \field{sortinithash}{b2f54a9081ace9966a7cb9413811edb4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{3}
+      \field{month}{10}
+      \field{series}{Springer Monographs in Mathematics}
+      \field{title}{Set Theory}
+      \field{year}{2002}
+    \endentry
+    \entry{jech_AC}{book}{}
+      \name{author}{1}{}{%
+        {{hash=1ea51a62907e839b389e5fd269d9ae60}{%
+           family={Jech},
+           familyi={J\bibinitperiod},
+           given={Thomas\bibnamedelima J},
+           giveni={T\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Mineola, NY}%
+      }
+      \list{publisher}{1}{%
+        {Dover Publications}%
+      }
+      \strng{namehash}{1ea51a62907e839b389e5fd269d9ae60}
+      \strng{fullhash}{1ea51a62907e839b389e5fd269d9ae60}
+      \strng{bibnamehash}{1ea51a62907e839b389e5fd269d9ae60}
+      \strng{authorbibnamehash}{1ea51a62907e839b389e5fd269d9ae60}
+      \strng{authornamehash}{1ea51a62907e839b389e5fd269d9ae60}
+      \strng{authorfullhash}{1ea51a62907e839b389e5fd269d9ae60}
+      \field{extraname}{2}
+      \field{sortinit}{J}
+      \field{sortinithash}{b2f54a9081ace9966a7cb9413811edb4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{7}
+      \field{series}{Dover Books on Mathematics}
+      \field{title}{The axiom of choice}
+      \field{year}{2008}
+    \endentry
+    \entry{kunen2011}{book}{}
+      \name{author}{1}{}{%
+        {{hash=9bbbc8091281c78067693611cdfae8a1}{%
+           family={Kunen},
+           familyi={K\bibinitperiod},
+           given={Kenneth},
+           giveni={K\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {London, England}%
+      }
+      \list{publisher}{1}{%
+        {College Publications}%
+      }
+      \strng{namehash}{9bbbc8091281c78067693611cdfae8a1}
+      \strng{fullhash}{9bbbc8091281c78067693611cdfae8a1}
+      \strng{bibnamehash}{9bbbc8091281c78067693611cdfae8a1}
+      \strng{authorbibnamehash}{9bbbc8091281c78067693611cdfae8a1}
+      \strng{authornamehash}{9bbbc8091281c78067693611cdfae8a1}
+      \strng{authorfullhash}{9bbbc8091281c78067693611cdfae8a1}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{11}
+      \field{title}{Set Theory}
+      \field{year}{2011}
+    \endentry
+    \entry{karagila}{misc}{}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{labeltitlesource}{title}
+      \field{note}{Accessed: 2024-10-29}
+      \field{title}{Lecture Notes: Forcing \& Symmetric Extensions}
+      \field{year}{2023}
+      \verb{urlraw}
+      \verb https://karagila.org/files/Forcing-2023.pdf
+      \endverb
+      \verb{url}
+      \verb https://karagila.org/files/Forcing-2023.pdf
+      \endverb
+    \endentry
+    \entry{paulson_datatype_impl}{inproceedings}{}
+      \name{author}{1}{}{%
+        {{hash=3c148717c5f0355213ec4ed493cbd64e}{%
+           family={Paulson},
+           familyi={P\bibinitperiod},
+           given={Lawrence\bibnamedelima C.},
+           giveni={L\bibinitperiod\bibinitdelim C\bibinitperiod}}}%
+      }
+      \name{editor}{1}{}{%
+        {{hash=3b21bf8aebc65b49921c7d76fc66c90a}{%
+           family={Bundy},
+           familyi={B\bibinitperiod},
+           given={Alan},
+           giveni={A\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Berlin, Heidelberg}%
+      }
+      \list{publisher}{1}{%
+        {Springer Berlin Heidelberg}%
+      }
+      \strng{namehash}{3c148717c5f0355213ec4ed493cbd64e}
+      \strng{fullhash}{3c148717c5f0355213ec4ed493cbd64e}
+      \strng{bibnamehash}{3c148717c5f0355213ec4ed493cbd64e}
+      \strng{authorbibnamehash}{3c148717c5f0355213ec4ed493cbd64e}
+      \strng{authornamehash}{3c148717c5f0355213ec4ed493cbd64e}
+      \strng{authorfullhash}{3c148717c5f0355213ec4ed493cbd64e}
+      \strng{editorbibnamehash}{3b21bf8aebc65b49921c7d76fc66c90a}
+      \strng{editornamehash}{3b21bf8aebc65b49921c7d76fc66c90a}
+      \strng{editorfullhash}{3b21bf8aebc65b49921c7d76fc66c90a}
+      \field{extraname}{1}
+      \field{sortinit}{P}
+      \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{This paper presents a fixedpoint approach to inductive definitions. Instead of using a syntactic test such as `strictly positive,' the approach lets definitions involve any operators that have been proved monotone. It is conceptually simple, which has allowed the easy implementation of mutual recursion and other conveniences. It also handles coinductive definitions: simply replace the least fixedpoint by a greatest fixedpoint. This represents the first automated support for coinductive definitions.}
+      \field{booktitle}{Automated Deduction --- CADE-12}
+      \field{isbn}{978-3-540-48467-7}
+      \field{title}{A fixedpoint approach to implementing (Co)inductive definitions}
+      \field{year}{1994}
+      \field{pages}{148\bibrangedash 161}
+      \range{pages}{14}
+    \endentry
+    \entry{paulson_reflection}{inbook}{}
+      \name{author}{1}{}{%
+        {{hash=3c148717c5f0355213ec4ed493cbd64e}{%
+           family={Paulson},
+           familyi={P\bibinitperiod},
+           given={Lawrence\bibnamedelima C.},
+           giveni={L\bibinitperiod\bibinitdelim C\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Springer Berlin Heidelberg}%
+      }
+      \strng{namehash}{3c148717c5f0355213ec4ed493cbd64e}
+      \strng{fullhash}{3c148717c5f0355213ec4ed493cbd64e}
+      \strng{bibnamehash}{3c148717c5f0355213ec4ed493cbd64e}
+      \strng{authorbibnamehash}{3c148717c5f0355213ec4ed493cbd64e}
+      \strng{authornamehash}{3c148717c5f0355213ec4ed493cbd64e}
+      \strng{authorfullhash}{3c148717c5f0355213ec4ed493cbd64e}
+      \field{extraname}{2}
+      \field{sortinit}{P}
+      \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Automated Deduction—CADE-18}
+      \field{isbn}{9783540456209}
+      \field{issn}{0302-9743}
+      \field{title}{The Reflection Theorem: A Study in Meta-theoretic Reasoning}
+      \field{year}{2002}
+      \field{pages}{377\bibrangedash 391}
+      \range{pages}{15}
+      \verb{doi}
+      \verb 10.1007/3-540-45620-1_31
+      \endverb
+      \verb{urlraw}
+      \verb http://dx.doi.org/10.1007/3-540-45620-1_31
+      \endverb
+      \verb{url}
+      \verb http://dx.doi.org/10.1007/3-540-45620-1_31
+      \endverb
+    \endentry
+    \entry{paulson_AC_consistency}{inbook}{}
+      \name{author}{1}{}{%
+        {{hash=3c148717c5f0355213ec4ed493cbd64e}{%
+           family={Paulson},
+           familyi={P\bibinitperiod},
+           given={Lawrence\bibnamedelima C.},
+           giveni={L\bibinitperiod\bibinitdelim C\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Springer Berlin Heidelberg}%
+      }
+      \strng{namehash}{3c148717c5f0355213ec4ed493cbd64e}
+      \strng{fullhash}{3c148717c5f0355213ec4ed493cbd64e}
+      \strng{bibnamehash}{3c148717c5f0355213ec4ed493cbd64e}
+      \strng{authorbibnamehash}{3c148717c5f0355213ec4ed493cbd64e}
+      \strng{authornamehash}{3c148717c5f0355213ec4ed493cbd64e}
+      \strng{authorfullhash}{3c148717c5f0355213ec4ed493cbd64e}
+      \field{extraname}{3}
+      \field{sortinit}{P}
+      \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Logic and Theory of Algorithms}
+      \field{isbn}{9783540694076}
+      \field{title}{The Relative Consistency of the Axiom of Choice — Mechanized Using Isabelle/ZF}
+      \field{pages}{486\bibrangedash 490}
+      \range{pages}{5}
+      \verb{doi}
+      \verb 10.1007/978-3-540-69407-6_52
+      \endverb
+      \verb{urlraw}
+      \verb http://dx.doi.org/10.1007/978-3-540-69407-6_52
+      \endverb
+      \verb{url}
+      \verb http://dx.doi.org/10.1007/978-3-540-69407-6_52
+      \endverb
+    \endentry
+    \entry{paulson_cardinal_AC}{article}{}
+      \name{author}{2}{}{%
+        {{hash=3c148717c5f0355213ec4ed493cbd64e}{%
+           family={Paulson},
+           familyi={P\bibinitperiod},
+           given={LawrenceC.},
+           giveni={L\bibinitperiod}}}%
+        {{hash=3f1d4ac2b0894338ad1c847a2967fdba}{%
+           family={Grabczewski},
+           familyi={G\bibinitperiod},
+           given={Krzysztof},
+           giveni={K\bibinitperiod}}}%
+      }
+      \list{publisher}{2}{%
+        {Springer Science}%
+        {Business Media LLC}%
+      }
+      \strng{namehash}{f1ab39614df9f8944dfca821940d4896}
+      \strng{fullhash}{f1ab39614df9f8944dfca821940d4896}
+      \strng{bibnamehash}{f1ab39614df9f8944dfca821940d4896}
+      \strng{authorbibnamehash}{f1ab39614df9f8944dfca821940d4896}
+      \strng{authornamehash}{f1ab39614df9f8944dfca821940d4896}
+      \strng{authorfullhash}{f1ab39614df9f8944dfca821940d4896}
+      \field{sortinit}{P}
+      \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{1573-0670}
+      \field{journaltitle}{Journal of Automated Reasoning}
+      \field{month}{12}
+      \field{number}{3}
+      \field{title}{Mechanizing set theory: Cardinal arithmetic and the Axiom of Choice}
+      \field{volume}{17}
+      \field{year}{1996}
+      \verb{doi}
+      \verb 10.1007/bf00283132
+      \endverb
+      \verb{urlraw}
+      \verb http://dx.doi.org/10.1007/BF00283132
+      \endverb
+      \verb{url}
+      \verb http://dx.doi.org/10.1007/BF00283132
+      \endverb
+    \endentry
+    \entry{paulson_datatype}{inbook}{}
+      \name{author}{3}{}{%
+        {{hash=5ac4023ed140a900b897444afb2c41d9}{%
+           family={Plotkin},
+           familyi={P\bibinitperiod},
+           given={Gordon},
+           giveni={G\bibinitperiod}}}%
+        {{hash=c74a3f2dab5d3a5430bb8433f7d370ef}{%
+           family={Stirling},
+           familyi={S\bibinitperiod},
+           given={Colin\bibnamedelima P.},
+           giveni={C\bibinitperiod\bibinitdelim P\bibinitperiod}}}%
+        {{hash=5780065392a3c6c91ee5a3b8c079ca35}{%
+           family={Tofte},
+           familyi={T\bibinitperiod},
+           given={Mads},
+           giveni={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{4920310d1b4ede4b0593ee68424f25ff}
+      \strng{fullhash}{4920310d1b4ede4b0593ee68424f25ff}
+      \strng{bibnamehash}{4920310d1b4ede4b0593ee68424f25ff}
+      \strng{authorbibnamehash}{4920310d1b4ede4b0593ee68424f25ff}
+      \strng{authornamehash}{4920310d1b4ede4b0593ee68424f25ff}
+      \strng{authorfullhash}{4920310d1b4ede4b0593ee68424f25ff}
+      \field{sortinit}{P}
+      \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proof, Language, and Interaction: Essays in Honour of Robin Milner}
+      \field{title}{A Fixedpoint Approach to (Co)Inductive and (Co)Datatype Definitions}
+      \field{year}{2000}
+      \field{pages}{187\bibrangedash 211}
+      \range{pages}{25}
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+
