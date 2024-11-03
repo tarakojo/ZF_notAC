@@ -23,8 +23,10 @@
 \contentsline {subsubsection}{Unsuccessful Approach}{14}{section*.12}%
 \contentsline {subsubsection}{The Relativized Forcing Relation $\Vdash _{\mathrm {HS}}$}{14}{section*.13}%
 \contentsline {subsubsection}{The Symmetry Lemma}{15}{section*.14}%
-\contentsline {subsubsection}{Separation}{16}{section*.15}%
-\contentsline {section}{\numberline {3.3}Defining the Basic Cohen Model}{16}{section.3.3}%
-\contentsline {section}{\numberline {3.4}Proving the Basic Cohen Model satisfies $\neg $AC}{16}{section.3.4}%
-\contentsline {chapter}{\numberline {4}Conclusion and Future Work}{17}{chapter.4}%
-\contentsline {subsubsection}{Acknowledgements}{17}{section*.16}%
+\contentsline {subsubsection}{Separation}{15}{section*.15}%
+\contentsline {subsubsection}{Replacement}{16}{section*.16}%
+\contentsline {subsubsection}{Other Axioms}{17}{section*.17}%
+\contentsline {section}{\numberline {3.3}Defining the Basic Cohen Model}{17}{section.3.3}%
+\contentsline {section}{\numberline {3.4}Proving the Basic Cohen Model satisfies $\neg $AC}{17}{section.3.4}%
+\contentsline {chapter}{\numberline {4}Conclusion and Future Work}{18}{chapter.4}%
+\contentsline {subsubsection}{Acknowledgements}{18}{section*.18}%

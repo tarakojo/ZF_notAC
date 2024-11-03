@@ -331,10 +331,8 @@ This model is a symmetric extension called the basic Cohen model.
 Let $M$ be a c.t.m.\  of ZF, $\mathbb{P}$ be the set of all finite partial functions from $\omega \times \omega$ to $\{0, 1\}$, and $\leq_{\mathbb{P}}$ be $\supseteq$.
 Note that the maximum element $1_{\mathbb{P}}$ is the empty set. 
 Let $\pi$ be a bijection on $\omega$. $\pi$ induces an automorphism on $\mathbb{P}$ defined as follows:
-
 $$\mathrm{dom}(\pi p) = \{ (\pi n, m) \mid (n, m) \in \mathrm{dom}(p) \}$$
 $$(\pi p)(\pi n, m) = p(n, m)$$
-
 This automorphism further induces an automorphism on $\mathbb{P}$-names. 
 Let $\mathcal{G}$ be the group of all such automorphisms.
 For every finite $e \subseteq \omega$, let 
@@ -701,8 +699,6 @@ for any $\dot{x}$ with $\mathbb{P}$-rank at most $\alpha$ and $\dot{y}$ with $\m
 The proof for non-atomic formulas is relatively straightforward, and finally, 
 this completes the proof of the lemma.
 
-
-
 \begin{isaframe}
 \begin{minted}[breaklines]{isabelle}
 lemma symmetry_lemma:
@@ -714,6 +710,111 @@ lemma symmetry_lemma:
 \end{isaframe}
 
 \subsubsection{Separation}
+Using the symmetry lemma, we prove the axiom schema of separation for symmetric extensions 
+within the locale \texttt{"M\_symmetric\_system\_G\_generic"}.
+Our proof is based on Karagila's proof \cite{karagila} of $\Delta_0$-separation for symmetric extensions.
+However, since we use the $\Vdash_{\mathrm{HS}}$ relation instead of $\Vdash$,
+we can prove separation for any formula, not just $\Delta_0$ formulas.
+
+The separation for the formula $\varphi$ means that 
+for any elements $x, p$ in the symmetric extension, the set $X = \{ y \in x \mid \varphi(y, p) \}$ is also an element of it.
+To prove this, we show that 
+$\dot{X} = \{ \langle y, p \rangle \in \mathrm{dom}(x) \times \mathbb{P} \mid p \Vdash_{\mathrm{HS}} \varphi(\dot{y}, \dot{p}) \}$ is a hereditarily symmetric name of $X$,
+i.e., $\dot{X} \in \mathrm{HS}$ and $\dot{X}^G = X$.
+
+\begin{isaframe}
+\begin{minted}[breaklines]{isabelle}
+lemma sep_forces_pair_in_HS : 
+    fixes x env φ
+    assumes "x ∈ HS" "env ∈ list(HS)" "φ ∈ formula" "arity(φ) ≤ succ(length(env))" 
+    shows "{ <y, p> ∈ domain(x) × P. p ⊩HS φ [y] @ env } ∈ HS"
+
+lemma SymExt_separation : 
+    fixes x env φ 
+    assumes "x ∈ SymExt(G)" "env ∈ list(SymExt(G))" 
+                    "φ ∈ formula" "arity(φ) ≤ succ(length(env))" 
+    shows "{ y ∈ x. sats(SymExt(G), φ, [y] @ env) } ∈ SymExt(G)"
+\end{minted}
+\end{isaframe}
+
+\subsubsection{Replacement}
+Now that we have proven separation, to prove the axiom schema of replacement for symmetric extensions,
+it is sufficient to show that for any formula $\varphi$ and any elements $x, p$ in a symmetric extension $\mathcal{N}$,
+we can find a set $S \in \mathcal{N}$ such that : 
+$$\mathcal{N} \vDash \exists z \, \varphi(y, z, p) \text{ iff }
+  \mathcal{N} \vDash \exists z \, (z \in S \land \varphi(y, z, p)) \text{ for all } y \in x$$
+This is because such a set $S$ contains the image of $x$ under the class function defined by $\varphi$ \footnote{If $\varphi$ defines a class function.},
+which is the set that would be obtained by applying the replacement axiom.
+To prove this, we show the following lemma, which rewrites the above statement in terms of the forcing relation $\Vdash_{\mathrm{HS}}$,
+and then prove it.
+\begin{isaframe}
+\begin{minted}[breaklines]{isabelle}
+lemma ex_hs_subset_contains_witnesses : 
+    fixes φ env x 
+    assumes "φ ∈ formula" "env ∈ list(M)" "arity(φ) ≤ 2 #+ length(env)" "x ∈ M" 
+    shows "∃S. S ∈ M ∧ S ⊆ HS ∧ (∀p ∈ G. ∀y ∈ domain(x). 
+                (∃z ∈ HS. p ⊩HS φ ([y, z] @ env)) ⟷ (∃z ∈ S. p ⊩HS φ ([y, z] @ env)))" 
+
+  lemma ex_SymExt_elem_contains_witnesses : 
+    fixes φ env x 
+    assumes "φ ∈ formula" "env ∈ list(SymExt(G))" 
+                "arity(φ) ≤ 2 #+ length(env)" "x ∈ SymExt(G)" 
+    shows "∃S ∈ SymExt(G). ∀y ∈ x. 
+                ((∃z ∈ SymExt(G). sats(SymExt(G), φ, [y, z] @ env)) 
+                ⟷ (∃z ∈ S. sats(SymExt(G), φ, [y, z] @ env)))"
+\end{minted}
+\end{isaframe}
+
+Additionally, the following lemma was helpful in these proofs.
+This is also frequently used in the proofs of the axioms.
+
+\begin{isaframe}
+\begin{minted}[breaklines]{isabelle}
+lemma ex_separation_base : 
+    fixes X 
+    assumes "X ⊆ HS" "X ∈ M" 
+    shows "∃S ∈ SymExt(G). { val(G, x). x ∈ X } ⊆ S" 
+\end{minted}
+\end{isaframe}
+This lemma states that for any set of hereditarily symmetric names $X \in M$, 
+there exists a set $S$ in the symmetric extension such that $X^G \subseteq S$.
+
+Then, we prove the axiom schema of replacement for symmetric extensions.
+\begin{isaframe}
+\begin{minted}[breaklines]{isabelle}
+lemma SymExt_replacement :
+    fixes φ env
+    assumes "φ ∈ formula" "arity(φ) ≤ 2 #+ length(env)" "env ∈ list(SymExt(G))" 
+    shows 
+          "strong_replacement(##SymExt(G), λx y. sats(SymExt(G), φ, [x, y] @ env))" 
+\end{minted}
+\end{isaframe}
+
+\subsubsection{Other Axioms}
+Other axioms of ZF can be proven relatively easily in symmetric extensions by using separation, replacement and the lemma \texttt{"ex\_separation\_base"}.
+For example, the axiom of pairing can be proven as follows. 
+Let a, b be elements of a symmetric extension $\mathcal{N}$.
+Then, we can take hereditarily symmetric names $\dot{a}, \dot{b}$ of a, b, respectively.
+By the lemma \texttt{"ex\_separation\_base"}, we can find a set $S$ in $\mathcal{N}$ such that $\{ \dot{a}, \dot{b} \}^G \subseteq S$.
+In other words, $\{ a, b \} \subseteq S$. 
+Then by the separation axiom, $\{ x \in S \mid x = a \lor x = b \} = \{ a, b \}$ is an element of $\mathcal{N}$.
+
+Finally we obtain the following lemma, which states that symmetric extensions are models of ZF.
+\begin{isaframe}
+\begin{minted}[breaklines]{isabelle}
+theorem SymExt_sats_ZF : "SymExt(G) ⊨ ZF" 
+\end{minted}
+\end{isaframe}
+
+Furthermore, since symmetric extensions are transitive, it can be shown that they are 
+instances of the locale \texttt{"M\_ZF\_trans"}.
+As a result, many results concerning ZF set theory formalized in this locale can now be applied to symmetric extensions.
+
+\begin{isaframe}
+\begin{minted}[breaklines]{isabelle}
+lemma SymExt_M_ZF_trans : "M_ZF_trans(SymExt(G))"
+\end{minted}
+\end{isaframe}
 
 \begin{comment}
 \subsection{Relativized Forcing Relation $\Vdash_{\mathrm{HS}}$}

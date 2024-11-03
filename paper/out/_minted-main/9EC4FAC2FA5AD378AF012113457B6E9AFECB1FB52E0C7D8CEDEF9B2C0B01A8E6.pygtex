@@ -1,0 +1,3 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{theorem}\PYG{+w}{ }\PYG{n}{SymExt\PYGZus{}sats\PYGZus{}ZF}\PYG{+w}{ }\PYG{o}{:}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}SymExt(G) ⊨ ZF\PYGZdq{}}
+\end{Verbatim}

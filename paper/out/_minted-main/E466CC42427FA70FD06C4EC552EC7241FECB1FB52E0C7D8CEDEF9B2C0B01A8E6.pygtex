@@ -1,0 +1,12 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{lemma}\PYG{+w}{ }\PYG{n}{sep\PYGZus{}forces\PYGZus{}pair\PYGZus{}in\PYGZus{}HS}\PYG{+w}{ }\PYG{o}{:}
+\PYG{+w}{    }\PYG{k+kp}{fixes}\PYG{+w}{ }\PYG{n}{x}\PYG{+w}{ }\PYG{n}{env}\PYG{+w}{ }\PYG{n}{φ}
+\PYG{+w}{    }\PYG{k+kp}{assumes}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}x ∈ HS\PYGZdq{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}env ∈ list(HS)\PYGZdq{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}φ ∈ formula\PYGZdq{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}arity(φ) ≤ succ(length(env))\PYGZdq{}}
+\PYG{+w}{    }\PYG{k+kp}{shows}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}\PYGZob{} \PYGZlt{}y, p\PYGZgt{} ∈ domain(x) × P. p ⊩HS φ [y] @ env \PYGZcb{} ∈ HS\PYGZdq{}}
+
+\PYG{k+kn}{lemma}\PYG{+w}{ }\PYG{n}{SymExt\PYGZus{}separation}\PYG{+w}{ }\PYG{o}{:}
+\PYG{+w}{    }\PYG{k+kp}{fixes}\PYG{+w}{ }\PYG{n}{x}\PYG{+w}{ }\PYG{n}{env}\PYG{+w}{ }\PYG{n}{φ}
+\PYG{+w}{    }\PYG{k+kp}{assumes}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}x ∈ SymExt(G)\PYGZdq{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}env ∈ list(SymExt(G))\PYGZdq{}}
+\PYG{+w}{                    }\PYG{l+s}{\PYGZdq{}φ ∈ formula\PYGZdq{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}arity(φ) ≤ succ(length(env))\PYGZdq{}}
+\PYG{+w}{    }\PYG{k+kp}{shows}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}\PYGZob{} y ∈ x. sats(SymExt(G), φ, [y] @ env) \PYGZcb{} ∈ SymExt(G)\PYGZdq{}}
+\end{Verbatim}
