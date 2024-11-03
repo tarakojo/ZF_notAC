@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.17.0 (TeX Live 2023)  (format=lualatex 2023.5.15)  2 NOV 2024 15:38
+This is LuaHBTeX, Version 1.17.0 (TeX Live 2023)  (format=lualatex 2023.5.15)  3 NOV 2024 16:12
  system commands enabled.
  file:line:error style messages enabled.
 **c:/Users/tarak/source/repos/ZF_notAC/paper/main.tex
@@ -990,7 +990,7 @@ Package fontspec Info: Font family 'TeXGyreTermesX(0)' created for font
 (fontspec)             <->s*[1]"[TeXGyreTermesX-BoldSlanted.otf]:mode=base;script=latn;language=dflt;-ss05;+tlig;+tnum;+lnum;+smcp;+pcap;"
 
 LaTeX Font Info:    Font shape `TU/TeXGyreTermesX(0)/m/n' will be
-(Font)              scaled to size 10.0pt on input line 41.
+(Font)              scaled to size 10.0pt on input line 42.
 \@quotelevel=\count468
 \@quotereset=\count469
 runsystem(for ^%i in (pygmentize.exe pygmentize.bat pygmentize.cmd) do set > main.aex <nul: /p x=^%~$PATH:i>> main.aex)...failed 
@@ -998,50 +998,50 @@ runsystem(del main.aex)...executed
 (./out/main.aux)
 \openout1 = main.aux
 
-LaTeX Font Info:    Checking defaults for OML/ntxmi/m/it on input line 41.
-LaTeX Font Info:    Trying to load font information for OML+ntxmi on input line 41.
+LaTeX Font Info:    Checking defaults for OML/ntxmi/m/it on input line 42.
+LaTeX Font Info:    Trying to load font information for OML+ntxmi on input line 42.
 (c:/texlive/2023/texmf-dist/tex/latex/newtx/omlntxmi.fd
 File: omlntxmi.fd 2015/08/25 Fontinst v1.933 font definitions for OML/ntxmi.
 )
-LaTeX Font Info:    ... okay on input line 41.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 41.
-LaTeX Font Info:    ... okay on input line 41.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 41.
-LaTeX Font Info:    ... okay on input line 41.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 41.
-LaTeX Font Info:    ... okay on input line 41.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 41.
-LaTeX Font Info:    Trying to load font information for TS1+cmr on input line 41.
+LaTeX Font Info:    ... okay on input line 42.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 42.
+LaTeX Font Info:    ... okay on input line 42.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 42.
+LaTeX Font Info:    ... okay on input line 42.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 42.
+LaTeX Font Info:    ... okay on input line 42.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 42.
+LaTeX Font Info:    Trying to load font information for TS1+cmr on input line 42.
 (c:/texlive/2023/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2022/07/10 v2.5l Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 41.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 41.
-LaTeX Font Info:    ... okay on input line 41.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 41.
-LaTeX Font Info:    ... okay on input line 41.
-LaTeX Font Info:    Checking defaults for U/ntxexa/m/n on input line 41.
-LaTeX Font Info:    Trying to load font information for U+ntxexa on input line 41.
+LaTeX Font Info:    ... okay on input line 42.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 42.
+LaTeX Font Info:    ... okay on input line 42.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 42.
+LaTeX Font Info:    ... okay on input line 42.
+LaTeX Font Info:    Checking defaults for U/ntxexa/m/n on input line 42.
+LaTeX Font Info:    Trying to load font information for U+ntxexa on input line 42.
 (c:/texlive/2023/texmf-dist/tex/latex/newtx/untxexa.fd
 File: untxexa.fd 2012/04/16 Fontinst v1.933 font definitions for U/ntxexa.
 )
-LaTeX Font Info:    ... okay on input line 41.
-LaTeX Font Info:    Checking defaults for LMS/ntxsy/m/n on input line 41.
-LaTeX Font Info:    Trying to load font information for LMS+ntxsy on input line 41.
+LaTeX Font Info:    ... okay on input line 42.
+LaTeX Font Info:    Checking defaults for LMS/ntxsy/m/n on input line 42.
+LaTeX Font Info:    Trying to load font information for LMS+ntxsy on input line 42.
 (c:/texlive/2023/texmf-dist/tex/latex/newtx/lmsntxsy.fd
 File: lmsntxsy.fd 2016/07/02 Fontinst v1.933 font definitions for LMS/ntxsy.
 )
-LaTeX Font Info:    ... okay on input line 41.
-LaTeX Font Info:    Checking defaults for LMX/ntxexx/m/n on input line 41.
-LaTeX Font Info:    Trying to load font information for LMX+ntxexx on input line 41.
+LaTeX Font Info:    ... okay on input line 42.
+LaTeX Font Info:    Checking defaults for LMX/ntxexx/m/n on input line 42.
+LaTeX Font Info:    Trying to load font information for LMX+ntxexx on input line 42.
 (c:/texlive/2023/texmf-dist/tex/latex/newtx/lmxntxexx.fd
 File: lmxntxexx.fd 2016/07/03 Fontinst v1.933 font definitions for LMX/ntxexx.
 )
-LaTeX Font Info:    ... okay on input line 41.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 41.
-LaTeX Font Info:    ... okay on input line 41.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 41.
-LaTeX Font Info:    ... okay on input line 41.
+LaTeX Font Info:    ... okay on input line 42.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 42.
+LaTeX Font Info:    ... okay on input line 42.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 42.
+LaTeX Font Info:    ... okay on input line 42.
 (c:/texlive/2023/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count470
@@ -1061,8 +1061,8 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 48
 (c:/texlive/2023/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
-LaTeX Info: Command `\dddot' is already robust on input line 41.
-LaTeX Info: Command `\ddddot' is already robust on input line 41.
+LaTeX Info: Command `\dddot' is already robust on input line 42.
+LaTeX Info: Command `\ddddot' is already robust on input line 42.
 Package biblatex Info: Trying to load language 'english'...
 Package biblatex Info: ... file 'english.lbx' found.
 (c:/texlive/2023/texmf-dist/tex/latex/biblatex/lbx/english.lbx
@@ -1077,38 +1077,38 @@ Package biblatex Info: Automatic encoding selection.
 Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'main.bbl' found.
 (./out/main.bbl)
-Package biblatex Info: Reference section=0 on input line 41.
-Package biblatex Info: Reference segment=0 on input line 41.
-Package hyperref Info: Link coloring OFF on input line 41.
+Package biblatex Info: Reference section=0 on input line 42.
+Package biblatex Info: Reference segment=0 on input line 42.
+Package hyperref Info: Link coloring OFF on input line 42.
 (./out/main.out) (./out/main.out)
 \@outlinefile=\write7
 
 \openout7 = main.out
 LaTeX Font Info:    Font shape `TU/TeXGyreTermesX(0)/m/n' will be
-(Font)              scaled to size 17.28pt on input line 47.
+(Font)              scaled to size 17.28pt on input line 48.
 LaTeX Font Info:    Font shape `TU/TeXGyreTermesX(0)/m/n' will be
-(Font)              scaled to size 12.0pt on input line 47.
-LaTeX Font Info:    Trying to load font information for OT1+minntx on input line 47.
+(Font)              scaled to size 12.0pt on input line 48.
+LaTeX Font Info:    Trying to load font information for OT1+minntx on input line 48.
 (c:/texlive/2023/texmf-dist/tex/latex/newtx/ot1minntx.fd
 File: ot1minntx.fd 2022/01/20 v1.0 font definition file for OT1/minntx
 )
-LaTeX Font Info:    Trying to load font information for U+msa on input line 47.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 48.
 (c:/texlive/2023/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 47.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 48.
 (c:/texlive/2023/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Trying to load font information for U+ntxmia on input line 47.
+LaTeX Font Info:    Trying to load font information for U+ntxmia on input line 48.
 (c:/texlive/2023/texmf-dist/tex/latex/newtx/untxmia.fd
 File: untxmia.fd 2018/04/14 Fontinst v1.933 font definitions for U/ntxmia.
 )
-LaTeX Font Info:    Trying to load font information for U+ntxsym on input line 47.
+LaTeX Font Info:    Trying to load font information for U+ntxsym on input line 48.
 (c:/texlive/2023/texmf-dist/tex/latex/newtx/untxsym.fd
 File: untxsym.fd 2015/03/20 Fontinst v1.933 font definitions for U/ntxsym.
 )
-LaTeX Font Info:    Trying to load font information for U+ntxsyc on input line 47.
+LaTeX Font Info:    Trying to load font information for U+ntxsyc on input line 48.
 (c:/texlive/2023/texmf-dist/tex/latex/newtx/untxsyc.fd
 File: untxsyc.fd 2012/04/12 Fontinst v1.933 font definitions for U/ntxsyc.
 ) (c:/texlive/2023/texmf-dist/tex/generic/stringenc/se-ascii-print.def
@@ -1117,9 +1117,9 @@ File: se-ascii-print.def 2019/11/29 v1.12 stringenc: Printable ASCII characters
 
 {c:/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
 LaTeX Font Info:    Font shape `TU/TeXGyreTermesX(0)/m/n' will be
-(Font)              scaled to size 24.88pt on input line 50.
+(Font)              scaled to size 24.88pt on input line 51.
 LaTeX Font Info:    Font shape `TU/TeXGyreTermesX(0)/b/n' will be
-(Font)              scaled to size 24.88pt on input line 50.
+(Font)              scaled to size 24.88pt on input line 51.
 (./out/main.toc
 LaTeX Font Info:    Font shape `TU/TeXGyreTermesX(0)/b/n' will be
 (Font)              scaled to size 10.0pt on input line 1.
@@ -1135,11 +1135,11 @@ warning  (pdf backend): ignoring duplicate destination with the name 'page.1'
 ]
 Chapter 1.
 LaTeX Font Info:    Font shape `TU/TeXGyreTermesX(0)/m/n' will be
-(Font)              scaled to size 20.74pt on input line 52.
+(Font)              scaled to size 20.74pt on input line 53.
 LaTeX Font Info:    Font shape `TU/TeXGyreTermesX(0)/b/n' will be
-(Font)              scaled to size 20.74pt on input line 52.
+(Font)              scaled to size 20.74pt on input line 53.
 
-Overfull \hbox (3.85594pt too wide) in paragraph at lines 58--62
+Overfull \hbox (3.85594pt too wide) in paragraph at lines 59--63
 []\TU/TeXGyreTermesX(0)/m/n/10 The in-de-pen-dence of the ax-iom of choice(AC) from Zermelo-Fraenkel set the-ory(ZF)
  []
 
@@ -1148,17 +1148,17 @@ Overfull \hbox (3.85594pt too wide) in paragraph at lines 58--62
 
 ] Excluding 'comment' comment.
 LaTeX Font Info:    Font shape `TU/TeXGyreDejaVuMath-Regular(0)/m/n' will be
-(Font)              scaled to size 7.5pt on input line 119.
+(Font)              scaled to size 7.5pt on input line 120.
 [3]
 Chapter 2.
 LaTeX Font Info:    Font shape `TU/TeXGyreTermesX(0)/m/n' will be
-(Font)              scaled to size 14.4pt on input line 122.
+(Font)              scaled to size 14.4pt on input line 123.
 LaTeX Font Info:    Font shape `TU/TeXGyreTermesX(0)/b/n' will be
-(Font)              scaled to size 14.4pt on input line 122.
+(Font)              scaled to size 14.4pt on input line 123.
 LaTeX Font Info:    Font shape `TU/TeXGyreTermesX(0)/b/n' will be
-(Font)              scaled to size 12.0pt on input line 129.
+(Font)              scaled to size 12.0pt on input line 130.
 LaTeX Font Info:    Font shape `TU/TeXGyreTermesX(0)/m/it' will be
-(Font)              scaled to size 10.0pt on input line 135.
+(Font)              scaled to size 10.0pt on input line 136.
 [4
 
 ] [5]
@@ -1207,25 +1207,25 @@ Package fontspec Info: Font family 'TeXGyreTermesX(1)' created for font
 (fontspec)             <->s*[1]"[TeXGyreTermesX-BoldSlanted.otf]:mode=base;script=latn;language=dflt;-ss05;+tlig;+tnum;+lnum;+sups;+smcp;+pcap;"
 
 LaTeX Font Info:    Font shape `TU/TeXGyreTermesX(1)/m/n' will be
-(Font)              scaled to size 10.0pt on input line 226.
+(Font)              scaled to size 10.0pt on input line 227.
 LaTeX Font Info:    Font shape `TU/TeXGyreTermesX(0)/m/n' will be
-(Font)              scaled to size 8.0pt on input line 230.
+(Font)              scaled to size 8.0pt on input line 231.
 LaTeX Font Info:    Font shape `TU/TeXGyreTermesX(1)/m/n' will be
-(Font)              scaled to size 8.0pt on input line 230.
+(Font)              scaled to size 8.0pt on input line 231.
 LaTeX Font Info:    Font shape `TU/TeXGyreTermesX(0)/m/it' will be
-(Font)              scaled to size 7.3pt on input line 250.
+(Font)              scaled to size 7.3pt on input line 251.
 LaTeX Font Info:    Font shape `TU/TeXGyreTermesX(0)/m/it' will be
-(Font)              scaled to size 5.5pt on input line 250.
+(Font)              scaled to size 5.5pt on input line 251.
 [6] [7] [8]
 
 LaTeX Font Warning: Font shape `TU/TeXGyreDejaVuMath-Regular(0)/b/n' undefined
-(Font)              using `TU/TeXGyreDejaVuMath-Regular(0)/m/n' instead on input line 383.
+(Font)              using `TU/TeXGyreDejaVuMath-Regular(0)/m/n' instead on input line 384.
 
 Excluding 'comment' comment. [9]
 Chapter 3.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 412.
+(mdframed)              on input line 417.
 
 \openout5 = main.pyg
 (./out/_minted-main/default.pygstyle) (./out/_minted-main/FB65EA95EECE9E0A2D170062B77F7469FECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex
@@ -1234,106 +1234,133 @@ LaTeX Font Info:    Font shape `TU/TeXGyreDejaVuMath-Regular(0)/b/n' will be
 ) [10
 
 ]
-Overfull \hbox (7.82764pt too wide) in paragraph at lines 432--435
+Overfull \hbox (7.82764pt too wide) in paragraph at lines 437--440
 \TU/TeXGyreTermesX(0)/m/n/10 To sim-plify the for-mal-iza-tion, we de-clare and work within the lo-cale \TU/TeXGyreDejaVuMath-Regular(0)/b/n/10 "forcing_data_partial"\TU/TeXGyreTermesX(0)/m/n/10 ,
  []
 
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 436.
+(mdframed)              on input line 441.
 
 \openout5 = main.pyg
 (./out/_minted-main/20D3500BAFA43F5DF4A1E3949DD33CD6FECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex)
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 445.
+(mdframed)              on input line 450.
 
 \openout5 = main.pyg
 (./out/_minted-main/5396B815EABD946F3D027DF1A0B7CD37FECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex)
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 459.
+(mdframed)              on input line 464.
 
 \openout5 = main.pyg
 (./out/_minted-main/C5AD814E1093B4C7B828EFAD7DFA7968FECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex)
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 469.
+(mdframed)              on input line 474.
 
 \openout5 = main.pyg
 (./out/_minted-main/BD0C1503BFC1F7227D48391337FB3C29FECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex)
-Overfull \hbox (42.54404pt too wide) in paragraph at lines 481--483
+Overfull \hbox (42.54404pt too wide) in paragraph at lines 486--488
 \TU/TeXGyreTermesX(0)/m/n/10 Where \TU/TeXGyreDejaVuMath-Regular(0)/b/n/10 "π O τ" \TU/TeXGyreTermesX(0)/m/n/10 de-notes the com-po-si-tion of \TU/TeXGyreDejaVuMath-Regular(0)/b/n/10 π \TU/TeXGyreTermesX(0)/m/n/10 and \TU/TeXGyreDejaVuMath-Regular(0)/b/n/10 τ\TU/TeXGyreTermesX(0)/m/n/10 . Then, we de-clare a lo-cale \TU/TeXGyreDejaVuMath-Regular(0)/b/n/10 "M_symmetric_system"
  []
 
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 483.
+(mdframed)              on input line 488.
 
 \openout5 = main.pyg
 (./out/_minted-main/2C4C4D9A83A76E968B4D4C607F7514BCFECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex) [11]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 502.
+(mdframed)              on input line 509.
 
 \openout5 = main.pyg
 (./out/_minted-main/3835CCA9E0363AF02CE67DA81A08AB6FFECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex)
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 519.
+(mdframed)              on input line 526.
 
 \openout5 = main.pyg
 (./out/_minted-main/3A6376707307671117D2ABE18B2952F8FECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex)
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 528.
+(mdframed)              on input line 535.
 
 \openout5 = main.pyg
 (./out/_minted-main/213301E7BC11425D5694E890A5A767E6FECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex)
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 540.
+(mdframed)              on input line 547.
 
 \openout5 = main.pyg
 (./out/_minted-main/0A73345C596586DE51A986ABD0CD2D6BFECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex)
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 548.
+(mdframed)              on input line 555.
 
 \openout5 = main.pyg
-(./out/_minted-main/2123BC49474477747FAB46D85BCF3E31FECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex) [12] Excluding 'comment' comment. Excluding 'comment' comment.
+(./out/_minted-main/2123BC49474477747FAB46D85BCF3E31FECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex)
+Package mdframed Info: Not enough space on this page on input line 562.
+[12]
+Package mdframed Info: Not enough space on this page on input line 562.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 581.
+
+\openout5 = main.pyg
+(./out/_minted-main/5701492FEF50F90FDF58667DD0325CEBFECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex) [13]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 656.
+
+\openout5 = main.pyg
+(./out/_minted-main/505F2D0B93622121A71DC6E9B8164A3AFECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex) [14]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 690.
+
+\openout5 = main.pyg
+(./out/_minted-main/C112864CD795A266DC585B3A7D34449DFECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex)
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 706.
+
+\openout5 = main.pyg
+(./out/_minted-main/94C24AE5E25E7A01E7E2ED359B6517B6FECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex) Excluding 'comment' comment. Excluding 'comment' comment.
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 579.
+(hyperref)                removing `math shift' on input line 733.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\neg' on input line 579.
+(hyperref)                removing `\neg' on input line 733.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 579.
+(hyperref)                removing `math shift' on input line 733.
 
-[13]
+[15] [16]
 Chapter 4.
-[14
+[17
 
 ]
 LaTeX Font Info:    Font shape `TU/TeXGyreTermesX(0)/m/sc' will be
-(Font)              scaled to size 10.0pt on input line 591.
+(Font)              scaled to size 10.0pt on input line 745.
 
-Overfull \hbox (1.95334pt too wide) in paragraph at lines 592--592
+Overfull \hbox (1.95334pt too wide) in paragraph at lines 746--746
 \TU/TeXGyreTermesX(0)/m/n/10 son-ing''. In: \TU/TeXGyreTermesX(0)/m/it/10 Au-to-mated De-duc-tion—CADE-18\TU/TeXGyreTermesX(0)/m/n/10 . Springer Berlin Hei-del-berg, 2002,
  []
 
-[15
+[18
 
-] [16] (./out/main.aux)
+] [19] (./out/main.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: EC70AC2055733F75F7D5CD1F45DEA10F;1234.
+(rerunfilecheck)             Checksum: 5265CE97E343C9AA1AD56DA2CDB13153;1218.
 runsystem(del out\\main.pyg)...executed
 Package logreq Info: Writing requests to 'main.run.xml'.
 
@@ -1341,19 +1368,19 @@ Package logreq Info: Writing requests to 'main.run.xml'.
 )
 
 Here is how much of LuaTeX's memory you used:
- 28217 strings out of 478313
+ 28331 strings out of 478313
  100000,1977958 words of node,token memory allocated
- 920 words of node memory still in use:
-   6 hlist, 2 vlist, 2 rule, 4 glue, 4 kern, 1 glyph, 30 attribute, 110 glue_spec, 30 attribute_list, 1 write, 6 pdf_action nodes
-   avail lists: 1:3,2:1753,3:371,4:667,5:759,6:87,7:5609,8:63,9:694,10:8,11:433
- 46867 multiletter control sequences out of 65536+600000
- 292 fonts using 26990783 bytes
- 73i,6n,98p,719b,1397s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 942 words of node memory still in use:
+   6 hlist, 2 vlist, 2 rule, 6 glue, 4 kern, 1 glyph, 32 attribute, 110 glue_spec, 32 attribute_list, 1 write, 6 pdf_action nodes
+   avail lists: 1:3,2:1749,3:371,4:669,5:745,6:87,7:7740,8:63,9:694,10:9,11:513
+ 46902 multiletter control sequences out of 65536+600000
+ 292 fonts using 26993343 bytes
+ 73i,6n,98p,719b,1423s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/texlive/2023/texmf-dist/fonts/opentype/public/newtx/TeXGyreTermesX-Regular.otf>{c:/texlive/2023/texmf-dist/fonts/enc/dvips/newtx/ntx-ot1-tlf.enc}<c:/texlive/2023/texmf-dist/fonts/opentype/public/newtx/TeXGyreTermesX-Italic.otf><c:/texlive/2023/texmf-dist/fonts/opentype/public/tex-gyre-math/texgyredejavu-math.otf><c:/texlive/2023/texmf-dist/fonts/opentype/public/newtx/TeXGyreTermesX-Bold.otf><c:/texlive/2023/texmf-dist/fonts/opentype/public/newtx/TeXGyreTermesX-Regular.otf><c:/texlive/2023/texmf-dist/fonts/type1/public/newtx/NewTXMI.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/newtx/NewTXMI7.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/newtx/txexs.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/newtx/txmiaX.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/txfonts/txsya.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/txfonts/txsyb.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/newtx/txsys.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/newtx/ztmr.pfb>
-Output written on main.pdf (17 pages, 163847 bytes).
+Output written on main.pdf (20 pages, 174998 bytes).
 
-PDF statistics: 365 PDF objects out of 1000 (max. 8388607)
- 319 compressed objects within 4 object streams
- 106 named destinations out of 1000 (max. 131072)
+PDF statistics: 401 PDF objects out of 1000 (max. 8388607)
+ 352 compressed objects within 4 object streams
+ 117 named destinations out of 1000 (max. 131072)
  121 words of extra memory for PDF output out of 10000 (max. 100000000)
 

@@ -1,0 +1,4 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{+w}{  }\PYG{k}{have}\PYG{+w}{ }\PYG{n}{MEM\PYGZus{}step}\PYG{o}{:}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}⋀a. Ord(a) ⟹ ∀b ∈ a. Q(EQ, b, b) ⟹ ∀b ∈ a. Q(MEM, b, a)\PYGZdq{}}
+\PYG{+w}{  }\PYG{k}{have}\PYG{+w}{ }\PYG{n}{EQ\PYGZus{}step}\PYG{+w}{ }\PYG{o}{:}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}⋀a. Ord(a) ⟹ ∀b ∈ a. Q(MEM, b, a) ⟹ Q(EQ, a, a)\PYGZdq{}}
+\end{Verbatim}
