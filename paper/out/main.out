@@ -10,6 +10,5 @@
 \BOOKMARK [0][-]{chapter.3}{Formalization\040of\040the\040Proof}{}% 10
 \BOOKMARK [1][-]{section.3.1}{Defining\040Symmetric\040Extensions}{chapter.3}% 11
 \BOOKMARK [1][-]{section.3.2}{Proving\040Symmetric\040Extensions\040are\040Models\040of\040ZF}{chapter.3}% 12
-\BOOKMARK [1][-]{section.3.3}{Defining\040the\040Basic\040Cohen\040Model}{chapter.3}% 13
-\BOOKMARK [1][-]{section.3.4}{Proving\040the\040Basic\040Cohen\040Model\040satisfies\040AC}{chapter.3}% 14
-\BOOKMARK [0][-]{chapter.4}{Conclusion\040and\040Future\040Work}{}% 15
+\BOOKMARK [1][-]{section.3.3}{Constructing\040a\040Model\040of\040ZF+AC}{chapter.3}% 13
+\BOOKMARK [0][-]{chapter.4}{Conclusion\040and\040Future\040Work}{}% 14

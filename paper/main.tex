@@ -83,7 +83,7 @@ Although there is also a formalization of forcing in Lean 3 by Han and van Doorn
 To use Gunther et al.'s formalization, we adopted the c.t.m.\  approach for our proof, as in their independence proof of CH.
 Specifically, we assumed the existence of a c.t.m.\  of ZF and constructed a model of ZF + $\neg$AC by forcing.
 This model is known as the basic Cohen model, which is a symmetric extension of assumed c.t.m.\ 
-Our proof largely follows karagila's lecture note \cite{karagila}, with some parts also referencing Jech's books \cite{jech_set_theory,jech_AC}
+Our proof is based on Karagila's lecture note \cite{karagila} and Jech's book \cite{jech_set_theory,jech_AC},
 as these resources align well with this approach.
 
 The c.t.m.\  approach is a well-established method for relative consistency proofs in axiomatic set theory.
@@ -150,7 +150,7 @@ Parentheses in formulas are omitted where no confusion arises.
 Where separation and replacement are axiom schemas, representing infinitely many axioms for each formula $\phi$ with an appropriate arity.
 \begin{dfn} 
   \emph{The axiom of choice (AC)} is the following statement: \\
-  $\forall x \exists f (\mathrm{"} f \mathrm{ is a function on } x \mathrm{"} \land \forall y (y \in x \rightarrow f(y) \in y))$
+  $\forall x \exists f (\mathrm{"} f \text{ is a function on } x \mathrm{"} \land \forall y (y \in x \rightarrow f(y) \in y))$
 \end{dfn}
 Where the phrase "f is a function on x" is also considered an abbreviation in the language of set theory.
 Theory ZF + AC is denoted by ZFC.
@@ -328,7 +328,8 @@ We outline an informal proof of the relative consistency of $\neg$AC with ZF whi
 In this proof, the relative consistency is proved by assuming the existence of a c.t.m.\  of ZF and constructing a model of ZF + $\neg$AC by forcing. 
 This model is a symmetric extension called the basic Cohen model.
 
-Let $M$ be a c.t.m.\  of ZF, $\mathbb{P}$ be the set of all finite partial functions from $\omega \times \omega$ to $\{0, 1\}$, and $\leq_{\mathbb{P}}$ be $\supseteq$.
+Let $M$ be a c.t.m.\  of ZF, $\mathbb{P}$ be the set of all finite partial functions from $\omega \times \omega$ to $2 = \{0, 1\}$
+that are elements of $M$, and $\leq_{\mathbb{P}}$ be $\supseteq$.
 Note that the maximum element $1_{\mathbb{P}}$ is the empty set. 
 Let $\pi$ be a bijection on $\omega$. $\pi$ induces an automorphism on $\mathbb{P}$ defined as follows:
 $$\mathrm{dom}(\pi p) = \{ (\pi n, m) \mid (n, m) \in \mathrm{dom}(p) \}$$
@@ -816,22 +817,138 @@ lemma SymExt_M_ZF_trans : "M_ZF_trans(SymExt(G))"
 \end{minted}
 \end{isaframe}
 
-\begin{comment}
-\subsection{Relativized Forcing Relation $\Vdash_{\mathrm{HS}}$}
-\subsection{The Symmetric Lemma}
-\subsection{Separation}
-\subsection{Replacement}
-\subsection{Other Axioms}
-\end{comment}
+\section{Constructing a Model of ZF+$\neg$AC}
+In this section, we define the basic Cohen model which is a symmetric extension that does not satisfy the axiom of choice,
+and prove that it is a model of ZF+$\neg$AC, as outlined in section \ref{sec:outline}.
+First, we work within the locale \texttt{"M\_ctm"} which fixes a c.t.m.\  \texttt{"M"} of ZF.
 
-\section{Defining the Basic Cohen Model}
-\begin{comment}
-\subsection{The Notion of Forcing}
-\subsection{The Group of Automorphisms}
-\subsection{The Normal Filter}
-\end{comment}
+\subsubsection{The Notion of Forcing}
+the notion of forcing for the basic Cohen model is defined as the set of finite partial functions from $\omega \times \omega$ to $2$ that are elements of the ground model,
+with the order relation given by the superset relation.
+We define these as \texttt{"Fn"} and \texttt{"Fn\_leq"} in Isabelle/ZF.
 
-\section{Proving the Basic Cohen Model satisfies $\neg$AC}
+\begin{isaframe}
+\begin{minted}[breaklines]{isabelle}
+definition Fn where "Fn ≡ { f ∈ Pow((nat × nat) × 2) ∩ M. 
+                function(f) ∧ domain(f) ⊆ nat × nat ∧ finite_M(domain(f)) ∧ range(f) ⊆ 2 }"
+
+definition Fn_leq where "Fn_leq ≡ { <f, g> ∈ Fn × Fn. g ⊆ f }" 
+\end{minted}
+\end{isaframe}
+Where \texttt{"nat"} denotes $\omega$ and \texttt{"finite\_M(A)"} denotes that the set \texttt{"A"} is finite.
+From the following lemma, this ordered set is an instance of the locale \texttt{"forcing\_data\_partial"}, 
+meaning that this is indeed a notion of forcing and forms a partially ordered set with the empty set as the maximum element.
+\begin{isaframe}
+\begin{minted}[breaklines]{isabelle}
+lemma Fn_forcing_data_partial : "forcing_data_partial(Fn, Fn_leq, 0, M, enum)" 
+\end{minted}
+\end{isaframe}
+Where \texttt{"enum"} is the enumeration function of the set \texttt{"M"} fixed in the locale \texttt{"M\_ctm"}.
+
+\subsubsection{The Group of Automorphisms and the Normal Filter}
+Next, we define the group of automorphisms \texttt{"Fn\_perms"} on the forcing notion \texttt{"Fn"}.
+\begin{isaframe}
+\begin{minted}[breaklines]{isabelle}
+definition nat_perms where "nat_perms ≡ bij(nat, nat) ∩ M" 
+definition Fn_perm where "Fn_perm(f, p) ≡ { <<f`n, m>, l> . <<n, m>, l> ∈ p }" 
+definition Fn_perm' where "Fn_perm'(f) ≡ { <p, Fn_perm(f, p)>. p ∈ Fn }" 
+definition Fn_perms where "Fn_perms ≡ { Fn_perm'(f). f ∈ nat_perms }" 
+\end{minted}
+\end{isaframe}
+Note that \texttt{"Fn\_perm'(f)"} is the automorphism induced by the bijection \texttt{"f"} on $\omega$,
+and \texttt{"Fn\_perm(f, p)"} is the value of the automorphism \texttt{"Fn\_perm'(f)"} on the partial function \texttt{"p"}.
+We prove that \texttt{"Fn\_perm'(f)"} is indeed an automorphism on \texttt{"Fn"} and 
+\texttt{"Fn\_perms"} is a group of automorphisms on \texttt{"Fn"},
+i.e., closed under composition and the inverse operation, and contains the identity function.
+
+\begin{isaframe}
+\begin{minted}[breaklines]{isabelle}
+lemma Fn_perm'_is_P_auto : 
+    fixes f 
+    assumes "f ∈ nat_perms" 
+    shows "forcing_data_partial.is_P_auto(Fn, Fn_leq, M, Fn_perm'(f))"
+
+lemma Fn_perms_group : 
+    "forcing_data_partial.is_P_auto_group(Fn, Fn_leq, M, Fn_perms)" 
+\end{minted}
+\end{isaframe}
+
+Then, we define the normal filter \texttt{"Fn\_perms\_filter"} on the group of automorphisms \texttt{"Fn\_perms"},
+and verify that our definition satisfies the prerequisites of the locale \texttt{"M\_symmetric\_system"}.
+This completes both the definition of the basic Cohen model and
+the proof that it is a model of ZF.
+
+\begin{isaframe}
+\begin{minted}[breaklines]{isabelle}
+definition Fn_perms_filter where "Fn_perms_filter ≡ { 
+              H ∈ forcing_data_partial.P_auto_subgroups(Fn, Fn_leq, M, Fn_perms).  
+              ∃E ∈ Pow(nat) ∩ M. finite_M(E) ∧ Fix(E) ⊆ H 
+    }" 
+
+lemma Fn_M_symmetric_system : 
+    "M_symmetric_system(Fn, Fn_leq, 0, M, enum, Fn_perms, Fn_perms_filter)" 
+\end{minted}
+\end{isaframe}
+
+Finaly, we prove that the basic Cohen model does not satisfy the axiom of choice.
+To do this, we construct a set $A$ that cannot be well-ordered in it.
+We work within the locale \texttt{"M\_symmetric\_system"} with parameters, as defined above, 
+fixed to generate the basic Cohen model.
+
+We formalize $a_n$ and $A$, introduced in section \ref{sec:outline}, 
+as \texttt{"binmap\_row(G, n)"} and \texttt{"binmap(G)"}, respectively, for given generic filter \texttt{"G"}.
+\begin{isaframe}
+\begin{minted}[breaklines]{isabelle}
+definition binmap_row where 
+    "binmap_row(G, n) ≡ { m ∈ nat. ∃p ∈ G. p`<n, m> = 1 }"
+
+definition binmap where "binmap(G) ≡ { binmap_row(G, n). n ∈ nat }" 
+\end{minted}
+\end{isaframe}
+Then, we prove that $a_n$ are pairwise disjoint, which implies that $A$ is an infinite set.
+\begin{isaframe}
+\begin{minted}[breaklines]{isabelle}
+lemma binmap_row_distinct : 
+    fixes G n m 
+    assumes "M_generic(G)" "n ∈ nat" "m ∈ nat" "n ≠ m" 
+    shows "binmap_row(G, n) ≠ binmap_row(G, m)" 
+\end{minted}
+\end{isaframe}
+Using this lemma, we prove that 
+$p \Vdash_{\mathrm{HS}} \text{"} \dot{F} \text{ is a injection from } \dot{\omega} \text{ to } \dot{A} \text{"}$ leads a contradiction 
+for any $p \in $ \texttt{"Fn"} and $\dot{F} \in $ \texttt{"HS"}.
+This means that there is no injection from $\omega$ to $A$ in the basic Cohen model.
+\begin{isaframe}
+\begin{minted}[breaklines]{isabelle}
+lemma no_injection : 
+  fixes F' p0
+  assumes "F' ∈ HS" "p0 ∈ Fn"  
+                  "ForcesHS(p0, injection_fm(0, 1, 2), [check(nat), binmap', F'])" 
+  shows False
+\end{minted}
+\end{isaframe}
+Where \texttt{"ForcesHS(p, φ, env)"} is another notation for \texttt{"p ⊩HS φ env"},
+and \texttt{"check(nat)"} and \texttt{"binmap'"} are the hereditarily symmetric names of \texttt{"nat"} and \texttt{"binmap"}, respectively.
+
+Finally, from this lemma, we can show that assuming $A$ is well-orderable leads to a contradiction,
+because $A$ is an infinite set, which implies the existence of an injection from $\omega$ to $A$.
+
+\begin{isaframe}
+\begin{minted}[breaklines]{isabelle}
+lemma no_wellorder : 
+    fixes r G
+    assumes 
+            "M_generic(G)" "wellordered(##SymExt(G), binmap(G), r)" "r ∈ SymExt(G)" 
+    shows False
+\end{minted}
+\end{isaframe}
+
+From the above. we complete the proof that the basic Cohen model is a model of ZF+$\neg$AC.
+Our result is stated in the following theorem, with no additional assumptions from any locale.
+
+
+
+
 
 \chapter{Conclusion and Future Work}
 

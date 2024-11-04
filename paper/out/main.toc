@@ -26,7 +26,8 @@
 \contentsline {subsubsection}{Separation}{15}{section*.15}%
 \contentsline {subsubsection}{Replacement}{16}{section*.16}%
 \contentsline {subsubsection}{Other Axioms}{17}{section*.17}%
-\contentsline {section}{\numberline {3.3}Defining the Basic Cohen Model}{17}{section.3.3}%
-\contentsline {section}{\numberline {3.4}Proving the Basic Cohen Model satisfies $\neg $AC}{17}{section.3.4}%
-\contentsline {chapter}{\numberline {4}Conclusion and Future Work}{18}{chapter.4}%
-\contentsline {subsubsection}{Acknowledgements}{18}{section*.18}%
+\contentsline {section}{\numberline {3.3}Constructing a Model of ZF+$\neg $AC}{17}{section.3.3}%
+\contentsline {subsubsection}{The Notion of Forcing}{18}{section*.18}%
+\contentsline {subsubsection}{The Group of Automorphisms and the Normal Filter}{18}{section*.19}%
+\contentsline {chapter}{\numberline {4}Conclusion and Future Work}{21}{chapter.4}%
+\contentsline {subsubsection}{Acknowledgements}{21}{section*.20}%

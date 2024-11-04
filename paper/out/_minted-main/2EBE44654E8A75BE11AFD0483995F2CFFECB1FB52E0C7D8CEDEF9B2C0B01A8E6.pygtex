@@ -1,0 +1,7 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{lemma}\PYG{+w}{ }\PYG{n}{no\PYGZus{}injection}\PYG{+w}{ }\PYG{o}{:}
+\PYG{+w}{  }\PYG{k+kp}{fixes}\PYG{+w}{ }\PYG{n}{F\PYGZsq{}}\PYG{+w}{ }\PYG{n}{p0}
+\PYG{+w}{  }\PYG{k+kp}{assumes}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}F\PYGZsq{} ∈ HS\PYGZdq{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}p0 ∈ Fn\PYGZdq{}}
+\PYG{+w}{                  }\PYG{l+s}{\PYGZdq{}ForcesHS(p0, injection\PYGZus{}fm(0, 1, 2), [check(nat), binmap\PYGZsq{}, F\PYGZsq{}])\PYGZdq{}}
+\PYG{+w}{  }\PYG{k+kp}{shows}\PYG{+w}{ }\PYG{n}{False}
+\end{Verbatim}
