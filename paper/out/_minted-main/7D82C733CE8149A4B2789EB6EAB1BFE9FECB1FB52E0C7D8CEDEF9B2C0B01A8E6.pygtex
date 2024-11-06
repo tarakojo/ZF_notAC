@@ -1,0 +1,23 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+
+\PYG{+w}{  }\PYG{k}{definition}
+\PYG{+w}{  }\PYG{n}{linear\PYGZus{}rel}\PYG{+w}{ }\PYG{o}{::}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}[i⇒o,i,i]⇒o\PYGZdq{}}\PYG{+w}{ }\PYG{k+kp}{where}
+\PYG{+w}{    }\PYG{l+s}{\PYGZdq{}linear\PYGZus{}rel(M,A,r) ≡}
+\PYG{l+s}{        ∀x[M]. x∈A ⟶ (∀y[M]. y∈A ⟶ ⟨x,y⟩∈r | x=y | ⟨y,x⟩∈r)\PYGZdq{}}
+
+\PYG{k}{definition}
+\PYG{+w}{  }\PYG{n}{wellfounded}\PYG{+w}{ }\PYG{o}{::}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}[i⇒o,i]⇒o\PYGZdq{}}\PYG{+w}{ }\PYG{k+kp}{where}
+\PYG{+w}{    }\PYG{n}{―}\PYG{+w}{ }\PYG{l+s}{‹EVERY non\PYGZhy{}empty set has an ‹r›\PYGZhy{}minimal element›}
+\PYG{+w}{    }\PYG{l+s}{\PYGZdq{}wellfounded(M,r) ≡}
+\PYG{l+s}{        ∀x[M]. x≠0 ⟶ (∃y[M]. y∈x ∧ ¬(∃z[M]. z∈x ∧ ⟨z,y⟩ ∈ r))\PYGZdq{}}
+\PYG{k}{definition}
+\PYG{+w}{  }\PYG{n}{wellfounded\PYGZus{}on}\PYG{+w}{ }\PYG{o}{::}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}[i⇒o,i,i]⇒o\PYGZdq{}}\PYG{+w}{ }\PYG{k+kp}{where}
+\PYG{+w}{    }\PYG{n}{―}\PYG{+w}{ }\PYG{l+s}{‹every non\PYGZhy{}empty SUBSET OF ‹A› has an ‹r›\PYGZhy{}minimal element›}
+\PYG{+w}{    }\PYG{l+s}{\PYGZdq{}wellfounded\PYGZus{}on(M,A,r) ≡}
+\PYG{l+s}{        ∀x[M]. x≠0 ⟶ x⊆A ⟶ (∃y[M]. y∈x ∧ ¬(∃z[M]. z∈x ∧ ⟨z,y⟩ ∈ r))\PYGZdq{}}
+\PYG{k}{definition}
+\PYG{+w}{  }\PYG{n}{wellordered}\PYG{+w}{ }\PYG{o}{::}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}[i⇒o,i,i]⇒o\PYGZdq{}}\PYG{+w}{ }\PYG{k+kp}{where}
+\PYG{+w}{    }\PYG{n}{―}\PYG{+w}{ }\PYG{l+s}{‹linear and wellfounded on ‹A››}
+\PYG{+w}{    }\PYG{l+s}{\PYGZdq{}wellordered(M,A,r) ≡}
+\PYG{l+s}{        transitive\PYGZus{}rel(M,A,r) ∧ linear\PYGZus{}rel(M,A,r) ∧ wellfounded\PYGZus{}on(M,A,r)\PYGZdq{}}
+\end{Verbatim}

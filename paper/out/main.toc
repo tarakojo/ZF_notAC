@@ -12,22 +12,25 @@
 \contentsline {section}{\numberline {2.3}Isabelle/ZF and Formalization in Prior Work}{9}{section.2.3}%
 \contentsline {subsubsection}{The locale \texttt {"forcing\_data"} by Gunther et al.}{9}{section*.5}%
 \contentsline {chapter}{\numberline {3}Formalization of the Proof}{10}{chapter.3}%
-\contentsline {section}{\numberline {3.1}Defining Symmetric Extensions}{10}{section.3.1}%
+\contentsline {section}{\numberline {3.1}Symmetric Extensions}{10}{section.3.1}%
+\contentsline {subsection}{\numberline {3.1.1}Defining Symmetric Extensions}{10}{subsection.3.1.1}%
 \contentsline {subsubsection}{$\mathbb {P}$-names}{10}{section*.6}%
 \contentsline {subsubsection}{Automorphisms}{11}{section*.7}%
 \contentsline {subsubsection}{Groups of Automorphisms and Normal Filters}{11}{section*.8}%
 \contentsline {subsubsection}{Hereditarily Symmetric Names}{12}{section*.9}%
 \contentsline {subsubsection}{Symmetric Extensions}{12}{section*.10}%
 \contentsline {subsubsection}{Formulas Representing These Definitions}{13}{section*.11}%
-\contentsline {section}{\numberline {3.2}Proving Symmetric Extensions are Models of ZF}{14}{section.3.2}%
+\contentsline {subsection}{\numberline {3.1.2}Proving Symmetric Extensions are Models of ZF}{14}{subsection.3.1.2}%
 \contentsline {subsubsection}{Unsuccessful Approach}{14}{section*.12}%
 \contentsline {subsubsection}{The Relativized Forcing Relation $\Vdash _{\mathrm {HS}}$}{14}{section*.13}%
 \contentsline {subsubsection}{The Symmetry Lemma}{15}{section*.14}%
 \contentsline {subsubsection}{Separation}{15}{section*.15}%
 \contentsline {subsubsection}{Replacement}{16}{section*.16}%
 \contentsline {subsubsection}{Other Axioms}{17}{section*.17}%
-\contentsline {section}{\numberline {3.3}Constructing a Model of ZF+$\neg $AC}{17}{section.3.3}%
+\contentsline {section}{\numberline {3.2}The Basic Cohen Model}{17}{section.3.2}%
+\contentsline {subsection}{\numberline {3.2.1}Defining the Basic Cohen Model}{17}{subsection.3.2.1}%
 \contentsline {subsubsection}{The Notion of Forcing}{18}{section*.18}%
 \contentsline {subsubsection}{The Group of Automorphisms and the Normal Filter}{18}{section*.19}%
-\contentsline {chapter}{\numberline {4}Conclusion and Future Work}{21}{chapter.4}%
-\contentsline {subsubsection}{Acknowledgements}{21}{section*.20}%
+\contentsline {subsection}{\numberline {3.2.2}Proving the Basic Cohen Model does not Satisfy AC}{19}{subsection.3.2.2}%
+\contentsline {chapter}{\numberline {4}Conclusion}{21}{chapter.4}%
+\contentsline {subsubsection}{Acknowledgements}{22}{section*.20}%

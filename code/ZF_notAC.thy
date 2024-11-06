@@ -6,7 +6,7 @@ begin
 theorem ZF_notAC_main_theorem :
   fixes M 
   assumes "nat \<approx> M" "M \<Turnstile> ZF" "Transset(M)" 
-  shows "\<exists>N. N \<Turnstile> ZF \<and> \<not>(\<forall>A \<in> N. \<exists>R \<in> N. wellordered(##N, A, R))" 
+  shows "\<exists>N. nat \<approx> N \<and> N \<Turnstile> ZF \<and> Transset(N) \<and> \<not>(\<forall>A \<in> N. \<exists>r \<in> N. wellordered(##N, A, r))" 
 proof - 
 
   obtain enum where "enum \<in> bij(nat, M)" using assms eqpoll_def by auto
@@ -38,9 +38,8 @@ proof -
      apply(rule no_wellorder)
     using GH N_def SymExt_def binmap_eq binmap'_HS
     by auto 
-  then show ?thesis using N_ZF by auto
+  then show ?thesis using N_ZF N_def Transset_SymExt SymExt_countable
+    by auto
 qed
-
-
 
 end 

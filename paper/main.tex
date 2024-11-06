@@ -399,7 +399,9 @@ We choose \emph{ZF-Constructible} by Paulson \cite{paulson_AC_consistency} as Is
 , which includes the ZF axioms along with useful definitions and lemmas built on top of them.
 We also reuse the formalization of forcing by Gunther et al. \cite{gunther_forcing}.
 
-\section{Defining Symmetric Extensions}
+\section{Symmetric Extensions}
+
+\subsection{Defining Symmetric Extensions}
 First, we define symmetric extensions in Isabelle/ZF,
 formalizing automorphisms, normal filters, and hereditarily symmetric names.
 
@@ -571,7 +573,7 @@ Therefore, it is necessary to represent these concepts as internalized formulas.
 
 We utilized the automated formula synethisis method by Gunther et al. \cite{gunther_forcing};
 however, it could not applied to complex formulas, 
-and re-verifying the properties of the derived formulas in an accessible form remained a repititive task.
+and re-verifying the properties of the derived formulas in a more usable form remained a repititive task.
 
 Example of the formulas we defined includes \texttt{"is\_P\_auto\_group"}, \texttt{"is\_P\_name\_fm"}, \texttt{"is\_Pn\_auto\_fm"}, and \texttt{"is\_HS\_fm"},
 whick represent \texttt{"P\_names"}, \texttt{"Pn\_auto"} and \texttt{"HS"} respectively.
@@ -603,7 +605,7 @@ lemma sats_is_HS_fm_iff :
 Note that these formulas take as parameters various elements fixed within the locale, 
 such as the notion of forcing \texttt{"P"}, the normal filter \texttt{"ℱ"}, etc.
 
-\section{Proving Symmetric Extensions are Models of ZF}
+\subsection{Proving Symmetric Extensions are Models of ZF}
 
 In this section, we prove that symmetric extensions are models of ZF.
 Initially, we attempted to prove this based on its proof in Karagila's lecture note \cite{karagila},
@@ -817,9 +819,11 @@ lemma SymExt_M_ZF_trans : "M_ZF_trans(SymExt(G))"
 \end{minted}
 \end{isaframe}
 
-\section{Constructing a Model of ZF+$\neg$AC}
+\section{The Basic Cohen Model}
+
+\subsection{Defining the Basic Cohen Model}
 In this section, we define the basic Cohen model which is a symmetric extension that does not satisfy the axiom of choice,
-and prove that it is a model of ZF+$\neg$AC, as outlined in section \ref{sec:outline}.
+, as outlined in section \ref{sec:outline}.
 First, we work within the locale \texttt{"M\_ctm"} which fixes a c.t.m.\  \texttt{"M"} of ZF.
 
 \subsubsection{The Notion of Forcing}
@@ -882,14 +886,14 @@ the proof that it is a model of ZF.
 \begin{minted}[breaklines]{isabelle}
 definition Fn_perms_filter where "Fn_perms_filter ≡ { 
               H ∈ forcing_data_partial.P_auto_subgroups(Fn, Fn_leq, M, Fn_perms).  
-              ∃E ∈ Pow(nat) ∩ M. finite_M(E) ∧ Fix(E) ⊆ H 
-    }" 
+              ∃E ∈ Pow(nat) ∩ M. finite_M(E) ∧ Fix(E) ⊆ H }" 
 
 lemma Fn_M_symmetric_system : 
     "M_symmetric_system(Fn, Fn_leq, 0, M, enum, Fn_perms, Fn_perms_filter)" 
 \end{minted}
 \end{isaframe}
 
+\subsection{Proving the Basic Cohen Model does not Satisfy AC}
 Finaly, we prove that the basic Cohen model does not satisfy the axiom of choice.
 To do this, we construct a set $A$ that cannot be well-ordered in it.
 We work within the locale \texttt{"M\_symmetric\_system"} with parameters, as defined above, 
@@ -930,8 +934,8 @@ lemma no_injection :
 Where \texttt{"ForcesHS(p, φ, env)"} is another notation for \texttt{"p ⊩HS φ env"},
 and \texttt{"check(nat)"} and \texttt{"binmap'"} are the hereditarily symmetric names of \texttt{"nat"} and \texttt{"binmap"}, respectively.
 
-Finally, from this lemma, we can show that assuming $A$ is well-orderable leads to a contradiction,
-because $A$ is an infinite set, which implies the existence of an injection from $\omega$ to $A$.
+Since $A$ is an infinite set, there exists an injection from $\omega$ to $A$.
+Therefore, using above lemma, we can show that assuming $A$ is well-orderable leads to a contradiction,
 
 \begin{isaframe}
 \begin{minted}[breaklines]{isabelle}
@@ -943,20 +947,104 @@ lemma no_wellorder :
 \end{minted}
 \end{isaframe}
 
-From the above. we complete the proof that the basic Cohen model is a model of ZF+$\neg$AC.
-Our result is stated in the following theorem, with no additional assumptions from any locale.
+Where \texttt{"wellordered(C, A, r)"} denotes that 
+the relation \texttt{"r"} is a well-ordering of the set \texttt{"A"} in the class \texttt{"C"}, 
+and \texttt{"\#\#"} is an operator that converts a set to a class.
+These are defined by Paulson \cite{paulson_AC_consistency}.
+Specifically, the definition of \texttt{"wellordered"} is as follows:
+\begin{isaframe}
+\begin{minted}[breaklines]{isabelle}
+definition transitive_rel :: "[i⇒o,i,i]⇒o" where
+    "transitive_rel(M,A,r) ≡ 
+        ∀x[M]. x∈A ⟶ (∀y[M]. y∈A ⟶ (∀z[M]. z∈A ⟶ 
+                          ⟨x,y⟩∈r ⟶ ⟨y,z⟩∈r ⟶ ⟨x,z⟩∈r))"
+definition linear_rel :: "[i⇒o,i,i]⇒o" where
+    "linear_rel(M,A,r) ≡ 
+        ∀x[M]. x∈A ⟶ (∀y[M]. y∈A ⟶ ⟨x,y⟩∈r | x=y | ⟨y,x⟩∈r)"
 
+definition wellfounded_on :: "[i⇒o,i,i]⇒o" where
+    ― ‹every non-empty SUBSET OF ‹A› has an ‹r›-minimal element›
+    "wellfounded_on(M,A,r) ≡ 
+        ∀x[M]. x≠0 ⟶ x⊆A ⟶ (∃y[M]. y∈x ∧ ¬(∃z[M]. z∈x ∧ ⟨z,y⟩ ∈ r))"
+        
+definition wellordered :: "[i⇒o,i,i]⇒o" where
+    ― ‹linear and wellfounded on ‹A››
+    "wellordered(M,A,r) ≡ 
+        transitive_rel(M,A,r) ∧ linear_rel(M,A,r) ∧ wellfounded_on(M,A,r)"
+\end{minted}
+\end{isaframe}
+Where \texttt{"∀x[M].P(x)"} denotes that \texttt{"P(x)"} holds for all elements \texttt{"x"} in the class \texttt{"M"},
+and \texttt{"∃x[M].P(x)"} denotes that there exists an element \texttt{"x"} in the class \texttt{"M"} such that \texttt{"P(x)"} holds.
+\footnote{
+Note that we can show that 
+if \texttt{"wellordered(N, A, r)"} holds for an element \texttt{"A"} in a class \texttt{"N"}, which is a model of ZF,
+then \texttt{"r"} is irreflexive and assymetric, i.e., a strict total order.
+}
 
+Thus, the statement "a set $\mathcal{N}$ satisfies well-ordering theorem" can be written as follows:
+\begin{isaframe}
+\begin{minted}[breaklines]{isabelle}
+"∀A ∈ N. ∃r ∈ N. wellordered(##N, A, r)"
+\end{minted}
+\end{isaframe}
 
+Using the above, we prove the following theorem and complete our relative consistency proof.
+This theorem has no additional assumptions from any locale.
+\begin{isaframe}
+\begin{minted}[breaklines]{isabelle}
+theorem ZF_notAC_main_theorem :
+    fixes M 
+    assumes "nat ≈ M" "M ⊨ ZF" "Transset(M)" 
+    shows "∃N. nat ≈ N ∧ N ⊨ ZF ∧ Transset(N) 
+                ∧ ¬(∀A ∈ N. ∃r ∈ N. wellordered(##N, A, r))" 
+\end{minted}
+\end{isaframe}
 
+\chapter{Conclusion}
 
-\chapter{Conclusion and Future Work}
+We formalized the relative consistency proof of $\neg$AC with ZF
+on the basis of the work by Paulson \cite{paulson_AC_consistency} and Gunther et al. \cite{gunther_forcing}.
 
-%  In axiomatic set theory, discussions often shift between meta-level and object-level considerations, 
-%  such as considering models of set theory within set theory itself. 
-%  This is one of the challenging aspects when formalizing axiomatic set theory. 
-%  In this formalization as well, this part was complex. 
+Our formalization comprises approximately 15,000 lines of code, 
+distributed roughly as follows:
+\begin{itemize}
+  \item Definition of symmetric extensions: 3,000 lines
+  \item Proof of symmetric extensions are models of ZF: 5,000 lines
+  \item Definition of the basic Cohen model: 2,000 lines
+  \item Proof of the basic Cohen model does not satisfy AC: 2,000 lines
+  \item Other lemmas : 3,000 lines
+\end{itemize}
+This is as large as Paluson's formalization of the proof of relative consistency of AC (12,000 lines), 
+Gunther et al.'s formalization of coercion (16,000 lines), 
+and their proof of independence of CH (12,000 lines).
 
+In our proof, we needed to construct internalized formulas 
+representing most of the concepts that belong to the ground model. 
+This was to verify that the defined sets truly belong to the ground model 
+and to enable tha application of the separation and replacement axioms of the ground model for formulas that include these concepts.
+
+For constructing these formulasm we utilized the sythesis method by Gunther et al. \cite{gunther_forcing};
+however, this method could not be applied to complex formulas.
+When applied, we also needed to reprove properties of derived formulas in a more usable form.
+
+We also needed to prove that the arity of each defined formula is below its respective threshold.
+For complex formulas, Isabelle's automated proof tools were not applicable, 
+and we had to prove these properties manually.
+
+Since these works are repetitive, further automation is desirable.
+Ideally, if the arguments of the base model could be handled without explicitly dealing with internalized formulas, 
+the amount of work required to formalize a proof using an approach such as the one we have taken could be reduced.
+
+Additionally, we used the c.t.m.\ approach, and the formalized argument only extends to the construction of a model of ZF+$\neg$AC,
+assuming the existence of a c.t.m.\ of ZF.
+We did not formalize the justification of the relative consistency proof assuming a c.t.m.\ of ZF.
+
+One approach to formalizing this part is the one described in section \ref{subsection:ctm}.
+However, to formalize the argument, we would likely need to deal with arbitrary models of ZF, 
+not necessarily $\in$-models and prove propositions such as the reflection principle and 
+the Mostowski collapse lemma for these models.
+Currently, formalized definitions and lemmas related to internal models assume that the ground model is an $\in$-model,
+so a large amount of work would be required to formalize this part.
   
 \subsubsection{Acknowledgements}
 
