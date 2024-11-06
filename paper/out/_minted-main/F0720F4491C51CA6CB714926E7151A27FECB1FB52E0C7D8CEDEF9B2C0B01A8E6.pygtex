@@ -1,0 +1,15 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{lemma}\PYG{+w}{ }\PYG{n}{ex\PYGZus{}hs\PYGZus{}subset\PYGZus{}contains\PYGZus{}witnesses}\PYG{+w}{ }\PYG{o}{:}
+\PYG{+w}{    }\PYG{k+kp}{fixes}\PYG{+w}{ }\PYG{n}{φ}\PYG{+w}{ }\PYG{n}{env}\PYG{+w}{ }\PYG{n}{x}
+\PYG{+w}{    }\PYG{k+kp}{assumes}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}φ ∈ formula\PYGZdq{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}env ∈ list(M)\PYGZdq{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}arity(φ) ≤ 2 \PYGZsh{}+ length(env)\PYGZdq{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}x ∈ M\PYGZdq{}}
+\PYG{+w}{    }\PYG{k+kp}{shows}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}∃S. S ∈ M ∧ S ⊆ HS ∧ (∀p ∈ G. ∀y ∈ domain(x).}
+\PYG{l+s}{                (∃z ∈ HS. p ⊩HS φ ([y, z] @ env)) ⟷ (∃z ∈ S. p ⊩HS φ ([y, z] @ env)))\PYGZdq{}}
+
+\PYG{+w}{  }\PYG{k+kn}{lemma}\PYG{+w}{ }\PYG{n}{ex\PYGZus{}SymExt\PYGZus{}elem\PYGZus{}contains\PYGZus{}witnessses}\PYG{+w}{ }\PYG{o}{:}
+\PYG{+w}{    }\PYG{k+kp}{fixes}\PYG{+w}{ }\PYG{n}{φ}\PYG{+w}{ }\PYG{n}{env}\PYG{+w}{ }\PYG{n}{x}
+\PYG{+w}{    }\PYG{k+kp}{assumes}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}φ ∈ formula\PYGZdq{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}env ∈ list(SymExt(G))\PYGZdq{}}
+\PYG{+w}{                }\PYG{l+s}{\PYGZdq{}arity(φ) ≤ 2 \PYGZsh{}+ length(env)\PYGZdq{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}x ∈ SymExt(G)\PYGZdq{}}
+\PYG{+w}{    }\PYG{k+kp}{shows}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}∃S ∈ SymExt(G). ∀y ∈ x.}
+\PYG{l+s}{                ((∃z ∈ SymExt(G). sats(SymExt(G), φ, [y, z] @ env))}
+\PYG{l+s}{                ⟷ (∃z ∈ S. sats(SymExt(G), φ, [y, z] @ env)))\PYGZdq{}}
+\end{Verbatim}

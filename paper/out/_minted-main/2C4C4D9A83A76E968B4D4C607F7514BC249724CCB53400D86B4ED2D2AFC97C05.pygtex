@@ -1,0 +1,13 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{x}{locale M\PYGZus{}symmetric\PYGZus{}system = forcing\PYGZus{}data\PYGZus{}partial +}
+\PYG{x}{    fixes 𝒢 ℱ}
+\PYG{x}{    assumes 𝒢\PYGZus{}in\PYGZus{}M : \PYGZdq{}𝒢 ∈ M\PYGZdq{}}
+\PYG{x}{    and 𝒢\PYGZus{}P\PYGZus{}auto\PYGZus{}group : \PYGZdq{}is\PYGZus{}P\PYGZus{}auto\PYGZus{}group(𝒢)\PYGZdq{}}
+\PYG{x}{    and ℱ\PYGZus{}in\PYGZus{}M : \PYGZdq{}ℱ ∈ M\PYGZdq{}}
+\PYG{x}{    and ℱ\PYGZus{}subset : \PYGZdq{}ℱ ⊆ P\PYGZus{}auto\PYGZus{}subgroups(𝒢)\PYGZdq{}}
+\PYG{x}{    and ℱ\PYGZus{}nonempty : \PYGZdq{}ℱ ≠ 0\PYGZdq{}}
+\PYG{x}{    and ℱ\PYGZus{}closed\PYGZus{}under\PYGZus{}intersection : \PYGZdq{}∀A ∈ ℱ. ∀B ∈ ℱ. A ∩ B ∈ ℱ\PYGZdq{}}
+\PYG{x}{    and ℱ\PYGZus{}closed\PYGZus{}under\PYGZus{}supergroup :}
+\PYG{x}{        \PYGZdq{}∀A ∈ ℱ. ∀B ∈ P\PYGZus{}auto\PYGZus{}subgroups(𝒢). A ⊆ B ⟶ B ∈ ℱ\PYGZdq{}}
+\PYG{x}{    and ℱ\PYGZus{}normal : \PYGZdq{}∀H ∈ ℱ. ∀π ∈ 𝒢. \PYGZob{} π O τ O converse(π). τ ∈ H \PYGZcb{} ∈ ℱ\PYGZdq{}}
+\end{Verbatim}

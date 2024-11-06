@@ -1,5 +1,31 @@
 
+@article{paulson_1986,
+  title    = {Natural deduction as higher-order resolution},
+  journal  = {The Journal of Logic Programming},
+  volume   = {3},
+  number   = {3},
+  pages    = {237-258},
+  year     = {1986},
+  issn     = {0743-1066},
+  doi      = {https://doi.org/10.1016/0743-1066(86)90015-4},
+  url      = {https://www.sciencedirect.com/science/article/pii/0743106686900154},
+  author   = {Lawrence C. Paulson},
+  abstract = {An interactive theorem prover, Isabelle, is under development. In lcf, each inference rule is represented by one function for forwards proof and another (a tactic) for backwards proof. In Isabelle, each inference rule is represented by a Horn clause. Resolution gives both forwards and backwards proof, supporting a large class of logics. Isabelle has been used to prove theorems in Martin-Löf's constructive type theory. Quantifiers pose several difficulties: substitution, bound variables, Skolemization. Isabelle's representation of logical syntax is the typed λ-calculus, requiring higher-order unification. It may have potential for logic programming. Depth-first subgoaling along inference rules constitutes a higher-order PROLOG.}
+}
 
+@inproceedings{alexiandria,
+  author    = {Paulson, Lawrence C.},
+  editor    = {Dubois, Catherine
+               and Kerber, Manfred},
+  title     = {Large-Scale Formal Proof for the Working Mathematician---Lessons Learnt from the ALEXANDRIA Project},
+  booktitle = {Intelligent Computer Mathematics},
+  year      = {2023},
+  publisher = {Springer Nature Switzerland},
+  address   = {Cham},
+  pages     = {3--15},
+  abstract  = {ALEXANDRIA is an ERC-funded project that started in 2017, with the aim of bringing formal verification to mathematics. The past six years have seen great strides in the formalisation of mathematics and also in some relevant technologies, above all machine learning. Six years of intensive formalisation activity seem to show that even the most advanced results, drawing on multiple fields of mathematics, can be formalised using the tools available today.},
+  isbn      = {978-3-031-42753-4}
+}
 
 @article{paulson_cardinal_AC,
   title     = {Mechanizing set theory: Cardinal arithmetic and the Axiom of Choice},
@@ -125,16 +151,16 @@
   address   = {Mineola, NY}
 }
 
-@BOOK{jech_set_theory,
-  title     = "Set Theory",
-  author    = "Jech, Thomas J",
-  publisher = "Springer",
-  series    = "Springer Monographs in Mathematics",
-  edition   =  3,
-  month     =  oct,
-  year      =  2002,
-  address   = "Berlin, Germany",
-  language  = "en"
+@book{jech_set_theory,
+  title     = {Set Theory},
+  author    = {Jech, Thomas J},
+  publisher = {Springer},
+  series    = {Springer Monographs in Mathematics},
+  edition   = 3,
+  month     = oct,
+  year      = 2002,
+  address   = {Berlin, Germany},
+  language  = {en}
 }
 
 @misc{karagila,
@@ -142,4 +168,24 @@
   year  = {2023},
   url   = {https://karagila.org/files/Forcing-2023.pdf},
   note  = {Accessed: 2024-10-29}
+}
+
+@article{seL4, 
+author = {Klein, Gerwin and Derrin, Philip and Elphinstone, Kevin},
+title = {Experience report: seL4: formally verifying a high-performance microkernel},
+year = {2009},
+issue_date = {September 2009},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+volume = {44},
+number = {9},
+issn = {0362-1340},
+url = {https://doi.org/10.1145/1631687.1596566},
+doi = {10.1145/1631687.1596566},
+abstract = {We report on our experience using Haskell as an executable specification language in the formal verification of the seL4 microkernel. The verification connects an abstract operational specification in the theorem prover Isabelle/HOL to a C implementation of the microkernel. We describe how this project differs from other efforts, and examine the effect of using Haskell in a large-scale formal verification. The kernel comprises 8,700 lines of C code; the verification more than 150,000 lines of proof script.},
+journal = {SIGPLAN Not.},
+month = aug,
+pages = {91–96},
+numpages = {6},
+keywords = {Isabelle/HOL, haskell, microkernel, seL4}
 }

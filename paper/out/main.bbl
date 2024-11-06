@@ -216,6 +216,61 @@
       \field{title}{The axiom of choice}
       \field{year}{2008}
     \endentry
+    \entry{seL4}{article}{}
+      \name{author}{3}{}{%
+        {{hash=199a8abce7ff51f1ce18d08d6910be68}{%
+           family={Klein},
+           familyi={K\bibinitperiod},
+           given={Gerwin},
+           giveni={G\bibinitperiod}}}%
+        {{hash=4899d1b6699f1281f9779df5e94d56e6}{%
+           family={Derrin},
+           familyi={D\bibinitperiod},
+           given={Philip},
+           giveni={P\bibinitperiod}}}%
+        {{hash=fccc24f8be7baf0fc4b221f306006e22}{%
+           family={Elphinstone},
+           familyi={E\bibinitperiod},
+           given={Kevin},
+           giveni={K\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {New York, NY, USA}%
+      }
+      \list{publisher}{1}{%
+        {Association for Computing Machinery}%
+      }
+      \strng{namehash}{42949e3c0a0b6519e1d94e3647cbf794}
+      \strng{fullhash}{42949e3c0a0b6519e1d94e3647cbf794}
+      \strng{bibnamehash}{42949e3c0a0b6519e1d94e3647cbf794}
+      \strng{authorbibnamehash}{42949e3c0a0b6519e1d94e3647cbf794}
+      \strng{authornamehash}{42949e3c0a0b6519e1d94e3647cbf794}
+      \strng{authorfullhash}{42949e3c0a0b6519e1d94e3647cbf794}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{We report on our experience using Haskell as an executable specification language in the formal verification of the seL4 microkernel. The verification connects an abstract operational specification in the theorem prover Isabelle/HOL to a C implementation of the microkernel. We describe how this project differs from other efforts, and examine the effect of using Haskell in a large-scale formal verification. The kernel comprises 8,700 lines of C code; the verification more than 150,000 lines of proof script.}
+      \field{issn}{0362-1340}
+      \field{journaltitle}{SIGPLAN Not.}
+      \field{month}{8}
+      \field{number}{9}
+      \field{title}{Experience report: seL4: formally verifying a high-performance microkernel}
+      \field{volume}{44}
+      \field{year}{2009}
+      \field{pages}{91\bibrangedash 96}
+      \range{pages}{6}
+      \verb{doi}
+      \verb 10.1145/1631687.1596566
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1145/1631687.1596566
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1145/1631687.1596566
+      \endverb
+      \keyw{Isabelle/HOL,haskell,microkernel,seL4}
+    \endentry
     \entry{kunen2011}{book}{}
       \name{author}{1}{}{%
         {{hash=9bbbc8091281c78067693611cdfae8a1}{%
@@ -301,6 +356,92 @@
       \field{pages}{148\bibrangedash 161}
       \range{pages}{14}
     \endentry
+    \entry{alexiandria}{inproceedings}{}
+      \name{author}{1}{}{%
+        {{hash=3c148717c5f0355213ec4ed493cbd64e}{%
+           family={Paulson},
+           familyi={P\bibinitperiod},
+           given={Lawrence\bibnamedelima C.},
+           giveni={L\bibinitperiod\bibinitdelim C\bibinitperiod}}}%
+      }
+      \name{editor}{2}{}{%
+        {{hash=f5f465d394b1417f867cead0b30775e6}{%
+           family={Dubois},
+           familyi={D\bibinitperiod},
+           given={Catherine},
+           giveni={C\bibinitperiod}}}%
+        {{hash=c8470e8c825011f9cfbaa5b1b2788e82}{%
+           family={Kerber},
+           familyi={K\bibinitperiod},
+           given={Manfred},
+           giveni={M\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Cham}%
+      }
+      \list{publisher}{1}{%
+        {Springer Nature Switzerland}%
+      }
+      \strng{namehash}{3c148717c5f0355213ec4ed493cbd64e}
+      \strng{fullhash}{3c148717c5f0355213ec4ed493cbd64e}
+      \strng{bibnamehash}{3c148717c5f0355213ec4ed493cbd64e}
+      \strng{authorbibnamehash}{3c148717c5f0355213ec4ed493cbd64e}
+      \strng{authornamehash}{3c148717c5f0355213ec4ed493cbd64e}
+      \strng{authorfullhash}{3c148717c5f0355213ec4ed493cbd64e}
+      \strng{editorbibnamehash}{6ae57761145ea7b8d0cf6daf5e81c8a8}
+      \strng{editornamehash}{6ae57761145ea7b8d0cf6daf5e81c8a8}
+      \strng{editorfullhash}{6ae57761145ea7b8d0cf6daf5e81c8a8}
+      \field{extraname}{2}
+      \field{sortinit}{P}
+      \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{ALEXANDRIA is an ERC-funded project that started in 2017, with the aim of bringing formal verification to mathematics. The past six years have seen great strides in the formalisation of mathematics and also in some relevant technologies, above all machine learning. Six years of intensive formalisation activity seem to show that even the most advanced results, drawing on multiple fields of mathematics, can be formalised using the tools available today.}
+      \field{booktitle}{Intelligent Computer Mathematics}
+      \field{isbn}{978-3-031-42753-4}
+      \field{title}{Large-Scale Formal Proof for the Working Mathematician---Lessons Learnt from the ALEXANDRIA Project}
+      \field{year}{2023}
+      \field{pages}{3\bibrangedash 15}
+      \range{pages}{13}
+    \endentry
+    \entry{paulson_1986}{article}{}
+      \name{author}{1}{}{%
+        {{hash=3c148717c5f0355213ec4ed493cbd64e}{%
+           family={Paulson},
+           familyi={P\bibinitperiod},
+           given={Lawrence\bibnamedelima C.},
+           giveni={L\bibinitperiod\bibinitdelim C\bibinitperiod}}}%
+      }
+      \strng{namehash}{3c148717c5f0355213ec4ed493cbd64e}
+      \strng{fullhash}{3c148717c5f0355213ec4ed493cbd64e}
+      \strng{bibnamehash}{3c148717c5f0355213ec4ed493cbd64e}
+      \strng{authorbibnamehash}{3c148717c5f0355213ec4ed493cbd64e}
+      \strng{authornamehash}{3c148717c5f0355213ec4ed493cbd64e}
+      \strng{authorfullhash}{3c148717c5f0355213ec4ed493cbd64e}
+      \field{extraname}{3}
+      \field{sortinit}{P}
+      \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{An interactive theorem prover, Isabelle, is under development. In lcf, each inference rule is represented by one function for forwards proof and another (a tactic) for backwards proof. In Isabelle, each inference rule is represented by a Horn clause. Resolution gives both forwards and backwards proof, supporting a large class of logics. Isabelle has been used to prove theorems in Martin-Löf's constructive type theory. Quantifiers pose several difficulties: substitution, bound variables, Skolemization. Isabelle's representation of logical syntax is the typed λ-calculus, requiring higher-order unification. It may have potential for logic programming. Depth-first subgoaling along inference rules constitutes a higher-order PROLOG.}
+      \field{issn}{0743-1066}
+      \field{journaltitle}{The Journal of Logic Programming}
+      \field{number}{3}
+      \field{title}{Natural deduction as higher-order resolution}
+      \field{volume}{3}
+      \field{year}{1986}
+      \field{pages}{237\bibrangedash 258}
+      \range{pages}{22}
+      \verb{doi}
+      \verb https://doi.org/10.1016/0743-1066(86)90015-4
+      \endverb
+      \verb{urlraw}
+      \verb https://www.sciencedirect.com/science/article/pii/0743106686900154
+      \endverb
+      \verb{url}
+      \verb https://www.sciencedirect.com/science/article/pii/0743106686900154
+      \endverb
+    \endentry
     \entry{paulson_reflection}{inbook}{}
       \name{author}{1}{}{%
         {{hash=3c148717c5f0355213ec4ed493cbd64e}{%
@@ -318,7 +459,7 @@
       \strng{authorbibnamehash}{3c148717c5f0355213ec4ed493cbd64e}
       \strng{authornamehash}{3c148717c5f0355213ec4ed493cbd64e}
       \strng{authorfullhash}{3c148717c5f0355213ec4ed493cbd64e}
-      \field{extraname}{2}
+      \field{extraname}{4}
       \field{sortinit}{P}
       \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
       \field{labelnamesource}{author}
@@ -357,7 +498,7 @@
       \strng{authorbibnamehash}{3c148717c5f0355213ec4ed493cbd64e}
       \strng{authornamehash}{3c148717c5f0355213ec4ed493cbd64e}
       \strng{authorfullhash}{3c148717c5f0355213ec4ed493cbd64e}
-      \field{extraname}{3}
+      \field{extraname}{5}
       \field{sortinit}{P}
       \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
       \field{labelnamesource}{author}

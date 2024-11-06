@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.17.0 (TeX Live 2023)  (format=lualatex 2023.5.15)  6 NOV 2024 13:59
+This is LuaHBTeX, Version 1.17.0 (TeX Live 2023)  (format=lualatex 2023.5.15)  6 NOV 2024 19:49
  system commands enabled.
  file:line:error style messages enabled.
 **c:/Users/tarak/source/repos/ZF_notAC/paper/main.tex
@@ -1146,26 +1146,26 @@ Overfull \hbox (3.85594pt too wide) in paragraph at lines 59--63
 [2
 
 
-] Excluding 'comment' comment.
+]
 LaTeX Font Info:    Font shape `TU/TeXGyreDejaVuMath-Regular(0)/m/n' will be
-(Font)              scaled to size 7.5pt on input line 120.
+(Font)              scaled to size 7.5pt on input line 114.
 [3]
 Chapter 2.
 LaTeX Font Info:    Font shape `TU/TeXGyreTermesX(0)/m/n' will be
-(Font)              scaled to size 14.4pt on input line 123.
+(Font)              scaled to size 14.4pt on input line 117.
 LaTeX Font Info:    Font shape `TU/TeXGyreTermesX(0)/b/n' will be
-(Font)              scaled to size 14.4pt on input line 123.
+(Font)              scaled to size 14.4pt on input line 117.
 LaTeX Font Info:    Font shape `TU/TeXGyreTermesX(0)/b/n' will be
-(Font)              scaled to size 12.0pt on input line 130.
+(Font)              scaled to size 12.0pt on input line 124.
 LaTeX Font Info:    Font shape `TU/TeXGyreTermesX(0)/m/it' will be
-(Font)              scaled to size 10.0pt on input line 136.
+(Font)              scaled to size 10.0pt on input line 130.
 [4
 
 ]
 LaTeX Font Info:    Font shape `TU/TeXGyreTermesX(0)/m/it' will be
-(Font)              scaled to size 7.3pt on input line 153.
+(Font)              scaled to size 7.3pt on input line 147.
 LaTeX Font Info:    Font shape `TU/TeXGyreTermesX(0)/m/it' will be
-(Font)              scaled to size 5.5pt on input line 153.
+(Font)              scaled to size 5.5pt on input line 147.
 [5]
 
 Package fontspec Info: Font family 'TeXGyreTermesX(1)' created for font
@@ -1212,303 +1212,917 @@ Package fontspec Info: Font family 'TeXGyreTermesX(1)' created for font
 (fontspec)             <->s*[1]"[TeXGyreTermesX-BoldSlanted.otf]:mode=base;script=latn;language=dflt;-ss05;+tlig;+tnum;+lnum;+sups;+smcp;+pcap;"
 
 LaTeX Font Info:    Font shape `TU/TeXGyreTermesX(1)/m/n' will be
-(Font)              scaled to size 10.0pt on input line 227.
+(Font)              scaled to size 10.0pt on input line 221.
 LaTeX Font Info:    Font shape `TU/TeXGyreTermesX(0)/m/n' will be
-(Font)              scaled to size 8.0pt on input line 231.
+(Font)              scaled to size 8.0pt on input line 225.
 LaTeX Font Info:    Font shape `TU/TeXGyreTermesX(1)/m/n' will be
-(Font)              scaled to size 8.0pt on input line 231.
-[6] [7] [8]
-
-LaTeX Font Warning: Font shape `TU/TeXGyreDejaVuMath-Regular(0)/b/n' undefined
-(Font)              using `TU/TeXGyreDejaVuMath-Regular(0)/m/n' instead on input line 383.
-
-Excluding 'comment' comment. [9]
-Chapter 3.
+(Font)              scaled to size 8.0pt on input line 225.
+[6] [7] [8] [9]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 418.
+(mdframed)              on input line 403.
 
 \openout5 = main.pyg
-(./out/_minted-main/default.pygstyle) (./out/_minted-main/FB65EA95EECE9E0A2D170062B77F7469FECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex
+(./out/_minted-main/default.pygstyle) (./out/_minted-main/0F26E3C8FAEFC7C05FF6267EF2713ED7FECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex
+
+LaTeX Font Warning: Font shape `TU/TeXGyreDejaVuMath-Regular(0)/b/n' undefined
+(Font)              using `TU/TeXGyreDejaVuMath-Regular(0)/m/n' instead on input line 2.
+
 LaTeX Font Info:    Font shape `TU/TeXGyreDejaVuMath-Regular(0)/b/n' will be
 (Font)              scaled to size 7.5pt on input line 2.
-) [10
+)
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 413.
 
-]
-Overfull \hbox (7.82764pt too wide) in paragraph at lines 438--441
-\TU/TeXGyreTermesX(0)/m/n/10 To sim-plify the for-mal-iza-tion, we de-clare and work within the lo-cale \TU/TeXGyreDejaVuMath-Regular(0)/b/n/10 "forcing_data_partial"\TU/TeXGyreTermesX(0)/m/n/10 ,
+\openout5 = main.pyg
+(./out/_minted-main/2AA74C9C266D84FC746D1C01CDD752D1FECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex)
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 438.
+
+\openout5 = main.pyg
+(./out/_minted-main/F9840A9F629229866745D485E25D2A1BFECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex) [10]
+c:/Users/tarak/source/repos/ZF_notAC/paper/main.tex:469: Missing $ inserted.
+<inserted text> 
+$
+l.469 ...introduce Gunther's locale \texttt{"M_ctm"}
+                                                  .
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+c:/Users/tarak/source/repos/ZF_notAC/paper/main.tex:469: Extra }, or forgotten $.
+<recently read> \egroup 
+        
+l.469 ...introduce Gunther's locale \texttt{"M_ctm"}
+                                                  .
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+c:/Users/tarak/source/repos/ZF_notAC/paper/main.tex:470: Missing $ inserted.
+<inserted text> 
+$
+l.470 
+    
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+[11]
+Chapter 3.
+
+LaTeX Font Warning: Font shape `TU/TeXGyreDejaVuMath-Regular(0)/m/it' undefined
+(Font)              using `TU/TeXGyreDejaVuMath-Regular(0)/m/n' instead on input line 479.
+
+
+Overfull \hbox (11.59761pt too wide) in paragraph at lines 477--483
+\TU/TeXGyreDejaVuMath-Regular(0)/b/n/10 In this chapter, we present the formalization of the relative consistency proof of $\LMS/ntxsy/m/n/10 :$\TU/TeXGyreDejaVuMath-Regular(0)/b/n/10 AC with ZF
+ []
+
+
+Overfull \hbox (0.35258pt too wide) in paragraph at lines 477--483
+\TU/TeXGyreDejaVuMath-Regular(0)/b/n/10 in Isabelle/ZF. We follow the outline presented in section []2.2[]. We choose ZF-Constructible
+ []
+
+
+Overfull \hbox (20.43762pt too wide) in paragraph at lines 477--483
+\TU/TeXGyreDejaVuMath-Regular(0)/b/n/10 by Paulson [[]14[]] as Isabelle theory [][][] , which includes the ZF axioms along with useful definitions
+ []
+
+
+Overfull \hbox (9.77263pt too wide) in paragraph at lines 477--483
+\TU/TeXGyreDejaVuMath-Regular(0)/b/n/10 and lemmas built on top of them. We also reuse the formalization of forcing by Gunther et al.
+ []
+
+
+Overfull \hbox (23.24263pt too wide) in paragraph at lines 487--489
+\TU/TeXGyreDejaVuMath-Regular(0)/b/n/10 First, we define symmetric extensions in Isabelle/ZF, formalizing automorphisms, normal filters,
+ []
+
+
+Overfull \hbox (14.81268pt too wide) in paragraph at lines 491--495
+\TU/TeXGyreDejaVuMath-Regular(0)/b/n/10 We begin our work within the locale "forcing_data" by Gunther et al. [[]1[]], in which a c.t.m. "M"
+ []
+
+
+Overfull \hbox (26.60141pt too wide) in paragraph at lines 491--495
+\TU/TeXGyreDejaVuMath-Regular(0)/b/n/10 and a notion of forcing "P" are fixed. The relation $\LMS/ntxsy/m/n/10 []$ \TU/TeXGyreDejaVuMath-Regular(0)/b/n/10 is denoted by "leq" and a maximum element
+ []
+
+
+Overfull \hbox (11.59392pt too wide) in paragraph at lines 496--499
+[]\TU/TeXGyreDejaVuMath-Regular(0)/b/n/10 Gunther et al. did not provide an excplicit formalization of the set of $\U/ntxsym/m/n/10 P$\TU/TeXGyreDejaVuMath-Regular(0)/b/n/10 -names $\OML/ntxmi/m/it/10 M[]$ \TU/TeXGyreDejaVuMath-Regular(0)/b/n/10 in their
+ []
+
+
+Overfull \hbox (1.65768pt too wide) in paragraph at lines 496--499
+\TU/TeXGyreDejaVuMath-Regular(0)/b/n/10 work. In this study, since we need to consider a subset of $\OML/ntxmi/m/it/10 M[]$\TU/TeXGyreDejaVuMath-Regular(0)/b/n/10 , we define $\OML/ntxmi/m/it/10 M[]$ \TU/TeXGyreDejaVuMath-Regular(0)/b/n/10 explicitly. We
  []
 
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 442.
+(mdframed)              on input line 500.
+
+\openout5 = main.pyg
+(./out/_minted-main/FB65EA95EECE9E0A2D170062B77F7469FECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex)
+LaTeX Font Info:    Font shape `TU/TeXGyreDejaVuMath-Regular(0)/m/it' will be
+(Font)              scaled to size 7.5pt on input line 512.
+
+Overfull \hbox (5.84264pt too wide) in paragraph at lines 512--518
+[]\TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 Where "transrec2(α, x, H)" is the function defined in ZF library that returns x when α is
+ []
+
+
+Overfull \hbox (16.41763pt too wide) in paragraph at lines 512--518
+\TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 0; when α is a successor ordinal, it returns H(β, transrec2(β, x, H)) where β is the predecessor
+ []
+
+
+Overfull \hbox (25.07513pt too wide) in paragraph at lines 512--518
+\TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 of α; and when α is a limit ordinal, it returns $[]$β∈α. transrec2(β, x, H). Note that in Isabelle/ZF,
+ []
+
+[12
+
+]
+Overfull \hbox (2.22015pt too wide) in paragraph at lines 520--523
+\TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 To simplify the formalization, we declare and work within the locale "forcing_data_partial",
+ []
+
+
+Overfull \hbox (28.18765pt too wide) in paragraph at lines 520--523
+\TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 where $\U/ntxsym/m/n/10 P$ \TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 is assumed to be a partially ordered set. Note that "one" is the unique maximum element
+ []
+
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 524.
 
 \openout5 = main.pyg
 (./out/_minted-main/20D3500BAFA43F5DF4A1E3949DD33CD6FECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex)
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 451.
+(mdframed)              on input line 533.
 
 \openout5 = main.pyg
 (./out/_minted-main/5396B815EABD946F3D027DF1A0B7CD37FECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex)
+Overfull \hbox (29.52011pt too wide) in paragraph at lines 542--546
+[]\TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 Where "bij(A, B)" is the set of bijections from A to B and "f`x" denotes the function application
+ []
+
+
+Overfull \hbox (22.0976pt too wide) in paragraph at lines 542--546
+\TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 of f to x. We denote the induced automorphism on $\U/ntxsym/m/n/10 P$\TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 -names by π as "Pn_auto(π)". Our definition
+ []
+
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 465.
+(mdframed)              on input line 547.
 
 \openout5 = main.pyg
 (./out/_minted-main/C5AD814E1093B4C7B828EFAD7DFA7968FECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex)
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 475.
+(mdframed)              on input line 557.
 
 \openout5 = main.pyg
 (./out/_minted-main/BD0C1503BFC1F7227D48391337FB3C29FECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex)
-Overfull \hbox (42.54404pt too wide) in paragraph at lines 487--489
-\TU/TeXGyreTermesX(0)/m/n/10 Where \TU/TeXGyreDejaVuMath-Regular(0)/b/n/10 "π O τ" \TU/TeXGyreTermesX(0)/m/n/10 de-notes the com-po-si-tion of \TU/TeXGyreDejaVuMath-Regular(0)/b/n/10 π \TU/TeXGyreTermesX(0)/m/n/10 and \TU/TeXGyreDejaVuMath-Regular(0)/b/n/10 τ\TU/TeXGyreTermesX(0)/m/n/10 . Then, we de-clare a lo-cale \TU/TeXGyreDejaVuMath-Regular(0)/b/n/10 "M_symmetric_system"
+Overfull \hbox (40.3651pt too wide) in paragraph at lines 569--571
+\TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 Where "π O τ" denotes the composition of π and τ. Then, we declare a locale "M_symmetric_system"
  []
 
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 489.
+(mdframed)              on input line 571.
 
 \openout5 = main.pyg
-(./out/_minted-main/2C4C4D9A83A76E968B4D4C607F7514BCFECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex) [11]
-Package mdframed Info: Not enough space on this page on input line 503.
+(./out/_minted-main/2C4C4D9A83A76E968B4D4C607F7514BCFECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex) [13]
+Overfull \hbox (23.61761pt too wide) in paragraph at lines 588--591
+\TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 We continue our work within the locale "M_symmetric_system". We define the set of hereditarily
+ []
+
+
+Overfull \hbox (4.68011pt too wide) in paragraph at lines 588--591
+\TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 symmetric names "HS" in the same way as "P_names". This approach makes it easier to use
+ []
+
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 510.
+(mdframed)              on input line 592.
 
 \openout5 = main.pyg
 (./out/_minted-main/3835CCA9E0363AF02CE67DA81A08AB6FFECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex)
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 527.
+(mdframed)              on input line 609.
 
 \openout5 = main.pyg
 (./out/_minted-main/3A6376707307671117D2ABE18B2952F8FECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex)
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 536.
+(mdframed)              on input line 618.
 
 \openout5 = main.pyg
 (./out/_minted-main/213301E7BC11425D5694E890A5A767E6FECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex)
+Overfull \hbox (73.61258pt too wide) in paragraph at lines 626--629
+[]\TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 We declare a locale "M_symmetric_system_G_generic", which combines the locale "M_symmetric_system"
+ []
+
+
+Overfull \hbox (20.1826pt too wide) in paragraph at lines 626--629
+\TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 and the locale "G_generic". "G_generic" is a locale, defined by Gunther et al. [[]1[]], fixes a generic
+ []
+
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 548.
+(mdframed)              on input line 630.
 
 \openout5 = main.pyg
 (./out/_minted-main/0A73345C596586DE51A986ABD0CD2D6BFECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex)
-Package mdframed Info: Not enough space on this page on input line 552.
-[12]
-Package mdframed Info: Not enough space on this page on input line 552.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 556.
+(mdframed)              on input line 638.
 
 \openout5 = main.pyg
-(./out/_minted-main/2123BC49474477747FAB46D85BCF3E31FECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex)
+(./out/_minted-main/2123BC49474477747FAB46D85BCF3E31FECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex) [14]
+Package mdframed Info: Not enough space on this page on input line 645.
+
+Overfull \hbox (12.1201pt too wide) in paragraph at lines 647--650
+[]\TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 Where "GenExt(G)" is the generic extension generated by "G", "Transset(A)" denotes that
+ []
+
+
+Overfull \hbox (9.96019pt too wide) in paragraph at lines 647--650
+\TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 "A" is transitive, and "nat ≈ A" denotes that "A" has the same cardinality as the set of natural
+ []
+
+
+Overfull \hbox (11.23512pt too wide) in paragraph at lines 652--655
+\TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 In our proofs, we need to use the separation and replacement axioms in M based on formulas
+ []
+
+
+Overfull \hbox (11.44511pt too wide) in paragraph at lines 652--655
+\TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 that include the concepts defined in this section. Therefore, it is necessary to represent these
+ []
+
+
+Overfull \hbox (1.17764pt too wide) in paragraph at lines 656--659
+[]\TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 We utilized the automated formula synethisis method by Gunther et al. [[]1[]]; however, it
+ []
+
+
+Overfull \hbox (13.9201pt too wide) in paragraph at lines 656--659
+\TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 could not applied to complex formulas, and re-verifying the properties of the derived formulas
+ []
+
+
+Overfull \hbox (45.40509pt too wide) in paragraph at lines 660--663
+[]\TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 Example of the formulas we defined includes "is_P_auto_group", "is_P_name_fm", "is_Pn_auto_fm",
+ []
+
+
+Overfull \hbox (16.7551pt too wide) in paragraph at lines 660--663
+\TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 and "is_HS_fm", whick represent "P_names", "Pn_auto" and "HS" respectively. The correctness
+ []
+
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 582.
+(mdframed)              on input line 664.
 
 \openout5 = main.pyg
-(./out/_minted-main/5701492FEF50F90FDF58667DD0325CEBFECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex) [13]
+runsystem(pygmentize -l "isabelle" -f latex -P commandprefix=PYG -F tokenmerge -P stripnl="False" -o out/_minted-main/5701492FEF50F90FDF58667DD0325CEBFECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex out/main.pyg)...executed
+(./out/_minted-main/5701492FEF50F90FDF58667DD0325CEBFECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex)
+Overfull \hbox (16.92014pt too wide) in paragraph at lines 687--689
+[]\TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 Note that these formulas take as parameters various elements fixed within the locale, such
+ []
+
+
+Overfull \hbox (8.76762pt too wide) in paragraph at lines 692--699
+\TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 In this section, we prove that symmetric extensions are models of ZF. Initially, we attempted
+ []
+
+
+Overfull \hbox (28.09517pt too wide) in paragraph at lines 692--699
+\TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 to prove this based on its proof in Karagila's lecture note [[]9[]], but this approach was unsuccessful.
+ []
+
+
+Overfull \hbox (31.62016pt too wide) in paragraph at lines 692--699
+\TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 applicable to a more general situation, without using forcing or generic and symmetric extensions,
+ []
+
+[15]
+Overfull \hbox (5.8576pt too wide) in paragraph at lines 702--707
+\TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 In Karagila's lecture note [[]9[]], the fact that symmetric extensions are models of ZF is proven
+ []
+
+
+Overfull \hbox (9.02263pt too wide) in paragraph at lines 702--707
+\TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 by showing that they are internal models of the conrresponding generic extension generated
+ []
+
+
+Overfull \hbox (8.16762pt too wide) in paragraph at lines 718--722
+[]\TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 We could prove that the symmetric extension "SymExt(G)" is transitive, almost universal
+ []
+
+
+Overfull \hbox (12.2151pt too wide) in paragraph at lines 718--722
+\TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 and satisfies $\U/ntxmia/m/it/10 []$\TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 -separation. However, we could not prove that "SymExt(G)" is actually a class
+ []
+
+
+Overfull \hbox (13.11765pt too wide) in paragraph at lines 718--722
+\TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 in "GenExt(G)". To do this, we needed to explicitly construct a formula that represents the set
+ []
+
+
+Overfull \hbox (5.43008pt too wide) in paragraph at lines 718--722
+\TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 of all names "P_names" on the ground model "M" in "GenExt(G)". However, we were unable
+ []
+
+
+Overfull \hbox (16.75201pt too wide) in paragraph at lines 724--733
+\TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 Instead, we formalize the relativized forcing relation $\U/ntxsym/m/n/10 []$ \TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 and prove that symmetric extensions
+ []
+
+
+Overfull \hbox (13.69893pt too wide) in paragraph at lines 724--733
+\TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 are models of ZF using it. This relation is defined by replacing all quantifiers restricted to $\OML/ntxmi/m/it/10 M[]$
+ []
+
+
+Overfull \hbox (51.03017pt too wide) in paragraph at lines 724--733
+\TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 in the definition of the forcing relation with quantifiers restricted to $[]$. By modifying the formalization
+ []
+
+
+Overfull \hbox (13.20015pt too wide) in paragraph at lines 724--733
+\TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 of forcing by Gunther et al. [[]1[]] [][][] , we were able to define this relation and prove its properties
+ []
+
+
+Overfull \hbox (20.6326pt too wide) in paragraph at lines 734--738
+[]\TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 Within the locale "M_symmetric_system", we define this relation in the form "p ⊩HS φ env",
+ []
+
+
+Overfull \hbox (3.97513pt too wide) in paragraph at lines 734--738
+\TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 which has the same form as the formalization of the original forcing relation "p ⊩ φ env" by
+ []
+
+
+Overfull \hbox (24.48767pt too wide) in paragraph at lines 734--738
+\TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 Gunther et al. Our definition satisfies the required properties, such as Theorem []2.1.21[], Corollary
+ []
+
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 657.
+(mdframed)              on input line 739.
 
 \openout5 = main.pyg
-(./out/_minted-main/505F2D0B93622121A71DC6E9B8164A3AFECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex) [14]
+(./out/_minted-main/505F2D0B93622121A71DC6E9B8164A3AFECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex) [16]
+Overfull \hbox (13.62009pt too wide) in paragraph at lines 764--772
+\TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 Additionally, we prove the symmetry lemma (Lemma []2.1.24[]). Similary to the definitions of the
+ []
+
+
+Overfull \hbox (10.88264pt too wide) in paragraph at lines 764--772
+\TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 forcing relations, this lemma is proven using a complex induction. First, we prove this lemma
+ []
+
+
+Overfull \hbox (4.58263pt too wide) in paragraph at lines 764--772
+\TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 for atomic formulas in the forcing language, and then extend the proof to other formulas by
+ []
+
+
+Overfull \hbox (0.3901pt too wide) in paragraph at lines 764--772
+\TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 mutually recursive, so the lemma for these formulas is proven simultaneously by induction
+ []
+
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 691.
+(mdframed)              on input line 773.
 
 \openout5 = main.pyg
 (./out/_minted-main/C112864CD795A266DC585B3A7D34449DFECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex)
+Overfull \hbox (10.4026pt too wide) in paragraph at lines 780--783
+[]\TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 Where "Q(MEM, α, β)" and "Q(EQ, α, β)" are predicates representing that the symmetriy
+ []
+
+
+Overfull \hbox (14.43762pt too wide) in paragraph at lines 784--786
+[]\TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 The proof for non-atomic formulas is relatively straightforward, and finally, this completes
+ []
+
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 705.
+(mdframed)              on input line 787.
 
 \openout5 = main.pyg
-(./out/_minted-main/94C24AE5E25E7A01E7E2ED359B6517B6FECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex) [15]
+(./out/_minted-main/94C24AE5E25E7A01E7E2ED359B6517B6FECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex)
+Overfull \hbox (20.8726pt too wide) in paragraph at lines 798--803
+\TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 Using the symmetry lemma, we prove the axiom schema of separation for symmetric extensions
+ []
+
+
+Overfull \hbox (1.25261pt too wide) in paragraph at lines 798--803
+\TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 within the locale "M_symmetric_system_G_generic". Our proof is based on Karagila's proof
+ []
+
+
+Overfull \hbox (16.80197pt too wide) in paragraph at lines 798--803
+\TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 [[]9[]] of $\U/ntxmia/m/it/10 []$\TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 -separation for symmetric extensions. However, since we use the $\U/ntxsym/m/n/10 []$ \TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 relation instead
+ []
+
+
+Overfull \hbox (31.78416pt too wide) in paragraph at lines 804--809
+[]\TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 The separation for the formula $\OML/ntxmi/m/it/10 '$ \TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 means that for any elements $\OML/ntxmi/m/it/10 x; p$ \TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 in the symmetric extension,
+ []
+
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 728.
+(mdframed)              on input line 810.
 
 \openout5 = main.pyg
 (./out/_minted-main/E466CC42427FA70FD06C4EC552EC7241FECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex)
-LaTeX Font Info:    Font shape `TU/TeXGyreTermesX(0)/m/n' will be
-(Font)              scaled to size 7.3pt on input line 747.
-LaTeX Font Info:    Font shape `TU/TeXGyreTermesX(0)/m/n' will be
-(Font)              scaled to size 5.5pt on input line 747.
+Package mdframed Info: Not enough space on this page on input line 823.
+[17]
+Package mdframed Info: Not enough space on this page on input line 823.
+
+Overfull \hbox (17.7451pt too wide) in paragraph at lines 826--829
+\TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 Now that we have proven separation, to prove the axiom schema of replacement for symmetric
+ []
+
+
+Overfull \hbox (17.02419pt too wide) in paragraph at lines 826--829
+\TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 extensions, it is sufficient to show that for any formula $\OML/ntxmi/m/it/10 '$ \TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 and any elements $\OML/ntxmi/m/it/10 x; p$ \TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 in a symmetric
+ []
+
+LaTeX Font Info:    Font shape `TU/TeXGyreDejaVuMath-Regular(0)/m/n' will be
+(Font)              scaled to size 5.47499pt on input line 829.
+LaTeX Font Info:    Font shape `TU/TeXGyreDejaVuMath-Regular(0)/m/n' will be
+(Font)              scaled to size 4.125pt on input line 829.
+
+Overfull \hbox (6.76253pt too wide) in paragraph at lines 830--835
+\TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 This is because such a set $\OML/ntxmi/m/it/10 S$ \TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 contains the image of $\OML/ntxmi/m/it/10 x$ \TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 under the class function defined by $\OML/ntxmi/m/it/10 '$ [][][]\TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 ,
+ []
+
+
+Overfull \hbox (11.41515pt too wide) in paragraph at lines 830--835
+\TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 which is the set that would be obtained by applying the replacement axiom. To prove this, we
+ []
+
+
+Overfull \hbox (15.78764pt too wide) in paragraph at lines 830--835
+\TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 show the following lemma, which rewrites the above statement in terms of the forcing relation
+ []
+
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 753.
+(mdframed)              on input line 835.
 
 \openout5 = main.pyg
 (./out/_minted-main/4A2A8BA0CFAFBCFA2521B44E272F5F20FECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex)
+Overfull \hbox (11.8576pt too wide) in paragraph at lines 853--855
+[]\TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 Additionally, the following lemma was helpful in these proofs. This is also frequently used
+ []
+
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 856.
+
+\openout5 = main.pyg
+(./out/_minted-main/989D18FE080C6BA7107B9A2E7F21EF3CFECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex)
 
 Package mdframed Warning: You got a bad break
 (mdframed)                because the last box will be empty
 (mdframed)                you have to change it manually
 (mdframed)                by changing the text, the space
-(mdframed)                or something else on input line 769.
+(mdframed)                or something else on input line 863.
 
-[16]
-Package mdframed Info: mdframed detected package amsthm 
- changed the theorem header of amsthm
-(mdframed)              on input line 774.
-
-\openout5 = main.pyg
-(./out/_minted-main/989D18FE080C6BA7107B9A2E7F21EF3CFECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex)
-Package mdframed Info: mdframed detected package amsthm 
- changed the theorem header of amsthm
-(mdframed)              on input line 786.
-
-\openout5 = main.pyg
-(./out/_minted-main/889D4EFE0F243998B7997921829CFE6BFECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex)
-Package mdframed Info: mdframed detected package amsthm 
- changed the theorem header of amsthm
-(mdframed)              on input line 806.
-
-\openout5 = main.pyg
-(./out/_minted-main/9EC4FAC2FA5AD378AF012113457B6E9AFECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex)
-Package mdframed Info: mdframed detected package amsthm 
- changed the theorem header of amsthm
-(mdframed)              on input line 816.
-
-\openout5 = main.pyg
-(./out/_minted-main/DDF1718B19F066D81C7312B05BF2BAB5FECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex) [17]
-Package mdframed Info: mdframed detected package amsthm 
- changed the theorem header of amsthm
-(mdframed)              on input line 834.
-
-\openout5 = main.pyg
-(./out/_minted-main/2C9204300CBADF3A61FD95DCD592D697FECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex)
-Package mdframed Info: mdframed detected package amsthm 
- changed the theorem header of amsthm
-(mdframed)              on input line 845.
-
-\openout5 = main.pyg
-(./out/_minted-main/55839233FD6F88634EEE2AD97900F738FECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex)
-Package mdframed Info: mdframed detected package amsthm 
- changed the theorem header of amsthm
-(mdframed)              on input line 854.
-
-\openout5 = main.pyg
-(./out/_minted-main/27F905E87C7B77BC9CD361431F2E47D2FECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex)
+[18]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 868.
 
 \openout5 = main.pyg
-(./out/_minted-main/01BE22461944784C714927457DD1BC76FECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex)
-Overfull \hbox (57.21178pt too wide) in paragraph at lines 880--884
-\TU/TeXGyreDejaVuMath-Regular(0)/b/n/10 "Fn_perms"\TU/TeXGyreTermesX(0)/m/n/10 , and ver-ify that our def-i-ni-tion sat-is-fies the pre-req-ui-sites of the lo-cale \TU/TeXGyreDejaVuMath-Regular(0)/b/n/10 "M_symmetric_system"\TU/TeXGyreTermesX(0)/m/n/10 .
+(./out/_minted-main/889D4EFE0F243998B7997921829CFE6BFECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex)
+Overfull \hbox (20.94011pt too wide) in paragraph at lines 879--886
+\TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 Other axioms of ZF can be proven relatively easily in symmetric extensions by using separation,
+ []
+
+
+Overfull \hbox (6.2326pt too wide) in paragraph at lines 879--886
+\TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 replacement and the lemma "ex_separation_base". For example, the axiom of pairing can be
+ []
+
+
+Overfull \hbox (33.7501pt too wide) in paragraph at lines 879--886
+\TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 proven as follows. Let a, b be elements of a symmetric extension $\LMS/ntxsy/m/n/10 N$\TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 . Then, we can take hereditarily
+ []
+
+
+Overfull \hbox (5.55418pt too wide) in paragraph at lines 879--886
+\TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 symmetric names $[]\OML/ntxmi/m/it/10 ; []$ \TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 of a, b, respectively. By the lemma "ex_separation_base", we can find
+ []
+
+
+Overfull \hbox (14.93263pt too wide) in paragraph at lines 887--888
+[]\TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 Finally we obtain the following lemma, which states that symmetric extensions are models
  []
 
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 885.
+(mdframed)              on input line 888.
+
+\openout5 = main.pyg
+(./out/_minted-main/9EC4FAC2FA5AD378AF012113457B6E9AFECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex)
+Overfull \hbox (36.15765pt too wide) in paragraph at lines 894--897
+[]\TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 Furthermore, since symmetric extensions are transitive, it can be shown that they are instances
+ []
+
+
+Overfull \hbox (6.15762pt too wide) in paragraph at lines 894--897
+\TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 of the locale "M_ZF_trans". As a result, many results concerning ZF set theory formalized in
+ []
+
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 898.
+
+\openout5 = main.pyg
+(./out/_minted-main/DDF1718B19F066D81C7312B05BF2BAB5FECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex)
+Overfull \hbox (13.65762pt too wide) in paragraph at lines 907--910
+\TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 In this section, we define the basic Cohen model which is a symmetric extension that does not
+ []
+
+
+Overfull \hbox (21.30766pt too wide) in paragraph at lines 907--910
+\TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 satisfy the axiom of choice, , as outlined in section []2.2[]. First, we work within the locale "M_ctm"
+ []
+
+
+Overfull \hbox (10.65761pt too wide) in paragraph at lines 912--915
+\TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 the notion of forcing for the basic Cohen model is defined as the set of finite partial functions
+ []
+
+
+Overfull \hbox (2.78012pt too wide) in paragraph at lines 912--915
+\TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 from $\OML/ntxmi/m/it/10 ! \LMS/ntxsy/m/n/10  \OML/ntxmi/m/it/10 !$ \TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 to $\OT1/minntx/m/n/10 2$ \TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 that are elements of the ground model, with the order relation given by the
+ []
+
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 916.
+
+\openout5 = main.pyg
+(./out/_minted-main/2C9204300CBADF3A61FD95DCD592D697FECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex)
+Package mdframed Info: Not enough space on this page on input line 923.
+[19]
+Package mdframed Info: Not enough space on this page on input line 923.
+
+Overfull \hbox (13.17012pt too wide) in paragraph at lines 924--927
+\TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 Where "nat" denotes $\OML/ntxmi/m/it/10 !$ \TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 and "finite_M(A)" denotes that the set "A" is finite. From the following
+ []
+
+
+Overfull \hbox (6.81017pt too wide) in paragraph at lines 924--927
+\TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 lemma, this ordered set is an instance of the locale "forcing_data_partial", meaning that this
+ []
+
+
+Overfull \hbox (27.86266pt too wide) in paragraph at lines 924--927
+\TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 is indeed a notion of forcing and forms a partially ordered set with the empty set as the maximum
+ []
+
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 927.
+
+\openout5 = main.pyg
+(./out/_minted-main/55839233FD6F88634EEE2AD97900F738FECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex)
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 936.
+
+\openout5 = main.pyg
+(./out/_minted-main/27F905E87C7B77BC9CD361431F2E47D2FECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex)
+Overfull \hbox (20.1301pt too wide) in paragraph at lines 944--949
+\TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 Note that "Fn_perm'(f)" is the automorphism induced by the bijection "f" on $\OML/ntxmi/m/it/10 !$\TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 , and "Fn_perm(f,
+ []
+
+
+Overfull \hbox (8.49011pt too wide) in paragraph at lines 944--949
+\TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 p)" is the value of the automorphism "Fn_perm'(f)" on the partial function "p". We prove that
+ []
+
+
+Overfull \hbox (18.11263pt too wide) in paragraph at lines 944--949
+\TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 "Fn_perm'(f)" is indeed an automorphism on "Fn" and "Fn_perms" is a group of automorphisms
+ []
+
+
+Overfull \hbox (1.89014pt too wide) in paragraph at lines 944--949
+\TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 on "Fn", i.e., closed under composition and the inverse operation, and contains the identity
+ []
+
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 950.
+
+\openout5 = main.pyg
+(./out/_minted-main/01BE22461944784C714927457DD1BC76FECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex)
+Overfull \hbox (36.35263pt too wide) in paragraph at lines 962--966
+[]\TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 Then, we define the normal filter "Fn_perms_filter" on the group of automorphisms "Fn_perms",
+ []
+
+
+Overfull \hbox (7.96512pt too wide) in paragraph at lines 962--966
+\TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 and verify that our definition satisfies the prerequisites of the locale "M_symmetric_system".
+ []
+
+
+Overfull \hbox (4.11012pt too wide) in paragraph at lines 962--966
+\TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 This completes both the definition of the basic Cohen model and the proof that it is a model
+ []
+
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 967.
 
 \openout5 = main.pyg
 (./out/_minted-main/BE7C270534226BFE485C4D317C72B2CAFECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex)
-Package mdframed Info: Not enough space on this page on input line 894.
-[18]
-Package mdframed Info: Not enough space on this page on input line 894.
 
-Overfull \hbox (18.18404pt too wide) in paragraph at lines 902--904
-[]\TU/TeXGyreTermesX(0)/m/n/10 We for-mal-ize $\OML/ntxmi/m/it/10 a[]$ \TU/TeXGyreTermesX(0)/m/n/10 and $\OML/ntxmi/m/it/10 A$\TU/TeXGyreTermesX(0)/m/n/10 , in-tro-duced in sec-tion []2.2[], as \TU/TeXGyreDejaVuMath-Regular(0)/b/n/10 "binmap_row(G, n)" \TU/TeXGyreTermesX(0)/m/n/10 and \TU/TeXGyreDejaVuMath-Regular(0)/b/n/10 "binmap(G)"\TU/TeXGyreTermesX(0)/m/n/10 ,
+Package mdframed Warning: You got a bad break
+(mdframed)                because the last box will be empty
+(mdframed)                you have to change it manually
+(mdframed)                by changing the text, the space
+(mdframed)                or something else on input line 976.
+
+[20]
+Overfull \hbox (7.6201pt too wide) in paragraph at lines 979--983
+\TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 Finaly, we prove that the basic Cohen model does not satisfy the axiom of choice. To do this,
+ []
+
+
+Overfull \hbox (54.53265pt too wide) in paragraph at lines 979--983
+\TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 we construct a set $\OML/ntxmi/m/it/10 A$ \TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 that cannot be well-ordered in it. We work within the locale "M_symmetric_system"
+ []
+
+
+Overfull \hbox (18.1507pt too wide) in paragraph at lines 984--986
+[]\TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 We formalize $\OML/ntxmi/m/it/10 a[]$ \TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 and $\OML/ntxmi/m/it/10 A$\TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 , introduced in section []2.2[], as "binmap_row(G, n)" and "binmap(G)",
  []
 
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 904.
+(mdframed)              on input line 986.
 
 \openout5 = main.pyg
 (./out/_minted-main/8F4B01DECE51A1F747825A10DD9E3B62FECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex)
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 913.
+(mdframed)              on input line 995.
 
 \openout5 = main.pyg
 (./out/_minted-main/1B34B94FEE0E2336CB37D7DE30E42672FECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex)
+Overfull \hbox (4.6474pt too wide) in paragraph at lines 1003--1007
+\TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 Using this lemma, we prove that $\OML/ntxmi/m/it/10 p \U/ntxsym/m/n/10 [] [][][][][][][]$ \TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 leads a contradiction
+ []
+
+
+Overfull \hbox (12.84048pt too wide) in paragraph at lines 1003--1007
+\TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 for any $\OML/ntxmi/m/it/10 p \LMS/ntxsy/m/n/10 2$ \TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 "Fn" and $[] \LMS/ntxsy/m/n/10 2$ \TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 "HS". This means that there is no injection from $\OML/ntxmi/m/it/10 !$ \TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 to $\OML/ntxmi/m/it/10 A$ \TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 in the basic
+ []
+
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 925.
+(mdframed)              on input line 1007.
 
 \openout5 = main.pyg
 (./out/_minted-main/2EBE44654E8A75BE11AFD0483995F2CFFECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex)
+Overfull \hbox (38.04758pt too wide) in paragraph at lines 1016--1018
+\TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 Where "ForcesHS(p, φ, env)" is another notation for "p ⊩HS φ env", and "check(nat)" and "binmap'"
+ []
+
+
+Overfull \hbox (1.63504pt too wide) in paragraph at lines 1019--1021
+[]\TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 Since $\OML/ntxmi/m/it/10 A$ \TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 is an infinite set, there exists an injection from $\OML/ntxmi/m/it/10 !$ \TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 to $\OML/ntxmi/m/it/10 A$\TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 . Therefore, using above
+ []
+
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 940.
+(mdframed)              on input line 1022.
 
 \openout5 = main.pyg
-(./out/_minted-main/7B20E5BB96FAE08FB5CDF34BFCCC197CFECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex) [19]
-Package mdframed Info: mdframed detected package amsthm 
- changed the theorem header of amsthm
-(mdframed)              on input line 955.
-
-\openout5 = main.pyg
-(./out/_minted-main/57DB2AFFDB56B56E0397E5EC7FC00921FECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex)
+(./out/_minted-main/7B20E5BB96FAE08FB5CDF34BFCCC197CFECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex)
 LaTeX Font Info:    Font shape `TU/TeXGyreDejaVuMath-Regular(0)/m/n' will be
-(Font)              scaled to size 6.0pt on input line 982.
+(Font)              scaled to size 6.0pt on input line 1041.
+
+Overfull \hbox (11.82014pt too wide) in paragraph at lines 1032--1042
+[]\TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 Where "wellordered(C, A, r)" denotes that the relation "r" is a well-ordering of the set "A"
+ []
+
+
+Overfull \hbox (4.77765pt too wide) in paragraph at lines 1032--1042
+\TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 in the class "C", and "##" is an operator that converts a set to a class. These are defined by
+ []
+
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 985.
+(mdframed)              on input line 1042.
+
+\openout5 = main.pyg
+(./out/_minted-main/57DB2AFFDB56B56E0397E5EC7FC00921FECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex) [21]
+Overfull \hbox (6.19516pt too wide) in paragraph at lines 1064--1065
+[]\TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 Thus, the statement "a set $\LMS/ntxsy/m/n/10 N$ \TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 satisfies well-ordering theorem" can be written as follows:
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1064--1065
+
+ []
+
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1065.
 
 \openout5 = main.pyg
 (./out/_minted-main/46C1D728A434B49F548B17507D7DB107FECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex)
-Package mdframed Info: mdframed detected package amsthm 
- changed the theorem header of amsthm
-(mdframed)              on input line 993.
-
-\openout5 = main.pyg
-(./out/_minted-main/50D0D1CA77CA560A22C609E5DCA7DC23FECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex) [20]
-Chapter 4.
-
-Overfull \hbox (2.10674pt too wide) in paragraph at lines 1008--1010
-[]\TU/TeXGyreTermesX(0)/m/n/10 Our for-mal-iza-tion com-prises ap-prox-i-mately 15,000 lines of code, dis-tributed roughly
+Overfull \hbox (4.62009pt too wide) in paragraph at lines 1071--1073
+[]\TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 Using the above, we prove the following theorem and complete our relative consistency
  []
 
-[21
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1073.
 
-] [22]
-LaTeX Font Info:    Font shape `TU/TeXGyreTermesX(0)/m/sc' will be
-(Font)              scaled to size 10.0pt on input line 1051.
+\openout5 = main.pyg
+(./out/_minted-main/50D0D1CA77CA560A22C609E5DCA7DC23FECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex) [22]
+Chapter 4.
 
-Overfull \hbox (1.95334pt too wide) in paragraph at lines 1052--1052
-\TU/TeXGyreTermesX(0)/m/n/10 son-ing''. In: \TU/TeXGyreTermesX(0)/m/it/10 Au-to-mated De-duc-tion—CADE-18\TU/TeXGyreTermesX(0)/m/n/10 . Springer Berlin Hei-del-berg, 2002,
+Overfull \hbox (24.1301pt too wide) in paragraph at lines 1085--1087
+\TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 We formalized the relative consistency proof of $\LMS/ntxsy/m/n/10 :$\TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 AC with ZF on the basis of the work by Paulson
+ []
+
+
+Overfull \hbox (3.02266pt too wide) in paragraph at lines 1088--1090
+[]\TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 Our formalization comprises approximately 15,000 lines of code, distributed roughly as
+ []
+
+
+Overfull \hbox (3.6751pt too wide) in paragraph at lines 1097--1100
+\TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 This is as large as Paluson's formalization of the proof of relative consistency of AC (12,000
+ []
+
+
+Overfull \hbox (19.70259pt too wide) in paragraph at lines 1097--1100
+\TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 lines), Gunther et al.'s formalization of coercion (16,000 lines), and their proof of independence
+ []
+
+
+Overfull \hbox (26.19763pt too wide) in paragraph at lines 1101--1105
+[]\TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 In our proof, we needed to construct internalized formulas representing most of the concepts
+ []
+
+
+Overfull \hbox (4.03516pt too wide) in paragraph at lines 1101--1105
+\TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 that belong to the ground model. This was to verify that the defined sets truly belong to the
+ []
+
+
+Overfull \hbox (8.27263pt too wide) in paragraph at lines 1101--1105
+\TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 ground model and to enable tha application of the separation and replacement axioms of the
+ []
+
+
+Overfull \hbox (4.65765pt too wide) in paragraph at lines 1106--1109
+[]\TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 For constructing these formulasm we utilized the sythesis method by Gunther et al. [[]1[]];
+ []
+
+
+Overfull \hbox (17.4376pt too wide) in paragraph at lines 1106--1109
+\TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 however, this method could not be applied to complex formulas. When applied, we also needed
+ []
+
+
+Overfull \hbox (36.86261pt too wide) in paragraph at lines 1110--1113
+[]\TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 We also needed to prove that the arity of each defined formula is below its respective threshold.
+ []
+
+
+Overfull \hbox (0.83261pt too wide) in paragraph at lines 1110--1113
+\TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 For complex formulas, Isabelle's automated proof tools were not applicable, and we had to
+ []
+
+
+Overfull \hbox (14.91763pt too wide) in paragraph at lines 1114--1117
+[]\TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 Since these works are repetitive, further automation is desirable. Ideally, if the arguments
+ []
+
+
+Overfull \hbox (8.69264pt too wide) in paragraph at lines 1114--1117
+\TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 of the base model could be handled without explicitly dealing with internalized formulas, the
+ []
+
+
+Overfull \hbox (19.00514pt too wide) in paragraph at lines 1114--1117
+\TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 amount of work required to formalize a proof using an approach such as the one we have taken
+ []
+
+
+Overfull \hbox (3.98264pt too wide) in paragraph at lines 1118--1121
+[]\TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 Additionally, we used the c.t.m. approach, and the formalized argument only extends to
+ []
+
+
+Overfull \hbox (7.94508pt too wide) in paragraph at lines 1118--1121
+\TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 the construction of a model of ZF+$\LMS/ntxsy/m/n/10 :$\TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 AC, assuming the existence of a c.t.m. of ZF. We did not
  []
 
 [23
 
-] [24] (./out/main.aux)
+]
+Overfull \hbox (4.54515pt too wide) in paragraph at lines 1122--1128
+[]\TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 One approach to formalizing this part is the one described in section []2.1.4[]. However, to
+ []
+
+
+Overfull \hbox (27.22514pt too wide) in paragraph at lines 1122--1128
+\TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 formalize the argument, we would likely need to deal with arbitrary models of ZF, not necessarily
+ []
+
+
+Overfull \hbox (8.47513pt too wide) in paragraph at lines 1122--1128
+\LMS/ntxsy/m/n/10 2$\TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 -models and prove propositions such as the reflection principle and the Mostowski collapse
+ []
+
+
+Overfull \hbox (24.72763pt too wide) in paragraph at lines 1122--1128
+\TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 lemma for these models. Currently, formalized definitions and lemmas related to internal models
+ []
+
+
+Overfull \hbox (1.88264pt too wide) in paragraph at lines 1122--1128
+\TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 assume that the ground model is an $\LMS/ntxsy/m/n/10 2$\TU/TeXGyreDejaVuMath-Regular(0)/m/it/10 -model, so a large amount of work would be required
+ []
+
+[24]
+LaTeX Font Info:    Font shape `TU/TeXGyreTermesX(0)/m/sc' will be
+(Font)              scaled to size 10.0pt on input line 1131.
+
+Overfull \hbox (13.98341pt too wide) in paragraph at lines 1132--1132
+[]\TU/TeXGyreTermesX(0)/m/n/10 Lawrence C. Paul-son. ``Large-Scale For-mal Proof for the Work-ing Mathematician---
+ []
+
+
+Overfull \hbox (6.79587pt too wide) in paragraph at lines 1132--1132
+\TU/TeXGyreTermesX(0)/m/n/10 Lessons Learnt from the ALEXAN-DRIA Project''. In: \TU/TeXGyreTermesX(0)/m/it/10 In-tel-li-gent Com-puter Math-
+ []
+
+[25
+
+]
+Overfull \hbox (1.95334pt too wide) in paragraph at lines 1132--1132
+\TU/TeXGyreTermesX(0)/m/n/10 son-ing''. In: \TU/TeXGyreTermesX(0)/m/it/10 Au-to-mated De-duc-tion—CADE-18\TU/TeXGyreTermesX(0)/m/n/10 . Springer Berlin Hei-del-berg, 2002,
+ []
+
+runsystem(del out\_minted-main\10490E4E5833ED810B9D9D7414B300C3FECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex)...executed
+[26] (./out/main.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: C13B7AADCBD9AA510D2A8B2575966F95;1381.
+(rerunfilecheck)             Checksum: 9A73713BF05A3EEC494D560641104861;1545.
 runsystem(del out\\main.pyg)...executed
 Package logreq Info: Writing requests to 'main.run.xml'.
 
 \openout1 = main.run.xml
 )
+(\end occurred inside a group at level 1)
+
+### simple group (level 1) entered at line 469 ({)
+### bottom level
 
 Here is how much of LuaTeX's memory you used:
- 28685 strings out of 478313
+ 28791 strings out of 478313
  100000,1977958 words of node,token memory allocated
- 964 words of node memory still in use:
-   6 hlist, 2 vlist, 2 rule, 8 glue, 4 kern, 1 glyph, 34 attribute, 110 glue_spec, 34 attribute_list, 1 write, 6 pdf_action nodes
-   avail lists: 1:4,2:1842,3:371,4:591,5:749,6:81,7:7745,8:63,9:674,10:9,11:513
- 47003 multiletter control sequences out of 65536+600000
- 229 fonts using 23724783 bytes
- 73i,6n,98p,719b,1423s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 1004 words of node memory still in use:
+   6 hlist, 2 vlist, 2 rule, 8 glue, 4 kern, 1 glyph, 35 attribute, 116 glue_spec, 35 attribute_list, 1 write, 7 pdf_action nodes
+   avail lists: 1:2,2:1868,3:328,4:658,5:744,6:96,7:7003,8:66,9:720,10:8,11:429
+ 47044 multiletter control sequences out of 65536+600000
+ 229 fonts using 24597103 bytes
+ 73i,6n,98p,849b,1551s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/texlive/2023/texmf-dist/fonts/opentype/public/newtx/TeXGyreTermesX-Regular.otf>{c:/texlive/2023/texmf-dist/fonts/enc/dvips/newtx/ntx-ot1-tlf.enc}<c:/texlive/2023/texmf-dist/fonts/opentype/public/newtx/TeXGyreTermesX-Italic.otf><c:/texlive/2023/texmf-dist/fonts/opentype/public/tex-gyre-math/texgyredejavu-math.otf><c:/texlive/2023/texmf-dist/fonts/opentype/public/newtx/TeXGyreTermesX-Bold.otf><c:/texlive/2023/texmf-dist/fonts/opentype/public/newtx/TeXGyreTermesX-Regular.otf><c:/texlive/2023/texmf-dist/fonts/type1/public/newtx/NewTXMI.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/newtx/NewTXMI7.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/newtx/txexs.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/newtx/txmiaX.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/txfonts/txsya.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/txfonts/txsyb.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/newtx/txsys.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/newtx/ztmr.pfb>
-Output written on main.pdf (25 pages, 196156 bytes).
+Output written on main.pdf (27 pages, 199700 bytes).
 
-PDF statistics: 456 PDF objects out of 1000 (max. 8388607)
- 401 compressed objects within 5 object streams
- 130 named destinations out of 1000 (max. 131072)
- 137 words of extra memory for PDF output out of 10000 (max. 100000000)
+PDF statistics: 496 PDF objects out of 1000 (max. 8388607)
+ 439 compressed objects within 5 object streams
+ 141 named destinations out of 1000 (max. 131072)
+ 153 words of extra memory for PDF output out of 10000 (max. 100000000)
 

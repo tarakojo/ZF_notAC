@@ -52,7 +52,7 @@
 \clearpage
 \chapter{Introduction}
 
-The formalization of mathematics using proof assistants such as Isabelle, Coq, and Lean, has been actively conducted, leading to numerous achievements. 
+The formalization of mathematics using proof assistants such as Isabelle\cite{paulson_1986}, Coq, and Lean, has been actively conducted, leading to numerous achievements. 
 For instance, the proofs of the four color theorem, Kepler's conjecture, and the Feit-Thompson theorem have been formalized using proof assistants, enhancing the reliability of these proofs. 
 Additionally, various fields of mathematics, such as number theory, algebra, and topology, are also being formalized.
 
@@ -109,12 +109,6 @@ In these formalizations, the countable transitive model (c.t.m.) approach was us
 In Lean, Han and van Doorn also formalized forcing and the independence of CH \cite{flypitch} in Lean 3.
 using the Boolean-valued model approach, which is another approach to forcing.
 Additionally, in Lean 4, Holmes and Wilshaw formalized the complex parts of the consistency proof of Quine's New Foundations \cite{NF_consistency}, ensuring the correctness of the proof.
-
-
-
-\begin{comment}
-  section2-...で説明するように、c.t.m.\ の存在はconzfからは導けないが、正当性が言えるのです
-\end{comment}
 
 \subsubsection{Repository}
 Our source code is available at: \url{https://github.com/tarakojo/ZF_notAC}
@@ -379,17 +373,105 @@ Since $a_n$ and $a_{\pi n}$ are distinct, this is a contradiction.
  
 \section{Isabelle/ZF and Formalization in Prior Work}
 In this section, we introduce Isabelle/ZF, a proof assistant for ZF set theory, 
-and the results from prior work used in the formalization of this study.
+and important results from prior work used in the formalization of this study.
+
+\subsection{Isabelle/ZF}
+Isabelle\cite{paulson_1986} is a proof assistant developed by Paulson, used for formalizing mathematical proofs and verifying programs. 
+Since its release in 1986, it has continued to be developed by many researchers.
+
+One notable example of Isabelle's achievements is the formal verification of the seL4 microkernel \cite{seL4}.
+This was a massive project involving over a million lines of Isabelle code. 
+More recently, in The ALEXANDRIA Project \cite{alexiandria}, various advanced mathematical results have been formalized in Isabelle.
+
+Isabelle is a tool for proving theorems of the loical system called Pure. 
+On top of Pure, other logical systems such as first-order logic (Isabelle/FOL) and Higher-Order Logic (Isabelle/HOL) are built,
+and Isabelle allows proving theorems in these logical systems.
+
+Isabelle/ZF is an extension of Isabelle/FOL.
+It extends Isabelle/FOL by adding the axioms of ZF, allowing theorems of ZF set theory to be proved.
+Additionally, the Axiom of Choice (AC) can be included, enabling theorems of ZFC to be proved in Isabelle/ZF.
+Many definitions and theorems regarding ZF, such as ordinals, cardinals, functions, and ordered sets, 
+have been formalized and provided as a library.
+
+\subsection{Important Results from Prior Work}
+
+\subsubsection{Recursive Data Types and Functions}
+Paulson \cite{paulson_datatype_impl} introduced \texttt{"datatype"} to recursive data types within ZF set theory, 
+and "primrec" to define functions on top of these data types. 
+This made it possible to define data structures such as lists within ZF set theory.
+For example, the set of all lists of elements from a set $A$ is defined in a library of Isabelle/ZF as follows:
+\begin{isaframe}
+\begin{minted}[breaklines]{isabelle}
+consts
+    list       :: "i⇒i"
+
+datatype
+    "list(A)" = Nil | Cons ("a ∈ A", "l ∈ list(A)")
+\end{minted}
+\end{isaframe}
+Additionally, the function "length" on lists is defined using "primrec" as follows.
+\begin{isaframe}
+\begin{minted}[breaklines]{isabelle}
+consts
+    length :: "i⇒i"
+
+primrec
+    "length([]) = 0"
+    "length(Cons(a,l)) = succ(length(l))"
+\end{minted}
+\end{isaframe}
+
+\subsubsection{Class and Relativization}
+In Isabelle/ZF, a class $C$ is represented as a unary predicate $C(x)$.
+The statement $x \in C$ is represented as $C(x)$.
+For example, the class of all ordinals $\mathrm{Ord}$ is defined in a library of Isabelle/ZF as \texttt{"Ord"},
+and the fact that \texttt{"α"} is an ordinal is represented as \texttt{"Ord(α)"}.
+
+Additionally, the notation \texttt{"∀x[C]. P(x)"} represents that \texttt{"P(x)"} holds for all \texttt{"x"} in the class \texttt{"C"},
+and \texttt{"∃x[C]. P(x)"} represents that there exists an \texttt{"x"} in the class \texttt{"C"} such that \texttt{"P(x)"} holds.
+Using this notation, we can obtain the relativized statement to a class \texttt{"C"} 
+by replacing all \texttt{"∀x"} and \texttt{"∃x"} in a original statement with \texttt{"∀x[C]"} and \texttt{"∃x[C]"}, respectively.
+
+\subsubsection{Internalized Formula and Satisfaction Relation}
+Paluson defined formulas encoded as sets in ZF set theory in their work \cite{paulson_AC_consistency},
+using \texttt{"datatype"} as follows:
+\begin{isaframe}
+\begin{minted}[breaklines]{isabelle}
+consts   formula :: i
+datatype
+    "formula" = Member ("x ∈ nat", "y ∈ nat")
+                      | Equal  ("x ∈ nat", "y ∈ nat")
+                      | Nand ("p ∈ formula", "q ∈ formula")
+                      | Forall ("p ∈ formula")
+\end{minted}
+\end{isaframe}
+Note that \texttt{"nat"} is the set of natural numbers.
+The unique logical connective in this definition is NAND and 
+other logical connectives such as AND, OR, and NOT on formulas are defined in terms of NAND.
+Formulas are represented using the de Brujin index, in other words, 
+a occurence of a natural number $n$ in a formula represents the $(n - m)$-th free variable when this $n$ occurs under $m$ quantifiers.
+
+Additionally, the satisfaction relation \texttt{"sats(A, φ, env)"} is defined.
+This relation represents that \texttt{"A"} satisfies the formula \texttt{"φ"} 
+under the environment \texttt{"env"}, where \texttt{"env"} is a list of elements of \texttt{"A"}.
+Note that the arity of \texttt{"φ"} must be less than or equal to the length of \texttt{"env"}.
+
+For example, \texttt{"sats(A, Member(0, 1), [a, b])"} is equivalent to \texttt{"a ∈ b"} when \texttt{"[a, b] ∈ list(A)"}, 
+and \texttt{"sats(A, Forall(Member(0, 1)), [c])"} is equivalent to \texttt{"∀x ∈ A. c ∈ x"} when \texttt{"[c] ∈ list(A)"}.
+
+\subsubsection{Locales and Internalized ZF Axioms}
+Isabelle provides a feature called locales, 
+which allows us to work more easily in a specific context by fixing constants and introducing assumptions.
+For example, when formalizing group theory, rather than adding the assumption "$G$ is a group" to every theorem,
+we can simply declare a locale with the constant $G$ and the assumption "$G$ is a group".
+ 
+Paulson and Gunther et al. declared locales to handle internal models of ZF set theory in their work \cite{paulson_AC_consistency} \cite{gunther_forcing}.
+Here, we introduce Gunther's locale \texttt{"M_ctm"}. 
+
+
+
 \subsubsection{The locale \texttt{"forcing\_data"} by Gunther et al.}
 
-\begin{comment}  
-
-強制関係を説明する！
-
-\section{Isabelle/ZF}
-\section{Internalized First-Order Formulas}
-\section{Forcing}  
-\end{comment}
 
 \chapter{Formalization of the Proof} 
 In this chapter, we present the formalization of the relative consistency proof of $\neg$AC with ZF in Isabelle/ZF.
@@ -951,7 +1033,12 @@ Where \texttt{"wellordered(C, A, r)"} denotes that
 the relation \texttt{"r"} is a well-ordering of the set \texttt{"A"} in the class \texttt{"C"}, 
 and \texttt{"\#\#"} is an operator that converts a set to a class.
 These are defined by Paulson \cite{paulson_AC_consistency}.
-Specifically, the definition of \texttt{"wellordered"} is as follows:
+Specifically, the definition of \texttt{"wellordered"} is as follows
+\footnote{
+Note that we can show that 
+if \texttt{"wellordered(N, A, r)"} holds for an element \texttt{"A"} in a class \texttt{"N"}, which is a model of ZF,
+then \texttt{"r"} is irreflexive and assymetric, i.e., a strict total order.
+}:
 \begin{isaframe}
 \begin{minted}[breaklines]{isabelle}
 definition transitive_rel :: "[i⇒o,i,i]⇒o" where
@@ -973,13 +1060,6 @@ definition wellordered :: "[i⇒o,i,i]⇒o" where
         transitive_rel(M,A,r) ∧ linear_rel(M,A,r) ∧ wellfounded_on(M,A,r)"
 \end{minted}
 \end{isaframe}
-Where \texttt{"∀x[M].P(x)"} denotes that \texttt{"P(x)"} holds for all elements \texttt{"x"} in the class \texttt{"M"},
-and \texttt{"∃x[M].P(x)"} denotes that there exists an element \texttt{"x"} in the class \texttt{"M"} such that \texttt{"P(x)"} holds.
-\footnote{
-Note that we can show that 
-if \texttt{"wellordered(N, A, r)"} holds for an element \texttt{"A"} in a class \texttt{"N"}, which is a model of ZF,
-then \texttt{"r"} is irreflexive and assymetric, i.e., a strict total order.
-}
 
 Thus, the statement "a set $\mathcal{N}$ satisfies well-ordering theorem" can be written as follows:
 \begin{isaframe}
