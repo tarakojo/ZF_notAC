@@ -215,7 +215,7 @@ Note that a single set may have multiple names.
 By choosing $\mathbb{P}$ appropriately, we can construct $M[G]$ with various properties.
 What holds or does not hold in $M[G]$ can be identified using the forcing relation.
 The forcing relation is defined recursively on formulas in a forcing language.
-The forcing language is an extension of tha language of set theory by adding the elements of $M^{\mathbb{P}}$ as constants.
+The forcing language is an extension of the language of set theory by adding the elements of $M^{\mathbb{P}}$ as constants.
 \begin{dfn} \label{dfn:forcing_relation}
   We define the \emph{forcing relation} $\Vdash$ for formulas in the forcing language and $p \in \mathbb{P}$ inductively
   \footnote{
@@ -234,13 +234,14 @@ The forcing language is an extension of tha language of set theory by adding the
     \item $p \Vdash \exists x \phi(x) \Leftrightarrow \forall q \leq_{\mathbb{P}} p \, \exists r \leq_{\mathbb{P}} q \, \exists \dot{x} \in M^{\mathbb{P}} \, (r \Vdash \phi(\dot{x}))$
   \end{enumerate}
 \end{dfn}
+We say that $p$ \emph{forces} $\phi$ if $p \Vdash \phi$.
 
 \begin{thm}[The Truth Lemma] \label{thm:truth_lemma}
   Let $G$ be a generic filter on $\mathbb{P}$, $\varphi$ be a formula, and $\dot{x} \in M^{\mathbb{P}}$, then 
   $$M[G] \vDash \varphi(\dot{x}^G) \Leftrightarrow \exists p \in G \, (p \Vdash \varphi(\dot{x}))$$
 \end{thm}
 
-\begin{cor}
+\begin{cor}\label{cor:truth_lemma_cor}
   Let $p \in \mathbb{P}$, $\varphi$ be a formula and $\dot{x} \in M^{\mathbb{P}}$, then
   $$p \Vdash \varphi(\dot{x}) \Leftrightarrow \text{for any generic filter } G \text{ containing } p, M[G] \vDash \varphi(\dot{x}^G)$$
 \end{cor}
@@ -465,13 +466,71 @@ which allows us to work more easily in a specific context by fixing constants an
 For example, when formalizing group theory, rather than adding the assumption "$G$ is a group" to every theorem,
 we can simply declare a locale with the constant $G$ and the assumption "$G$ is a group".
  
-Paulson and Gunther et al. declared locales to handle internal models of ZF set theory in their work \cite{paulson_AC_consistency} \cite{gunther_forcing}.
-Here, we introduce Gunther's locale \texttt{"M_ctm"}. 
+Paulson and Gunther et al. declared locales to handle internal models of ZF set theory in their work \cite{paulson_AC_consistency, gunther_forcing}, respectively.
+For example, the locale \texttt{"M\_ctm"} by Gunther et al. fixes \texttt{"M"} and \texttt{"enum"},
+and introduces assumptions that \texttt{"M"} holds the axioms of ZF set theory, 
+\texttt{"M"} is a transitive set, and \texttt{"enum"} is a enumeration of \texttt{"M"}.
+Therefore, we can work in the context of a c.t.m.\  of ZF by working within this locale.
 
+\subsubsection{Forcing}
+Gunther et al. formalized forcing method in ZF set theory \cite{gunther_forcing}.
+Their formalization follows Kunen's book \cite{kunen2011}, which uses the c.t.m.\  approach.
 
+They defined the notion of forcing as the locale \texttt{"forcing\_notion"} 
+with the constants \texttt{"P"}, \texttt{"leq"}, and \texttt{"one"}.
+\begin{isaframe}
+\begin{minted}[breaklines]{isabelle}
+locale forcing_notion =
+    fixes P leq one
+    assumes one_in_P:     "one ∈ P"
+      and leq_preord:       "preorder_on(P,leq)"
+      and one_max:          "∀p∈P. ⟨p,one⟩∈leq"
+\end{minted}
+\end{isaframe}
 
-\subsubsection{The locale \texttt{"forcing\_data"} by Gunther et al.}
+They also declared the locale \texttt{"forcing\_data"} 
+by combining the locale \texttt{"forcing\_notion"} with the locale \texttt{"M\_ctm"} and assume some additional properties. 
+\begin{isaframe}
+\begin{minted}[breaklines]{isabelle}
+locale forcing_data = forcing_notion + M_ctm +
+    assumes P_in_M:         "P ∈ M"
+      and leq_in_M:         "leq ∈ M"
+\end{minted}
+\end{isaframe}
 
+Within this locale, The predicate \texttt{"p ⊩ φ env"} is defined.
+This represents that \texttt{"p"} forces the formula \texttt{"φ"} under the environment \texttt{"env"}.
+Additionally, the following
+\footnote{
+In Definition\ref{dfn:forcing_relation},
+we explained that the forcing relation is defined for the formulas in the forcing language.
+According to that definition, \texttt{"env"} should be a list of elements of $M^{\mathbb{P}}$;
+however, in the following lemmas, \texttt{"env"} is a list of elements of $M$.
+In fact, the definition of the forcing relation by Gunther et al. differs from Definition \ref{dfn:forcing_relation}.
+They defined the forcing relation not for the formulas in the forcing language 
+but for the formulas in the extended language of set theory by adding all elements of $M$ as constants.
+Additionally, only NAND is used as the logical connective, and only $\forall$ is used as the quantifier of the formulas.
+} is their formalization of Theorem \ref{thm:truth_lemma} and Corollary \ref{cor:truth_lemma_cor}.
+\begin{isaframe}
+\begin{minted}[breaklines]{isabelle}
+lemma truth_lemma:
+    assumes 
+        "φ∈formula" "M_generic(G)"
+    shows 
+        "⋀env. env∈list(M) ⟹ arity(φ)≤length(env) ⟹ 
+          (∃p∈G. p ⊩ φ env)   ⟷   M[G], map(val(G),env) ⊨ φ"
+
+lemma definition_of_forcing:
+    assumes
+        "p∈P" "φ∈formula" "env∈list(M)" "arity(φ)≤length(env)"
+    shows
+        "(p ⊩ φ env) ⟷
+        (∀G. M_generic(G) ∧ p∈G  ⟶  M[G], map(val(G),env) ⊨ φ)"
+\end{minted}
+\end{isaframe}
+Where \texttt{"M\_generic(G)"} represents that \texttt{"G"} is a generic filter on \texttt{"P"} in \texttt{"M"},
+\texttt{"val(G)"} is the interpretation by \texttt{"G"},
+and \texttt{"map"} is the map function on lists.
 
 \chapter{Formalization of the Proof} 
 In this chapter, we present the formalization of the relative consistency proof of $\neg$AC with ZF in Isabelle/ZF.
@@ -722,14 +781,8 @@ However, we were unable to construct such a formula.
 
 \subsubsection{The Relativized Forcing Relation $\Vdash_{\mathrm{HS}}$}
 Instead, we formalize the relativized forcing relation $\Vdash_{\mathrm{HS}}$ and prove that symmetric extensions are models of ZF using it.
-This relation is defined by replacing all quantifiers restricted to $M^{\mathbb{P}}$
-in the definition of the forcing relation with quantifiers restricted to $\mathrm{HS}$.
-By modifying the formalization of forcing by Gunther et al. \cite{gunther_forcing}
-\footnote{For non-atomic formulas, the definition of the forcing relation by Gunther et al. \cite{gunther_forcing} 
-actually differs from Definition \ref{dfn:forcing_relation}.
-In their definition, the unique logical connective is NAND, and the unique quantifier is $\forall$.
-Additionally, in the definition, quantifiers restricted to $M$ appear instead of those restricted to $M^{\mathbb{P}}$.}
-, we were able to define this relation and prove its properties relatively easily.
+By modifying the formalization of forcing by Gunther et al. \cite{gunther_forcing}, 
+we were able to define this relation and prove its properties relatively easily.
 
 Within the locale \texttt{"M\_symmetric\_system"},
 we define this relation in the form \texttt{"p ⊩HS φ env"},
@@ -828,7 +881,8 @@ it is sufficient to show that for any formula $\varphi$ and any elements $x, p$ 
 we can find a set $S \in \mathcal{N}$ such that : 
 $$\mathcal{N} \vDash \exists z \, \varphi(y, z, p) \text{ iff }
   \mathcal{N} \vDash \exists z \, (z \in S \land \varphi(y, z, p)) \text{ for all } y \in x$$
-This is because such a set $S$ contains the image of $x$ under the class function defined by $\varphi$ \footnote{If $\varphi$ defines a class function.},
+This is because such a set $S$ contains the image of $x$ under the class function defined by $\varphi$ 
+\footnote{If $\varphi$ defines a class function.},
 which is the set that would be obtained by applying the replacement axiom.
 To prove this, we show the following lemma, which rewrites the above statement in terms of the forcing relation $\Vdash_{\mathrm{HS}}$,
 and then prove it.

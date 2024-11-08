@@ -1,0 +1,5 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{locale}\PYG{+w}{ }\PYG{n}{forcing\PYGZus{}data}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{forcing\PYGZus{}notion}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{M\PYGZus{}ctm}\PYG{+w}{ }\PYG{o}{+}
+\PYG{+w}{    }\PYG{k+kp}{assumes}\PYG{+w}{ }\PYG{n}{P\PYGZus{}in\PYGZus{}M}\PYG{o}{:}\PYG{+w}{         }\PYG{l+s}{\PYGZdq{}P ∈ M\PYGZdq{}}
+\PYG{+w}{      }\PYG{k+kp}{and}\PYG{+w}{ }\PYG{n}{leq\PYGZus{}in\PYGZus{}M}\PYG{o}{:}\PYG{+w}{         }\PYG{l+s}{\PYGZdq{}leq ∈ M\PYGZdq{}}
+\end{Verbatim}

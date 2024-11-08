@@ -16,27 +16,27 @@
 \contentsline {subsubsection}{Class and Relativization}{10}{section*.6}%
 \contentsline {subsubsection}{Internalized Formula and Satisfaction Relation}{10}{section*.7}%
 \contentsline {subsubsection}{Locales and Internalized ZF Axioms}{11}{section*.8}%
-\contentsline {subsubsection}{The locale \texttt {"forcing\_data"} by Gunther et al.}{11}{section*.9}%
-\contentsline {chapter}{\numberline {3}Formalization of the Proof}{12}{chapter.3}%
-\contentsline {section}{\numberline {3.1}Symmetric Extensions}{12}{section.3.1}%
-\contentsline {subsection}{\numberline {3.1.1}Defining Symmetric Extensions}{12}{subsection.3.1.1}%
-\contentsline {subsubsection}{$\mathbb {P}$-names}{12}{section*.10}%
-\contentsline {subsubsection}{Automorphisms}{13}{section*.11}%
-\contentsline {subsubsection}{Groups of Automorphisms and Normal Filters}{13}{section*.12}%
-\contentsline {subsubsection}{Hereditarily Symmetric Names}{14}{section*.13}%
-\contentsline {subsubsection}{Symmetric Extensions}{14}{section*.14}%
-\contentsline {subsubsection}{Formulas Representing These Definitions}{15}{section*.15}%
-\contentsline {subsection}{\numberline {3.1.2}Proving Symmetric Extensions are Models of ZF}{15}{subsection.3.1.2}%
-\contentsline {subsubsection}{Unsuccessful Approach}{16}{section*.16}%
-\contentsline {subsubsection}{The Relativized Forcing Relation $\Vdash _{\mathrm {HS}}$}{16}{section*.17}%
-\contentsline {subsubsection}{The Symmetry Lemma}{17}{section*.18}%
-\contentsline {subsubsection}{Separation}{17}{section*.19}%
-\contentsline {subsubsection}{Replacement}{18}{section*.20}%
-\contentsline {subsubsection}{Other Axioms}{19}{section*.21}%
-\contentsline {section}{\numberline {3.2}The Basic Cohen Model}{19}{section.3.2}%
-\contentsline {subsection}{\numberline {3.2.1}Defining the Basic Cohen Model}{19}{subsection.3.2.1}%
-\contentsline {subsubsection}{The Notion of Forcing}{19}{section*.22}%
-\contentsline {subsubsection}{The Group of Automorphisms and the Normal Filter}{20}{section*.23}%
-\contentsline {subsection}{\numberline {3.2.2}Proving the Basic Cohen Model does not Satisfy AC}{21}{subsection.3.2.2}%
-\contentsline {chapter}{\numberline {4}Conclusion}{23}{chapter.4}%
-\contentsline {subsubsection}{Acknowledgements}{24}{section*.24}%
+\contentsline {subsubsection}{Forcing}{11}{section*.9}%
+\contentsline {chapter}{\numberline {3}Formalization of the Proof}{13}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Symmetric Extensions}{13}{section.3.1}%
+\contentsline {subsection}{\numberline {3.1.1}Defining Symmetric Extensions}{13}{subsection.3.1.1}%
+\contentsline {subsubsection}{$\mathbb {P}$-names}{13}{section*.10}%
+\contentsline {subsubsection}{Automorphisms}{14}{section*.11}%
+\contentsline {subsubsection}{Groups of Automorphisms and Normal Filters}{14}{section*.12}%
+\contentsline {subsubsection}{Hereditarily Symmetric Names}{15}{section*.13}%
+\contentsline {subsubsection}{Symmetric Extensions}{15}{section*.14}%
+\contentsline {subsubsection}{Formulas Representing These Definitions}{16}{section*.15}%
+\contentsline {subsection}{\numberline {3.1.2}Proving Symmetric Extensions are Models of ZF}{17}{subsection.3.1.2}%
+\contentsline {subsubsection}{Unsuccessful Approach}{17}{section*.16}%
+\contentsline {subsubsection}{The Relativized Forcing Relation $\Vdash _{\mathrm {HS}}$}{17}{section*.17}%
+\contentsline {subsubsection}{The Symmetry Lemma}{18}{section*.18}%
+\contentsline {subsubsection}{Separation}{18}{section*.19}%
+\contentsline {subsubsection}{Replacement}{19}{section*.20}%
+\contentsline {subsubsection}{Other Axioms}{20}{section*.21}%
+\contentsline {section}{\numberline {3.2}The Basic Cohen Model}{20}{section.3.2}%
+\contentsline {subsection}{\numberline {3.2.1}Defining the Basic Cohen Model}{20}{subsection.3.2.1}%
+\contentsline {subsubsection}{The Notion of Forcing}{21}{section*.22}%
+\contentsline {subsubsection}{The Group of Automorphisms and the Normal Filter}{21}{section*.23}%
+\contentsline {subsection}{\numberline {3.2.2}Proving the Basic Cohen Model does not Satisfy AC}{22}{subsection.3.2.2}%
+\contentsline {chapter}{\numberline {4}Conclusion}{24}{chapter.4}%
+\contentsline {subsubsection}{Acknowledgements}{25}{section*.24}%
