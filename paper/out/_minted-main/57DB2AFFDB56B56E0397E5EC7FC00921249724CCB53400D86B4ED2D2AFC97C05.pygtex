@@ -1,0 +1,19 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{x}{definition transitive\PYGZus{}rel :: \PYGZdq{}[i⇒o,i,i]⇒o\PYGZdq{} where}
+\PYG{x}{    \PYGZdq{}transitive\PYGZus{}rel(M,A,r) ≡}
+\PYG{x}{        ∀x[M]. x∈A ⟶ (∀y[M]. y∈A ⟶ (∀z[M]. z∈A ⟶}
+\PYG{x}{                          ⟨x,y⟩∈r ⟶ ⟨y,z⟩∈r ⟶ ⟨x,z⟩∈r))\PYGZdq{}}
+\PYG{x}{definition linear\PYGZus{}rel :: \PYGZdq{}[i⇒o,i,i]⇒o\PYGZdq{} where}
+\PYG{x}{    \PYGZdq{}linear\PYGZus{}rel(M,A,r) ≡}
+\PYG{x}{        ∀x[M]. x∈A ⟶ (∀y[M]. y∈A ⟶ ⟨x,y⟩∈r | x=y | ⟨y,x⟩∈r)\PYGZdq{}}
+
+\PYG{x}{definition wellfounded\PYGZus{}on :: \PYGZdq{}[i⇒o,i,i]⇒o\PYGZdq{} where}
+\PYG{x}{    ― ‹every non\PYGZhy{}empty SUBSET OF ‹A› has an ‹r›\PYGZhy{}minimal element›}
+\PYG{x}{    \PYGZdq{}wellfounded\PYGZus{}on(M,A,r) ≡}
+\PYG{x}{        ∀x[M]. x≠0 ⟶ x⊆A ⟶ (∃y[M]. y∈x ∧ ¬(∃z[M]. z∈x ∧ ⟨z,y⟩ ∈ r))\PYGZdq{}}
+
+\PYG{x}{definition wellordered :: \PYGZdq{}[i⇒o,i,i]⇒o\PYGZdq{} where}
+\PYG{x}{    ― ‹linear and wellfounded on ‹A››}
+\PYG{x}{    \PYGZdq{}wellordered(M,A,r) ≡}
+\PYG{x}{        transitive\PYGZus{}rel(M,A,r) ∧ linear\PYGZus{}rel(M,A,r) ∧ wellfounded\PYGZus{}on(M,A,r)\PYGZdq{}}
+\end{Verbatim}

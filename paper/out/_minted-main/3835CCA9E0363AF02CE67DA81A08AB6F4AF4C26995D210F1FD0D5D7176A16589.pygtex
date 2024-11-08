@@ -1,0 +1,12 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{definition}\PYG{+w}{ }\PYG{n}{sym}\PYG{+w}{ }\PYG{k+kp}{where}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}sym(x) ≡ \PYGZob{} π ∈ 𝒢. Pn\PYGZus{}auto(π)`x = x \PYGZcb{}\PYGZdq{}}
+
+\PYG{k}{definition}\PYG{+w}{ }\PYG{n}{symmetric}\PYG{+w}{ }\PYG{k+kp}{where}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}symmetric(x) ≡ sym(x) ∈ ℱ\PYGZdq{}}
+
+\PYG{k}{definition}\PYG{+w}{ }\PYG{n}{HHS\PYGZus{}set\PYGZus{}succ}\PYG{+w}{ }\PYG{k+kp}{where}
+\PYG{+w}{  }\PYG{l+s}{\PYGZdq{}HHS\PYGZus{}set\PYGZus{}succ(a, X) ≡ \PYGZob{} x ∈ P\PYGZus{}set(succ(a)). domain(x) ⊆ X ∧ symmetric(x) \PYGZcb{}\PYGZdq{}}
+
+\PYG{k}{definition}\PYG{+w}{ }\PYG{n}{HS\PYGZus{}set}\PYG{+w}{ }\PYG{k+kp}{where}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}HS\PYGZus{}set(a) ≡ transrec2(a, 0, HHS\PYGZus{}set\PYGZus{}succ)\PYGZdq{}}
+
+\PYG{k}{definition}\PYG{+w}{ }\PYG{n}{HS}\PYG{+w}{ }\PYG{k+kp}{where}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}HS ≡ \PYGZob{} x ∈ P\PYGZus{}names. ∃a. Ord(a) ∧ x ∈ HS\PYGZus{}set(a) \PYGZcb{}\PYGZdq{}}
+\end{Verbatim}

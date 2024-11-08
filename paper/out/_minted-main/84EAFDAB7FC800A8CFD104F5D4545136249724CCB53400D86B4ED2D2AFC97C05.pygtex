@@ -1,0 +1,5 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{x}{locale forcing\PYGZus{}data = forcing\PYGZus{}notion + M\PYGZus{}ctm +}
+\PYG{x}{    assumes P\PYGZus{}in\PYGZus{}M:         \PYGZdq{}P ∈ M\PYGZdq{}}
+\PYG{x}{      and leq\PYGZus{}in\PYGZus{}M:         \PYGZdq{}leq ∈ M\PYGZdq{}}
+\end{Verbatim}

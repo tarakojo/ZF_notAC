@@ -8,35 +8,35 @@
 \contentsline {subsection}{\numberline {2.1.2}Forcing}{5}{subsection.2.1.2}%
 \contentsline {subsection}{\numberline {2.1.3}Symmetric Extensions}{7}{subsection.2.1.3}%
 \contentsline {subsection}{\numberline {2.1.4}The c.t.m.\ Approach}{8}{subsection.2.1.4}%
-\contentsline {section}{\numberline {2.2}Outline for the Informal Proof}{8}{section.2.2}%
-\contentsline {section}{\numberline {2.3}Isabelle/ZF and Formalization in Prior Work}{9}{section.2.3}%
-\contentsline {subsection}{\numberline {2.3.1}Isabelle/ZF}{9}{subsection.2.3.1}%
-\contentsline {subsection}{\numberline {2.3.2}Important Results from Prior Work}{10}{subsection.2.3.2}%
-\contentsline {subsubsection}{Recursive Data Types and Functions}{10}{section*.5}%
-\contentsline {subsubsection}{Class and Relativization}{10}{section*.6}%
-\contentsline {subsubsection}{Internalized Formula and Satisfaction Relation}{10}{section*.7}%
-\contentsline {subsubsection}{Locales and Internalized ZF Axioms}{11}{section*.8}%
-\contentsline {subsubsection}{Forcing}{11}{section*.9}%
-\contentsline {chapter}{\numberline {3}Formalization of the Proof}{13}{chapter.3}%
-\contentsline {section}{\numberline {3.1}Symmetric Extensions}{13}{section.3.1}%
-\contentsline {subsection}{\numberline {3.1.1}Defining Symmetric Extensions}{13}{subsection.3.1.1}%
-\contentsline {subsubsection}{$\mathbb {P}$-names}{13}{section*.10}%
-\contentsline {subsubsection}{Automorphisms}{14}{section*.11}%
-\contentsline {subsubsection}{Groups of Automorphisms and Normal Filters}{14}{section*.12}%
-\contentsline {subsubsection}{Hereditarily Symmetric Names}{15}{section*.13}%
-\contentsline {subsubsection}{Symmetric Extensions}{15}{section*.14}%
-\contentsline {subsubsection}{Formulas Representing These Definitions}{16}{section*.15}%
-\contentsline {subsection}{\numberline {3.1.2}Proving Symmetric Extensions are Models of ZF}{17}{subsection.3.1.2}%
-\contentsline {subsubsection}{Unsuccessful Approach}{17}{section*.16}%
-\contentsline {subsubsection}{The Relativized Forcing Relation $\Vdash _{\mathrm {HS}}$}{17}{section*.17}%
-\contentsline {subsubsection}{The Symmetry Lemma}{18}{section*.18}%
-\contentsline {subsubsection}{Separation}{18}{section*.19}%
-\contentsline {subsubsection}{Replacement}{19}{section*.20}%
-\contentsline {subsubsection}{Other Axioms}{20}{section*.21}%
-\contentsline {section}{\numberline {3.2}The Basic Cohen Model}{20}{section.3.2}%
-\contentsline {subsection}{\numberline {3.2.1}Defining the Basic Cohen Model}{20}{subsection.3.2.1}%
-\contentsline {subsubsection}{The Notion of Forcing}{21}{section*.22}%
-\contentsline {subsubsection}{The Group of Automorphisms and the Normal Filter}{21}{section*.23}%
-\contentsline {subsection}{\numberline {3.2.2}Proving the Basic Cohen Model does not Satisfy AC}{22}{subsection.3.2.2}%
-\contentsline {chapter}{\numberline {4}Conclusion}{24}{chapter.4}%
-\contentsline {subsubsection}{Acknowledgements}{25}{section*.24}%
+\contentsline {section}{\numberline {2.2}Outline for the Informal Proof}{9}{section.2.2}%
+\contentsline {section}{\numberline {2.3}Isabelle/ZF and Formalization in Prior Work}{10}{section.2.3}%
+\contentsline {subsection}{\numberline {2.3.1}Isabelle/ZF}{10}{subsection.2.3.1}%
+\contentsline {subsection}{\numberline {2.3.2}Important Results from Prior Work}{11}{subsection.2.3.2}%
+\contentsline {subsubsection}{Recursive Data Types and Functions}{11}{section*.5}%
+\contentsline {subsubsection}{Class and Relativization}{11}{section*.6}%
+\contentsline {subsubsection}{Internalized Formula and Satisfaction Relation}{12}{section*.7}%
+\contentsline {subsubsection}{Locales and Internalized ZF Axioms}{12}{section*.8}%
+\contentsline {subsubsection}{Forcing}{12}{section*.9}%
+\contentsline {chapter}{\numberline {3}Formalization of the Proof}{14}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Symmetric Extensions}{14}{section.3.1}%
+\contentsline {subsection}{\numberline {3.1.1}Defining Symmetric Extensions}{14}{subsection.3.1.1}%
+\contentsline {subsubsection}{$\mathbb {P}$-names}{14}{section*.10}%
+\contentsline {subsubsection}{Automorphisms}{15}{section*.11}%
+\contentsline {subsubsection}{Groups of Automorphisms and Normal Filters}{15}{section*.12}%
+\contentsline {subsubsection}{Hereditarily Symmetric Names}{16}{section*.13}%
+\contentsline {subsubsection}{Symmetric Extensions}{16}{section*.14}%
+\contentsline {subsubsection}{Formulas Representing These Definitions}{17}{section*.15}%
+\contentsline {subsection}{\numberline {3.1.2}Proving Symmetric Extensions are Models of ZF}{18}{subsection.3.1.2}%
+\contentsline {subsubsection}{Unsuccessful Approach}{18}{section*.16}%
+\contentsline {subsubsection}{The Relativized Forcing Relation $\Vdash _{\mathrm {HS}}$}{18}{section*.17}%
+\contentsline {subsubsection}{The Symmetry Lemma}{19}{section*.18}%
+\contentsline {subsubsection}{Separation}{19}{section*.19}%
+\contentsline {subsubsection}{Replacement}{20}{section*.20}%
+\contentsline {subsubsection}{Other Axioms}{21}{section*.21}%
+\contentsline {section}{\numberline {3.2}The Basic Cohen Model}{21}{section.3.2}%
+\contentsline {subsection}{\numberline {3.2.1}Defining the Basic Cohen Model}{21}{subsection.3.2.1}%
+\contentsline {subsubsection}{The Notion of Forcing}{22}{section*.22}%
+\contentsline {subsubsection}{The Group of Automorphisms and the Normal Filter}{22}{section*.23}%
+\contentsline {subsection}{\numberline {3.2.2}Proving the Basic Cohen Model does not Satisfy AC}{23}{subsection.3.2.2}%
+\contentsline {chapter}{\numberline {4}Conclusion}{25}{chapter.4}%
+\contentsline {subsubsection}{Acknowledgements}{26}{section*.24}%

@@ -1,0 +1,13 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{locale}\PYG{+w}{ }\PYG{n}{M\PYGZus{}symmetric\PYGZus{}system}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{forcing\PYGZus{}data\PYGZus{}partial}\PYG{+w}{ }\PYG{o}{+}
+\PYG{+w}{    }\PYG{k+kp}{fixes}\PYG{+w}{ }\PYG{n}{𝒢}\PYG{+w}{ }\PYG{n}{ℱ}
+\PYG{+w}{    }\PYG{k+kp}{assumes}\PYG{+w}{ }\PYG{n}{𝒢\PYGZus{}in\PYGZus{}M}\PYG{+w}{ }\PYG{o}{:}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}𝒢 ∈ M\PYGZdq{}}
+\PYG{+w}{    }\PYG{k+kp}{and}\PYG{+w}{ }\PYG{n}{𝒢\PYGZus{}P\PYGZus{}auto\PYGZus{}group}\PYG{+w}{ }\PYG{o}{:}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}is\PYGZus{}P\PYGZus{}auto\PYGZus{}group(𝒢)\PYGZdq{}}
+\PYG{+w}{    }\PYG{k+kp}{and}\PYG{+w}{ }\PYG{n}{ℱ\PYGZus{}in\PYGZus{}M}\PYG{+w}{ }\PYG{o}{:}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}ℱ ∈ M\PYGZdq{}}
+\PYG{+w}{    }\PYG{k+kp}{and}\PYG{+w}{ }\PYG{n}{ℱ\PYGZus{}subset}\PYG{+w}{ }\PYG{o}{:}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}ℱ ⊆ P\PYGZus{}auto\PYGZus{}subgroups(𝒢)\PYGZdq{}}
+\PYG{+w}{    }\PYG{k+kp}{and}\PYG{+w}{ }\PYG{n}{ℱ\PYGZus{}nonempty}\PYG{+w}{ }\PYG{o}{:}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}ℱ ≠ 0\PYGZdq{}}
+\PYG{+w}{    }\PYG{k+kp}{and}\PYG{+w}{ }\PYG{n}{ℱ\PYGZus{}closed\PYGZus{}under\PYGZus{}intersection}\PYG{+w}{ }\PYG{o}{:}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}∀A ∈ ℱ. ∀B ∈ ℱ. A ∩ B ∈ ℱ\PYGZdq{}}
+\PYG{+w}{    }\PYG{k+kp}{and}\PYG{+w}{ }\PYG{n}{ℱ\PYGZus{}closed\PYGZus{}under\PYGZus{}supergroup}\PYG{+w}{ }\PYG{o}{:}
+\PYG{+w}{        }\PYG{l+s}{\PYGZdq{}∀A ∈ ℱ. ∀B ∈ P\PYGZus{}auto\PYGZus{}subgroups(𝒢). A ⊆ B ⟶ B ∈ ℱ\PYGZdq{}}
+\PYG{+w}{    }\PYG{k+kp}{and}\PYG{+w}{ }\PYG{n}{ℱ\PYGZus{}normal}\PYG{+w}{ }\PYG{o}{:}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}∀H ∈ ℱ. ∀π ∈ 𝒢. \PYGZob{} π O τ O converse(π). τ ∈ H \PYGZcb{} ∈ ℱ\PYGZdq{}}
+\end{Verbatim}

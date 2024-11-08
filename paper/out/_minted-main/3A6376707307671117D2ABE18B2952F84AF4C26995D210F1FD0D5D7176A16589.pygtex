@@ -1,0 +1,3 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{lemma}\PYG{+w}{ }\PYG{n}{HS\PYGZus{}iff}\PYG{o}{:}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}x ∈ HS ⟷ x ∈ P\PYGZus{}names ∧ domain(x) ⊆ HS ∧ symmetric(x)\PYGZdq{}}
+\end{Verbatim}

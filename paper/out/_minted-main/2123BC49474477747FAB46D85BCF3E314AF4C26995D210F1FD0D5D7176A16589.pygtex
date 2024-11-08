@@ -1,0 +1,6 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{lemma}\PYG{+w}{ }\PYG{n}{M\PYGZus{}subset\PYGZus{}SymExt}\PYG{+w}{ }\PYG{o}{:}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}M ⊆ SymExt(G)\PYGZdq{}}
+\PYG{k+kn}{lemma}\PYG{+w}{ }\PYG{n}{SymExt\PYGZus{}subset\PYGZus{}GenExt}\PYG{+w}{ }\PYG{o}{:}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}SymExt(G) ⊆ GenExt(G)\PYGZdq{}}
+\PYG{k+kn}{lemma}\PYG{+w}{ }\PYG{n}{Transset\PYGZus{}SymExt}\PYG{+w}{ }\PYG{o}{:}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}Transset(SymExt(G))\PYGZdq{}}
+\PYG{k+kn}{lemma}\PYG{+w}{ }\PYG{n}{SymExt\PYGZus{}countable}\PYG{+w}{ }\PYG{o}{:}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}nat ≈ SymExt(G)\PYGZdq{}}
+\end{Verbatim}
