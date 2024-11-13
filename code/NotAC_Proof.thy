@@ -1,5 +1,6 @@
 theory NotAC_Proof 
   imports 
+    HS_Forces
     NotAC_Binmap 
     NotAC_Inj
 begin 

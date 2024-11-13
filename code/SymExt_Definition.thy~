@@ -76,26 +76,5 @@ lemma SymExt_trans : "x \<in> SymExt(G) \<Longrightarrow> y \<in> x \<Longrighta
   unfolding Transset_def
   by auto
 
-lemma SymExt_countable : "nat \<approx> SymExt(G)" 
-proof -   
-  have "nat \<approx> M"
-    unfolding eqpoll_def 
-    using M_ctm_axioms_def M_ctm_axioms M_ctm_def
-    by auto
-  then have "nat \<lesssim> M" using eqpoll_iff by auto
-  also have "M \<lesssim> SymExt(G)" using M_subset_SymExt subset_imp_lepoll by auto
-  ultimately have H : "nat \<lesssim> SymExt(G)" using lepoll_trans by auto
-
-  have "SymExt(G) \<lesssim> GenExt(G)" using SymExt_subset_GenExt subset_imp_lepoll by auto
-  also have "GenExt(G) \<lesssim> nat" using MG_eqpoll_nat eqpoll_iff by auto
-  ultimately have "SymExt(G) \<lesssim> nat" using lepoll_trans by auto
-  
-  then show ?thesis 
-    using H eqpoll_iff
-    by auto
-qed
-    
-
-
 end
 end 

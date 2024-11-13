@@ -367,11 +367,10 @@ lemma SymExt_M_ZF : "M_ZF(SymExt(G))"
 lemma SymExt_M_ZF_trans : "M_ZF_trans(SymExt(G))"
   unfolding M_ZF_trans_def 
   using SymExt_M_ZF M_ZF_def Transset_SymExt
-  by auto 
+  by auto
 
 theorem SymExt_sats_ZF : "SymExt(G) \<Turnstile> ZF" 
   using M_ZF_iff_M_satT SymExt_M_ZF by auto
-
 
 end
 end
