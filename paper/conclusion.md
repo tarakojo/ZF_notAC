@@ -84,3 +84,20 @@ then there exists a transitive set M such that
 (A, R) ~~ (M, ∈)
 
 
+abstrcut contentsの前に
+aknowledgements abstの後
+別ページに
+conclutionにサブセクション
+ : futurewwork, ctm, booleanについて
+ introduction詳しくする
+
+ 開き括弧の後に空白
+ しかく括弧も
+ Definition 空白
+
+ Cleverref
+
+ Section x のsは大文字
+
+ outlineを第一章にかく
+ この論文の残り
