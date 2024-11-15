@@ -51,7 +51,7 @@ ZFが無矛盾であり、ZF+notACが矛盾すると仮定します。
 すると、ZF+notACからbottomが証明できるので、
 ZF+notACの有限部分Gammaが存在して、Gammaからbottomが証明できます。
 つまり、Gammaは矛盾しているということです。
-しかし、命題3より、Gammaは無矛盾であるので、矛盾します。
+しかし、命題3より、Gammaは無矛盾となり、矛盾します。
 したがって、ZF+notACは無矛盾です。
 
 
@@ -82,6 +82,12 @@ A : set
 R : binary relation on A, A上整礎、A上外延的
 then there exists a transitive set M such that
 (A, R) ~~ (M, ∈)
+
+
+
+
+
+
 
 
 abstrcut contentsの前に

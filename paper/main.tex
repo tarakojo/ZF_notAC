@@ -8,6 +8,7 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{xcolor}
+\usepackage{authblk}
 
 \usepackage{mdframed}
 % isabelleコードの枠
@@ -32,19 +33,38 @@
 % コード表示
 \usepackage[outputdir=out]{minted} 
 
+\usepackage{cleveref}
+
 % 定理
 \newtheorem{thm}{Theorem}[section]
 \newtheorem{lem}[thm]{Lemma}
 \newtheorem{dfn}[thm]{Definition}
 \newtheorem{cor}[thm]{Corollary}
 \newtheorem{prop}[thm]{Proposition}
+
+% 参照
+\crefname{section}{Section}{Sections}
+\crefname{dfn}{Definition}{Definitions}
+\crefname{lem}{Lemma}{Lemmas}
+\crefname{thm}{Theorem}{Theorems}
+\crefname{cor}{Corollary}{Corollaries}
+\crefname{prop}{Proposition}{Propositions} 
+
  
+\title{Formal Proof of the Relative Consistency of ZF$+\neg$AC with Isabelle/ZF}
+\author{Daiki Funane}
+\affil{Graduate School of Information Sciences, Tohoku University}
+
 \begin{document}
 
-\title{MyTitle}
-\author{MyName}
-\date{\today}
 \maketitle
+
+\chapter*{Abstract}
+We formalize the relative consistency proof of ZF$+\neg$AC using Isabelle/ZF proof assistant.
+Our approach assumes the existence of a transitive countable model of ZF and uses forcing to construct a symmetric extension which is a model of ZF$+\neg$AC.
+We show that the symmetric extension satisfies ZF$+\neg$AC by formalizing a relativized forcing relation based on the formalization of forcing by Gunther et al.
+
+\chapter*{Acknowledgements}
 
 
 \clearpage
@@ -56,12 +76,12 @@
 
 \chapter{Introduction}
 
-The formalization of mathematics using proof assistants such as Isabelle\cite{paulson_1986}, Coq, and Lean, has been actively conducted, leading to numerous achievements. 
+The formalization of mathematics using proof assistants such as Isabelle \cite{paulson_1986}, Coq, and Lean, has been actively conducted, leading to numerous achievements. 
 For instance, the proofs of the four color theorem, Kepler's conjecture, and the Feit-Thompson theorem have been formalized using proof assistants, enhancing the reliability of these proofs. 
 Additionally, various fields of mathematics, such as number theory, algebra, and topology, are also being formalized.
 
-The independence of the axiom of choice(AC) from Zermelo-Fraenkel set theory(ZF) is a well-known result in the early history of axiomatic set theory,
-as well as the independence of the continuum hypothesis(CH) from ZF with AC(ZFC).
+The independence of the axiom of choice (AC) from Zermelo-Fraenkel set theory (ZF) is a well-known result in the early history of axiomatic set theory,
+as well as the independence of the continuum hypothesis (CH) from ZF with AC (ZFC).
 Cohen invented the forcing method and proved them in 1963.
 Forcing is a powerful tool for exploring models of set theory and was subsequently further sophisticated by other researchers.
 
@@ -92,8 +112,8 @@ as these resources align well with this approach.
 
 The c.t.m.\  approach is a well-established method for relative consistency proofs in axiomatic set theory.
 The relative consistency of $\neg$AC with ZF means that if ZF is consistent, then ZF+$\neg$AC is also consistent.
-Assuming the consistency of ZF implies that a model of ZF exists, but strictly speaking, the existence of a c.t.m.\  cannot be derived from this assumption in ZF.
-However, as explained in section \ref{subsection:ctm}, we can prove the relative consistency of $\neg$AC with ZF if 
+Assuming the consistency of ZF implies that a model of ZF exists, but strictly speaking, the existence of a c.t.m.\  cannot be derived from this assumption.
+However, as explained in \cref{subsection:ctm}, we can prove the relative consistency of $\neg$AC with ZF if 
 we can construct a model of ZF+$\neg$AC from a c.t.m.\  of ZF.
 This kind of reasoning always arises in the c.t.m.\  approach, and ideally, 
 we would like to formalize it as well, but this has not been achieved.
@@ -103,7 +123,7 @@ we would like to formalize it as well, but this has not been achieved.
 Paulson et al. formalized an extensive part of ZF set theory 
 \cite{paulson_datatype_impl,paulson_reflection,paulson_AC_consistency,paulson_cardinal_AC,paulson_datatype}
 , including cardinal arithmetic, relativization, the reflection theorem, features for handling inductive definitions, and the relative consistency of AC with ZF.
-The proof of the relative consistency was achieved by constructing constructing Gödel's constructible universe.
+The proof of the relative consistency was achieved by constructing Gödel's constructible universe.
 
 Building on these results, Gunther et al. formalized forcing and a proof of the independence of CH \cite{gunther_forcing,gunther_independence} in Isabelle/ZF.
 In these formalizations, the countable transitive model (c.t.m.) approach was used, following Kunen's book \cite{kunen2011}.
@@ -113,25 +133,33 @@ using the Boolean-valued model approach, which is another approach to forcing.
 Additionally, in Lean 4, Holmes and Wilshaw formalized the complex parts of the consistency proof of Quine's New Foundations \cite{NF_consistency}, ensuring the correctness of the proof.
 
 
+\subsubsection{Synopsis}
+The remainder of this thesis is outlined as follows.
+In Chapter 2, we first explain set-theoretic concepts in Section 2.1.
+Section 2.2 outlines an informal proof of the relative consistency of $\neg$AC with ZF, which is formalized in Chapter 3.
+In Section 2.3, we provide an overview of Isabelle/ZF and highlight key results from prior work that are relevant to this study.
+Chapter 3 presents the formalization of the relative consistency proof of ZF+$\neg$AC, building on the contents of Chapter 2.
+Finally, Chapter 4 concludes the thesis.
+
 \subsubsection{Repository}
 Our source code is available at: \url{https://github.com/tarakojo/ZF_notAC}
 
 
 
 
-\chapter{Preliminaries}
+\chapter{Preliminaries}\label{chap:preliminaries}
 
 
 
 \section{Set-Theoretic Preliminaries}
 In this section, we introduce the concepts of set theory used in the formalization of this study.
-Our meta-theory is ZF, within which we explore ZF itself. 
-Basically, our definition and theorems combine Kunen\cite{kunen2011}, karagila's lecture note\cite{karagila}, and Jech's book\cite{jech_AC}
+We discuss in ZFC, within which we explore ZF itself. 
+Basically, our definition and theorems combine Kunen \cite{kunen2011}, karagila's lecture note \cite{karagila}, and Jech's book \cite{jech_AC}
 adapted to the formalized form in Isabelle/ZF.
 
 
 \subsection{ZF Set Theory and the Axiom of Choice}
-We introduce the axioms of ZF set theory and the axiom of choice(AC).
+We introduce the axioms of ZF set theory and the axiom of choice (AC).
 We use first-order logic with the language of set theory, which consists only of only two relation symbols $\in$ and $=$. 
 Formulas involving other mathmatical operators that may appear are considered abbreviations for formulas in this language.
 Parentheses in formulas are omitted where no confusion arises.
@@ -349,6 +377,7 @@ for every $x_1, \ldots, x_n \in M$.
 Where $\varphi^M$ denotes the relativization of $\varphi$ to $M$.
 In other words, $\varphi^M$ is the formula obtained 
 by replacing every quantifier $\forall x$ by $\forall x \in M$ and $\exists x$ by $\exists x \in M$.
+Note that this is a theorem schema for every formula $\varphi$.
 
 \begin{dfn}
   Let $E$ be a binary relation on a set $P$.
@@ -369,26 +398,66 @@ by replacing every quantifier $\forall x$ by $\forall x \in M$ and $\exists x$ b
   then there is a transitive set $M$ and an isomorphism $\pi$ between $(P, E)$ and $(M, \in)$.
 \end{thm}
 
-Additionally, we can prove weaker form of the Löwenheim-Skolem theorem without the assumption of AC
-\footnote{Following Henkin's proof of the completeness theorem, we can obtain a countable model of the theory without using AC.}.
-\begin{thm}\label{thm:lowenheim_skolem}
-  If there exists a model of a theory of a countable language, then there exists a countable model of the theory.
+\begin{thm}[L\"owenheim-Skolem Theorem]\label{thm:lowenheim_skolem}
+  Every infinite model for a countable language has a countable elementary submodel.
 \end{thm}
 
 Using these, we can prove the following proposition:
-\begin{prop}
-  Let $\Gamma$ be a finite fragment of ZF axioms,
+\begin{prop}\label{prop:ctm_finite}
+  Let $\Gamma$ be a finite fragment of ZF axioms, including the Axiom of Extensionality,
   then there exists a c.t.m.\ of $\Gamma$.
 \end{prop}
 \begin{proof}
   Let $\Gamma = \{ \varphi_1, \ldots, \varphi_n \}$ and $\psi = \varphi_1 \land \ldots \land \varphi_n$.
   By reflection principle, there exists a set $M$ such that $\psi^M \leftrightarrow \psi$.
-  Then, $(M, \in \mid_{M \times M})$ satisfies $\psi$. 
-  In other words, $(M, \in \mid_{M \times M})$ is a model of $\Gamma$.
-  By Theorem \ref{thm:lowenheim_skolem}, there exists a countable model $(N, R)$ of $\Gamma$.
-  Since $(N, R)$ satisfies the extensionality axiom, $R$ is extensional.
-  Also, 
+  Then, $\mathcal{M} = (M, \in \mid_{M \times M})$ satisfies $\psi$. 
+  In other words, $\mathcal{M}$ is a model of $\Gamma$.
+  By \cref{thm:lowenheim_skolem}, there exists a countable elementary submodel $\mathcal{N} = (N, \in \mid_{N \times N})$ of $\mathcal{M}$.  
+  $\mathcal{N}$ satisfies the Axiom of Extensionality since $\Gamma$ includes it.
+  Additionary, by the Axiom of Regularity, every non-empty subset of $N$ has an $\in$-minimal element.
+  Therefore, $\in \mid_{N \times N}$ is well-founded and extensional.
+  By Mostowski's Collapsing Theorem, there exists a transitive set $N_0$ and an isomorphism between $(N, \in \mid_{N \times N})$ and $(N_0, \in)$.
+  Thus, $N_0$ is a c.t.m.\ of $\Gamma$.
 \end{proof}
+
+Here, we use this to explain the validity of the c.t.m.\ approach.
+Note that this discussion is not limited to the relative consistency proof of $\neg$AC with ZF;
+a similar argument can be applied to other relative consistency proofs using the c.t.m.\ approach.
+
+First, let us assume the existence of a c.t.m.\  of ZF and 
+suppose that we can prove the existence of a c.t.m.\ of ZF+$\neg$AC by forcing.
+It should also be possible to prove the following by modifying the proof.
+
+\begin{prop}\label{prop:ctm_finite2}
+  Let $\Gamma$ be a finite fragment of ZF, 
+  there exists a finite fragment $\Delta$ of ZF+$\neg$AC such that
+  if a c.t.m.\  of $\Gamma$ exists, then a c.t.m.\  of $\Delta$ also exists.
+\end{prop}
+
+This is because, in the original proof, 
+the axiom of ZF used to formalize forcing are finite, 
+and the proof that a c.t.m.\ of ZF+$\neg$AC satisfies each axiom of ZF+$\neg$AC should 
+only require a finite number of axioms of ZF. 
+
+By combining \cref{prop:ctm_finite,prop:ctm_finite2}, 
+we can prove the following\footnote{
+  Since the Reflection Principle is a theorem schema,
+  this is also a theorem schema for every $\Delta$.
+  Thus, the Compactness Theorem does not imply the existence of a c.t.m.\  of ZF+$\neg$AC.
+}.
+\begin{prop} \label{prop:ctm_finite3}
+  Let $\Delta$ be a finite fragment of ZF+$\neg$AC,
+  there exists a c.t.m.\  of $\Delta$. 
+  In other words, $\Delta$ is consistent.
+\end{prop}
+
+Here, let us prove the relative consistency of ZF+$\neg$AC by contradiction.
+Assume that ZF+$\neg$AC is inconsistent.  
+Then, since ZF+$\neg$AC proves $\bot$ (a contradiction),  
+there exists a finite fragment $\Delta$ of ZF+$\neg$AC such that $\Delta$ proves $\bot$.  
+In other words, $\Delta$ is inconsistent.  
+However, by \cref{prop:ctm_finite3}, $\Delta$ is consistent, which leads to a contradiction.
+Therefore, ZF+$\neg$AC is consistent.
 
 
 \section{Outline for the Informal Proof}\label{sec:outline}
@@ -435,11 +504,11 @@ By choosing $n$ and the names appropriately, we can find a bijection $\pi$ on $\
   \item There exists $q \in G$ such that $q \leq_{\mathbb{P}} p$ and $q \leq_{\mathbb{P}} \pi p$
 \end{enumerate}
 Note that some occurence of $\pi$ in above conditions refer to the induced automorphism on $\mathbb{P}$ or $\mathbb{P}$-names..
-By Lemma \ref{lem:symmetry_lemma}
+By \cref{lem:symmetry_lemma}
 $$\pi p \Vdash_{\mathrm{HS}} \varphi(\pi \dot{f}, \pi \dot{i}, \pi \dot{a_n})$$
 Thus 
 $$\pi p \Vdash_{\mathrm{HS}} \varphi(\dot{f}, \dot{i}, \dot{a_{\pi n}})$$
-Therefore, by Lemma \ref{lem:strengthening}
+Therefore, by \cref{lem:strengthening}
 $$q \Vdash_{\mathrm{HS}} \varphi(\dot{f}, \dot{i}, \dot{a_n}) \mathrm{ and } q \Vdash_{\mathrm{HS}} \varphi(\dot{f}, \dot{i}, \dot{a_{\pi n}})$$
 This means that $\mathcal{N} \vDash \varphi(f, i, a_n)$ and $\mathcal{N} \vDash \varphi(f, i, a_{\pi n})$, which implies that $f(i) = a_n$ and $f(i) = a_{\pi n}$.
 Since $a_n$ and $a_{\pi n}$ are distinct, this is a contradiction. 
@@ -453,7 +522,7 @@ and important results from prior work used in the formalization of this study.
 
 
 \subsection{Isabelle/ZF}
-Isabelle\cite{paulson_1986} is a proof assistant developed by Paulson, used for formalizing mathematical proofs and verifying programs. 
+Isabelle \cite{paulson_1986} is a proof assistant developed by Paulson, used for formalizing mathematical proofs and verifying programs. 
 Since its release in 1986, it has continued to be developed by many researchers.
 
 One notable example of Isabelle's achievements is the formal verification of the seL4 microkernel \cite{seL4}.
@@ -584,15 +653,15 @@ Within this locale, The predicate \texttt{"p ⊩ φ env"} is defined.
 This represents that \texttt{"p"} forces the formula \texttt{"φ"} under the environment \texttt{"env"}.
 Additionally, the following
 \footnote{
-In Definition\ref{dfn:forcing_relation},
+In \cref{dfn:forcing_relation},
 we explained that the forcing relation is defined for the formulas in the forcing language.
 According to that definition, \texttt{"env"} should be a list of elements of $M^{\mathbb{P}}$;
 however, in the following lemmas, \texttt{"env"} is a list of elements of $M$.
-In fact, the definition of the forcing relation by Gunther et al. differs from Definition \ref{dfn:forcing_relation}.
+In fact, the definition of the forcing relation by Gunther et al. differs from \cref{dfn:forcing_relation}.
 They defined the forcing relation not for the formulas in the forcing language 
 but for the formulas in the extended language of set theory by adding all elements of $M$ as constants.
 Additionally, only NAND is used as the logical connective, and only $\forall$ is used as the quantifier of the formulas.
-} is their formalization of Theorem \ref{thm:truth_lemma} and Corollary \ref{cor:truth_lemma_cor}.
+} is their formalization of \cref{thm:truth_lemma} and \cref{cor:truth_lemma_cor}.
 \begin{isaframe}
 \begin{minted}[breaklines]{isabelle}
 lemma truth_lemma:
@@ -619,7 +688,7 @@ and \texttt{"map"} is the map function on lists.
 
 \chapter{Formalization of the Proof} 
 In this chapter, we present the formalization of the relative consistency proof of $\neg$AC with ZF in Isabelle/ZF.
-We follow the outline presented in section \ref{sec:outline}.
+We follow the outline presented in \cref{sec:outline}.
 We choose \emph{ZF-Constructible} by Paulson \cite{paulson_AC_consistency} as Isabelle theory 
 \footnote{Note that this does not mean assuming $V=L$.}
 , which includes the ZF axioms along with useful definitions and lemmas built on top of them.
@@ -691,7 +760,7 @@ definition P_auto where "P_auto ≡ { π ∈ P → P. is_P_auto(π) }"
 Where \texttt{"bij(A, B)"} is the set of bijections from \texttt{A} to \texttt{B}
 and \texttt{"f`x"} denotes the function application of \texttt{f} to \texttt{x}.
 We denote the induced automorphism on $\mathbb{P}$-names by \texttt{π} as \texttt{"Pn\_auto(π)"}.
-Our definition of \texttt{"Pn\_auto"} satisfies the equality given in Definition \ref{dfn:automorphism}.
+Our definition of \texttt{"Pn\_auto"} satisfies the equality given in \cref{dfn:automorphism}.
 
 \begin{isaframe}
 \begin{minted}[breaklines]{isabelle}
@@ -754,7 +823,7 @@ definition HS where "HS ≡ { x ∈ P_names. ∃a. Ord(a) ∧ x ∈ HS_set(a) }"
 \end{minted}
 \end{isaframe}
 
-The following lemma shows our definition of \texttt{"HS"} is equivalent to Definition \ref{dfn:hereditarily_symmetric}.
+The following lemma shows our definition of \texttt{"HS"} is equivalent to \cref{dfn:hereditarily_symmetric}.
 
 \begin{isaframe}
 \begin{minted}[breaklines]{isabelle}
@@ -883,7 +952,7 @@ we were able to define this relation and prove its properties relatively easily.
 Within the locale \texttt{"M\_symmetric\_system"},
 we define this relation in the form \texttt{"p ⊩HS φ env"},
 which has the same form as the formalization of the original forcing relation \texttt{"p ⊩ φ env"} by Gunther et al.
-Our definition satisfies the required properties, such as Theorem \ref{thm:symmetry_truth_lemma}, Corollary \ref{cor:symmetry_truth_lemma_cor}, and Lemma \ref{lem:strengthening}.
+Our definition satisfies the required properties, such as \cref{thm:symmetry_truth_lemma}, \cref{cor:symmetry_truth_lemma_cor}, and \cref{lem:strengthening}.
 
 \begin{isaframe}
 \begin{minted}[breaklines]{isabelle}
@@ -911,7 +980,7 @@ lemma HS_strengthening_lemma:
 
 
 \subsubsection{The Symmetry Lemma}
-Additionally, we prove the symmetry lemma (Lemma \ref{lem:symmetry_lemma}).
+Additionally, we prove the symmetry lemma (\cref{lem:symmetry_lemma}).
 Similary to the definitions of the forcing relations, this lemma is proven using a complex induction.
 First, we prove this lemma for atomic formulas in the forcing language, 
 and then extend the proof to other formulas by structual induction on the formula.
@@ -1062,7 +1131,7 @@ lemma SymExt_M_ZF_trans : "M_ZF_trans(SymExt(G))"
 
 \subsection{Defining the Basic Cohen Model}
 In this section, we define the basic Cohen model which is a symmetric extension that does not satisfy the axiom of choice,
-, as outlined in section \ref{sec:outline}.
+, as outlined in \cref{sec:outline}.
 First, we work within the locale \texttt{"M\_ctm"} which fixes a c.t.m.\  \texttt{"M"} of ZF.
 
 
@@ -1141,7 +1210,7 @@ To do this, we construct a set $A$ that cannot be well-ordered in it.
 We work within the locale \texttt{"M\_symmetric\_system"} with parameters, as defined above, 
 fixed to generate the basic Cohen model.
 
-We formalize $a_n$ and $A$, introduced in section \ref{sec:outline}, 
+We formalize $a_n$ and $A$, introduced in \cref{sec:outline}, 
 as \texttt{"binmap\_row(G, n)"} and \texttt{"binmap(G)"}, respectively, for given generic filter \texttt{"G"}.
 \begin{isaframe}
 \begin{minted}[breaklines]{isabelle}
@@ -1239,6 +1308,7 @@ theorem ZF_notAC_main_theorem :
                 ∧ ¬(∀A ∈ N. ∃r ∈ N. wellordered(##N, A, r))" 
 \end{minted}
 \end{isaframe}
+This theorem states that there exists a c.t.m.\ \texttt{"N"} of ZF+$\neg$AC if there exists a c.t.m.\ \texttt{"M"} of ZF.
 
 
 
@@ -1282,7 +1352,7 @@ Additionally, we used the c.t.m.\ approach, and the formalized argument only ext
 assuming the existence of a c.t.m.\ of ZF.
 We did not formalize the justification of the relative consistency proof assuming a c.t.m.\ of ZF.
 
-One approach to formalizing this part is the one described in section \ref{subsection:ctm}.
+One approach to formalizing this part is the one described in \cref{subsection:ctm}.
 However, to formalize the argument, we would likely need to deal with arbitrary models of ZF, 
 not necessarily $\in$-models
 \footnote{An $\in$-model is a model $(M, R)$ of set theory such that $R = \ \in \mid_{(M \times M)}$, i.e. $R$ is actual membership.}, 
@@ -1290,9 +1360,6 @@ and prove propositions such as the reflection principle and
 the Mostowski collapse lemma for these models.
 Currently, formalized definitions and lemmas related to internal models assume that the ground model is an $\in$-model,
 so a large amount of work would be required to formalize this part.
-  
-
-\subsubsection{Acknowledgements}
 
 \printbibliography
 \end{document}

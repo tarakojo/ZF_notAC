@@ -137,6 +137,9 @@ INPUT c:/texlive/2023/texmf-dist/tex/latex/graphics-cfg/color.cfg
 INPUT c:/texlive/2023/texmf-dist/tex/latex/graphics-cfg/color.cfg
 INPUT c:/texlive/2023/texmf-dist/tex/latex/graphics/mathcolor.ltx
 INPUT c:/texlive/2023/texmf-dist/tex/latex/graphics/mathcolor.ltx
+INPUT c:/texlive/2023/texmf-dist/tex/latex/preprint/authblk.sty
+INPUT c:/texlive/2023/texmf-dist/tex/latex/preprint/authblk.sty
+INPUT c:/texlive/2023/texmf-dist/tex/latex/preprint/authblk.sty
 INPUT c:/texlive/2023/texmf-dist/tex/latex/mdframed/mdframed.sty
 INPUT c:/texlive/2023/texmf-dist/tex/latex/mdframed/mdframed.sty
 INPUT c:/texlive/2023/texmf-dist/tex/latex/mdframed/mdframed.sty
@@ -357,6 +360,9 @@ INPUT c:/texlive/2023/texmf-dist/tex/latex/framed/framed.sty
 INPUT c:/texlive/2023/texmf-dist/tex/latex/float/float.sty
 INPUT c:/texlive/2023/texmf-dist/tex/latex/float/float.sty
 INPUT c:/texlive/2023/texmf-dist/tex/latex/float/float.sty
+INPUT c:/texlive/2023/texmf-dist/tex/latex/cleveref/cleveref.sty
+INPUT c:/texlive/2023/texmf-dist/tex/latex/cleveref/cleveref.sty
+INPUT c:/texlive/2023/texmf-dist/tex/latex/cleveref/cleveref.sty
 INPUT c:/texlive/2023/texmf-dist/tex/latex/newtx/TeXGyreTermesX.fontspec
 INPUT C:/texlive/2023/texmf-var/luatex-cache/generic/fonts/otl/texgyretermesx-regular.luc
 INPUT C:/texlive/2023/texmf-var/luatex-cache/generic/fonts/otl/texgyretermesx-bold.luc
@@ -422,9 +428,9 @@ INPUT c:/texlive/2023/texmf-dist/fonts/tfm/public/newtx/ntxmi.tfm
 INPUT c:/texlive/2023/texmf-dist/fonts/vf/public/newtx/ntxmi.vf
 INPUT c:/texlive/2023/texmf-dist/fonts/tfm/public/newtx/NewTXMI.tfm
 INPUT c:/texlive/2023/texmf-dist/fonts/tfm/public/newtx/stxscr.tfm
-INPUT c:/texlive/2023/texmf-dist/fonts/tfm/public/newtx/ntxmi7.tfm
-INPUT c:/texlive/2023/texmf-dist/fonts/vf/public/newtx/ntxmi7.vf
-INPUT c:/texlive/2023/texmf-dist/fonts/tfm/public/newtx/NewTXMI7.tfm
+INPUT c:/texlive/2023/texmf-dist/fonts/tfm/public/newtx/ntxmi.tfm
+INPUT c:/texlive/2023/texmf-dist/fonts/vf/public/newtx/ntxmi.vf
+INPUT c:/texlive/2023/texmf-dist/fonts/tfm/public/newtx/NewTXMI.tfm
 INPUT c:/texlive/2023/texmf-dist/fonts/tfm/public/newtx/stxscr.tfm
 INPUT c:/texlive/2023/texmf-dist/fonts/tfm/public/newtx/ntxsy.tfm
 INPUT c:/texlive/2023/texmf-dist/fonts/vf/public/newtx/ntxsy.vf
@@ -434,8 +440,8 @@ INPUT c:/texlive/2023/texmf-dist/fonts/tfm/public/newtx/ntxsy.tfm
 INPUT c:/texlive/2023/texmf-dist/fonts/vf/public/newtx/ntxsy.vf
 INPUT c:/texlive/2023/texmf-dist/fonts/tfm/public/newtx/txsys.tfm
 INPUT c:/texlive/2023/texmf-dist/fonts/tfm/public/newtx/txex-bar.tfm
-INPUT c:/texlive/2023/texmf-dist/fonts/tfm/public/newtx/ntxsy7.tfm
-INPUT c:/texlive/2023/texmf-dist/fonts/vf/public/newtx/ntxsy7.vf
+INPUT c:/texlive/2023/texmf-dist/fonts/tfm/public/newtx/ntxsy.tfm
+INPUT c:/texlive/2023/texmf-dist/fonts/vf/public/newtx/ntxsy.vf
 INPUT c:/texlive/2023/texmf-dist/fonts/tfm/public/newtx/txsys.tfm
 INPUT c:/texlive/2023/texmf-dist/fonts/tfm/public/newtx/txex-bar.tfm
 INPUT c:/texlive/2023/texmf-dist/fonts/tfm/public/newtx/ntxexx.tfm
@@ -451,12 +457,12 @@ INPUT c:/texlive/2023/texmf-dist/tex/latex/amsfonts/umsa.fd
 INPUT c:/texlive/2023/texmf-dist/tex/latex/amsfonts/umsa.fd
 INPUT c:/texlive/2023/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam10.tfm
 INPUT c:/texlive/2023/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam10.tfm
-INPUT c:/texlive/2023/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam7.tfm
+INPUT c:/texlive/2023/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam10.tfm
 INPUT c:/texlive/2023/texmf-dist/tex/latex/amsfonts/umsb.fd
 INPUT c:/texlive/2023/texmf-dist/tex/latex/amsfonts/umsb.fd
 INPUT c:/texlive/2023/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
 INPUT c:/texlive/2023/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
-INPUT c:/texlive/2023/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm7.tfm
+INPUT c:/texlive/2023/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
 INPUT c:/texlive/2023/texmf-dist/tex/latex/newtx/untxmia.fd
 INPUT c:/texlive/2023/texmf-dist/tex/latex/newtx/untxmia.fd
 INPUT c:/texlive/2023/texmf-dist/fonts/tfm/public/newtx/ntxmia.tfm
@@ -506,8 +512,6 @@ INPUT c:/texlive/2023/texmf-dist/tex/generic/stringenc/se-ascii-print.def
 INPUT c:/texlive/2023/texmf-dist/tex/generic/stringenc/se-ascii-print.def
 INPUT c:/texlive/2023/texmf-dist/tex/generic/stringenc/se-ascii-print.def
 INPUT c:/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map
-INPUT ./out/main.toc
-INPUT ./out/main.toc
 INPUT c:/texlive/2023/texmf-dist/fonts/tfm/public/newtx/ntx-Regular-tlf-ot1.tfm
 INPUT c:/texlive/2023/texmf-dist/fonts/vf/public/newtx/ntx-Regular-tlf-ot1.vf
 INPUT c:/texlive/2023/texmf-dist/fonts/tfm/public/newtx/txmiaX.tfm
@@ -598,6 +602,8 @@ INPUT c:/texlive/2023/texmf-dist/fonts/tfm/public/newtx/txexas.tfm
 INPUT c:/texlive/2023/texmf-dist/fonts/tfm/public/newtx/ntxexa.tfm
 INPUT c:/texlive/2023/texmf-dist/fonts/vf/public/newtx/ntxexa.vf
 INPUT c:/texlive/2023/texmf-dist/fonts/tfm/public/newtx/txexas.tfm
+INPUT ./out/main.toc
+INPUT ./out/main.toc
 OUTPUT out/main.toc
 INPUT c:/texlive/2023/texmf-dist/fonts/tfm/public/newtx/ntx-Regular-tlf-ot1.tfm
 INPUT c:/texlive/2023/texmf-dist/fonts/vf/public/newtx/ntx-Regular-tlf-ot1.vf
