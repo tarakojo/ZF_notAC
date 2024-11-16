@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.17.0 (TeX Live 2023)  (format=lualatex 2023.5.15)  16 NOV 2024 12:27
+This is LuaHBTeX, Version 1.17.0 (TeX Live 2023)  (format=lualatex 2023.5.15)  16 NOV 2024 12:33
  system commands enabled.
  file:line:error style messages enabled.
 **c:/Users/tarak/source/repos/ZF_notAC/paper/main.tex
@@ -2162,15 +2162,15 @@ Package logreq Info: Writing requests to 'main.run.xml'.
 
 Here is how much of LuaTeX's memory you used:
  32383 strings out of 478313
- 244711,1977958 words of node,token memory allocated
+ 244706,1977958 words of node,token memory allocated
  2333 words of node memory still in use:
    10 hlist, 2 vlist, 5 rule, 9 glue, 4 kern, 1 glyph, 619 attribute, 111 glue_spec, 67 attribute_list, 1 write, 13 user_defined, 7 pdf_action nodes
-   avail lists: 1:34,2:46953,3:391,4:1266,5:723,6:101,7:6877,8:66,9:999,10:28,11:472
+   avail lists: 1:28,2:46953,3:391,4:1266,5:723,6:101,7:6877,8:66,9:999,10:28,11:472
  50395 multiletter control sequences out of 65536+600000
  252 fonts using 96797799 bytes
  106i,11n,98p,1799b,1351s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/texlive/2023/texmf-dist/fonts/opentype/public/haranoaji/HaranoAjiGothic-Medium.otf><c:/texlive/2023/texmf-dist/fonts/opentype/public/newtx/TeXGyreTermesX-Regular.otf>{c:/texlive/2023/texmf-dist/fonts/enc/dvips/newtx/ntx-ot1-tlf.enc}<c:/texlive/2023/texmf-dist/fonts/opentype/public/newtx/TeXGyreTermesX-Italic.otf><c:/texlive/2023/texmf-dist/fonts/opentype/public/tex-gyre-math/texgyredejavu-math.otf><c:/texlive/2023/texmf-dist/fonts/opentype/public/haranoaji/HaranoAjiMincho-Regular.otf><c:/texlive/2023/texmf-dist/fonts/opentype/public/newtx/TeXGyreTermesX-Bold.otf><c:/texlive/2023/texmf-dist/fonts/opentype/public/newtx/TeXGyreTermesX-Regular.otf><c:/texlive/2023/texmf-dist/fonts/type1/public/newtx/NewTXMI.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/newtx/NewTXMI5.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/newtx/NewTXMI7.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/newtx/txexs.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/newtx/txmiaX.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/txfonts/txsya.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/txfonts/txsyb.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/newtx/txsys.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/newtx/ztmr.pfb>
-Output written on main.pdf (33 pages, 268719 bytes).
+Output written on main.pdf (33 pages, 268547 bytes).
 
 PDF statistics: 561 PDF objects out of 1000 (max. 8388607)
  491 compressed objects within 5 object streams
