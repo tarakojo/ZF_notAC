@@ -31,12 +31,13 @@
 \contentsline {subsubsection}{Unsuccessful Approach}{21}{section*.19}%
 \contentsline {subsubsection}{The Relativized Forcing Relation $\Vdash _{\mathrm {HS}}$}{21}{section*.20}%
 \contentsline {subsubsection}{The Symmetry Lemma}{22}{section*.21}%
-\contentsline {subsubsection}{Separation}{22}{section*.22}%
+\contentsline {subsubsection}{Separation}{23}{section*.22}%
 \contentsline {subsubsection}{Replacement}{23}{section*.23}%
 \contentsline {subsubsection}{Other Axioms}{24}{section*.24}%
-\contentsline {section}{\numberline {3.2}The Basic Cohen Model}{24}{section.3.2}%
-\contentsline {subsection}{\numberline {3.2.1}Defining the Basic Cohen Model}{24}{subsection.3.2.1}%
+\contentsline {section}{\numberline {3.2}The Basic Cohen Model}{25}{section.3.2}%
+\contentsline {subsection}{\numberline {3.2.1}Defining the Basic Cohen Model}{25}{subsection.3.2.1}%
 \contentsline {subsubsection}{The Notion of Forcing}{25}{section*.25}%
 \contentsline {subsubsection}{The Group of Automorphisms and the Normal Filter}{25}{section*.26}%
 \contentsline {subsection}{\numberline {3.2.2}Proving the Basic Cohen Model does not Satisfy AC}{26}{subsection.3.2.2}%
-\contentsline {chapter}{\numberline {4}Conclusion}{28}{chapter.4}%
+\contentsline {chapter}{\numberline {4}Conclusion}{29}{chapter.4}%
+\contentsline {subsubsection}{Future Work}{29}{section*.27}%

@@ -1,19 +1,19 @@
 [0] Config.pm:307> INFO - This is Biber 2.19
 [0] Config.pm:310> INFO - Logfile is 'out/main.blg'
-[98] biber-MSWIN64:340> INFO - === 
-[135] Biber.pm:419> INFO - Reading 'out/main.bcf'
-[241] Biber.pm:979> INFO - Found 16 citekeys in bib section 0
-[254] Biber.pm:4419> INFO - Processing section 0
-[266] Biber.pm:4610> INFO - Looking for bibtex file 'main.bib' for section 0
-[328] bibtex.pm:1713> INFO - LaTeX decoding ...
-[349] bibtex.pm:1519> INFO - Found BibTeX data source 'main.bib'
-[478] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
-[478] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[480] Biber.pm:4239> INFO - Sorting list 'nty/global//global/global' of type 'entry' with template 'nty' and locale 'en-US'
-[480] Biber.pm:4245> INFO - No sort tailoring available for locale 'en-US'
-[494] bbl.pm:660> INFO - Writing 'out/main.bbl' with encoding 'UTF-8'
-[500] bbl.pm:763> INFO - Output to out/main.bbl
-[501] Biber.pm:131> WARN - legacy month field 'March' in entry 'gunther_independence' is not an integer - this will probably not sort properly.
-[501] Biber.pm:131> WARN - legacy month field 'May' in entry 'gunther_forcing' is not an integer - this will probably not sort properly.
-[501] Biber.pm:131> WARN - I didn't find a database entry for crossref 'DBLP:conf/cpp/2020' in entry 'flypitch' - ignoring (section 0)
-[501] Biber.pm:133> INFO - WARNINGS: 3
+[100] biber-MSWIN64:340> INFO - === 
+[138] Biber.pm:419> INFO - Reading 'out/main.bcf'
+[260] Biber.pm:979> INFO - Found 16 citekeys in bib section 0
+[275] Biber.pm:4419> INFO - Processing section 0
+[287] Biber.pm:4610> INFO - Looking for bibtex file 'main.bib' for section 0
+[360] bibtex.pm:1713> INFO - LaTeX decoding ...
+[394] bibtex.pm:1519> INFO - Found BibTeX data source 'main.bib'
+[519] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[519] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[520] Biber.pm:4239> INFO - Sorting list 'nty/global//global/global' of type 'entry' with template 'nty' and locale 'en-US'
+[520] Biber.pm:4245> INFO - No sort tailoring available for locale 'en-US'
+[550] bbl.pm:660> INFO - Writing 'out/main.bbl' with encoding 'UTF-8'
+[557] bbl.pm:763> INFO - Output to out/main.bbl
+[558] Biber.pm:131> WARN - legacy month field 'March' in entry 'gunther_independence' is not an integer - this will probably not sort properly.
+[558] Biber.pm:131> WARN - legacy month field 'May' in entry 'gunther_forcing' is not an integer - this will probably not sort properly.
+[558] Biber.pm:131> WARN - I didn't find a database entry for crossref 'DBLP:conf/cpp/2020' in entry 'flypitch' - ignoring (section 0)
+[558] Biber.pm:133> INFO - WARNINGS: 3

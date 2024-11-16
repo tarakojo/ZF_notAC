@@ -1,5 +1,6 @@
 \documentclass{report}
 
+\usepackage{luatexja-fontspec}
 \usepackage{graphicx} 
 \usepackage{luacode}  
 \usepackage{ascmac}
@@ -65,6 +66,19 @@ Our approach assumes the existence of a transitive countable model of ZF and use
 We show that the symmetric extension satisfies ZF$+\neg$AC by formalizing a relativized forcing relation based on the formalization of forcing by Gunther et al.
 
 \chapter*{Acknowledgements}
+本研究を進めるにあたり、多くの方々にご指導、ご助言をいただきました。
+この場を借りて心より御礼申し上げます。
+
+まず、大変多くのご指導を賜りました住井 英二郎教授ならびに織田 幸弘氏に、深く感謝いたします。
+研究という活動は初めてでしたが、お二人のご指導のおかげで、何とか本研究を完成させることができました。
+
+また、本論文の副審査委員を務めていただきました、横山 啓太教授、中野 圭介教授に感謝申し上げます。
+横山教授には、研究の過程においても、数学的な視点からアドバイスをいただきました。
+
+さらに、研究発表をお聞きくださり、建設的なご意見を賜りました薄葉 季路教授、湯山 孝雄氏、谷口 雅弥氏、
+そして、ゼミ発表の場で多くの示唆を与えてくださった松田 一孝准教授、西田 雄気助教、Oleg Kiselyov氏にも感謝申し上げます。
+
+最後に、家族をはじめとする多くの方々に学生生活を支えていただきましたことに、深く感謝いたします。
 
 
 \clearpage
@@ -75,7 +89,6 @@ We show that the symmetric extension satisfies ZF$+\neg$AC by formalizing a rela
 
 
 \chapter{Introduction}
-
 The formalization of mathematics using proof assistants such as Isabelle \cite{paulson_1986}, Coq, and Lean, has been actively conducted, leading to numerous achievements. 
 For instance, the proofs of the four color theorem, Kepler's conjecture, and the Feit-Thompson theorem have been formalized using proof assistants, enhancing the reliability of these proofs. 
 Additionally, various fields of mathematics, such as number theory, algebra, and topology, are also being formalized.
@@ -443,7 +456,6 @@ By combining \cref{prop:ctm_finite,prop:ctm_finite2},
 we can prove the following\footnote{
   Since the Reflection Principle is a theorem schema,
   this is also a theorem schema for every $\Delta$.
-  Thus, the Compactness Theorem does not imply the existence of a c.t.m.\  of ZF+$\neg$AC.
 }.
 \begin{prop} \label{prop:ctm_finite3}
   Let $\Delta$ be a finite fragment of ZF+$\neg$AC,
@@ -1344,22 +1356,21 @@ We also needed to prove that the arity of each defined formula is below its resp
 For complex formulas, Isabelle's automated proof tools were not applicable, 
 and we had to prove these properties manually.
 
+\subsubsection{Future Work}
+
 Since these works are repetitive, further automation is desirable.
 Ideally, if the arguments of the base model could be handled without explicitly dealing with internalized formulas, 
-the amount of work required to formalize a proof using an approach such as the one we have taken could be reduced.
+the amount of work could be reduced when formalizing proofs by using an approach similar to ours.
 
 Additionally, we used the c.t.m.\ approach, and the formalized argument only extends to the construction of a model of ZF+$\neg$AC,
 assuming the existence of a c.t.m.\ of ZF.
-We did not formalize the justification of the relative consistency proof assuming a c.t.m.\ of ZF.
+We did not formalize the justification of the c.t.m.\ approach itself.
+Formalizing this part would be a interesting future work.
+Ultimately, it would be desirable to derive the relative consistency proof automatically from the assumption of the existence of a c.t.m.; 
+however, achieving this within Isabelle/ZF, which is based on first-order logic, seems infeasible.
 
-One approach to formalizing this part is the one described in \cref{subsection:ctm}.
-However, to formalize the argument, we would likely need to deal with arbitrary models of ZF, 
-not necessarily $\in$-models
-\footnote{An $\in$-model is a model $(M, R)$ of set theory such that $R = \ \in \mid_{(M \times M)}$, i.e. $R$ is actual membership.}, 
-and prove propositions such as the reflection principle and 
-the Mostowski collapse lemma for these models.
-Currently, formalized definitions and lemmas related to internal models assume that the ground model is an $\in$-model,
-so a large amount of work would be required to formalize this part.
+In addition, formalizing the connections between our approach and alternative approaches to forcing, 
+such as Boolean-valued models or syntactic methods, is another topic to explore in the future.
 
 \printbibliography
 \end{document}
