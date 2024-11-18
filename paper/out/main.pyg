@@ -1,0 +1,18 @@
+lemma sats_is_P_name_fm_iff :
+    fixes env i j x
+    assumes "env ∈ list(M)" "i < length(env)" "j < length(env)"
+                    "nth(i, env) = P" "nth(j, env) = x"
+    shows "sats(M, is_P_name_fm(i, j), env) ⟷ x ∈ P_names"
+
+lemma sats_is_Pn_auto_fm_iff :
+    fixes x π v env i j k l
+    assumes "i < length(env)" "j < length(env)" "k < length(env)" "l < length(env)"
+                    "nth(i, env) = P" "nth(j, env) = π" "nth(k, env) = x" "nth(l, env) = v"
+                    "env ∈ list(M)" "π ∈ P_auto"
+    shows "sats(M, is_Pn_auto_fm(i, j, k, l), env) ⟷ x ∈ P_names ∧ v = Pn_auto(π)`x"
+
+lemma sats_is_HS_fm_iff :
+    fixes x i j env
+    assumes "env ∈ list(M)" "i < length(env)" "j < length(env)"
+                    "nth(i, env) = <ℱ, 𝒢, P, P_auto>" "nth(j, env) = x"
+    shows "sats(M, is_HS_fm(i, j), env) ⟷ x ∈ HS"
