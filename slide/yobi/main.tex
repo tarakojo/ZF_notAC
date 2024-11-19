@@ -66,7 +66,7 @@ TODO :
 %タイトル
 \title{￢ACの相対的無矛盾性証明のIsabelle/ZFによる形式化}
 \author{東北大学 大学院情報科学研究科 住井・松田研究室 M2\\ 舟根大喜}
-\date{October 14, 2024}
+\date{November 22, 2024}
 
 \begin{document}
 \maketitle
@@ -90,11 +90,11 @@ TODO :
     \vspace{-20pt}
     {\small 
         \begin{itemize}[itemsep=8pt]
-            \item 公理的集合論 \\
+            \item \textcolor{red}{公理的集合論} \\
             \ldots 何が集合かを公理で厳密に定めて展開する集合論
-            \item ZF 
+            \item \textcolor{red}{ZF}
             \ldots Zermelo-Fraenkel公理系。最も一般的な公理系の一つ
-            \item AC \ldots 選択公理 (Axiom of Choice)\\
+            \item \textcolor{red}{AC} \ldots 選択公理 (Axiom of Choice)\\
             任意の非空集合の族からそれぞれ1つの元を選ぶ関数が\\存在するという公理
         \end{itemize}
     }
@@ -104,9 +104,9 @@ TODO :
     \vspace{-20pt}
     {\small 
         \begin{itemize}[itemsep=8pt]
-            \item 命題$\varphi$が公理系$T$上で相対的無矛盾 \\
+            \item 命題$\varphi$が公理系$T$上で\textcolor{red}{相対的無矛盾} \\
             \ldots $T$が無矛盾ならば公理系$T+\varphi$も無矛盾であること
-            \item $\varphi$が$T$から独立 \\
+            \item $\varphi$が$T$から\textcolor{red}{独立} \\
             \ldots $T$から$\varphi$も$\neg\varphi$も証明できないこと \\
             \,\,\,\,\,\,\,($T$が無矛盾なら)$\varphi$と$\neg\varphi$のT上の相対的無矛盾性と同値
         \end{itemize}
@@ -119,13 +119,13 @@ TODO :
     \vspace{-20pt}
     {\small 
     \begin{itemize}[itemsep=8pt]
-        \item 強制法 \ldots \\
+        \item \textcolor{red}{強制法} \ldots \\
         集合論のモデルを拡張して新しいモデルを作る技法。\\
-        $M$を強制法で拡張したモデルを$M$のgeneric extensionと\\
+        $M$を強制法で拡張したモデルを$M$の\textcolor{red}{generic extension}と\\
         呼び、$M[G]$とかく(ここで$G$はgeneric filter) \\
         \,\\
         generic extension上で何が成り立つかは \\
-        強制関係と呼ばれる関係$\Vdash$によって調べることができる
+        \textcolor{red}{強制関係}と呼ばれる関係\textcolor{red}{$\Vdash$}によって調べることができる
     \end{itemize}
 }
 \end{frame}
@@ -280,6 +280,7 @@ TODO :
         \item $N$はZFを満たすが、整列可能定理を満たさない
         \vspace{6pt}
         {\small \begin{itemize}
+            \item $N$はBasic Cohen Modelと呼ばれるモデル
             \item $N \vDash $ 「単射$\omega \rightarrow A$が存在しない無限集合$A$が存在」
             \begin{itemize}
                 \item $N$ではこの$A$が整列できない

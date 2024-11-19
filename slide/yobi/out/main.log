@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.17.0 (TeX Live 2023)  (format=lualatex 2023.5.15)  19 NOV 2024 12:57
+This is LuaHBTeX, Version 1.17.0 (TeX Live 2023)  (format=lualatex 2023.5.15)  19 NOV 2024 13:05
  restricted system commands enabled.
  file:line:error style messages enabled.
 **c:/Users/tarak/source/repos/ZF_notAC/slide/yobi/main.tex
@@ -1839,42 +1839,46 @@ LaTeX Font Warning: Font shape `JY3/YuGothicBold(0)/bx/n' undefined
 ]
 
 LaTeX Font Warning: Font shape `JY3/YuGothicBold(0)/bx/n' undefined
-(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 290.
+(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 291.
 
 
 LaTeX Font Warning: Font shape `JY3/YuGothicBold(0)/bx/n' undefined
-(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 290.
+(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 291.
+
+
+Overfull \vbox (9.59946pt too high) detected at line 291
+ []
 
 
 LaTeX Font Warning: Font shape `JY3/YuGothicBold(0)/bx/n' undefined
-(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 290.
+(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 291.
 
 
 LaTeX Font Warning: Font shape `JY3/YuGothicBold(0)/bx/n' undefined
-(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 290.
+(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 291.
 
 
 LaTeX Font Warning: Font shape `JY3/YuGothicBold(0)/bx/n' undefined
-(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 290.
+(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 291.
 
 
 LaTeX Font Warning: Font shape `JY3/YuGothicBold(0)/bx/n' undefined
-(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 290.
+(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 291.
 
 [13
 
 ] Excluding 'comment' comment.
 
 LaTeX Font Warning: Font shape `JY3/YuGothicBold(0)/bx/n' undefined
-(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 296.
+(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 297.
 
 
 LaTeX Font Warning: Font shape `JY3/YuGothicBold(0)/bx/n' undefined
-(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 296.
+(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 297.
 
 
 LaTeX Font Warning: Font shape `JY3/YuGothicBold(0)/bx/n' undefined
-(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 296.
+(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 297.
 
 [14
 
@@ -1882,374 +1886,374 @@ LaTeX Font Warning: Font shape `JY3/YuGothicBold(0)/bx/n' undefined
 <./images/ZF_notAC_main_theorem.png, id=136, 953.81343pt x 91.84312pt>
 File: ./images/ZF_notAC_main_theorem.png Graphic file (type png)
 <use ./images/ZF_notAC_main_theorem.png>
-Package luatex.def Info: ./images/ZF_notAC_main_theorem.png  used on input line 312.
+Package luatex.def Info: ./images/ZF_notAC_main_theorem.png  used on input line 313.
 (luatex.def)             Requested size: 438.17488pt x 42.19228pt.
 
-Overfull \hbox (39.83629pt too wide) in paragraph at lines 312--312
+Overfull \hbox (39.83629pt too wide) in paragraph at lines 313--313
  [] 
  []
 
 
 LaTeX Font Warning: Font shape `JY3/YuGothicBold(0)/bx/n' undefined
-(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 312.
+(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 313.
 
 
 LaTeX Font Warning: Font shape `JY3/YuGothicBold(0)/bx/n' undefined
-(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 312.
+(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 313.
 
 
 LaTeX Font Warning: Font shape `JY3/YuGothicBold(0)/bx/n' undefined
-(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 312.
+(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 313.
 
 
 LaTeX Font Warning: Font shape `JY3/YuGothicBold(0)/bx/n' undefined
-(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 312.
+(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 313.
 
 
 LaTeX Font Warning: Font shape `JY3/YuGothicBold(0)/bx/n' undefined
-(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 312.
+(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 313.
 
 
 LaTeX Font Warning: Font shape `JY3/YuGothicBold(0)/bx/n' undefined
-(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 312.
+(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 313.
 
 [15
 
 <./images/ZF_notAC_main_theorem.png>]
 
 LaTeX Font Warning: Font shape `JY3/YuGothicBold(0)/bx/n' undefined
-(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 323.
+(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 324.
 
 
 LaTeX Font Warning: Font shape `JY3/YuGothicBold(0)/bx/n' undefined
-(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 323.
+(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 324.
 
 
 LaTeX Font Warning: Font shape `JY3/YuGothicBold(0)/bx/n' undefined
-(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 323.
+(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 324.
 
 
 LaTeX Font Warning: Font shape `JY3/YuGothicBold(0)/bx/n' undefined
-(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 323.
+(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 324.
 
 
 LaTeX Font Warning: Font shape `JY3/YuGothicBold(0)/bx/n' undefined
-(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 323.
+(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 324.
 
 
 LaTeX Font Warning: Font shape `JY3/YuGothicBold(0)/bx/n' undefined
-(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 323.
+(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 324.
 
 [16
 
 ]
 
 LaTeX Font Warning: Font shape `JY3/YuGothicBold(0)/bx/n' undefined
-(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 337.
+(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 338.
 
 
 LaTeX Font Warning: Font shape `JY3/YuGothicBold(0)/bx/n' undefined
-(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 337.
+(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 338.
 
 
 LaTeX Font Warning: Font shape `JY3/YuGothicBold(0)/bx/n' undefined
-(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 337.
+(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 338.
 
 
 LaTeX Font Warning: Font shape `JY3/YuGothicBold(0)/bx/n' undefined
-(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 337.
+(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 338.
 
 
 LaTeX Font Warning: Font shape `JY3/YuGothicBold(0)/bx/n' undefined
-(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 337.
+(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 338.
 
 
 LaTeX Font Warning: Font shape `JY3/YuGothicBold(0)/bx/n' undefined
-(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 337.
+(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 338.
 
 [17
 
 ]
 
 LaTeX Font Warning: Font shape `JY3/YuGothicBold(0)/bx/n' undefined
-(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 356.
+(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 357.
 
 
 LaTeX Font Warning: Font shape `JY3/YuGothicBold(0)/bx/n' undefined
-(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 356.
+(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 357.
 
 
 LaTeX Font Warning: Font shape `JY3/YuGothicBold(0)/bx/n' undefined
-(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 356.
+(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 357.
 
 
 LaTeX Font Warning: Font shape `JY3/YuGothicBold(0)/bx/n' undefined
-(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 356.
+(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 357.
 
 
 LaTeX Font Warning: Font shape `JY3/YuGothicBold(0)/bx/n' undefined
-(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 356.
+(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 357.
 
 
 LaTeX Font Warning: Font shape `JY3/YuGothicBold(0)/bx/n' undefined
-(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 356.
+(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 357.
 
 [18
 
 ] Excluding 'comment' comment.
 
 LaTeX Font Warning: Font shape `JY3/YuGothicBold(0)/bx/n' undefined
-(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 416.
+(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 417.
 
 
 LaTeX Font Warning: Font shape `JY3/YuGothicBold(0)/bx/n' undefined
-(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 416.
+(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 417.
 
 
-Overfull \vbox (6.92953pt too high) detected at line 416
+Overfull \vbox (6.92953pt too high) detected at line 417
  []
 
 
 LaTeX Font Warning: Font shape `JY3/YuGothicBold(0)/bx/n' undefined
-(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 416.
+(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 417.
 
 
 LaTeX Font Warning: Font shape `JY3/YuGothicBold(0)/bx/n' undefined
-(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 416.
+(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 417.
 
 
 LaTeX Font Warning: Font shape `JY3/YuGothicBold(0)/bx/n' undefined
-(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 416.
+(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 417.
 
 
 LaTeX Font Warning: Font shape `JY3/YuGothicBold(0)/bx/n' undefined
-(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 416.
+(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 417.
 
 [19
 
 ]
 
 LaTeX Font Warning: Font shape `TU/mlmr/bx/n' undefined
-(Font)              using `TU/mlmr/m/n' instead on input line 435.
+(Font)              using `TU/mlmr/m/n' instead on input line 436.
 
 LaTeX Font Info:    Font shape `JY3/YuGothicBold(0)/b/n' will be
-(Font)              scaled to size 9.6222pt on input line 435.
+(Font)              scaled to size 9.6222pt on input line 436.
 LaTeX Font Info:    Font shape `JY3/YuGothicBold(0)/b/n' will be
-(Font)              scaled to size 6.73553pt on input line 435.
-LaTeX Font Info:    Trying loading font information for OT1+mlmr on input line 435.
+(Font)              scaled to size 6.73553pt on input line 436.
+LaTeX Font Info:    Trying loading font information for OT1+mlmr on input line 436.
 (c:/texlive/2023/texmf-dist/tex/latex/mlmodern/ot1mlmr.fd
 File: ot1mlmr.fd 2021/01/11 v1.0 Font defs for mlmodern
 )
 
 LaTeX Font Warning: Font shape `JY3/YuGothicBold(0)/bx/n' undefined
-(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 435.
+(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 436.
 
 
 LaTeX Font Warning: Font shape `JY3/YuGothicBold(0)/bx/n' undefined
-(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 435.
+(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 436.
 
 
 LaTeX Font Warning: Font shape `JY3/YuGothicBold(0)/bx/n' undefined
-(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 435.
+(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 436.
 
 
 LaTeX Font Warning: Font shape `JY3/YuGothicBold(0)/bx/n' undefined
-(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 435.
+(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 436.
 
 
 LaTeX Font Warning: Font shape `JY3/YuGothicBold(0)/bx/n' undefined
-(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 435.
+(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 436.
 
 
 LaTeX Font Warning: Font shape `JY3/YuGothicBold(0)/bx/n' undefined
-(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 435.
+(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 436.
 
 [20
 
 ]
 
 LaTeX Font Warning: Font shape `JY3/YuGothicBold(0)/bx/n' undefined
-(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 438.
+(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 439.
 
 
 LaTeX Font Warning: Font shape `JY3/YuGothicBold(0)/bx/n' undefined
-(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 438.
+(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 439.
 
 
 LaTeX Font Warning: Font shape `JY3/YuGothicBold(0)/bx/n' undefined
-(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 438.
+(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 439.
 
 [21
 
 ]
 
 LaTeX Font Warning: Font shape `JY3/YuGothicBold(0)/bx/n' undefined
-(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 459.
+(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 460.
 
 
 LaTeX Font Warning: Font shape `JY3/YuGothicBold(0)/bx/n' undefined
-(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 459.
+(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 460.
 
 
 LaTeX Font Warning: Font shape `JY3/YuGothicBold(0)/bx/n' undefined
-(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 459.
+(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 460.
 
 
 LaTeX Font Warning: Font shape `JY3/YuGothicBold(0)/bx/n' undefined
-(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 459.
+(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 460.
 
 
 LaTeX Font Warning: Font shape `JY3/YuGothicBold(0)/bx/n' undefined
-(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 459.
+(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 460.
 
 
 LaTeX Font Warning: Font shape `JY3/YuGothicBold(0)/bx/n' undefined
-(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 459.
+(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 460.
 
 [22
 
 ]
 
 LaTeX Font Warning: Font shape `JY3/YuGothicBold(0)/bx/n' undefined
-(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 480.
+(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 481.
 
 
 LaTeX Font Warning: Font shape `JY3/YuGothicBold(0)/bx/n' undefined
-(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 480.
+(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 481.
 
 
 LaTeX Font Warning: Font shape `JY3/YuGothicBold(0)/bx/n' undefined
-(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 480.
+(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 481.
 
 
 LaTeX Font Warning: Font shape `JY3/YuGothicBold(0)/bx/n' undefined
-(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 480.
+(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 481.
 
 
 LaTeX Font Warning: Font shape `JY3/YuGothicBold(0)/bx/n' undefined
-(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 480.
+(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 481.
 
 
 LaTeX Font Warning: Font shape `JY3/YuGothicBold(0)/bx/n' undefined
-(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 480.
+(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 481.
 
 [23
 
 ]
 
 LaTeX Font Warning: Font shape `JY3/YuGothicBold(0)/bx/n' undefined
-(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 497.
+(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 498.
 
 
 LaTeX Font Warning: Font shape `JY3/YuGothicBold(0)/bx/n' undefined
-(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 497.
+(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 498.
 
 
-Overfull \vbox (2.82962pt too high) detected at line 497
+Overfull \vbox (2.82962pt too high) detected at line 498
  []
 
 
 LaTeX Font Warning: Font shape `JY3/YuGothicBold(0)/bx/n' undefined
-(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 497.
+(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 498.
 
 
 LaTeX Font Warning: Font shape `JY3/YuGothicBold(0)/bx/n' undefined
-(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 497.
+(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 498.
 
 
 LaTeX Font Warning: Font shape `JY3/YuGothicBold(0)/bx/n' undefined
-(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 497.
+(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 498.
 
 
 LaTeX Font Warning: Font shape `JY3/YuGothicBold(0)/bx/n' undefined
-(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 497.
+(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 498.
 
 [24
 
 ]
 
 LaTeX Font Warning: Font shape `JY3/YuGothicBold(0)/bx/n' undefined
-(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 509.
+(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 510.
 
 
 LaTeX Font Warning: Font shape `JY3/YuGothicBold(0)/bx/n' undefined
-(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 509.
+(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 510.
 
 
 LaTeX Font Warning: Font shape `JY3/YuGothicBold(0)/bx/n' undefined
-(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 509.
+(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 510.
 
 
 LaTeX Font Warning: Font shape `JY3/YuGothicBold(0)/bx/n' undefined
-(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 509.
+(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 510.
 
 
 LaTeX Font Warning: Font shape `JY3/YuGothicBold(0)/bx/n' undefined
-(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 509.
+(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 510.
 
 
 LaTeX Font Warning: Font shape `JY3/YuGothicBold(0)/bx/n' undefined
-(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 509.
+(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 510.
 
 [25
 
 ]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\translate ' on input line 511.
+(hyperref)                removing `\translate ' on input line 512.
 
 LaTeX Font Info:    Font shape `JT3/YuGothicBold(0)/m/n' will be
-(Font)              scaled to size 11.54663pt on input line 526.
+(Font)              scaled to size 11.54663pt on input line 527.
 
 LaTeX Font Warning: Font shape `JY3/YuGothicBold(0)/bx/n' undefined
-(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 526.
-
-
-LaTeX Font Warning: Font shape `JY3/YuGothicBold(0)/bx/n' undefined
-(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 526.
+(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 527.
 
 
 LaTeX Font Warning: Font shape `JY3/YuGothicBold(0)/bx/n' undefined
-(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 526.
+(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 527.
 
 
 LaTeX Font Warning: Font shape `JY3/YuGothicBold(0)/bx/n' undefined
-(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 526.
+(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 527.
 
 
 LaTeX Font Warning: Font shape `JY3/YuGothicBold(0)/bx/n' undefined
-(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 526.
+(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 527.
 
 
 LaTeX Font Warning: Font shape `JY3/YuGothicBold(0)/bx/n' undefined
-(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 526.
+(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 527.
+
+
+LaTeX Font Warning: Font shape `JY3/YuGothicBold(0)/bx/n' undefined
+(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 527.
 
 [26
 
 ]
 
 LaTeX Font Warning: Font shape `JY3/YuGothicBold(0)/bx/n' undefined
-(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 539.
+(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 540.
 
 
 LaTeX Font Warning: Font shape `JY3/YuGothicBold(0)/bx/n' undefined
-(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 539.
+(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 540.
 
 
 LaTeX Font Warning: Font shape `JY3/YuGothicBold(0)/bx/n' undefined
-(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 539.
+(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 540.
 
 
 LaTeX Font Warning: Font shape `JY3/YuGothicBold(0)/bx/n' undefined
-(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 539.
+(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 540.
 
 
 LaTeX Font Warning: Font shape `JY3/YuGothicBold(0)/bx/n' undefined
-(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 539.
+(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 540.
 
 
 LaTeX Font Warning: Font shape `JY3/YuGothicBold(0)/bx/n' undefined
-(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 539.
+(Font)              using `JY3/YuGothicBold(0)/b/n' instead on input line 540.
 
 [27
 
@@ -2276,12 +2280,12 @@ Here is how much of LuaTeX's memory you used:
  125244,1977958 words of node,token memory allocated
  17964 words of node memory still in use:
    44 hlist, 8 vlist, 12 rule, 32 disc, 6 local_par, 130 glue, 24 kern, 31 penalty, 307 glyph, 5921 attribute, 70 glue_spec, 581 attribute_list, 4 write, 50 user_defined, 24 pdf_colorstack nodes
-   avail lists: 1:7,2:10283,3:369,4:457,5:170,6:37,7:1233,8:10,9:704,10:26,11:64
+   avail lists: 1:6,2:10283,3:369,4:457,5:170,6:37,7:1233,8:10,9:704,10:26,11:64
  52299 multiletter control sequences out of 65536+600000
  157 fonts using 101402535 bytes
  128i,11n,131p,1954b,1049s stack positions out of 10000i,1000n,20000p,200000b,200000s
 {c:/texlive/2023/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{c:/texlive/2023/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{c:/texlive/2023/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}{c:/texlive/2023/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{c:/texlive/2023/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}<c:/Windows/Fonts/YuGothB.ttc><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/latxfont/lcirclew.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/mlmodern/mlmbx10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/mlmodern/mlmbx12.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/mlmodern/mlmmi12.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/mlmodern/mlmss12.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/mlmodern/mlmss17.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/mlmodern/mlmssbx10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/mlmodern/mlmsy10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/mlmodern/mlmsy7.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on main.pdf (27 pages, 872215 bytes).
+Output written on main.pdf (27 pages, 872548 bytes).
 
 PDF statistics: 275 PDF objects out of 1000 (max. 8388607)
  206 compressed objects within 3 object streams
