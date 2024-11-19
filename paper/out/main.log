@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.17.0 (TeX Live 2023)  (format=lualatex 2023.5.15)  18 NOV 2024 13:19
+This is LuaHBTeX, Version 1.17.0 (TeX Live 2023)  (format=lualatex 2023.5.15)  18 NOV 2024 13:20
  system commands enabled.
  file:line:error style messages enabled.
 **c:/Users/tarak/source/repos/ZF_notAC/paper/main.tex
@@ -1920,4 +1920,260 @@ Package mdframed Info: Not enough space on this page on input line 1082.
 [23
 Missing character: There is no ⋀ (U+22C0) in font file:HaranoAjiMincho-Regular.otf:-kern;jfm=ujis!
 Missing character: There is no ⊩ (U+22A9) in font file:HaranoAjiMincho-Regular.otf:-kern;jfm=ujis!
-Missing character: There is no ⊩ (U+22A9) in font file:HaranoAjiMincho-Regular.otf:-kern;jf
+Missing character: There is no ⊩ (U+22A9) in font file:HaranoAjiMincho-Regular.otf:-kern;jfm=ujis!
+Missing character: There is no ⊩ (U+22A9) in font file:HaranoAjiMincho-Regular.otf:-kern;jfm=ujis!
+]
+Package mdframed Info: Not enough space on this page on input line 1082.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1087.
+
+\openout5 = main.pyg
+(./out/_minted-main/989D18FE080C6BA7107B9A2E7F21EF3CFECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex)
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1099.
+
+\openout5 = main.pyg
+(./out/_minted-main/889D4EFE0F243998B7997921829CFE6BFECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex)
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1120.
+
+\openout5 = main.pyg
+(./out/_minted-main/9EC4FAC2FA5AD378AF012113457B6E9AFECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex) [24
+Missing character: There is no ⊩ (U+22A9) in font file:HaranoAjiMincho-Regular.otf:-kern;jfm=ujis!
+Missing character: There is no ⊩ (U+22A9) in font file:HaranoAjiMincho-Regular.otf:-kern;jfm=ujis!
+]
+Package mdframed Info: Not enough space on this page on input line 1124.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1130.
+
+\openout5 = main.pyg
+(./out/_minted-main/DDF1718B19F066D81C7312B05BF2BAB5FECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex)
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1152.
+
+\openout5 = main.pyg
+(./out/_minted-main/2C9204300CBADF3A61FD95DCD592D697FECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex)
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1163.
+
+\openout5 = main.pyg
+(./out/_minted-main/55839233FD6F88634EEE2AD97900F738FECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex)
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1173.
+
+\openout5 = main.pyg
+(./out/_minted-main/27F905E87C7B77BC9CD361431F2E47D2FECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex)
+
+Package mdframed Warning: You got a bad break
+(mdframed)                because the last box will be empty
+(mdframed)                you have to change it manually
+(mdframed)                by changing the text, the space
+(mdframed)                or something else on input line 1180.
+
+[25
+Missing character: There is no ⊨ (U+22A8) in font file:HaranoAjiMincho-Regular.otf:-kern;jfm=ujis!
+]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1187.
+
+\openout5 = main.pyg
+(./out/_minted-main/01BE22461944784C714927457DD1BC76FECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex)
+Overfull \hbox (57.21178pt too wide) in paragraph at lines 1199--1203
+\TU/TeXGyreDejaVuMath-Regular(0)/b/n/10 "Fn_perms"\TU/TeXGyreTermesX(0)/m/n/10 , and ver-ify that our def-i-ni-tion sat-is-fies the pre-req-ui-sites of the lo-cale \TU/TeXGyreDejaVuMath-Regular(0)/b/n/10 "M_symmetric_system"\TU/TeXGyreTermesX(0)/m/n/10 .
+ []
+
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1204.
+
+\openout5 = main.pyg
+(./out/_minted-main/BE7C270534226BFE485C4D317C72B2CAFECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex)
+Overfull \hbox (19.85403pt too wide) in paragraph at lines 1222--1224
+[]\TU/TeXGyreTermesX(0)/m/n/10 We for-mal-ize $\OML/ntxmi/m/it/10 a[]$ \TU/TeXGyreTermesX(0)/m/n/10 and $\OML/ntxmi/m/it/10 A$\TU/TeXGyreTermesX(0)/m/n/10 , in-tro-duced in Sec-tion []2.2[], as \TU/TeXGyreDejaVuMath-Regular(0)/b/n/10 "binmap_row(G, n)" \TU/TeXGyreTermesX(0)/m/n/10 and \TU/TeXGyreDejaVuMath-Regular(0)/b/n/10 "binmap(G)"\TU/TeXGyreTermesX(0)/m/n/10 ,
+ []
+
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1224.
+
+\openout5 = main.pyg
+(./out/_minted-main/8F4B01DECE51A1F747825A10DD9E3B62FECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex)
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1233.
+
+\openout5 = main.pyg
+(./out/_minted-main/1B34B94FEE0E2336CB37D7DE30E42672FECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex) [26]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1245.
+
+\openout5 = main.pyg
+(./out/_minted-main/2EBE44654E8A75BE11AFD0483995F2CFFECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex)
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1260.
+
+\openout5 = main.pyg
+(./out/_minted-main/7B20E5BB96FAE08FB5CDF34BFCCC197CFECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex)
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1280.
+
+\openout5 = main.pyg
+(./out/_minted-main/57DB2AFFDB56B56E0397E5EC7FC00921FECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex) [27
+Missing character: There is no ⊩ (U+22A9) in font file:HaranoAjiMincho-Regular.otf:-kern;jfm=ujis!
+]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1303.
+
+\openout5 = main.pyg
+(./out/_minted-main/46C1D728A434B49F548B17507D7DB107FECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex)
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1311.
+
+\openout5 = main.pyg
+(./out/_minted-main/50D0D1CA77CA560A22C609E5DCA7DC23FECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex) [28
+Missing character: There is no ⊨ (U+22A8) in font file:HaranoAjiMincho-Regular.otf:-kern;jfm=ujis!
+Missing character: There is no ⊨ (U+22A8) in font file:HaranoAjiMincho-Regular.otf:-kern;jfm=ujis!
+]
+Chapter 4.
+
+Overfull \hbox (2.10674pt too wide) in paragraph at lines 1330--1332
+[]\TU/TeXGyreTermesX(0)/m/n/10 Our for-mal-iza-tion com-prises ap-prox-i-mately 15,000 lines of code, dis-tributed roughly
+ []
+
+[29
+
+] [30]
+LaTeX Font Info:    Kanji font shape `JY3/gt/m/it' undefined
+(Font)              No change on input line 1372.
+LaTeX Font Info:    Font shape `TU/TeXGyreTermesX(0)/m/sc' will be
+(Font)              scaled to size 10.0pt on input line 1372.
+LaTeX Font Info:    Kanji font shape `JY3/mc/m/sc' undefined
+(Font)              No change on input line 1372.
+LaTeX Font Info:    Kanji font shape `JY3/gt/m/it' undefined
+(Font)              No change on input line 1372.
+LaTeX Font Info:    Kanji font shape `JY3/mc/m/sc' undefined
+(Font)              No change on input line 1372.
+LaTeX Font Info:    Kanji font shape `JY3/gt/m/it' undefined
+(Font)              No change on input line 1372.
+LaTeX Font Info:    Kanji font shape `JY3/gt/m/it' undefined
+(Font)              No change on input line 1372.
+LaTeX Font Info:    Kanji font shape `JY3/gt/m/it' undefined
+(Font)              No change on input line 1372.
+LaTeX Font Info:    Kanji font shape `JY3/gt/m/it' undefined
+(Font)              No change on input line 1372.
+LaTeX Font Info:    Kanji font shape `JY3/gt/m/it' undefined
+(Font)              No change on input line 1372.
+LaTeX Font Info:    Kanji font shape `JY3/mc/m/sc' undefined
+(Font)              No change on input line 1372.
+LaTeX Font Info:    Kanji font shape `JY3/mc/m/sc' undefined
+(Font)              No change on input line 1372.
+LaTeX Font Info:    Kanji font shape `JY3/mc/m/sc' undefined
+(Font)              No change on input line 1372.
+LaTeX Font Info:    Kanji font shape `JY3/gt/m/it' undefined
+(Font)              No change on input line 1372.
+LaTeX Font Info:    Kanji font shape `JY3/gt/m/it' undefined
+(Font)              No change on input line 1372.
+LaTeX Font Info:    Kanji font shape `JY3/mc/m/sc' undefined
+(Font)              No change on input line 1372.
+LaTeX Font Info:    Kanji font shape `JY3/gt/m/it' undefined
+(Font)              No change on input line 1372.
+LaTeX Font Info:    Kanji font shape `JY3/mc/m/sc' undefined
+(Font)              No change on input line 1372.
+LaTeX Font Info:    Kanji font shape `JY3/gt/m/it' undefined
+(Font)              No change on input line 1372.
+LaTeX Font Info:    Kanji font shape `JY3/mc/m/sc' undefined
+(Font)              No change on input line 1372.
+
+Overfull \hbox (13.98341pt too wide) in paragraph at lines 1373--1373
+[]\TU/TeXGyreTermesX(0)/m/n/10 Lawrence C. Paul-son. ``Large-Scale For-mal Proof for the Work-ing Mathematician---
+ []
+
+
+Overfull \hbox (6.79587pt too wide) in paragraph at lines 1373--1373
+\TU/TeXGyreTermesX(0)/m/n/10 Lessons Learnt from the ALEXAN-DRIA Project''. In: \TU/TeXGyreTermesX(0)/m/it/10 In-tel-li-gent Com-puter Math-
+ []
+
+LaTeX Font Info:    Kanji font shape `JY3/gt/m/it' undefined
+(Font)              No change on input line 1372.
+LaTeX Font Info:    Kanji font shape `JY3/mc/m/sc' undefined
+(Font)              No change on input line 1372.
+LaTeX Font Info:    Kanji font shape `JY3/mc/m/sc' undefined
+(Font)              No change on input line 1372.
+LaTeX Font Info:    Kanji font shape `JY3/mc/m/sc' undefined
+(Font)              No change on input line 1372.
+[31
+
+]
+LaTeX Font Info:    Kanji font shape `JY3/gt/m/it' undefined
+(Font)              No change on input line 1372.
+LaTeX Font Info:    Kanji font shape `JY3/mc/m/sc' undefined
+(Font)              No change on input line 1372.
+LaTeX Font Info:    Kanji font shape `JY3/mc/m/sc' undefined
+(Font)              No change on input line 1372.
+LaTeX Font Info:    Kanji font shape `JY3/mc/m/sc' undefined
+(Font)              No change on input line 1372.
+
+Overfull \hbox (2.68553pt too wide) in paragraph at lines 1373--1373
+\TU/TeXGyreTermesX(0)/m/n/10 son-ing''. In: \TU/TeXGyreTermesX(0)/m/it/10 Au-to-mated De-duc-tion[]CADE-18\TU/TeXGyreTermesX(0)/m/n/10 . Springer Berlin Hei-del-berg, 2002,
+ []
+
+LaTeX Font Info:    Kanji font shape `JY3/gt/m/it' undefined
+(Font)              No change on input line 1372.
+LaTeX Font Info:    Kanji font shape `JY3/mc/m/sc' undefined
+(Font)              No change on input line 1372.
+LaTeX Font Info:    Kanji font shape `JY3/mc/m/sc' undefined
+(Font)              No change on input line 1372.
+LaTeX Font Info:    Kanji font shape `JY3/mc/m/sc' undefined
+(Font)              No change on input line 1372.
+LaTeX Font Info:    Kanji font shape `JY3/gt/m/it' undefined
+(Font)              No change on input line 1372.
+LaTeX Font Info:    Kanji font shape `JY3/mc/m/sc' undefined
+(Font)              No change on input line 1372.
+LaTeX Font Info:    Kanji font shape `JY3/mc/m/sc' undefined
+(Font)              No change on input line 1372.
+LaTeX Font Info:    Kanji font shape `JY3/mc/m/sc' undefined
+(Font)              No change on input line 1372.
+LaTeX Font Info:    Kanji font shape `JY3/gt/m/it' undefined
+(Font)              No change on input line 1372.
+[32] (./out/main.aux)
+
+LaTeX Font Warning: Some font shapes were not available, defaults substituted.
+
+Package rerunfilecheck Info: File `main.out' has not changed.
+(rerunfilecheck)             Checksum: 9A73713BF05A3EEC494D560641104861;1545.
+runsystem(del out\\main.pyg)...executed
+Package logreq Info: Writing requests to 'main.run.xml'.
+
+\openout1 = main.run.xml
+)
+
+Here is how much of LuaTeX's memory you used:
+ 32383 strings out of 478313
+ 244712,1977958 words of node,token memory allocated
+ 2333 words of node memory still in use:
+   10 hlist, 2 vlist, 5 rule, 9 glue, 4 kern, 1 glyph, 619 attribute, 111 glue_spec, 67 attribute_list, 1 write, 13 user_defined, 7 pdf_action nodes
+   avail lists: 1:33,2:46953,3:391,4:1266,5:723,6:101,7:6878,8:66,9:999,10:28,11:472
+ 50395 multiletter control sequences out of 65536+600000
+ 252 fonts using 96797799 bytes
+ 106i,11n,98p,1799b,1351s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<c:/texlive/2023/texmf-dist/fonts/opentype/public/haranoaji/HaranoAjiGothic-Medium.otf><c:/texlive/2023/texmf-dist/fonts/opentype/public/newtx/TeXGyreTermesX-Regular.otf>{c:/texlive/2023/texmf-dist/fonts/enc/dvips/newtx/ntx-ot1-tlf.enc}<c:/texlive/2023/texmf-dist/fonts/opentype/public/newtx/TeXGyreTermesX-Italic.otf><c:/texlive/2023/texmf-dist/fonts/opentype/public/tex-gyre-math/texgyredejavu-math.otf><c:/texlive/2023/texmf-dist/fonts/opentype/public/haranoaji/HaranoAjiMincho-Regular.otf><c:/texlive/2023/texmf-dist/fonts/opentype/public/newtx/TeXGyreTermesX-Bold.otf><c:/texlive/2023/texmf-dist/fonts/opentype/public/newtx/TeXGyreTermesX-Regular.otf><c:/texlive/2023/texmf-dist/fonts/type1/public/newtx/NewTXMI.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/newtx/NewTXMI5.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/newtx/NewTXMI7.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/newtx/txexs.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/newtx/txmiaX.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/txfonts/txsya.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/txfonts/txsyb.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/newtx/txsys.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/newtx/ztmr.pfb>
+Output written on main.pdf (33 pages, 266288 bytes).
+
+PDF statistics: 561 PDF objects out of 1000 (max. 8388607)
+ 491 compressed objects within 5 object streams
+ 158 named destinations out of 1000 (max. 131072)
+ 153 words of extra memory for PDF output out of 10000 (max. 100000000)
+

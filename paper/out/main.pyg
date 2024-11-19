@@ -1,5 +1,0 @@
-theorem ZF_notAC_main_theorem :
-    fixes M
-    assumes "nat ≈ M" "M ⊨ ZF" "Transset(M)"
-    shows "∃N. nat ≈ N ∧ N ⊨ ZF ∧ Transset(N)
-                ∧ ¬(∀A ∈ N. ∃r ∈ N. wellordered(##N, A, r))"

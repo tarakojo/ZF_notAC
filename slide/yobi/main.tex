@@ -16,7 +16,7 @@ TODO :
 \usepackage{luatexja}
 \usepackage{luatexja-fontspec} 
 \usepackage{fontspec}
-\usepackage{color}
+\usepackage{color} 
 \usepackage{tcolorbox}
 \usepackage{ascmac}
 \usepackage{bm} 
@@ -73,17 +73,62 @@ TODO :
 
 \begin{frame}{概要}
     \begin{itembox}[l]{やったこと}
+        \begin{center}
         $\neg$ACのZF上の相対的無矛盾性証明を\\
         Isabelle/ZFで形式化
+        \end{center}
     \end{itembox}
     {\small
-    \begin{itemize}
+    \begin{itemize}[itemsep=8pt]
         \item 定理証明支援系を用いて\\
         数学の形式化をする試みが行われている
-        \item 集合論の形式化はまだまだ未開拓なので貢献したい % Isabelle/ZFの巨大さは未開拓と言えるのか？
+        \item 公理的集合論の中でも強制法(後述)を用いた議論の\\形式化はあまりないので貢献したい
     \end{itemize}}
 \end{frame}
 
+\begin{frame}{用語}\,
+    \vspace{-20pt}
+    {\small 
+        \begin{itemize}[itemsep=8pt]
+            \item 公理的集合論 \\
+            \ldots 何が集合かを公理で厳密に定めて展開する集合論
+            \item ZF 
+            \ldots Zermelo-Fraenkel公理系。最も一般的な公理系の一つ
+            \item AC \ldots 選択公理 (Axiom of Choice)\\
+            任意の非空集合の族からそれぞれ1つの元を選ぶ関数が\\存在するという公理
+        \end{itemize}
+    }
+\end{frame}
+
+\begin{frame}{用語}\,
+    \vspace{-20pt}
+    {\small 
+        \begin{itemize}[itemsep=8pt]
+            \item 命題$\varphi$が公理系$T$上で相対的無矛盾 \\
+            \ldots $T$が無矛盾ならば公理系$T+\varphi$も無矛盾であること
+            \item $\varphi$が$T$から独立 \\
+            \ldots $T$から$\varphi$も$\neg\varphi$も証明できないこと \\
+            \,\,\,\,\,\,\,($T$が無矛盾なら)$\varphi$と$\neg\varphi$のT上の相対的無矛盾性と同値
+        \end{itemize}
+
+        相対的無矛盾性を調べることで\\公理系の(無矛盾性の)強さを比較できる
+    }
+\end{frame}
+
+\begin{frame}{用語}\,
+    \vspace{-20pt}
+    {\small 
+    \begin{itemize}[itemsep=8pt]
+        \item 強制法 \ldots \\
+        集合論のモデルを拡張して新しいモデルを作る技法。\\
+        $M$を強制法で拡張したモデルを$M$のgeneric extensionと\\
+        呼び、$M[G]$とかく(ここで$G$はgeneric filter) \\
+        \,\\
+        generic extension上で何が成り立つかは \\
+        強制関係と呼ばれる関係$\Vdash$によって調べることができる
+    \end{itemize}
+}
+\end{frame}
 \section{Isabelle/ZFについて}
 
 \begin{frame}{定理証明支援系}
@@ -229,7 +274,7 @@ TODO :
     ZFのc.t.m. $M$から出発しZF+$\neg$ACのモデル$N$を構成
     \vspace{-6pt}
     \begin{itemize}[itemsep=10pt]
-        \item あるposet $\mathbb{P}$によるgeneric extension $M[G]$の\\
+        \item {\small (あるposet $\mathbb{P}$による)} generic extension $M[G]$の\\
               \textcolor{red}{symmetric extension}と呼ばれる\\
               部分モデル$N \subseteq M[G]$を構成
         \item $N$はZFを満たすが、整列可能定理を満たさない
@@ -238,7 +283,7 @@ TODO :
             \item $N \vDash $ 「単射$\omega \rightarrow A$が存在しない無限集合$A$が存在」
             \begin{itemize}
                 \item $N$ではこの$A$が整列できない
-                \item $N$ではAはDedekind有限な無限集合
+                %\item $N$ではAはDedekind有限な無限集合
             \end{itemize}
         \end{itemize}}
     \end{itemize}
@@ -246,131 +291,7 @@ TODO :
 
 \begin{comment}
     
-\begin{frame}{generic extensionの定義(1)}
-    \vspace{-7pt}
-    \begin{itembox}[l]{定義(c.t.m.)}
-        {\small
-            \begin{itemize}[itemsep=2pt]
-                \item $M$が推移的であるとは\\
-                      任意の$x \in M$, $y \in x$に対して$y \in M$であること
-                \item $(M, \in)$が$T$のc.t.m.であるとは\\
-                      $(M, \in)$が可算で推移的な$T$のモデルであること
-            \end{itemize}
-        }        
-    \end{itembox}
-
-    \begin{itembox}[l]{定義(poset)}
-        {\small
-            最大元$1_{\Pbb}$をもつ疑順序集合$(\Pbb, \le_{\Pbb})$をposetという
-        }
-    \end{itembox}
-\end{frame}
-
 \end{comment}
-
-\begin{frame}{generic extensionの定義(1)}
-    \vspace{-5pt}
-    \begin{itembox}[l]{定義 ($\Pbb$-name)}
-        {\small
-            \vspace{-5pt}
-            MをZFのc.t.m., $\Pbb \in M$をposetとする
-            \vspace{-8pt}
-            \begin{itemize}[itemsep=1pt] 
-                \item $M^{\Pbb}_{\alpha}$を再帰的に定義する 
-                    \begin{itemize}
-                       \item $M^{\Pbb}_0 = \emptyset$ 
-                       \item  $M^{\Pbb}_{\alpha+1} = \mathcal{P}^M(M^{\Pbb}_{\alpha} \times \Pbb)$ 
-                       \item  $M^{\Pbb}_{\alpha} = \bigcup_{\beta < \alpha} M^{\Pbb}_{\beta}$\,\,\,\,($\alpha$はlimit ordinal)
-                    \end{itemize}
-                \item $M^{\Pbb} = \bigcup_{\alpha \in \text{Ord}} M^{\Pbb}_{\alpha}$とし、$M^{\Pbb}$の元を$\Pbb$-nameという
-                \item $\Pbb$-nameは$\dot{x}, \dot{y}, \dot{z}, ...$で表す
-            \end{itemize}            
-        }
-    \end{itembox}
-\end{frame}
-
-\begin{frame}{generic extensionの定義(2)}
-    \vspace{-7pt}
-    \begin{itembox}[l]{定義 (generic extension)}
-        {\small
-            \vspace{-5pt}
-            \textbullet $D \subset \Pbb$がdense$:\Leftrightarrow$ $p \in \Pbb$に対し$q \le_{\Pbb} p$なる$q \in D$が存在
-
-            \vspace{4pt}
-            \textbullet $G \subset \Pbb$が$M$-generic filterであるとは、以下を満たすこと
-            \vspace{-5pt}
-            \begin{itemize}[itemsep=0pt]
-                \item [\textasteriskcentered]$p \in \Pbb$, $q \in G$に対し、$q \le_{\Pbb} p$ならば$p \in G$
-                \item [\textasteriskcentered]$p, q \in G$に対し、$r \in G$が存在して$r \le_{\Pbb} p, q$
-                \item [\textasteriskcentered]$D \subset \Pbb$に対し、$D \in M$かつdenseならば$D \cap G \neq \emptyset$
-            \end{itemize}
-            \vspace{-3pt}
-            \textbullet $\dot{x} \in M^{\Pbb}$に対し、$\dot{x}_G := \{ \dot{y}_G \, | \, \dot{y} \in \bm{\mathbf{dom}}(\dot{x}), \exists p \in G. (\dot{y}, p) \in \dot{x} \}$ 
-
-            \textbullet $M[G] := \{ \dot{x}_G \, | \, \dot{x} \in M^{\Pbb} \}$をgeneric extensionという
-        }
-    \end{itembox}    
-\end{frame}
-
-\begin{frame}{symmetric extensionの定義(1)}
-    \vspace{-7pt}
-    \begin{itembox}[l]{定義(normal filter / {\small 自己同型の拡張})}
-        {\small
-            $\Gcal$を$\Pbb$の自己同型群とする  \\
-            \textbullet\,\,\,$\Gcal$の部分群の族$\Fcal$がnormal filterであるとは次を満たすこと
-            \vspace{-5pt}
-            \begin{itemize}[left=1cm]
-                \setlength{\itemsep}{0pt}
-                \item [\textasteriskcentered] $H_1, H_2 \in \Fcal$に対して$H_1 \cap H_2 \in \Fcal$
-                \item [\textasteriskcentered] super groupをとる操作で閉じている
-                \item [\textasteriskcentered] $H \in \Fcal, \pi \in \Gcal$に対して$\pi H \pi^{-1} \in \Fcal$
-            \end{itemize}
-            \vspace{-3pt}
-            \textbullet \,\,\,$\Pbb$の自己同型$\pi$を次のように$M^\Pbb$上の自己同型に拡張する
-            \vspace{-5pt}
-            $$ \pi \dot{x} := \{ (\pi \dot{y}, \pi p) | (\dot{y}, p) \in \dot{x} \} \text{ for } \dot{x} \in M^\Pbb $$
-        }
-            
-    \end{itembox}
-\end{frame}
-
-\begin{frame}{symmetric extensionの定義(2)}
-    \begin{itembox}[l]{定義 (hereditarily symmetric)}
-        {\small
-            $\Fcal$を$\Gcal$のnormal filterとする
-            \vspace{5pt}
-            \begin{itemize}
-                \setlength{\itemsep}{2pt}
-                \vspace{-10pt}
-                \item $\dot{x} \in M^\Pbb$が$\Fcal$-symmetric $\Leftrightarrow \{ \pi \in \Gcal | \pi \dot{x} = \dot{x} \} \in \Fcal$
-                \item $\dot{x}$がhereditarily $\Fcal$-symmetricとは以下を満たすこと
-                      \vspace{-3pt}
-                      \begin{itemize}
-                          \item $\dot{x}$は$\Fcal$-symmetric
-                          \item $\bm{\mathbf{dom}}(\dot{x})$の全ての要素はhereditarily $\Fcal$-symmetric
-                      \end{itemize}
-                \item hereditarily $\Fcal$-symmetricな$\dot{x}$の集合を$\bm{\mathbf{HS}}_{\Fcal}$とかく
-
-            \end{itemize}
-        }
-    \end{itembox}
-\end{frame}
-
-\begin{frame}{symmetric extensionの定義(3)}
-    \begin{itembox}[l]{定義 (symmetric extension)}
-        {\small
-            $M$-generic filter $G$に対し、\\$\{ \dot{x}_G | \dot{x} \in \bm{\mathbf{HS}}_{\Fcal} \}$をsymmetric extensionという
-        }
-    \end{itembox}
-
-    \begin{itemize}
-        \item symmetric extensionは、ZFのモデルとなる
-        \item $\Pbb$, $\Gcal$, $\Fcal$をうまく選ぶと$\neg$ACも満たす
-        {\small \begin{itemize}
-            \item 今回は$\Pbb =$ ($\omega \times \omega \rightarrow \{0,1\}$の有限部分関数全体)
-        \end{itemize} }
-    \end{itemize}
-\end{frame}
 
 \section {Isabelle/ZFによる形式化}
 
@@ -379,14 +300,14 @@ TODO :
     \vspace{-1cm}
     \hspace{-1.5cm}
     \begin{figure}
-        \includegraphics[width=1.1\linewidth]{./images/ZF_notAC_main_theorem.png}
+        \includegraphics[width=1.1\linewidth]{./images/ZF_notAC_main_theorem.png} 
     \end{figure}
 
     \vspace{-5pt}
     意味 \\
     {\small
-    \hspace{1cm} $M$をZFのc.t.m.とする。このとき、あるモデル$N$があって\\
-    \hspace{1cm} $N$はZFを満たすが、整列可能定理を満たさない
+    \hspace{1cm} $M$をZFのc.t.m.とする。このとき、あるZFのc.t.m. $N$\\
+    \hspace{1cm} があって、$N$は整列可能定理を満たさない
     }
 \end{frame}
 
@@ -415,7 +336,7 @@ TODO :
     }
 \end{frame}
 
-\begin{frame}{苦労した点(1)\, {\normalsize 自明なことの確認が大変}}
+\begin{frame}{困難だった点(1)\, {\normalsize 自明なことの確認が大変}}
     \begin{itemize}[left=0cm]
         \item クラスに「それを表す論理式が存在すること」
         \item 定義した関数が「本当に関数であること」
@@ -434,7 +355,9 @@ TODO :
     \end{itemize}
 \end{frame}
 
-\begin{frame}{苦労した点(2)\, {\normalsize 先行研究の強制関係の定義}}
+\begin{comment}
+
+\begin{frame}{困難だった点(2)\, {\normalsize 先行研究の強制関係の定義}}
     \begin{itemize}[itemsep=9pt]
         \item よくあるfor allに対する強制関係の定義
               $$ p \Vdash \forall x \phi(x, \dot{x_1}, ..., \dot{x_n}) \Leftrightarrow \forall \dot{x} \in M^\Pbb(p \Vdash \phi(\dot{x}, \dot{x_1}, ..., \dot{x_n})) $$
@@ -443,10 +366,9 @@ TODO :
               {\small 
                 \hspace{0.5cm}※この定義でうまくいくように修正されている
               }
-        \item [\textcolor{red}{$\blacktriangleright$}] 強制関係の帰納法に$\Pbb$-name以外が混入する...
+        \item [\textcolor{red}{$\blacktriangleright$}] 強制関係の帰納法に$M \setminus \Pbb$-name以外が混入する...
     \end{itemize}
 \end{frame}
-
 \begin{frame}{解決策(2)}
     \begin{itembox}[l]{先行研究{\small [Gunther et al. 20]}の$x_G$の定義}
     {\small
@@ -455,6 +377,7 @@ TODO :
         $$x_G := \{ y_G \, | \, y \in \bm{\mathbf{dom}}(x), \exists p \in G. (y, p) \in x \}$$
     }
     \end{itembox}
+    \vspace{-1cm}
     {\small 
     \begin{itemize}[itemsep=4pt]    
         \item $x_G$が$M$上の関数になっている
@@ -469,47 +392,30 @@ TODO :
     }
 \end{frame}
 
-\begin{frame}{苦労した点(3)\, {\normalsize ZFのモデルであることの証明}}
+\end{comment}
+
+
+\begin{frame}{困難だった点(2)\, {\normalsize ZFのモデルであることの証明}}
     \begin{itembox}[l]{命題}
         {\small
             $N$が推移的かつalmost universalなクラスで、$\Delta_0$-separationを\\
             満たすならば、$N$はZFの内部モデルである
         }
     \end{itembox}
+    \vspace{-1.2cm}
     {\small
-    \begin{itemize}[itemsep=8pt]
+    \begin{itemize}[itemsep=2pt]
         \item 参考文献{\small [Karagila 23]}では、symmetric extensionが\\
               ZFのモデルであることの証明にこの命題を使用
-        \item Isabelle上で、前提条件は証明できたが\\
-              「命題自体」が証明できなかった
-        
+        \item Isabelle/ZF上で、$N$が$M[G]$において「クラスであること」が証明できなかった      
+        \begin{itemize}
+          \item 論理式を具体的に構成するのが大変すぎる？
+        \end{itemize}  
     \end{itemize}
     }
 \end{frame}
 
-\begin{frame}{苦労した点(3)\, {\normalsize ZFのモデルであることの証明}}
-
-    \begin{itembox}[l]{命題(Collection Principle, Jech「Set Theory」6.5)}
-        {\small $p$をパラメータとして}
-        \vspace{-10pt}
-        $$\forall X \exists Y (\forall u \in X)[\exists v \phi(u, v, p) \rightarrow (\exists v \in Y) \phi(u, v, p)]$$
-    \end{itembox}
-
-    \vspace{-5pt}
-    {\small
-        \begin{itemize}[itemsep=5pt]
-            \item 前頁の命題の証明中、この命題の証明で行き詰った
-            \item symmetric extensionが、generic extensionで\\
-                  definableなクラスであることが証明できなかった
-                  \begin{itemize}
-                    \item 論理式を具体的に構成するのが大変すぎる？
-                  \end{itemize}
-        \end{itemize}
-    }
-
-\end{frame}
-
-\begin{frame}{解決策(3)}
+\begin{frame}{解決策(2)}
     \vspace{-10pt}
     {\small
         \begin{itemize}[itemsep=8pt]
@@ -521,9 +427,9 @@ TODO :
                             generic extensionに対する$\Vdash$のように振舞う
                   \end{itemize}
             \item $\Vdash_{\bm{\mathbf{HS}}_{\Fcal}}$を用いてZFのモデルであることを証明
-                  \begin{itemize}
-                      \item 強制関係の帰納法が不要になり{\footnotesize「苦労した点(2)」}も解決
-                  \end{itemize}
+                 % \begin{itemize}
+                 %     \item 強制関係の帰納法が不要になり{\footnotesize「困難だった点(2)」}も解決
+                 % \end{itemize}
         \end{itemize}
     }
 \end{frame}
@@ -590,36 +496,12 @@ TODO :
     今回のテーマに限らず、数学基礎論の形式化には便利そう} 
 \end{frame}
 
-\begin{comment}
-    任意のZFの有限部分Dに対し、
-    ZFの十分大きな有限部分Gをとれば、
-    Gのc.t.m.からD+notACのモデルを構成できる
-
-    ZF+notACが矛盾するならば、ZFの有限部分Dで、D |- ACが成り立つものが存在する
-    このDに対し、十分大きなGをとると、Gのc.t.m.からD+notACのモデルNを構成できる
-    N |= notAC , N |= AC となり矛盾
-\end{comment}
-
-\begin{comment}
-    
-
-isabelle/zfで、、、、の（一部）を形式化
-
-zfのctmから出発し、、、、のモデルとなるシンメトリックエクステンションを構成
-
-ctmの存在の仮定に関する形式化できていない部分がある
-
-参考資料の証明をなぞるだけではうまくいかない部分も
-
-メタ/対象レベルの形式的証明を「つなげる」機能がほしい
-\end{comment}
-
 \begin{frame}{まとめ}
     $\neg$ACの相対無矛盾性証明をIsabelle/ZFで形式化
     {\small
     \begin{itemize}[itemsep=8pt]
         \item ZFのc.t.m.から出発し、\\ZF+$\neg$ACをみたすsymmetric extensionを構成
-        \item ctmの存在の仮定に関する形式化できていない部分がある
+        \item c.t.m.に関する形式化できていない部分がある
         \item 参考資料の通りにいかず試行錯誤した部分も
         \item メタ/対象レベルの形式的証明を「つなげる」機能がほしい
     \end{itemize}
@@ -667,7 +549,7 @@ ctmの存在の仮定に関する形式化できていない部分がある
         \item E. Gunther et al., Formalization of Forcing in Isabelle/ZF, 2020
         \item E. Gunther et al., The Independence of the Continuum Hypothesis in Isabelle/ZF, 2022
 \end{comment}
- 
+
 \end{document}
 
 
