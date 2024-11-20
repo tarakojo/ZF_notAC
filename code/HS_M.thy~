@@ -708,8 +708,7 @@ qed
 
 lemma sats_is_HS_fm_iff : 
   fixes x i j env 
-  assumes "env \<in> list(M)" "i < length(env)" "j < length(env)" 
-          "nth(i, env) = <\<F>, \<G>, P, P_auto>" "nth(j, env) = x" 
+  assumes "env \<in> list(M)" "i < length(env)" "j < length(env)" "nth(i, env) = <\<F>, \<G>, P, P_auto>" "nth(j, env) = x" 
   shows "sats(M, is_HS_fm(i, j), env) \<longleftrightarrow> x \<in> HS" 
 
 proof - 
