@@ -1,0 +1,4 @@
+PWD C:/Users/tarak/source/repos/ZF_notAC/slide/yobi
+INPUT c:/texlive/2023/texmf-var/web2c/luahbtex/lualatex.fmt
+INPUT ./main.tex
+OUTPUT main.log
