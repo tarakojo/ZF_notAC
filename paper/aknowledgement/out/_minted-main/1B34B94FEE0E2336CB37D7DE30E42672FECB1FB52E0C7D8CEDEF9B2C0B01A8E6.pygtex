@@ -1,0 +1,6 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{lemma}\PYG{+w}{ }\PYG{n}{binmap\PYGZus{}row\PYGZus{}distinct}\PYG{+w}{ }\PYG{o}{:}
+\PYG{+w}{    }\PYG{k+kp}{fixes}\PYG{+w}{ }\PYG{n}{G}\PYG{+w}{ }\PYG{n}{n}\PYG{+w}{ }\PYG{n}{m}
+\PYG{+w}{    }\PYG{k+kp}{assumes}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}M\PYGZus{}generic(G)\PYGZdq{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}n ∈ nat\PYGZdq{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}m ∈ nat\PYGZdq{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}n ≠ m\PYGZdq{}}
+\PYG{+w}{    }\PYG{k+kp}{shows}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}binmap\PYGZus{}row(G, n) ≠ binmap\PYGZus{}row(G, m)\PYGZdq{}}
+\end{Verbatim}

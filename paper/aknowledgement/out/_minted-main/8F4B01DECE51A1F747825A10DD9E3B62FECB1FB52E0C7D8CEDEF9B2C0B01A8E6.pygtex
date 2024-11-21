@@ -1,0 +1,6 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{definition}\PYG{+w}{ }\PYG{n}{binmap\PYGZus{}row}\PYG{+w}{ }\PYG{k+kp}{where}
+\PYG{+w}{    }\PYG{l+s}{\PYGZdq{}binmap\PYGZus{}row(G, n) ≡ \PYGZob{} m ∈ nat. ∃p ∈ G. p`\PYGZlt{}n, m\PYGZgt{} = 1 \PYGZcb{}\PYGZdq{}}
+
+\PYG{k}{definition}\PYG{+w}{ }\PYG{n}{binmap}\PYG{+w}{ }\PYG{k+kp}{where}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}binmap(G) ≡ \PYGZob{} binmap\PYGZus{}row(G, n). n ∈ nat \PYGZcb{}\PYGZdq{}}
+\end{Verbatim}

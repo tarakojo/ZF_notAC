@@ -1,0 +1,6 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{definition}\PYG{+w}{ }\PYG{n}{is\PYGZus{}P\PYGZus{}auto}\PYG{+w}{ }\PYG{o}{::}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}i ⇒ o\PYGZdq{}}\PYG{+w}{ }\PYG{k+kp}{where}
+\PYG{+w}{    }\PYG{l+s}{\PYGZdq{}is\PYGZus{}P\PYGZus{}auto(π) ≡ π ∈ M ∧ π ∈ bij(P, P) ∧ (∀ p ∈ P. ∀q ∈ P. p ≼ q ⟷ π`p ≼ π`q)\PYGZdq{}}
+
+\PYG{k}{definition}\PYG{+w}{ }\PYG{n}{P\PYGZus{}auto}\PYG{+w}{ }\PYG{k+kp}{where}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}P\PYGZus{}auto ≡ \PYGZob{} π ∈ P → P. is\PYGZus{}P\PYGZus{}auto(π) \PYGZcb{}\PYGZdq{}}
+\end{Verbatim}

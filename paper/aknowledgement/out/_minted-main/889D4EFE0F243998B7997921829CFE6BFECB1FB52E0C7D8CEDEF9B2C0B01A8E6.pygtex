@@ -1,0 +1,7 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{lemma}\PYG{+w}{ }\PYG{n}{SymExt\PYGZus{}replacement}\PYG{+w}{ }\PYG{o}{:}
+\PYG{+w}{    }\PYG{k+kp}{fixes}\PYG{+w}{ }\PYG{n}{φ}\PYG{+w}{ }\PYG{n}{env}
+\PYG{+w}{    }\PYG{k+kp}{assumes}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}φ ∈ formula\PYGZdq{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}arity(φ) ≤ 2 \PYGZsh{}+ length(env)\PYGZdq{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}env ∈ list(SymExt(G))\PYGZdq{}}
+\PYG{+w}{    }\PYG{k+kp}{shows}
+\PYG{+w}{          }\PYG{l+s}{\PYGZdq{}strong\PYGZus{}replacement(\PYGZsh{}\PYGZsh{}SymExt(G), λx y. sats(SymExt(G), φ, [x, y] @ env))\PYGZdq{}}
+\end{Verbatim}

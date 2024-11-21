@@ -1,0 +1,7 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{lemma}\PYG{+w}{ }\PYG{n}{no\PYGZus{}wellorder}\PYG{+w}{ }\PYG{o}{:}
+\PYG{+w}{    }\PYG{k+kp}{fixes}\PYG{+w}{ }\PYG{n}{r}\PYG{+w}{ }\PYG{n}{G}
+\PYG{+w}{    }\PYG{k+kp}{assumes}
+\PYG{+w}{            }\PYG{l+s}{\PYGZdq{}M\PYGZus{}generic(G)\PYGZdq{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}wellordered(\PYGZsh{}\PYGZsh{}SymExt(G), binmap(G), r)\PYGZdq{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}r ∈ SymExt(G)\PYGZdq{}}
+\PYG{+w}{    }\PYG{k+kp}{shows}\PYG{+w}{ }\PYG{n}{False}
+\end{Verbatim}

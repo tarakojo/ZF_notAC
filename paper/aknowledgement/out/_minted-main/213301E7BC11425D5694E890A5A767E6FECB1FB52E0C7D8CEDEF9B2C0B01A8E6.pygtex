@@ -1,0 +1,3 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{definition}\PYG{+w}{ }\PYG{n}{SymExt}\PYG{+w}{ }\PYG{k+kp}{where}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}SymExt(G) ≡ \PYGZob{} val(G, x). x ∈ HS \PYGZcb{}\PYGZdq{}}
+\end{Verbatim}

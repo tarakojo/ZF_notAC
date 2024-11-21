@@ -107,9 +107,9 @@ TODO :
             \item \textcolor{red}{ZF} : 
             Zermelo-Fraenkel公理系。一階述語論理上で\\
             形式化されたよく採用される公理系
-            \item \textcolor{red}{AC} \ldots 選択公理 (Axiom of Choice)\\
+            \item \textcolor{red}{AC} : 選択公理 (Axiom of Choice)\\
             任意の非空集合の族からそれぞれ1つの元を選ぶ関数が存在するという公理
-            \begin{itemize}
+            \begin{itemize} 
                 \item 整列可能定理、Zornの補題など\\同値な重要な命題がある
             \end{itemize}
 
@@ -165,7 +165,7 @@ TODO :
             \begin{itemize}[itemsep=7pt]
                 \item 数学的証明の形式化や、\\ソフトウェアの正しさの証明\\などに用いられるシステム
                 \item プログラムを書くように\\定義・証明を記述する
-                \item Isabelle,Lean,Coq, \ldots
+                \item Isabelle, Lean, Coq, \ldots
             \end{itemize}
             }
         \end{column}
@@ -488,20 +488,22 @@ TODO :
 \section {考察}
 
 \begin{frame}{考察(1) {\normalsize c.t.m.アプローチについて}}
-    \vspace{-30pt}
+    \vspace{-35pt}
     \,{\small 
-    \begin{itemize}
+    \begin{itemize}[itemsep=4pt]
         \item 本研究で形式化したのは、\\
               「ZFのc.t.m.が存在 $\rightarrow$ ZF+$\neg$ACのc.t.m.が存在」
-              \vspace{5pt}
               \begin{itemize}
                 \item ZFのc.t.m.の存在は、強制法の形式化[Gunther et al. 20]を使うため仮定
               \end{itemize}
         \item 証明したいのはCon(ZF)$\rightarrow$Con(ZF+$\neg$AC)だが、\\
               ZFのc.t.m.の存在は、Con(ZF)から証明できない
-              \vspace{5pt}
               \begin{itemize} 
-                \item このギャップを埋める部分が形式化できていない(本当は形式化したい)
+                \item このギャップを埋めることができるが、\\通常c.t.m.アプローチの紙の上での証明では大まかな議論のみで省略される
+                \begin{itemize}
+                    \item この部分の形式化できていない\\
+                    (本当は形式化したい)
+                \end{itemize}
               \end{itemize}
     \end{itemize}
     }
@@ -545,14 +547,16 @@ TODO :
 \end{frame}
 
 \begin{frame}{まとめ}
+    \vspace{-3pt}
     \begin{center}
         $\neg$ACの相対無矛盾性証明を\\
         Isabelle/ZFで形式化
     \end{center}
+    \vspace{-3pt}
     {\small
-    \begin{itemize}[itemsep=8pt]
+    \begin{itemize}[itemsep=4pt]
         \item ZFのc.t.m.から出発し、\\ZF+$\neg$ACをみたすsymmetric extensionを構成
-        \item c.t.m.に関する形式化できていない部分がある
+        \item 紙の上では省略されるc.t.m.に関する議論の形式化が残っている
         \item 参考資料の通りにいかず試行錯誤した部分も
         \item メタ/対象レベルの形式的証明を「つなげる」\\機能がほしい
     \end{itemize}
