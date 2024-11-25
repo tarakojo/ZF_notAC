@@ -1,0 +1,4 @@
+\beamer@sectionintoc {1}{Isabelle/ZF}{6}{0}{1}
+\beamer@sectionintoc {2}{証明概略}{11}{0}{2}
+\beamer@sectionintoc {3}{Isabelle/ZFによる形式化}{13}{0}{3}
+\beamer@sectionintoc {4}{考察}{20}{0}{4}
