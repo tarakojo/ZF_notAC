@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1732544867 "c:/Users/tarak/source/repos/ZF_notAC/slide/tpp/main.tex" "out/main.pdf" "main" 1732544876 0
+["pdflatex"] 1732581540 "c:/Users/tarak/source/repos/ZF_notAC/slide/tpp/main.tex" "out/main.pdf" "main" 1732581551 0
   "C:/Users/tarak/.texlive2023/texmf-var/luatexja/extra_firamono-bold.luc" 1726375774 33687 4ab4d9436573bbef72411778e9475446 ""
   "C:/Users/tarak/.texlive2023/texmf-var/luatexja/extra_firamono-boldoblique.luc" 1726375775 33687 4ab4d9436573bbef72411778e9475446 ""
   "C:/Users/tarak/.texlive2023/texmf-var/luatexja/extra_firamono-medium.luc" 1726375774 33687 4ab4d9436573bbef72411778e9475446 ""
@@ -45,7 +45,7 @@
   "C:/texlive/2023/texmf-var/luatex-cache/generic/fonts/otl/yugothb-1.luc" 1726377722 2859287 b98513bd2100df2711a866e5b2b4ce34 ""
   "C:/texlive/2023/texmf-var/luatex-cache/generic/names/luaotfload-lookup-cache.luc" 1732175579 4611 d33e54175ecc2a5affd4f681a3fc5580 ""
   "C:/texlive/2023/texmf-var/luatex-cache/generic/names/luaotfload-names.luc.gz" 1732118738 286352 5c9379f7497352164cbf110971c8598a ""
-  "c:/Users/tarak/source/repos/ZF_notAC/slide/tpp/main.tex" 1732544863 24648 aef11e62f0037094640209638e02afdc ""
+  "c:/Users/tarak/source/repos/ZF_notAC/slide/tpp/main.tex" 1732581539 24859 a1a874e3ff6624cde45009f470d222e6 ""
   "c:/Windows/Fonts/YuGothB.ttc" 1651900805 14743864 72df8d0ad67b89fa45e2be2ffd25b0e4 ""
   "c:/texlive/2023/texmf-dist/fonts/tfm/jknappen/ec/ecrm1728.tfm" 1684129134 3584 3c76ccb63eda935a68ba65ba9da29f1a ""
   "c:/texlive/2023/texmf-dist/fonts/tfm/jknappen/ec/ecso0800.tfm" 1684129134 3584 9d213a5e33aba09782ffab939fc38a6f ""
@@ -413,13 +413,14 @@
   "c:/texlive/2023/texmf-var/web2c/luahbtex/lualatex.fmt" 1684138368 11869899 25014e89a64adc0d9bbac3bb8f0ddd81 ""
   "images/HS_forces_def.png" 1732115341 34100 a9422ae7c8ac8829f03bf86655dcc935 ""
   "images/HS_truth_lemma.png" 1732115362 32418 a9f9f1b038aa71657f26dce889ae376d ""
+  "images/ZFC.png" 1732579390 72972 01f7f8255b63d47c175bf6ed1abfe9ee ""
   "images/ZF_notAC_main_theorem.png" 1732106464 28248 186f1c02029c081937ff7f18816c7271 ""
   "images/formula_def.png" 1732544107 94229 833934ec8ca4e4e8365b18dba362e145 ""
   "images/sats_def.png" 1732544277 113391 a4c0ae37bf4c80eb6f94853c86d54613 ""
-  "main.tex" 1732544863 24648 aef11e62f0037094640209638e02afdc ""
-  "out/main.aux" 1732544875 5969 26e7e2ad1090739fe27d7f9b9de7282f "pdflatex"
-  "out/main.nav" 1732544875 3618 8be005dbdc2e402f861bda41f8433014 "pdflatex"
-  "out/main.out" 1732544875 459 551c552ceb3dfa2347252e7599a164eb "pdflatex"
+  "main.tex" 1732581539 24859 a1a874e3ff6624cde45009f470d222e6 ""
+  "out/main.aux" 1732581549 6097 05252e337c6e0d0e3e3f3a01d152c70e "pdflatex"
+  "out/main.nav" 1732581549 3710 8bb66ab50b6dde60c6cb03c7d63a6d2e "pdflatex"
+  "out/main.out" 1732581549 459 551c552ceb3dfa2347252e7599a164eb "pdflatex"
   (generated)
   "out/main.aux"
   "out/main.log"

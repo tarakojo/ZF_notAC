@@ -736,6 +736,9 @@ INPUT c:/texlive/2023/texmf-dist/fonts/tfm/public/mlmodern/ec-mlmssbx10.tfm
 INPUT c:/texlive/2023/texmf-dist/fonts/tfm/public/mlmodern/ec-mlmss17.tfm
 INPUT c:/texlive/2023/texmf-dist/fonts/tfm/public/mlmodern/ec-mlmssbx10.tfm
 INPUT c:/texlive/2023/texmf-dist/fonts/tfm/public/mlmodern/ec-mlmss8.tfm
+INPUT ./images/ZFC.png
+INPUT ./images/ZFC.png
+INPUT ./images/ZFC.png
 INPUT C:/texlive/2023/texmf-var/luatex-cache/generic/fonts/otl/lmroman7-regular.luc
 INPUT C:/Users/tarak/.texlive2023/texmf-var/luatexja/extra_lmroman7-regular.luc
 INPUT c:/texlive/2023/texmf-dist/fonts/tfm/public/mlmodern/mlmmi12.tfm

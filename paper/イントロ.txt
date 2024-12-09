@@ -1,0 +1,171 @@
+
+
+
+定理証明支援系
+
+定理証明支援系とは、数学の定理やプログラムの性質などを形式的に証明するためのツールであり、
+数学的証明の検証、プログラム検証や暗号理論、ハードウェア設計など、幅広い分野で応用されている。
+これらのシステムは形式論理の規則に基づいて動作し、
+ユーザと対話的に証明を構築する。
+
+代表的な定理証明支援系としては、Coq、Isabelle/HOL、Lean、HOL Light などが挙げられる。
+これらのツールはそれぞれ独自の特徴や強みを持ち、数学者やエンジニアが様々な分野で活用している。
+
+定理証明支援系の利点の一つは、証明の正確性を保証できることである。
+従来の紙と鉛筆による証明などの非形式的な数学的証明では、人間の不注意や見落としによるエラーが発生しやすい。
+一方で、定理証明支援系を用いることで、すべての論理的ステップが機械によって検証され、証明が正しいことが形式的に保証される。
+
+例えば、4色定理やケプラー予想は、定理証明支援系を用いて形式的に証明された有名な例である。
+これら大規模な証明は、人間の手による検証が困難であったが、
+形式的な証明によって正確性が保証された。
+
+同様に、安全性が重要なシステムにおいて、プログラムの形式検証を行うことで、その信頼性を高めることができる。
+形式的に検証されたシステムの重要な例として、
+C言語コンパイラCompCertや、seL4マイクロカーネルなどが挙げられる。
+
+定理証明支援系は、複雑な証明が必要なものに限らず、様々な数学的定理を形式化する試みにも広く利用されている。
+群・環や微分積分などの基本的な数学的結果は、多くの定理証明支援系によって形式化されており、
+その対象は広がり続けている。
+本論文の結果は、公理的集合論に関する定理のIsabelleによる形式化であり、
+強制法を用いた定理証明支援系上の証明の一例である。
+
+
+公理的集合論
+
+集合論は現代数学の基礎として、重要な役割を担っています。
+自然数、関数などから、より高度で複雑なものまで、
+基本的に、数学的概念や定理は、集合論の枠組みで表現でき、
+それゆえに集合論は現代数学における共通言語として機能しています。
+
+19世紀、集合論はカントールによって考案され、数学に大きな進歩をもたらしました。
+しかし、その過程ででラッセルのパラドックスなどの問題が浮上しました。
+
+公理的集合論は、このような問題を解決するため、
+集合に対してどのような操作が許されるかを調べるために開発されました。
+公理的集合論においては、許される操作は公理によって厳密に規定され、
+それに基づいて集合論が展開されます。
+現在に至るまで、様々な公理系が考案され、
+それらの間の関係や独立性が研究されています。
+
+公理的集合論の公理系の中でも、Zermelo-Fraenkel公理系（ZF）や、
+Neumann-Bernays-Gödel公理系（NBG）は、よく知られています。
+本論文では、主にZFおよびZFC公理系を扱います。
+
+ZF公理系は、Zermeloによって提案された公理系が、
+FraenkelやSkolem, von Neumannなどによって拡張されたものです。
+これに選択公理を含めた公理系は、ZFC公理系と呼ばれ、よく用いられます。
+これらは一階述語論理の上で定義された公理系であり、
+公理図式により規定された無限個の公理を含みます。
+ほとんどの数学的概念は、ZFC公理系の上で表現できることが知られており、
+また、多くの性質が研究されています。
+
+その中で、ZFにおける選択公理の独立性や、ZFCにおける連続体仮説の独立性は、
+初期の重要な結果です。これらは、コーエンにより、
+強制法と呼ばれる手法を用いて証明されました。
+
+
+相対的無矛盾性と独立性
+
+公理的集合論の面白く、また注意が必要な点の一つは、
+メタレベルでの集合論の公理系と、その公理系の中で、集合を用いてコード化した一階述語論理の上で展開される対象レベルの集合論が登場することです。
+例えば、ZFC公理系の中で、ZFC公理系自身をコード化して、ZFC集合論を展開できます。
+なお、我々はメタレベルの集合論として、ZFまたはZFC公理系を考えます。
+
+以下で述べる「公理系Tでφが証明できる」は、対象レベルの集合論に関する性質です。
+つまり、メタレベルの集合論上で形式化した形式証明体系、公理系Tや論理式Φについて、
+「Tでφが証明できる」ということを意味します。
+
+ある公理系Tにおいて、ある命題φが独立であるとは、Tから、φもその否定notφも導かれないことを意味します。
+(ここでは、シークエント計算など、なんらかの形式的な証明体系を考えます)
+これは、Tにφを追加した公理系T+φと、notφを追加した公理系T+notφのどちらも無矛盾であることと同値です。
+さらに、一階述語論理において、その公理系のモデルが存在すれば、その公理系は無矛盾であるといえます。
+したがって、T+φもT+notφもモデルを持つことを示すことで、φがTで独立であることが証明されます。
+
+ただし、TとしてZFやZFCなどのを考える場合、
+何の仮定もなしに、その無矛盾性を示すことは、ゲーデルの不完全性定理により不可能です。
+その代わりに、別の公理系の無矛盾性を仮定したうえで、興味のある公理系の無矛盾性を証明することが行われます。
+これで証明される性質は、相対的無矛盾性と呼ばれます。
+
+以上より、正確に述べると、ZFにおけるACの独立性は、
+ZFが無矛盾であることを仮定した上で、ZF+ACおよびZF+notACがモデルを持つことを示すことで証明されます。
+(ただし、現在の設定において、ZFが無矛盾であることと、ZFCが無矛盾であることは同値なので、ZFCが無矛盾だと仮定しても問題ありません。)
+同様に、ZFCにおけるCHの独立性は、ZFCが無矛盾であることを仮定した上で、
+ZFC+CHおよびZFC+notCHがモデルを持つことを示すことで証明されます。
+
+
+強制法
+
+強制法は、1963年にコーエンが、ZFにおける選択公理の独立性や、ZFCにおける連続体仮説の独立性証明において初めて用いた手法です。
+これは集合論のモデルを探求するための強力な手法であり、その後他の研究者によってさらに洗練されていくとともに、
+多くの重要な結果が強制法によって証明されています。
+現在の公理的集合論の研究においても、非常に重要な役割を果たしています。
+
+Chapter2でより詳しく説明しますが、強制法は、集合論のモデルを拡張する技法です。
+集合論のモデルMとM内のposet Pに対し、強制法の手続きを適用すると、
+Mに、P上のgeneric filterと呼ばれる集合Gを加えた最小の拡張M[G](generic extension)を得られます。
+poset Pをうまく選ぶことで、M[G]で成り立つ性質をある程度制御することができます。
+また、M[G]で何が成り立つかは、強制関係と呼ばれる関係によりチェックすることができます。
+
+例えば、連続体仮説の独立性は、
+ZFCが無矛盾だという仮定からZFCのモデルを得て、
+それを強制法で拡張することにより、CHが成り立つZFCのモデルと、CHが成り立たないZFCのモデルを構成することで証明されます。
+
+ただし、ACの場合については、
+ACを満たさないZFのモデルを構成する際に、
+generic extensionのサブモデルを構成します。
+
+
+公理的集合論の既存の形式化
+
+他の数学の分野と同様に、公理的集合論の定理証明支援系による形式化も進められています。
+Paulson et al. formalized an extensive part of ZF set theory [10, 13, 14, 15, 16] , in-
+cluding cardinal arithmetic, relativization, the reflection theorem, features for handling
+inductive definitions, and the relative consistency of AC with ZF. The proof of the rel-
+ative consistency was achieved by constructing Gödel’s constructible universe.
+Building on these results, Gunther et al. formalized forcing and a proof of the inde-
+pendence of CH [1, 2] in Isabelle/ZF. In these formalizations, the countable transitive
+model (c.t.m.) approach was used, following Kunen’s book [8].
+In Lean, Han and van Doorn also formalized forcing and the independence of CH
+[3] in Lean 3. using the Boolean-valued model approach, which is another approach to
+forcing. Additionally, in Lean 4, Holmes and Wilshaw formalized the complex parts of
+the consistency proof of Quine’s New Foundations [4], ensuring the correctness of the
+proof.
+
+Although these results have been formalized, 
+the relative consistency of ¬AC with ZF has not yet been formalized. 
+It can be proven by forcing, but the proof involves complexities that cannot be
+achieved by simply modifying the proof for CH.
+具体的には、ACを満たさないZFのモデルを構成する際に、
+symmetric extensionと呼ばれる、generic extensionのサブモデルを構成する必要があり、
+その議論の形式化が必要となります。
+
+
+我々の貢献とアプローチ
+
+本論文では、まだ形式的証明が存在しない、
+ZFにおけるnotACの相対的無矛盾性証明を、Isabelle/ZFを用いて形式化します。
+
+The primary reason we chose Isabelle/ZF for this formalization is that Isabelle/ZF is
+a mature proof assistant for ZF set theory, in particular, the formalization by Gunther
+et al. [1] is a major advantage for this study. Although there is also a formalization of
+forcing in Lean 3 by Han and van Doorn [3], development for Lean 3 has already ended.
+
+To use Gunther et al.’s formalization, we adopted the c.t.m. approach for our proof,
+as in their independence proof of CH. Specifically, we assumed the existence of a c.t.m.
+of ZF and constructed a model of ZF+¬AC by forcing. This model is known as the basic
+Cohen model, which is a symmetric extension of assumed c.t.m. Our proof is based on
+Karagila’s lecture note [9] and Jech’s book [5, 6], as these resources align well with this
+approach.
+
+The c.t.m. approach is a well-established method for relative consistency proofs in
+axiomatic set theory. The relative consistency of ¬AC with ZF means that if ZF is
+consistent, then ZF+¬AC is also consistent. Assuming the consistency of ZF implies
+that a model of ZF exists, but strictly speaking, the existence of a c.t.m. cannot be derived
+from this assumption. However, as explained in Section 2.1.4, we can prove the relative
+consistency of ¬AC with ZF if we can construct a model of ZF+¬AC from a c.t.m. of
+ZF. This kind of reasoning always arises in the c.t.m. approach, and ideally, we would
+like to formalize it as well, but this has not been achieved.
+
+This work contributes to the formalization of axiomatic set theory and serves
+as a new example of the formalization using forcing, which is a crucial tool in set theory.
+It also may provide insights into how the formalization of axiomatic set theory could be advanced.
