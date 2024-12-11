@@ -44,6 +44,7 @@
 \newtheorem{prop}[thm]{Proposition}
 
 % 参照
+\crefname{chapter}{Chapter}{Chapters}
 \crefname{section}{Section}{Sections}
 \crefname{dfn}{Definition}{Definitions}
 \crefname{lem}{Lemma}{Lemmas}
@@ -86,30 +87,144 @@ We show that the symmetric extension satisfies ZF$+\neg$AC by formalizing a rela
 
 
 \chapter{Introduction}
-The formalization of mathematics using proof assistants such as Isabelle \cite{paulson_1986}, Coq, and Lean, has been actively conducted, leading to numerous achievements. 
-For instance, the proofs of the four color theorem, Kepler's conjecture, and the Feit-Thompson theorem have been formalized using proof assistants, enhancing the reliability of these proofs. 
-Additionally, various fields of mathematics, such as number theory, algebra, and topology, are also being formalized.
 
-The independence of the axiom of choice (AC) from Zermelo-Fraenkel set theory (ZF) is a well-known result in the early history of axiomatic set theory,
-as well as the independence of the continuum hypothesis (CH) from ZF with AC (ZFC).
-Cohen invented the forcing method and proved them in 1963.
-Forcing is a powerful tool for exploring models of set theory and was subsequently further sophisticated by other researchers.
+\subsubsection{Proof Assistants}
 
-Independence proofs of CH from ZFC has been formalized in Isabelle/ZF by Gunther et al. \cite{gunther_independence} and in Lean 3 by Han and van Doorn \cite{flypitch}.
-In these studies, forcing methods were formalized, and the independence of CH was proven by 
-showing the relative consistency of CH and $\neg$CH with ZFC.
+Proof assistants are software tools designed to formally verify mathematical proofs, programs, and more. 
+These systems are widely used in various fields, including mathematics, cryptography, software verification, and hardware design.
+Operating on the basis of formal logic, they enable users to interactively construct proofs, which are then checked by the system.
+Well-known examples of proof assistants include Isabelle, Coq, Lean, and HOL Light,
+each offering unique features and strengths.
 
-For AC, the relative consistency of AC with ZF has been formalized in Isabelle/ZF by Paulson \cite{paulson_AC_consistency}.
-However, the relative consistency of $\neg$AC with ZF has not been formalized.
-It can be proven by forcing, but the proof involves complexities that cannot be achieved by simply modifying the proof for CH.
+One of the key advantages of proof assistants is their ability to guarantee the correctness of proofs. 
+In traditional, informal mathematical proofs, such as those created with pen and paper, 
+errors can easily occur due to human oversight or carelessness. 
+In contrast, by using proof assistants, every logical step is rigorously verified by a machine, 
+ensuring that the proof is formally correct.
 
-In this work, we formalized the relative consistency proof of $\neg$AC with ZF in Isabelle/ZF. 
-This work contributes to the formalization of axiomatic set theory and 
-serves as a new example of the formalization using forcing, which is a crucial tool in set theory.
-It also may provide insights into how the formalization of axiomatic set theory could be advanced.
+For example, the Four Color Theorem \cite{four_color} and Kepler's Conjecture \cite{kepler} are well-known cases of theorems formally proven using proof assistants. 
+These large-scale proofs were difficult for humans to verify manually, but their correctness was assured through formal verification.
+Similarly, in systems where safety is critical, formal verification of programs can significantly enhance their reliability. 
+Notable examples of formally verified systems include the CompCert C compiler \cite{compcert} and the seL4 microkernel \cite{seL4}.
 
+Proof assistants are not limited to applications requiring complex proofs; 
+they are also widely used in efforts to formalize various mathematical theorems. 
+Fundamental mathematical results, such as those in group and ring theory or calculus, 
+have been formalized by many proof assistants, and the scope of such formalizations continues to expand.
 
-\subsubsection{Our Approach}
+The results presented in this paper involve the formalization of theorems in axiomatic set theory using Isabelle. 
+This also serves as an example of a formal proof of an argument using forcing.
+
+\subsubsection{Axiomatic Set Theory}
+
+Set theory plays a crucial role as the foundation of modern mathematics. 
+From natural numbers and functions to more advanced and complex concepts, 
+mathematical ideas and theorems can basically be expressed within the framework of set theory. 
+As a result, set theory functions as a common language in modern mathematics.
+
+In the 19th century, set theory was devised by Cantor, bringing significant progress to mathematics. 
+However, during its development, issues such as Russell's paradox emerged.
+Axiomatic set theory was developed to address these issues and to investigate which operations on sets are permissible. 
+In axiomatic set theory, allowable operations are strictly defined by axioms, and the theory is constructed based on these axioms.
+
+Over time, various axiom systems have been proposed, 
+and the relationships and independence among these systems have been studied. 
+Among the axiom systems in axiomatic set theory, 
+the Zermelo-Fraenkel system (ZF) and the Neumann-Bernays-Gödel system (NBG) are well-known. 
+This paper primarily focuses on the ZF and ZFC axiom systems.
+
+The Zermelo-Fraenkel (ZF) axiom system is an extension of the axiom system proposed by Zermelo, 
+further developed by Fraenkel, Skolem, von Neumann, and others. 
+When the Axiom of Choice is included, the system is referred to as ZFC and is widely used. 
+These axiom systems are defined within the framework of first-order logic 
+and include infinitely many axioms specified by axiom schemas.
+It is well known that most mathematical concepts can be expressed within ZFC, 
+and its properties have been widely studied.
+
+Among these, the independence of the Axiom of Choice (AC) in ZF 
+and the independence of the Continuum Hypothesis (CH) in ZFC are significant early results. 
+These were proven by Cohen using a technique known as forcing.
+
+\subsubsection{Relative Consistency and Independence}
+
+One of the interesting and important aspects of axiomatic set theory is that 
+multiple "levels" of set theory appear within arguments.
+For example, by formalizing first-order logical formulas and formal proof systems such as sequent calculus within ZFC set theory, 
+it is possible to build ZFC set theory internally within ZFC itself.
+
+We also use ZF or ZFC externally and consider other set theories within them. 
+In this paper, we often refer to the external system as the meta-level set theory 
+and the one constructed within it as the object-level set theory.
+
+Basically, when we say "$\varphi$ is provable in the axiom system $T$", $T$ refers to the object-level set theory, not the meta-level. 
+In other words, it means that within the formal proof system constructed on the meta-level set theory, the axiom system 
+$T$ and the formula $\varphi$, also constructed within the same system, can be proven.
+
+A proposition $\varphi$ is said to be independent of an axiom system $T$ if neither $\varphi$ nor $\neg \varphi$ is provable in $T$.
+This is equivalent to saying that both the system $T+\varphi$ and $T+\neg \varphi$ are consistent,
+where $T+\varphi$ denotes the system obtained by adding $\varphi$ to $T$.
+Furthermore, in first-order logic, an axiom system is considered consistent if it has a model.
+Therefore, to prove that $\varphi$ is independent of $T$, it is sufficient to show that both $T+\varphi$ and $T+\neg \varphi$ have models.
+
+However, when considering $T$ as systems like ZF or ZFC, it is impossible, within the current context, 
+to demonstrate their consistency without any assumptions, due to Gödel's incompleteness theorem. 
+Instead, the consistency of the system of interest is proven by assuming the consistency of another axiom system. 
+This property is referred to as relative consistency.
+
+From the above, to be precise, the independence of AC in ZF is proven by assuming the consistency of ZF 
+and showing that both ZF + AC and ZF + $\neg$AC have models. 
+(However, in the current setting, the consistency of ZF and the consistency of ZFC are equivalent, so it is also valid to assume the consistency of ZFC.)
+Similarly, the independence of CH in ZFC is proven by assuming the consistency of ZFC 
+and showing that both ZFC + CH and ZFC + $\neg$CH have models.
+Forcing is a powerful technique for carrying out such proofs.
+
+\subsubsection{Forcing}
+
+Forcing is a technique first introduced by Cohen in 1963 \cite{cohen} to prove the independence of AC in ZF 
+and the independence of CH in ZFC. 
+It is a powerful method for exploring models of set theory, 
+and it has been further refined by other researchers over time, 
+leading to many significant results being established through its use. 
+Forcing continues to play a crucial role in contemporary research in axiomatic set theory.
+
+As will be explained in more detail in \cref{chap:preliminaries}, 
+forcing is a technique for extending models of set theory.
+Given a model $M$ of set theory and a poset $P$ within $M$,
+applying the forcing method produces the smallest extension $M[G]$ (called a generic extension) of $M$ 
+that includes a set $G$ known as a generic filter on $P$.
+By carefully choosing $P$, it is possible to control certain properties that hold in $M[G]$.
+Furthermore, what holds or does not hold in $M[G]$ can be identified using the forcing relation.
+
+For example, independence of CH is proven by assuming the consistency of ZFC to obtain a model of ZFC, 
+and then extending it using forcing to construct a model of ZFC in which CH holds 
+and another model in which $\neg$CH hold.
+In the case of AC, a submodel of a generic extension is constructed to obtain a model of ZF where AC does not hold.
+
+\subsubsection{Previous Research on the Formalization of Axiomatic Set Theory}
+
+As with other areas of mathematics, the formalization of axiomatic set theory using proof assistants has also been advancing.
+
+Paulson et al. formalized an extensive part of ZF set theory 
+\cite{paulson_datatype_impl,paulson_reflection,paulson_AC_consistency,paulson_cardinal_AC,paulson_datatype}, 
+including cardinal arithmetic, relativization, the reflection theorem, features for handling inductive definitions, and the relative consistency of AC with ZF.
+The proof of the relative consistency was achieved by constructing Gödel's constructible universe.
+
+Building on these results, Gunther et al. formalized forcing and a proof of the independence of CH \cite{gunther_forcing,gunther_independence} in Isabelle/ZF.
+In these formalizations, the countable transitive model (c.t.m.) approach was used, following Kunen's book \cite{kunen2011}.
+
+In Lean, Han and van Doorn also formalized forcing and the independence of CH \cite{flypitch} in Lean 3.
+using the Boolean-valued model approach, which is another approach to forcing.
+Additionally, in Lean 4, Holmes and Wilshaw formalized the complex parts of the consistency proof of Quine's New Foundations \cite{NF_consistency}, ensuring the correctness of the proof.
+
+Although these results have been formalized, 
+the relative consistency of $\neg$AC with ZF has not yet been formalized. 
+It can be proven by forcing, but the proof involves complexities that cannot be
+achieved by simply modifying the proof for CH.
+
+\subsubsection{Our Contribution and Approach}
+
+In this paper, we formalize the proof of the relative consistency of $\neg$AC with ZF, which has not yet been formalized, using Isabelle/ZF.
+
 The primary reason we chose Isabelle/ZF for this formalization is that Isabelle/ZF is a mature proof assistant for ZF set theory,
 in particular, the formalization by Gunther et al. \cite{gunther_forcing} is a major advantage for this study.
 Although there is also a formalization of forcing in Lean 3 by Han and van Doorn \cite{flypitch}, development for Lean 3 has already ended.
@@ -128,20 +243,9 @@ we can construct a model of ZF+$\neg$AC from a c.t.m.\  of ZF.
 This kind of reasoning always arises in the c.t.m.\  approach, and ideally, 
 we would like to formalize it as well, but this has not been achieved.
 
-
-\subsubsection{Related works}
-Paulson et al. formalized an extensive part of ZF set theory 
-\cite{paulson_datatype_impl,paulson_reflection,paulson_AC_consistency,paulson_cardinal_AC,paulson_datatype}
-, including cardinal arithmetic, relativization, the reflection theorem, features for handling inductive definitions, and the relative consistency of AC with ZF.
-The proof of the relative consistency was achieved by constructing Gödel's constructible universe.
-
-Building on these results, Gunther et al. formalized forcing and a proof of the independence of CH \cite{gunther_forcing,gunther_independence} in Isabelle/ZF.
-In these formalizations, the countable transitive model (c.t.m.) approach was used, following Kunen's book \cite{kunen2011}.
-
-In Lean, Han and van Doorn also formalized forcing and the independence of CH \cite{flypitch} in Lean 3.
-using the Boolean-valued model approach, which is another approach to forcing.
-Additionally, in Lean 4, Holmes and Wilshaw formalized the complex parts of the consistency proof of Quine's New Foundations \cite{NF_consistency}, ensuring the correctness of the proof.
-
+This work contributes to the formalization of axiomatic set theory and serves
+as a new example of the formalization using forcing, which is a crucial tool in set theory.
+It also may provide insights into how the formalization of axiomatic set theory could be advanced.
 
 \subsubsection{Synopsis}
 The remainder of this thesis is outlined as follows.
@@ -169,8 +273,8 @@ adapted to the formalized form in Isabelle/ZF.
 
 
 \subsection{ZF Set Theory and the Axiom of Choice}
-We introduce the axioms of ZF set theory and the axiom of choice (AC).
-We use first-order logic with the language of set theory, which consists only of only two relation symbols $\in$ and $=$. 
+We introduce the axioms of ZF set theory and the Axiom of Choice (AC).
+We use first-order logic with the language of set theory, which consists of only two relation symbols $\in$ and $=$. 
 Formulas involving other mathmatical operators that may appear are considered abbreviations for formulas in this language.
 Parentheses in formulas are omitted where no confusion arises.
 
@@ -190,11 +294,10 @@ Parentheses in formulas are omitted where no confusion arises.
 \end{dfn}
 Where separation and replacement are axiom schemas, representing infinitely many axioms for each formula $\phi$ with an appropriate arity.
 \begin{dfn} 
-  \emph{The axiom of choice (AC)} is the following statement: \\
+  \emph{The Axiom of Choice} is the following statement: \\
   $\forall x \exists f (\mathrm{"} f \text{ is a function on } x \mathrm{"} \land \forall y (y \in x \rightarrow f(y) \in y))$
 \end{dfn}
 Where the phrase "f is a function on x" is also considered an abbreviation in the language of set theory.
-Theory ZF+AC is denoted by ZFC.
 Additionally, we introduce the well-ordering theorem, as we treat AC in this form.
 
 \begin{dfn}
@@ -202,12 +305,12 @@ Additionally, we introduce the well-ordering theorem, as we treat AC in this for
 \end{dfn}
 
 \begin{lem}
-  The axiom of choice is equivalent to the well-ordering theorem, which states that every set can be well-ordered.
+  The Axiom of Choice is equivalent to the well-ordering theorem, which states that every set can be well-ordered.
 \end{lem}
 
 
 \subsection{Forcing}
-Forcing is a tequnique used in proving relative consistency and Independence.
+Forcing is a tequnique used in proving relative consistency and independence.
 We introduce basic concepts of forcing in the context of the c.t.m.\  approach.
 In this approach, the relative consistency proof is achieved by using forcing to construct a extended model by adding new sets to an assumed c.t.m.\ 
 Let $M$ be a c.t.m.\  of ZF and $(\mathbb{P}, \leq_{\mathbb{P}})$ be a notion of forcing, which is a pre-ordered set in $M$ with a maximum element $1_{\mathbb{P}}$.
@@ -544,7 +647,7 @@ and Isabelle allows proving theorems in these logical systems.
 
 Isabelle/ZF is an extension of Isabelle/FOL.
 It extends Isabelle/FOL by adding the axioms of ZF, allowing theorems of ZF set theory to be proved.
-Additionally, the Axiom of Choice (AC) can be included, enabling theorems of ZFC to be proved in Isabelle/ZF.
+Additionally, the Axiom of Choice can be included, enabling theorems of ZFC to be proved in Isabelle/ZF.
 Many definitions and theorems regarding ZF, such as ordinals, cardinals, functions, and ordered sets, 
 have been formalized and provided as a library.
 
@@ -1139,7 +1242,7 @@ lemma SymExt_M_ZF_trans : "M_ZF_trans(SymExt(G))"
 
 
 \subsection{Defining the Basic Cohen Model}
-In this section, we define the basic Cohen model which is a symmetric extension that does not satisfy the axiom of choice,
+In this section, we define the basic Cohen model which is a symmetric extension that does not satisfy the Axiom of Choice,
 , as outlined in \cref{sec:outline}.
 First, we work within the locale \texttt{"M\_ctm"} which fixes a c.t.m.\  \texttt{"M"} of ZF.
 
@@ -1214,7 +1317,7 @@ lemma Fn_M_symmetric_system :
 
 
 \subsection{Proving the Basic Cohen Model does not Satisfy AC}
-Finaly, we prove that the basic Cohen model does not satisfy the axiom of choice.
+Finaly, we prove that the basic Cohen model does not satisfy the Axiom of Choice.
 To do this, we construct a set $A$ that cannot be well-ordered in it.
 We work within the locale \texttt{"M\_symmetric\_system"} with parameters, as defined above, 
 fixed to generate the basic Cohen model.

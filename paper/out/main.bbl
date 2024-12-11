@@ -19,6 +19,88 @@
 
 \refsection{0}
   \datalist[entry]{nty/global//global/global}
+    \entry{cohen}{article}{}
+      \name{author}{1}{}{%
+        {{hash=db90b622eba26dc7c0195a3ce34de469}{%
+           family={Cohen},
+           familyi={C\bibinitperiod},
+           given={Paul\bibnamedelima J.},
+           giveni={P\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {National Academy of Sciences}%
+      }
+      \strng{namehash}{db90b622eba26dc7c0195a3ce34de469}
+      \strng{fullhash}{db90b622eba26dc7c0195a3ce34de469}
+      \strng{bibnamehash}{db90b622eba26dc7c0195a3ce34de469}
+      \strng{authorbibnamehash}{db90b622eba26dc7c0195a3ce34de469}
+      \strng{authornamehash}{db90b622eba26dc7c0195a3ce34de469}
+      \strng{authorfullhash}{db90b622eba26dc7c0195a3ce34de469}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{00278424, 10916490}
+      \field{journaltitle}{Proceedings of the National Academy of Sciences of the United States of America}
+      \field{number}{6}
+      \field{title}{The Independence of the Continuum Hypothesis}
+      \field{urlday}{10}
+      \field{urlmonth}{12}
+      \field{urlyear}{2024}
+      \field{volume}{50}
+      \field{year}{1963}
+      \field{urldateera}{ce}
+      \field{pages}{1143\bibrangedash 1148}
+      \range{pages}{6}
+      \verb{urlraw}
+      \verb http://www.jstor.org/stable/71858
+      \endverb
+      \verb{url}
+      \verb http://www.jstor.org/stable/71858
+      \endverb
+    \endentry
+    \entry{four_color}{inproceedings}{}
+      \name{author}{1}{}{%
+        {{hash=4bde01b7cbd8a03f2e8959bcde4b3b4a}{%
+           family={Gonthier},
+           familyi={G\bibinitperiod},
+           given={Georges},
+           giveni={G\bibinitperiod}}}%
+      }
+      \name{editor}{1}{}{%
+        {{hash=79ae193c185dc98fb2b7f4ece0ec1fb4}{%
+           family={Kapur},
+           familyi={K\bibinitperiod},
+           given={Deepak},
+           giveni={D\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Berlin, Heidelberg}%
+      }
+      \list{publisher}{1}{%
+        {Springer Berlin Heidelberg}%
+      }
+      \strng{namehash}{4bde01b7cbd8a03f2e8959bcde4b3b4a}
+      \strng{fullhash}{4bde01b7cbd8a03f2e8959bcde4b3b4a}
+      \strng{bibnamehash}{4bde01b7cbd8a03f2e8959bcde4b3b4a}
+      \strng{authorbibnamehash}{4bde01b7cbd8a03f2e8959bcde4b3b4a}
+      \strng{authornamehash}{4bde01b7cbd8a03f2e8959bcde4b3b4a}
+      \strng{authorfullhash}{4bde01b7cbd8a03f2e8959bcde4b3b4a}
+      \strng{editorbibnamehash}{79ae193c185dc98fb2b7f4ece0ec1fb4}
+      \strng{editornamehash}{79ae193c185dc98fb2b7f4ece0ec1fb4}
+      \strng{editorfullhash}{79ae193c185dc98fb2b7f4ece0ec1fb4}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{The 150 year old Four Colour Theorem is the first famous result with a proof that requires large computer calculations. Such proofs are still controversial: It is thought that computer programs cannot be reviewed with mathematical rigor.}
+      \field{booktitle}{Computer Mathematics}
+      \field{isbn}{978-3-540-87827-8}
+      \field{title}{The Four Colour Theorem: Engineering of a Formal Proof}
+      \field{year}{2008}
+      \field{pages}{333\bibrangedash 333}
+      \range{pages}{1}
+    \endentry
     \entry{gunther_forcing}{article}{}
       \name{author}{3}{}{%
         {{hash=82f3b48dfb9567e3068c9214c122719c}{%
@@ -93,6 +175,143 @@
       \field{note}{\url{https://isa-afp.org/entries/Independence_CH.html}, Formal proof development}
       \field{title}{The Independence of the Continuum Hypothesis in Isabelle/ZF}
       \field{year}{2022}
+    \endentry
+    \entry{kepler}{misc}{}
+      \name{author}{22}{}{%
+        {{hash=6d5a580961f5a68ba57df1437bac86d9}{%
+           family={Hales},
+           familyi={H\bibinitperiod},
+           given={Thomas},
+           giveni={T\bibinitperiod}}}%
+        {{hash=dc7e539f79baeb4c5f3a97bf098b3558}{%
+           family={Adams},
+           familyi={A\bibinitperiod},
+           given={Mark},
+           giveni={M\bibinitperiod}}}%
+        {{hash=78d4c8b1caaf756102e3c238ba7b2d8b}{%
+           family={Bauer},
+           familyi={B\bibinitperiod},
+           given={Gertrud},
+           giveni={G\bibinitperiod}}}%
+        {{hash=e49a303dd8864b5b51b61d195fcba2be}{%
+           family={Dang},
+           familyi={D\bibinitperiod},
+           given={Dat\bibnamedelima Tat},
+           giveni={D\bibinitperiod\bibinitdelim T\bibinitperiod}}}%
+        {{hash=1d44b053f0953d217186bae6128bf61b}{%
+           family={Harrison},
+           familyi={H\bibinitperiod},
+           given={John},
+           giveni={J\bibinitperiod}}}%
+        {{hash=9a325d4fb21ac545e46f734babdd0bfa}{%
+           family={Hoang},
+           familyi={H\bibinitperiod},
+           given={Truong\bibnamedelima Le},
+           giveni={T\bibinitperiod\bibinitdelim L\bibinitperiod}}}%
+        {{hash=10a85b654f1367541fab90b023304aba}{%
+           family={Kaliszyk},
+           familyi={K\bibinitperiod},
+           given={Cezary},
+           giveni={C\bibinitperiod}}}%
+        {{hash=19567e921db6b68c86394bcc52711e13}{%
+           family={Magron},
+           familyi={M\bibinitperiod},
+           given={Victor},
+           giveni={V\bibinitperiod}}}%
+        {{hash=dc9acf483d01341ec403e774fbb19c85}{%
+           family={McLaughlin},
+           familyi={M\bibinitperiod},
+           given={Sean},
+           giveni={S\bibinitperiod}}}%
+        {{hash=7ee583be359f308d4a8bda24396d7c04}{%
+           family={Nguyen},
+           familyi={N\bibinitperiod},
+           given={Thang\bibnamedelima Tat},
+           giveni={T\bibinitperiod\bibinitdelim T\bibinitperiod}}}%
+        {{hash=ac8c2ee2323af0180db3d295fd1e264c}{%
+           family={Nguyen},
+           familyi={N\bibinitperiod},
+           given={Truong\bibnamedelima Quang},
+           giveni={T\bibinitperiod\bibinitdelim Q\bibinitperiod}}}%
+        {{hash=a41b38c2580f5bb8c574d84f66e0856a}{%
+           family={Nipkow},
+           familyi={N\bibinitperiod},
+           given={Tobias},
+           giveni={T\bibinitperiod}}}%
+        {{hash=dcf5964722780b65070d3265878421e4}{%
+           family={Obua},
+           familyi={O\bibinitperiod},
+           given={Steven},
+           giveni={S\bibinitperiod}}}%
+        {{hash=676db95d0a6d74833bb2daa8ab0440f8}{%
+           family={Pleso},
+           familyi={P\bibinitperiod},
+           given={Joseph},
+           giveni={J\bibinitperiod}}}%
+        {{hash=1e6f207cdb337d5818e73e3a9c177053}{%
+           family={Rute},
+           familyi={R\bibinitperiod},
+           given={Jason},
+           giveni={J\bibinitperiod}}}%
+        {{hash=53e6fd1d1c303424d69c7e7fb550440d}{%
+           family={Solovyev},
+           familyi={S\bibinitperiod},
+           given={Alexey},
+           giveni={A\bibinitperiod}}}%
+        {{hash=a9e36c6f1f9abc9e35ba50fdeaf36a63}{%
+           family={Ta},
+           familyi={T\bibinitperiod},
+           given={An\bibnamedelima Hoai\bibnamedelima Thi},
+           giveni={A\bibinitperiod\bibinitdelim H\bibinitperiod\bibinitdelim T\bibinitperiod}}}%
+        {{hash=982ed3604c1af63fe15680d1b9540dba}{%
+           family={Tran},
+           familyi={T\bibinitperiod},
+           given={Trung\bibnamedelima Nam},
+           giveni={T\bibinitperiod\bibinitdelim N\bibinitperiod}}}%
+        {{hash=3220f49f4c404d3b660a3d96746016bc}{%
+           family={Trieu},
+           familyi={T\bibinitperiod},
+           given={Diep\bibnamedelima Thi},
+           giveni={D\bibinitperiod\bibinitdelim T\bibinitperiod}}}%
+        {{hash=49a65895d90339355469ad0192f7f146}{%
+           family={Urban},
+           familyi={U\bibinitperiod},
+           given={Josef},
+           giveni={J\bibinitperiod}}}%
+        {{hash=4b68ca212c4700df84865f568d4d6685}{%
+           family={Vu},
+           familyi={V\bibinitperiod},
+           given={Ky\bibnamedelima Khac},
+           giveni={K\bibinitperiod\bibinitdelim K\bibinitperiod}}}%
+        {{hash=3a2cd684583e14a0cc556549bc72e85c}{%
+           family={Zumkeller},
+           familyi={Z\bibinitperiod},
+           given={Roland},
+           giveni={R\bibinitperiod}}}%
+      }
+      \strng{namehash}{3090335343f7d70b00f0abd4d91936c3}
+      \strng{fullhash}{e1c3e797f057e3483d24849021407b55}
+      \strng{bibnamehash}{3090335343f7d70b00f0abd4d91936c3}
+      \strng{authorbibnamehash}{3090335343f7d70b00f0abd4d91936c3}
+      \strng{authornamehash}{3090335343f7d70b00f0abd4d91936c3}
+      \strng{authorfullhash}{e1c3e797f057e3483d24849021407b55}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprintclass}{math.MG}
+      \field{eprinttype}{arXiv}
+      \field{title}{A formal proof of the Kepler conjecture}
+      \field{year}{2015}
+      \verb{eprint}
+      \verb 1501.02155
+      \endverb
+      \verb{urlraw}
+      \verb https://arxiv.org/abs/1501.02155
+      \endverb
+      \verb{url}
+      \verb https://arxiv.org/abs/1501.02155
+      \endverb
     \endentry
     \entry{flypitch}{inproceedings}{}
       \name{author}{2}{}{%
@@ -311,6 +530,50 @@
       \endverb
       \verb{url}
       \verb https://karagila.org/files/Forcing-2023.pdf
+      \endverb
+    \endentry
+    \entry{compcert}{article}{}
+      \name{author}{1}{}{%
+        {{hash=437df325bdf126ab15c356676db2c0d5}{%
+           family={Leroy},
+           familyi={L\bibinitperiod},
+           given={Xavier},
+           giveni={X\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {New York, NY, USA}%
+      }
+      \list{publisher}{1}{%
+        {Association for Computing Machinery}%
+      }
+      \strng{namehash}{437df325bdf126ab15c356676db2c0d5}
+      \strng{fullhash}{437df325bdf126ab15c356676db2c0d5}
+      \strng{bibnamehash}{437df325bdf126ab15c356676db2c0d5}
+      \strng{authorbibnamehash}{437df325bdf126ab15c356676db2c0d5}
+      \strng{authornamehash}{437df325bdf126ab15c356676db2c0d5}
+      \strng{authorfullhash}{437df325bdf126ab15c356676db2c0d5}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{This paper reports on the development and formal verification (proof of semantic preservation) of CompCert, a compiler from Clight (a large subset of the C programming language) to PowerPC assembly code, using the Coq proof assistant both for programming the compiler and for proving its correctness. Such a verified compiler is useful in the context of critical software and its formal verification: the verification of the compiler guarantees that the safety properties proved on the source code hold for the executable compiled code as well.}
+      \field{issn}{0001-0782}
+      \field{journaltitle}{Commun. ACM}
+      \field{month}{7}
+      \field{number}{7}
+      \field{title}{Formal verification of a realistic compiler}
+      \field{volume}{52}
+      \field{year}{2009}
+      \field{pages}{107\bibrangedash 115}
+      \range{pages}{9}
+      \verb{doi}
+      \verb 10.1145/1538788.1538814
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1145/1538788.1538814
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1145/1538788.1538814
       \endverb
     \endentry
     \entry{paulson_datatype_impl}{inproceedings}{}
