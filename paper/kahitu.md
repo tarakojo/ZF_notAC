@@ -99,3 +99,4 @@ axiom of choice ZFのモデルであることの証明の定理番号を
 Traditional approachのとこにいれる
 
 
+

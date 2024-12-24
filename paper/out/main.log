@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.17.0 (TeX Live 2023)  (format=lualatex 2023.5.15)  24 DEC 2024 22:41
+This is LuaHBTeX, Version 1.17.0 (TeX Live 2023)  (format=lualatex 2023.5.15)  24 DEC 2024 23:41
  system commands enabled.
  file:line:error style messages enabled.
 **c:/Users/tarak/source/repos/ZF_notAC/paper/main.tex
@@ -1479,32 +1479,32 @@ LaTeX Font Info:    Font shape `TU/TeXGyreTermesX(0)/b/n' will be
 ]
 Chapter 1.
 LaTeX Font Info:    Font shape `TU/TeXGyreTermesX(0)/m/n' will be
-(Font)              scaled to size 20.74pt on input line 91.
+(Font)              scaled to size 20.74pt on input line 98.
 LaTeX Font Info:    Font shape `TU/TeXGyreTermesX(0)/b/n' will be
-(Font)              scaled to size 20.74pt on input line 91.
+(Font)              scaled to size 20.74pt on input line 98.
 [4
 
 
 ] [5] [6]
 LaTeX Font Info:    Font shape `TU/TeXGyreDejaVuMath-Regular(0)/m/n' will be
-(Font)              scaled to size 7.5pt on input line 271.
+(Font)              scaled to size 7.5pt on input line 278.
 [7]
 Chapter 2.
 LaTeX Font Info:    Font shape `TU/TeXGyreTermesX(0)/m/n' will be
-(Font)              scaled to size 14.4pt on input line 280.
+(Font)              scaled to size 14.4pt on input line 287.
 LaTeX Font Info:    Font shape `TU/TeXGyreTermesX(0)/b/n' will be
-(Font)              scaled to size 14.4pt on input line 280.
+(Font)              scaled to size 14.4pt on input line 287.
 LaTeX Font Info:    Font shape `TU/TeXGyreTermesX(0)/b/n' will be
-(Font)              scaled to size 12.0pt on input line 287.
+(Font)              scaled to size 12.0pt on input line 294.
 LaTeX Font Info:    Font shape `TU/TeXGyreTermesX(0)/m/it' will be
-(Font)              scaled to size 10.0pt on input line 293.
+(Font)              scaled to size 10.0pt on input line 300.
 [8
 
 ]
 LaTeX Font Info:    Font shape `TU/TeXGyreTermesX(0)/m/it' will be
-(Font)              scaled to size 7.3pt on input line 310.
+(Font)              scaled to size 7.3pt on input line 317.
 LaTeX Font Info:    Font shape `TU/TeXGyreTermesX(0)/m/it' will be
-(Font)              scaled to size 5.5pt on input line 310.
+(Font)              scaled to size 5.5pt on input line 317.
 [9]
 
 Package fontspec Info: Font family 'TeXGyreTermesX(1)' created for font
@@ -1551,15 +1551,15 @@ Package fontspec Info: Font family 'TeXGyreTermesX(1)' created for font
 (fontspec)             <->s*[1]"[TeXGyreTermesX-BoldSlanted.otf]:mode=base;script=latn;language=dflt;-ss05;+tlig;+tnum;+lnum;+sups;+smcp;+pcap;"
 
 LaTeX Font Info:    Font shape `TU/TeXGyreTermesX(1)/m/n' will be
-(Font)              scaled to size 10.0pt on input line 384.
+(Font)              scaled to size 10.0pt on input line 391.
 LaTeX Font Info:    Font shape `TU/TeXGyreTermesX(0)/m/n' will be
-(Font)              scaled to size 8.0pt on input line 388.
+(Font)              scaled to size 8.0pt on input line 395.
 LaTeX Font Info:    Font shape `TU/TeXGyreTermesX(1)/m/n' will be
-(Font)              scaled to size 8.0pt on input line 388.
+(Font)              scaled to size 8.0pt on input line 395.
 [10] [11] [12] [13] [14]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 682.
+(mdframed)              on input line 689.
 
 \openout5 = main.pyg
 (./out/_minted-main/default.pygstyle) (./out/_minted-main/0F26E3C8FAEFC7C05FF6267EF2713ED7FECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex
@@ -1572,154 +1572,154 @@ LaTeX Font Info:    Font shape `TU/TeXGyreDejaVuMath-Regular(0)/b/n' will be
 ) [15]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 692.
+(mdframed)              on input line 699.
 
 \openout5 = main.pyg
 (./out/_minted-main/2AA74C9C266D84FC746D1C01CDD752D1FECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex)
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 719.
+(mdframed)              on input line 726.
 
 \openout5 = main.pyg
 (./out/_minted-main/F9840A9F629229866745D485E25D2A1BFECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex) [16]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 763.
+(mdframed)              on input line 770.
 
 \openout5 = main.pyg
 (./out/_minted-main/714E74AEB0BBB258C63BF40476933625FECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex)
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 775.
+(mdframed)              on input line 782.
 
 \openout5 = main.pyg
 (./out/_minted-main/84EAFDAB7FC800A8CFD104F5D4545136FECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex)
 LaTeX Font Info:    Font shape `TU/TeXGyreDejaVuMath-Regular(0)/m/n' will be
-(Font)              scaled to size 6.0pt on input line 795.
+(Font)              scaled to size 6.0pt on input line 802.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 796.
+(mdframed)              on input line 803.
 
 \openout5 = main.pyg
 (./out/_minted-main/C2EBAC201E0A1128EE2F6A9E99C85DF4FECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex) [17] [18]
 Chapter 3.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 848.
+(mdframed)              on input line 855.
 
 \openout5 = main.pyg
 (./out/_minted-main/FB65EA95EECE9E0A2D170062B77F7469FECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex) [19
 
 ]
-Overfull \hbox (7.82764pt too wide) in paragraph at lines 869--872
+Overfull \hbox (7.82764pt too wide) in paragraph at lines 876--879
 \TU/TeXGyreTermesX(0)/m/n/10 To sim-plify the for-mal-iza-tion, we de-clare and work within the lo-cale \TU/TeXGyreDejaVuMath-Regular(0)/b/n/10 "forcing_data_partial"\TU/TeXGyreTermesX(0)/m/n/10 ,
  []
 
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 873.
+(mdframed)              on input line 880.
 
 \openout5 = main.pyg
 (./out/_minted-main/20D3500BAFA43F5DF4A1E3949DD33CD6FECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex)
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 882.
+(mdframed)              on input line 889.
 
 \openout5 = main.pyg
 (./out/_minted-main/5396B815EABD946F3D027DF1A0B7CD37FECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex)
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 896.
+(mdframed)              on input line 903.
 
 \openout5 = main.pyg
 (./out/_minted-main/C5AD814E1093B4C7B828EFAD7DFA7968FECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex)
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 906.
+(mdframed)              on input line 913.
 
 \openout5 = main.pyg
 (./out/_minted-main/BD0C1503BFC1F7227D48391337FB3C29FECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex)
-Overfull \hbox (42.54404pt too wide) in paragraph at lines 918--920
+Overfull \hbox (42.54404pt too wide) in paragraph at lines 925--927
 \TU/TeXGyreTermesX(0)/m/n/10 Where \TU/TeXGyreDejaVuMath-Regular(0)/b/n/10 "π O τ" \TU/TeXGyreTermesX(0)/m/n/10 de-notes the com-po-si-tion of \TU/TeXGyreDejaVuMath-Regular(0)/b/n/10 π \TU/TeXGyreTermesX(0)/m/n/10 and \TU/TeXGyreDejaVuMath-Regular(0)/b/n/10 τ\TU/TeXGyreTermesX(0)/m/n/10 . Then, we de-clare a lo-cale \TU/TeXGyreDejaVuMath-Regular(0)/b/n/10 "M_symmetric_system"
  []
 
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 920.
+(mdframed)              on input line 927.
 
 \openout5 = main.pyg
 (./out/_minted-main/2C4C4D9A83A76E968B4D4C607F7514BCFECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex) [20]
-Package mdframed Info: Not enough space on this page on input line 934.
+Package mdframed Info: Not enough space on this page on input line 941.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 942.
+(mdframed)              on input line 949.
 
 \openout5 = main.pyg
 (./out/_minted-main/3835CCA9E0363AF02CE67DA81A08AB6FFECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex)
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 959.
+(mdframed)              on input line 966.
 
 \openout5 = main.pyg
 (./out/_minted-main/3A6376707307671117D2ABE18B2952F8FECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex)
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 969.
+(mdframed)              on input line 976.
 
 \openout5 = main.pyg
 (./out/_minted-main/213301E7BC11425D5694E890A5A767E6FECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex)
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 981.
+(mdframed)              on input line 988.
 
 \openout5 = main.pyg
 (./out/_minted-main/0A73345C596586DE51A986ABD0CD2D6BFECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex)
-Package mdframed Info: Not enough space on this page on input line 985.
+Package mdframed Info: Not enough space on this page on input line 992.
 [21]
-Package mdframed Info: Not enough space on this page on input line 985.
+Package mdframed Info: Not enough space on this page on input line 992.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 989.
+(mdframed)              on input line 996.
 
 \openout5 = main.pyg
 (./out/_minted-main/2123BC49474477747FAB46D85BCF3E31FECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex)
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 1016.
+(mdframed)              on input line 1023.
 
 \openout5 = main.pyg
 (./out/_minted-main/5701492FEF50F90FDF58667DD0325CEBFECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex) [22]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 1089.
+(mdframed)              on input line 1096.
 
 \openout5 = main.pyg
 (./out/_minted-main/505F2D0B93622121A71DC6E9B8164A3AFECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex) [23]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 1124.
+(mdframed)              on input line 1131.
 
 \openout5 = main.pyg
 (./out/_minted-main/C112864CD795A266DC585B3A7D34449DFECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex)
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 1138.
+(mdframed)              on input line 1145.
 
 \openout5 = main.pyg
 (./out/_minted-main/94C24AE5E25E7A01E7E2ED359B6517B6FECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex) [24]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 1162.
+(mdframed)              on input line 1169.
 
 \openout5 = main.pyg
 (./out/_minted-main/E466CC42427FA70FD06C4EC552EC7241FECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex)
 LaTeX Font Info:    Font shape `TU/TeXGyreTermesX(0)/m/n' will be
-(Font)              scaled to size 7.3pt on input line 1182.
+(Font)              scaled to size 7.3pt on input line 1189.
 LaTeX Font Info:    Font shape `TU/TeXGyreTermesX(0)/m/n' will be
-(Font)              scaled to size 5.5pt on input line 1182.
+(Font)              scaled to size 5.5pt on input line 1189.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 1189.
+(mdframed)              on input line 1196.
 
 \openout5 = main.pyg
 (./out/_minted-main/4A2A8BA0CFAFBCFA2521B44E272F5F20FECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex)
@@ -1728,120 +1728,120 @@ Package mdframed Warning: You got a bad break
 (mdframed)                because the last box will be empty
 (mdframed)                you have to change it manually
 (mdframed)                by changing the text, the space
-(mdframed)                or something else on input line 1205.
+(mdframed)                or something else on input line 1212.
 
 [25]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 1210.
+(mdframed)              on input line 1217.
 
 \openout5 = main.pyg
 (./out/_minted-main/989D18FE080C6BA7107B9A2E7F21EF3CFECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex)
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 1222.
+(mdframed)              on input line 1229.
 
 \openout5 = main.pyg
 (./out/_minted-main/889D4EFE0F243998B7997921829CFE6BFECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex)
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 1243.
+(mdframed)              on input line 1250.
 
 \openout5 = main.pyg
 (./out/_minted-main/9EC4FAC2FA5AD378AF012113457B6E9AFECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex)
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 1253.
+(mdframed)              on input line 1260.
 
 \openout5 = main.pyg
 (./out/_minted-main/DDF1718B19F066D81C7312B05BF2BAB5FECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex) [26]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 1275.
+(mdframed)              on input line 1282.
 
 \openout5 = main.pyg
 (./out/_minted-main/2C9204300CBADF3A61FD95DCD592D697FECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex)
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 1286.
+(mdframed)              on input line 1293.
 
 \openout5 = main.pyg
 (./out/_minted-main/55839233FD6F88634EEE2AD97900F738FECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex)
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 1296.
+(mdframed)              on input line 1303.
 
 \openout5 = main.pyg
 (./out/_minted-main/27F905E87C7B77BC9CD361431F2E47D2FECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex)
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 1310.
+(mdframed)              on input line 1317.
 
 \openout5 = main.pyg
 (./out/_minted-main/01BE22461944784C714927457DD1BC76FECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex)
-Overfull \hbox (57.21178pt too wide) in paragraph at lines 1322--1326
+Overfull \hbox (57.21178pt too wide) in paragraph at lines 1329--1333
 \TU/TeXGyreDejaVuMath-Regular(0)/b/n/10 "Fn_perms"\TU/TeXGyreTermesX(0)/m/n/10 , and ver-ify that our def-i-ni-tion sat-is-fies the pre-req-ui-sites of the lo-cale \TU/TeXGyreDejaVuMath-Regular(0)/b/n/10 "M_symmetric_system"\TU/TeXGyreTermesX(0)/m/n/10 .
  []
 
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 1327.
+(mdframed)              on input line 1334.
 
 \openout5 = main.pyg
 (./out/_minted-main/BE7C270534226BFE485C4D317C72B2CAFECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex)
-Package mdframed Info: Not enough space on this page on input line 1336.
+Package mdframed Info: Not enough space on this page on input line 1343.
 [27]
-Package mdframed Info: Not enough space on this page on input line 1336.
+Package mdframed Info: Not enough space on this page on input line 1343.
 
-Overfull \hbox (19.85403pt too wide) in paragraph at lines 1345--1347
+Overfull \hbox (19.85403pt too wide) in paragraph at lines 1352--1354
 []\TU/TeXGyreTermesX(0)/m/n/10 We for-mal-ize $\OML/ntxmi/m/it/10 a[]$ \TU/TeXGyreTermesX(0)/m/n/10 and $\OML/ntxmi/m/it/10 A$\TU/TeXGyreTermesX(0)/m/n/10 , in-tro-duced in Sec-tion []2.2[], as \TU/TeXGyreDejaVuMath-Regular(0)/b/n/10 "binmap_row(G, n)" \TU/TeXGyreTermesX(0)/m/n/10 and \TU/TeXGyreDejaVuMath-Regular(0)/b/n/10 "binmap(G)"\TU/TeXGyreTermesX(0)/m/n/10 ,
  []
 
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 1347.
+(mdframed)              on input line 1354.
 
 \openout5 = main.pyg
 (./out/_minted-main/8F4B01DECE51A1F747825A10DD9E3B62FECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex)
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 1356.
+(mdframed)              on input line 1363.
 
 \openout5 = main.pyg
 (./out/_minted-main/1B34B94FEE0E2336CB37D7DE30E42672FECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex)
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 1368.
+(mdframed)              on input line 1375.
 
 \openout5 = main.pyg
 (./out/_minted-main/2EBE44654E8A75BE11AFD0483995F2CFFECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex)
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 1383.
+(mdframed)              on input line 1390.
 
 \openout5 = main.pyg
 (./out/_minted-main/7B20E5BB96FAE08FB5CDF34BFCCC197CFECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex) [28]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 1403.
+(mdframed)              on input line 1410.
 
 \openout5 = main.pyg
 (./out/_minted-main/57DB2AFFDB56B56E0397E5EC7FC00921FECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex)
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 1426.
+(mdframed)              on input line 1433.
 
 \openout5 = main.pyg
 (./out/_minted-main/46C1D728A434B49F548B17507D7DB107FECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex)
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 1434.
+(mdframed)              on input line 1441.
 
 \openout5 = main.pyg
 (./out/_minted-main/50D0D1CA77CA560A22C609E5DCA7DC23FECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex) [29]
 Chapter 4.
 
-Overfull \hbox (2.10674pt too wide) in paragraph at lines 1456--1458
+Overfull \hbox (2.10674pt too wide) in paragraph at lines 1463--1465
 []\TU/TeXGyreTermesX(0)/m/n/10 Our for-mal-iza-tion com-prises ap-prox-i-mately 15,000 lines of code, dis-tributed roughly
  []
 
@@ -1849,21 +1849,21 @@ Overfull \hbox (2.10674pt too wide) in paragraph at lines 1456--1458
 
 ] [31]
 LaTeX Font Info:    Font shape `TU/TeXGyreTermesX(0)/m/sc' will be
-(Font)              scaled to size 10.0pt on input line 1530.
+(Font)              scaled to size 10.0pt on input line 1537.
 [32
 
 ]
-Overfull \hbox (13.98341pt too wide) in paragraph at lines 1531--1531
+Overfull \hbox (13.98341pt too wide) in paragraph at lines 1538--1538
 []\TU/TeXGyreTermesX(0)/m/n/10 Lawrence C. Paul-son. ``Large-Scale For-mal Proof for the Work-ing Mathematician---
  []
 
 
-Overfull \hbox (6.79587pt too wide) in paragraph at lines 1531--1531
+Overfull \hbox (6.79587pt too wide) in paragraph at lines 1538--1538
 \TU/TeXGyreTermesX(0)/m/n/10 Lessons Learnt from the ALEXAN-DRIA Project''. In: \TU/TeXGyreTermesX(0)/m/it/10 In-tel-li-gent Com-puter Math-
  []
 
 
-Overfull \hbox (1.95334pt too wide) in paragraph at lines 1531--1531
+Overfull \hbox (1.95334pt too wide) in paragraph at lines 1538--1538
 \TU/TeXGyreTermesX(0)/m/n/10 son-ing''. In: \TU/TeXGyreTermesX(0)/m/it/10 Au-to-mated De-duc-tion—CADE-18\TU/TeXGyreTermesX(0)/m/n/10 . Springer Berlin Hei-del-berg, 2002,
  []
 
@@ -1889,7 +1889,7 @@ Here is how much of LuaTeX's memory you used:
  229 fonts using 23726063 bytes
  73i,6n,98p,1038b,1435s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/texlive/2023/texmf-dist/fonts/opentype/public/newtx/TeXGyreTermesX-Regular.otf>{c:/texlive/2023/texmf-dist/fonts/enc/dvips/newtx/ntx-ot1-tlf.enc}<c:/texlive/2023/texmf-dist/fonts/opentype/public/newtx/TeXGyreTermesX-Italic.otf><c:/texlive/2023/texmf-dist/fonts/opentype/public/tex-gyre-math/texgyredejavu-math.otf><c:/texlive/2023/texmf-dist/fonts/opentype/public/newtx/TeXGyreTermesX-Bold.otf><c:/texlive/2023/texmf-dist/fonts/opentype/public/newtx/TeXGyreTermesX-Regular.otf><c:/texlive/2023/texmf-dist/fonts/type1/public/newtx/NewTXMI.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/newtx/NewTXMI7.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/newtx/txexs.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/newtx/txmiaX.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/txfonts/txsya.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/txfonts/txsyb.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/newtx/txsys.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/newtx/ztmr.pfb>
-Output written on main.pdf (35 pages, 236417 bytes).
+Output written on main.pdf (35 pages, 236988 bytes).
 
 PDF statistics: 617 PDF objects out of 1000 (max. 8388607)
  551 compressed objects within 6 object streams

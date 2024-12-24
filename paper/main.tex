@@ -65,9 +65,16 @@
 \maketitle
 
 \chapter*{Abstract}
-We formalize the relative consistency proof of ZF$+\neg$AC using Isabelle/ZF proof assistant.
-Our approach assumes the existence of a transitive countable model of ZF and uses forcing to construct a symmetric extension which is a model of ZF$+\neg$AC.
-We show that the symmetric extension satisfies ZF$+\neg$AC by formalizing a relativized forcing relation based on the formalization of forcing by Gunther et al.
+This paper presents a formalization of the relative consistency of the negation of the Axiom of Choice ($\neg$AC) 
+with respect to Zermelo-Fraenkel set theory (ZF) using the proof assistant Isabelle/ZF. 
+We use the countable transitive model (c.t.m.) approach, assuming the existence of a c.t.m.\ of ZF, 
+and apply forcing to construct a symmetric extension called the basic Cohen model, 
+which serves as a model of ZF + $\neg$AC. This work builds on previous formalizations, 
+such as Gunther et al.'s work on forcing, and provides the first formalization of the relative consistency of $\neg$AC with ZF.
+
+The proof is based on Karagila's lecture note and Jech's textbook, which align well with the c.t.m.\ approach. 
+However, some parts required adopting alternative proof methods.
+The formalization process revealed insights into the challenges of formalizing set theory and the potential for future improvements.
 
 \chapter*{Acknowledgements}
 本研究を進めるにあたり、大変多くのご指導を賜りました住井 英二郎教授ならびに織田 幸弘氏に、深く感謝いたします。
