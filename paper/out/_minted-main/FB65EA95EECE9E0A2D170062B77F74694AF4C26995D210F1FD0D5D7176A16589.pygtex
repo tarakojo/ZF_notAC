@@ -1,9 +1,0 @@
-\begin{Verbatim}[commandchars=\\\{\}]
-\PYG{k}{definition}\PYG{+w}{ }\PYG{n}{HP\PYGZus{}set\PYGZus{}succ}\PYG{+w}{ }\PYG{o}{::}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}[i, i] ⇒ i\PYGZdq{}}\PYG{+w}{ }\PYG{k+kp}{where}
-\PYG{+w}{    }\PYG{l+s}{\PYGZdq{}HP\PYGZus{}set\PYGZus{}succ(a, X) ≡ Pow(X × P) ∩ M\PYGZdq{}}
-
-\PYG{k}{definition}\PYG{+w}{ }\PYG{n}{P\PYGZus{}set}\PYG{+w}{ }\PYG{o}{::}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}i ⇒ i\PYGZdq{}}\PYG{+w}{ }\PYG{k+kp}{where}
-\PYG{+w}{    }\PYG{l+s}{\PYGZdq{}P\PYGZus{}set(a) ≡ transrec2(a, 0, HP\PYGZus{}set\PYGZus{}succ)\PYGZdq{}}
-
-\PYG{k}{definition}\PYG{+w}{ }\PYG{n}{P\PYGZus{}names}\PYG{+w}{ }\PYG{o}{::}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}i\PYGZdq{}}\PYG{+w}{ }\PYG{k+kp}{where}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}P\PYGZus{}names ≡ \PYGZob{} x ∈ M . ∃ a. Ord(a) ∧ x ∈ P\PYGZus{}set(a) \PYGZcb{}\PYGZdq{}}
-\end{Verbatim}

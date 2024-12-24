@@ -170,78 +170,297 @@
   note  = {Accessed: 2024-10-29}
 }
 
-@article{seL4, 
-author = {Klein, Gerwin and Derrin, Philip and Elphinstone, Kevin},
-title = {Experience report: seL4: formally verifying a high-performance microkernel},
-year = {2009},
-issue_date = {September 2009},
-publisher = {Association for Computing Machinery},
-address = {New York, NY, USA},
-volume = {44},
-number = {9},
-issn = {0362-1340},
-url = {https://doi.org/10.1145/1631687.1596566},
-doi = {10.1145/1631687.1596566},
-abstract = {We report on our experience using Haskell as an executable specification language in the formal verification of the seL4 microkernel. The verification connects an abstract operational specification in the theorem prover Isabelle/HOL to a C implementation of the microkernel. We describe how this project differs from other efforts, and examine the effect of using Haskell in a large-scale formal verification. The kernel comprises 8,700 lines of C code; the verification more than 150,000 lines of proof script.},
-journal = {SIGPLAN Not.},
-month = aug,
-pages = {91–96},
-numpages = {6},
-keywords = {Isabelle/HOL, haskell, microkernel, seL4}
+@article{seL4,
+  author     = {Klein, Gerwin and Derrin, Philip and Elphinstone, Kevin},
+  title      = {Experience report: seL4: formally verifying a high-performance microkernel},
+  year       = {2009},
+  issue_date = {September 2009},
+  publisher  = {Association for Computing Machinery},
+  address    = {New York, NY, USA},
+  volume     = {44},
+  number     = {9},
+  issn       = {0362-1340},
+  url        = {https://doi.org/10.1145/1631687.1596566},
+  doi        = {10.1145/1631687.1596566},
+  abstract   = {We report on our experience using Haskell as an executable specification language in the formal verification of the seL4 microkernel. The verification connects an abstract operational specification in the theorem prover Isabelle/HOL to a C implementation of the microkernel. We describe how this project differs from other efforts, and examine the effect of using Haskell in a large-scale formal verification. The kernel comprises 8,700 lines of C code; the verification more than 150,000 lines of proof script.},
+  journal    = {SIGPLAN Not.},
+  month      = aug,
+  pages      = {91–96},
+  numpages   = {6},
+  keywords   = {Isabelle/HOL, haskell, microkernel, seL4}
 }
 
-@InProceedings{four_color,
-author="Gonthier, Georges",
-editor="Kapur, Deepak",
-title="The Four Colour Theorem: Engineering of a Formal Proof",
-booktitle="Computer Mathematics",
-year="2008",
-publisher="Springer Berlin Heidelberg",
-address="Berlin, Heidelberg",
-pages="333--333",
-abstract="The 150 year old Four Colour Theorem is the first famous result with a proof that requires large computer calculations. Such proofs are still controversial: It is thought that computer programs cannot be reviewed with mathematical rigor.",
-isbn="978-3-540-87827-8"
+@inproceedings{four_color,
+  author    = {Gonthier, Georges},
+  editor    = {Kapur, Deepak},
+  title     = {The Four Colour Theorem: Engineering of a Formal Proof},
+  booktitle = {Computer Mathematics},
+  year      = {2008},
+  publisher = {Springer Berlin Heidelberg},
+  address   = {Berlin, Heidelberg},
+  pages     = {333--333},
+  abstract  = {The 150 year old Four Colour Theorem is the first famous result with a proof that requires large computer calculations. Such proofs are still controversial: It is thought that computer programs cannot be reviewed with mathematical rigor.},
+  isbn      = {978-3-540-87827-8}
 }
 
 @misc{kepler,
-      title={A formal proof of the Kepler conjecture}, 
-      author={Thomas Hales and Mark Adams and Gertrud Bauer and Dat Tat Dang and John Harrison and Truong Le Hoang and Cezary Kaliszyk and Victor Magron and Sean McLaughlin and Thang Tat Nguyen and Truong Quang Nguyen and Tobias Nipkow and Steven Obua and Joseph Pleso and Jason Rute and Alexey Solovyev and An Hoai Thi Ta and Trung Nam Tran and Diep Thi Trieu and Josef Urban and Ky Khac Vu and Roland Zumkeller},
-      year={2015},
-      eprint={1501.02155},
-      archivePrefix={arXiv},
-      primaryClass={math.MG},
-      url={https://arxiv.org/abs/1501.02155}, 
+  title         = {A formal proof of the Kepler conjecture},
+  author        = {Thomas Hales and Mark Adams and Gertrud Bauer and Dat Tat Dang and John Harrison and Truong Le Hoang and Cezary Kaliszyk and Victor Magron and Sean McLaughlin and Thang Tat Nguyen and Truong Quang Nguyen and Tobias Nipkow and Steven Obua and Joseph Pleso and Jason Rute and Alexey Solovyev and An Hoai Thi Ta and Trung Nam Tran and Diep Thi Trieu and Josef Urban and Ky Khac Vu and Roland Zumkeller},
+  year          = {2015},
+  eprint        = {1501.02155},
+  archiveprefix = {arXiv},
+  primaryclass  = {math.MG},
+  url           = {https://arxiv.org/abs/1501.02155}
 }
 
 @article{compcert,
-author = {Leroy, Xavier},
-title = {Formal verification of a realistic compiler},
-year = {2009},
-issue_date = {July 2009},
-publisher = {Association for Computing Machinery},
-address = {New York, NY, USA},
-volume = {52},
-number = {7},
-issn = {0001-0782},
-url = {https://doi.org/10.1145/1538788.1538814},
-doi = {10.1145/1538788.1538814},
-abstract = {This paper reports on the development and formal verification (proof of semantic preservation) of CompCert, a compiler from Clight (a large subset of the C programming language) to PowerPC assembly code, using the Coq proof assistant both for programming the compiler and for proving its correctness. Such a verified compiler is useful in the context of critical software and its formal verification: the verification of the compiler guarantees that the safety properties proved on the source code hold for the executable compiled code as well.},
-journal = {Commun. ACM},
-month = jul,
-pages = {107–115},
-numpages = {9}
+  author     = {Leroy, Xavier},
+  title      = {Formal verification of a realistic compiler},
+  year       = {2009},
+  issue_date = {July 2009},
+  publisher  = {Association for Computing Machinery},
+  address    = {New York, NY, USA},
+  volume     = {52},
+  number     = {7},
+  issn       = {0001-0782},
+  url        = {https://doi.org/10.1145/1538788.1538814},
+  doi        = {10.1145/1538788.1538814},
+  abstract   = {This paper reports on the development and formal verification (proof of semantic preservation) of CompCert, a compiler from Clight (a large subset of the C programming language) to PowerPC assembly code, using the Coq proof assistant both for programming the compiler and for proving its correctness. Such a verified compiler is useful in the context of critical software and its formal verification: the verification of the compiler guarantees that the safety properties proved on the source code hold for the executable compiled code as well.},
+  journal    = {Commun. ACM},
+  month      = jul,
+  pages      = {107–115},
+  numpages   = {9}
 }
 
 @article{cohen,
- ISSN = {00278424, 10916490},
- URL = {http://www.jstor.org/stable/71858},
- author = {Paul J. Cohen},
- journal = {Proceedings of the National Academy of Sciences of the United States of America},
- number = {6},
- pages = {1143--1148},
- publisher = {National Academy of Sciences},
- title = {The Independence of the Continuum Hypothesis},
- urldate = {2024-12-10},
- volume = {50},
- year = {1963}
+  issn      = {00278424, 10916490},
+  url       = {http://www.jstor.org/stable/71858},
+  author    = {Paul J. Cohen},
+  journal   = {Proceedings of the National Academy of Sciences of the United States of America},
+  number    = {6},
+  pages     = {1143--1148},
+  publisher = {National Academy of Sciences},
+  title     = {The Independence of the Continuum Hypothesis},
+  urldate   = {2024-12-10},
+  volume    = {50},
+  year      = {1963}
+}
+
+@inbook{EasyCrypt,
+  author    = {Barthe, Gilles
+               and Dupressoir, Fran{\c{c}}ois
+               and Gr{\'e}goire, Benjamin
+               and Kunz, C{\'e}sar
+               and Schmidt, Benedikt
+               and Strub, Pierre-Yves},
+  editor    = {Aldini, Alessandro
+               and Lopez, Javier
+               and Martinelli, Fabio},
+  title     = {EasyCrypt: A Tutorial},
+  booktitle = {Foundations of Security Analysis and Design VII: FOSAD 2012/2013 Tutorial Lectures},
+  year      = {2014},
+  publisher = {Springer International Publishing},
+  address   = {Cham},
+  pages     = {146--166},
+  abstract  = {Cryptography plays a key role in the security of modern communication and computer infrastructures; therefore, it is of paramount importance to design cryptographic systems that yield strong security guarantees. To achieve this goal, cryptographic systems are supported by security proofs that establish an upper bound for the probability that a resource-constrained adversary is able to break the cryptographic system. In most cases, security proofs are reductionist, i.e. they construct from an (arbitrary but computationally bounded) adversary that would break the security of the cryptographic construction with some reasonable probability another computationally bounded adversary that would break a hardness assumption with reasonable probability. This approach, known as provable security, is in principle able to deliver rigorous and detailed mathematical proofs. However, new cryptographic designs (and consequently their security analyses) are increasingly complex, and there is a growing emphasis on shifting from algorithmic descriptions to implementation-level descriptions that account for implementation details, recommendations from standards when they exist, and possibly side-channels. As a consequence, cryptographic proofs are becoming increasingly error-prone and difficult to check. One promising solution to address these concerns is to develop machine-checked frameworks that support the construction and automated verification of cryptographic systems. Although many such frameworks exist for the symbolic model of cryptography, comparatively little work has been done to develop machine-checked frameworks to reason directly in the computational model commonly used by cryptographers},
+  isbn      = {978-3-319-10082-1},
+  doi       = {10.1007/978-3-319-10082-1_6},
+  url       = {https://doi.org/10.1007/978-3-319-10082-1_6}
+}
+
+@misc{EasyCrypt_zero_knowledge,
+  author       = {Denis Firsov and Dominique Unruh},
+  title        = {Zero-Knowledge in {EasyCrypt}},
+  howpublished = {Cryptology {ePrint} Archive, Paper 2022/926},
+  year         = {2022},
+  url          = {https://eprint.iacr.org/2022/926}
+}
+
+@inproceedings{EasyCrypt_AWS,
+  author    = {Almeida, Jos\'{e} Bacelar and Barbosa, Manuel and Barthe, Gilles and Campagna, Matthew and Cohen, Ernie and Gregoire, Benjamin and Pereira, Vitor and Portela, Bernardo and Strub, Pierre-Yves and Tasiran, Serdar},
+  title     = {A Machine-Checked Proof of Security for AWS Key Management Service},
+  year      = {2019},
+  isbn      = {9781450367479},
+  publisher = {Association for Computing Machinery},
+  address   = {New York, NY, USA},
+  url       = {https://doi.org/10.1145/3319535.3354228},
+  doi       = {10.1145/3319535.3354228},
+  abstract  = {We present a machine-checked proof of security for the domain management protocol of Amazon Web Services' KMS (Key Management Service) a critical security service used throughout AWS and by AWS customers. Domain management is at the core of AWS KMS; it governs the top-level keys that anchor the security of encryption services at AWS. We show that the protocol securely implements an ideal distributed encryption mechanism under standard cryptographic assumptions. The proof is machine-checked in the EasyCrypt proof assistant and is the largest EasyCrypt development to date.},
+  booktitle = {Proceedings of the 2019 ACM SIGSAC Conference on Computer and Communications Security},
+  pages     = {63–78},
+  numpages  = {16},
+  keywords  = {key management, machine-checked proof, provable-security},
+  location  = {London, United Kingdom},
+  series    = {CCS '19}
+}
+
+@inproceedings{EasyCrypt_SHA3,
+  author    = {Almeida, Jos\'{e} Bacelar and Baritel-Ruet, C\'{e}cile and Barbosa, Manuel and Barthe, Gilles and Dupressoir, Fran\c{c}ois and Gr\'{e}goire, Benjamin and Laporte, Vincent and Oliveira, Tiago and Stoughton, Alley and Strub, Pierre-Yves},
+  title     = {Machine-Checked Proofs for Cryptographic Standards: Indifferentiability of Sponge and Secure High-Assurance Implementations of SHA-3},
+  year      = {2019},
+  isbn      = {9781450367479},
+  publisher = {Association for Computing Machinery},
+  address   = {New York, NY, USA},
+  url       = {https://doi.org/10.1145/3319535.3363211},
+  doi       = {10.1145/3319535.3363211},
+  abstract  = {We present a high-assurance and high-speed implementation of the SHA-3 hash function. Our implementation is written in the Jasmin programming language, and is formally verified for functional correctness, provable security and timing attack resistance in the EasyCrypt proof assistant. Our implementation is the first to achieve simultaneously the four desirable properties (efficiency, correctness, provable security, and side-channel protection) for a non-trivial cryptographic primitive. Concretely, our mechanized proofs show that: 1) the SHA-3 hash function is indifferentiable from a random oracle, and thus is resistant against collision, first and second preimage attacks; 2) the SHA-3 hash function is correctly implemented by a vectorized x86 implementation. Furthermore, the implementation is provably protected against timing attacks in an idealized model of timing leaks. The proofs include new EasyCrypt libraries of independent interest for programmable random oracles and modular indifferentiability proofs.},
+  booktitle = {Proceedings of the 2019 ACM SIGSAC Conference on Computer and Communications Security},
+  pages     = {1607–1622},
+  numpages  = {16},
+  keywords  = {EasyCrypt, Jasmin, SHA-3, high-assurance cryptography, indifferentiability},
+  location  = {London, United Kingdom},
+  series    = {CCS '19}
+}
+@inproceedings{EasyCrypt_PQC,
+  author    = {Barbosa, Manuel and Barthe, Gilles and Fan, Xiong and Gr\'{e}goire, Benjamin and Hung, Shih-Han and Katz, Jonathan and Strub, Pierre-Yves and Wu, Xiaodi and Zhou, Li},
+  title     = {EasyPQC: Verifying Post-Quantum Cryptography},
+  year      = {2021},
+  isbn      = {9781450384544},
+  publisher = {Association for Computing Machinery},
+  address   = {New York, NY, USA},
+  url       = {https://doi.org/10.1145/3460120.3484567},
+  doi       = {10.1145/3460120.3484567},
+  abstract  = {EasyCrypt is a formal verification tool used extensively for formalizing concrete security proofs of cryptographic constructions. However, the EasyCrypt formal logics consider only classical at- tackers, which means that post-quantum security proofs cannot be formalized and machine-checked with this tool. In this paper we prove that a natural extension of the EasyCrypt core logics permits capturing a wide class of post-quantum cryptography proofs, settling a question raised by (Unruh, POPL 2019). Leveraging our positive result, we implement EasyPQC, an extension of EasyCrypt for post-quantum security proofs, and use EasyPQC to verify post- quantum security of three classic constructions: PRF-based MAC, Full Domain Hash and GPV08 identity-based encryption.},
+  booktitle = {Proceedings of the 2021 ACM SIGSAC Conference on Computer and Communications Security},
+  pages     = {2564–2586},
+  numpages  = {23},
+  keywords  = {formal verification, post-quantum cryptography},
+  location  = {Virtual Event, Republic of Korea},
+  series    = {CCS '21}
+}
+
+@article{survey_ITP_real_analysis,
+  title   = {Formalization of real analysis: a survey of proof assistants and libraries},
+  volume  = {26},
+  doi     = {10.1017/S0960129514000437},
+  number  = {7},
+  journal = {Mathematical Structures in Computer Science},
+  author  = {BOLDO, SYLVIE and LELAY, CATHERINE and MELQUIOND, GUILLAUME},
+  year    = {2016},
+  pages   = {1196–1233}
+} <div></div>
+
+@inproceedings{Coq_hardware_verification,
+  author    = {Coupet-Grimal, Solange
+               and Jakubiec, Line},
+  editor    = {Goos, Gerhard
+               and Hartmanis, Juris
+               and van Leeuwen, Jan
+               and von Wright, Joakim
+               and Grundy, Jim
+               and Harrison, John},
+  title     = {Coq and hardware verification: A case study},
+  booktitle = {Theorem Proving in Higher Order Logics},
+  year      = {1996},
+  publisher = {Springer Berlin Heidelberg},
+  address   = {Berlin, Heidelberg},
+  pages     = {125--139},
+  abstract  = {We present several approaches to verifying a class of circuits with the Coq proof-assistant, using the example of a left-to-right comparator. The large capacity of expression of the Calculus of Inductive Constructions allows us to give precise and general specifications. Using Coq's higher order logic, we state general results useful in establishing the correctness of the circuits. Finally, exploiting the constructive aspect of the logic, we can show how a certified circuit can be automatically synthesized from its specification.},
+  isbn      = {978-3-540-70641-0}
+}
+
+
+@inproceedings{Coq_hardware_verification_2,
+  author    = {Braibant, Thomas},
+  editor    = {Jouannaud, Jean-Pierre
+               and Shao, Zhong},
+  title     = {Coquet: A Coq Library for Verifying Hardware},
+  booktitle = {Certified Programs and Proofs},
+  year      = {2011},
+  publisher = {Springer Berlin Heidelberg},
+  address   = {Berlin, Heidelberg},
+  pages     = {330--345},
+  abstract  = {We propose a new library to model and verify hardware circuits in the Coq proof assistant. This library allows one to easily build circuits by following the usual pen-and-paper diagrams. We define a deep-embedding: we use a (dependently typed) data-type that models the architecture of circuits, and a meaning function. We propose tactics that ease the reasoning about the behavior of the circuits, and we demonstrate that our approach is practicable by proving the correctness of various circuits: a text-book divide and conquer adder of parametric size, some higher-order combinators of circuits, and some sequential circuits: a buffer, and a register.},
+  isbn      = {978-3-642-25379-9}
+}
+
+@article{survey_proof_assistants_program_verification,
+  author     = {Ringer, Talia and Palmskog, Karl and Sergey, Ilya and Gligoric, Milos and Tatlock, Zachary},
+  title      = {QED at Large: A Survey of Engineering of Formally Verified Software},
+  year       = {2019},
+  issue_date = {Sep 2019},
+  publisher  = {Now Publishers Inc.},
+  address    = {Hanover, MA, USA},
+  volume     = {5},
+  number     = {2–3},
+  issn       = {2325-1107},
+  url        = {https://doi.org/10.1561/2500000045},
+  doi        = {10.1561/2500000045},
+  abstract   = {Development of formal proofs of correctness of programs can
+                increase actual and perceived reliability and facilitate better understanding
+                of program specifications and their underlying assumptions.
+                Tools supporting such development have been available
+                for over 40 years, but have only recently seen wide practical use.
+                Projects based on construction of machine-checked formal proofs
+                are now reaching an unprecedented scale, comparable to large software
+                projects, which leads to new challenges in proof development
+                and maintenance. Despite its increasing importance, the field of
+                proof engineering is seldom considered in its own right; related
+                theories, techniques, and tools span many fields and venues. This
+                survey of the literature presents a holistic understanding of proof
+                engineering for program correctness, covering impact in practice,
+                foundations, proof automation, proof organization, and practical
+                proof development.},
+  journal    = {Found. Trends Program. Lang.},
+  month      = sep,
+  pages      = {102–281},
+  numpages   = {183}
+} 
+
+@misc{coq_toppage,
+  title        = {The Coq Proof Assistant},
+  author       = {The Coq Development Team},
+  year         = {1989-2024},
+  howpublished = {\url{https://coq.inria.fr/}},
+  note         = {Accessed: 2024-12-23}
+}
+
+@misc{isabelle_toppage,
+  title        = {Isabelle},
+  author       = {Isabelle Development Team},
+  year         = {1994-2024},
+  howpublished = {\url{https://isabelle.in.tum.de/}},
+  note         = {Accessed: 2024-12-23}
+}
+
+@misc{hol_light_toppage,
+  author       = {HOL Light Development Team},
+  title        = {HOL Light},
+  year         = {1996-2024},
+  howpublished = {\url{https://www.cl.cam.ac.uk/~jrh13/hol-light/}},
+  note         = {Accessed: 2024-12-23}
+}
+
+@misc{agda_toppage,
+  title        = {Agda},
+  author       = {Agda Development Team},
+  year         = {2005-2024},
+  howpublished = {\url{https://wiki.portal.chalmers.se/agda/}},
+  note         = {Accessed: 2024-12-23}
+}
+
+@misc{lean_toppage,
+  title        = {Lean},
+  author       = {Lean Community},
+  year         = {2015-2024},
+  howpublished = {\url{https://leanprover.github.io/}},
+  note         = {Accessed: 2024-12-23}
+}
+
+@article{survey_theorem_provers,
+  author       = {M. Saqib Nawaz and
+                  Moin Malik and
+                  Yi Li and
+                  Meng Sun and
+                  Muhammad Ikram Ullah Lali},
+  title        = {A Survey on Theorem Provers in Formal Methods},
+  journal      = {CoRR},
+  volume       = {abs/1912.03028},
+  year         = {2019},
+  url          = {http://arxiv.org/abs/1912.03028},
+  eprinttype    = {arXiv},
+  eprint       = {1912.03028},
+  timestamp    = {Sat, 23 Jan 2021 01:12:39 +0100},
+  biburl       = {https://dblp.org/rec/journals/corr/abs-1912-03028.bib},
+  bibsource    = {dblp computer science bibliography, https://dblp.org}
 }

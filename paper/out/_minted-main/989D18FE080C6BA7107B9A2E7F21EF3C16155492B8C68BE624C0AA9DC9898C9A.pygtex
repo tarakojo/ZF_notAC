@@ -1,6 +1,0 @@
-\begin{Verbatim}[commandchars=\\\{\}]
-\PYG{k+kn}{lemma}\PYG{+w}{ }\PYG{n}{ex\PYGZus{}separation\PYGZus{}base}\PYG{+w}{ }\PYG{o}{:}
-\PYG{+w}{    }\PYG{k+kp}{fixes}\PYG{+w}{ }\PYG{n}{X}
-\PYG{+w}{    }\PYG{k+kp}{assumes}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}X ⊆ HS\PYGZdq{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}X ∈ M\PYGZdq{}}
-\PYG{+w}{    }\PYG{k+kp}{shows}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}∃S ∈ SymExt(G). \PYGZob{} val(G, x). x ∈ X \PYGZcb{} ⊆ S\PYGZdq{}}
-\end{Verbatim}

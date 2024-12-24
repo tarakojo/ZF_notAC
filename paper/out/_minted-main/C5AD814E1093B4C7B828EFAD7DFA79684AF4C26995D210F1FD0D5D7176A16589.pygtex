@@ -1,4 +1,0 @@
-\begin{Verbatim}[commandchars=\\\{\}]
-\PYG{k+kn}{lemma}\PYG{+w}{ }\PYG{n}{Pn\PYGZus{}auto}\PYG{+w}{ }\PYG{o}{:}
-\PYG{+w}{    }\PYG{l+s}{\PYGZdq{}x ∈ P\PYGZus{}names ⟹ Pn\PYGZus{}auto(π)`x = \PYGZob{} \PYGZlt{}Pn\PYGZus{}auto(π)`y, π`p\PYGZgt{} . \PYGZlt{}y, p\PYGZgt{} ∈ x\PYGZcb{}\PYGZdq{}}
-\end{Verbatim}

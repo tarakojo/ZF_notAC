@@ -19,6 +19,141 @@
 
 \refsection{0}
   \datalist[entry]{nty/global//global/global}
+    \entry{EasyCrypt_AWS}{inproceedings}{}
+      \name{author}{10}{}{%
+        {{hash=8d5c89fcf9913dc6ae2b9c9f2b56e9e3}{%
+           family={Almeida},
+           familyi={A\bibinitperiod},
+           given={José\bibnamedelima Bacelar},
+           giveni={J\bibinitperiod\bibinitdelim B\bibinitperiod}}}%
+        {{hash=9f57cce40b57fc93fb67f72834028011}{%
+           family={Barbosa},
+           familyi={B\bibinitperiod},
+           given={Manuel},
+           giveni={M\bibinitperiod}}}%
+        {{hash=a591e71debdbd9a86231c933df50ef0b}{%
+           family={Barthe},
+           familyi={B\bibinitperiod},
+           given={Gilles},
+           giveni={G\bibinitperiod}}}%
+        {{hash=09a03f9a4069b8bf17f78e2677097179}{%
+           family={Campagna},
+           familyi={C\bibinitperiod},
+           given={Matthew},
+           giveni={M\bibinitperiod}}}%
+        {{hash=f0f8e21d796bca1a47e4777dc9d04c24}{%
+           family={Cohen},
+           familyi={C\bibinitperiod},
+           given={Ernie},
+           giveni={E\bibinitperiod}}}%
+        {{hash=dacaf256b5f9678dcd7ed16b4f0cd3f0}{%
+           family={Gregoire},
+           familyi={G\bibinitperiod},
+           given={Benjamin},
+           giveni={B\bibinitperiod}}}%
+        {{hash=b97fc29ea7a7df93c74aec551efc649b}{%
+           family={Pereira},
+           familyi={P\bibinitperiod},
+           given={Vitor},
+           giveni={V\bibinitperiod}}}%
+        {{hash=bdba3cb5db2d48bfc6a5d022bdff2398}{%
+           family={Portela},
+           familyi={P\bibinitperiod},
+           given={Bernardo},
+           giveni={B\bibinitperiod}}}%
+        {{hash=e690ee937a17ca2f6870a1127062fcec}{%
+           family={Strub},
+           familyi={S\bibinitperiod},
+           given={Pierre-Yves},
+           giveni={P\bibinithyphendelim Y\bibinitperiod}}}%
+        {{hash=b0313437afeb893b51e1632a040ecf0d}{%
+           family={Tasiran},
+           familyi={T\bibinitperiod},
+           given={Serdar},
+           giveni={S\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {London, United Kingdom}%
+      }
+      \list{publisher}{1}{%
+        {Association for Computing Machinery}%
+      }
+      \strng{namehash}{d2f01a795a57b9092b69d9ac5c74ba07}
+      \strng{fullhash}{afbd001c041398ef1e38bf551455bb3c}
+      \strng{bibnamehash}{d2f01a795a57b9092b69d9ac5c74ba07}
+      \strng{authorbibnamehash}{d2f01a795a57b9092b69d9ac5c74ba07}
+      \strng{authornamehash}{d2f01a795a57b9092b69d9ac5c74ba07}
+      \strng{authorfullhash}{afbd001c041398ef1e38bf551455bb3c}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{We present a machine-checked proof of security for the domain management protocol of Amazon Web Services' KMS (Key Management Service) a critical security service used throughout AWS and by AWS customers. Domain management is at the core of AWS KMS; it governs the top-level keys that anchor the security of encryption services at AWS. We show that the protocol securely implements an ideal distributed encryption mechanism under standard cryptographic assumptions. The proof is machine-checked in the EasyCrypt proof assistant and is the largest EasyCrypt development to date.}
+      \field{booktitle}{Proceedings of the 2019 ACM SIGSAC Conference on Computer and Communications Security}
+      \field{isbn}{9781450367479}
+      \field{series}{CCS '19}
+      \field{title}{A Machine-Checked Proof of Security for AWS Key Management Service}
+      \field{year}{2019}
+      \field{pages}{63\bibrangedash 78}
+      \range{pages}{16}
+      \verb{doi}
+      \verb 10.1145/3319535.3354228
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1145/3319535.3354228
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1145/3319535.3354228
+      \endverb
+      \keyw{key management,machine-checked proof,provable-security}
+    \endentry
+    \entry{Coq_hardware_verification_2}{inproceedings}{}
+      \name{author}{1}{}{%
+        {{hash=27163b803b77a6332377651432127f87}{%
+           family={Braibant},
+           familyi={B\bibinitperiod},
+           given={Thomas},
+           giveni={T\bibinitperiod}}}%
+      }
+      \name{editor}{2}{}{%
+        {{hash=6eeba4a38cd4dba9ec491e9d7e87b452}{%
+           family={Jouannaud},
+           familyi={J\bibinitperiod},
+           given={Jean-Pierre},
+           giveni={J\bibinithyphendelim P\bibinitperiod}}}%
+        {{hash=47a4917313d2b2f846d6a9d80cedd291}{%
+           family={Shao},
+           familyi={S\bibinitperiod},
+           given={Zhong},
+           giveni={Z\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Berlin, Heidelberg}%
+      }
+      \list{publisher}{1}{%
+        {Springer Berlin Heidelberg}%
+      }
+      \strng{namehash}{27163b803b77a6332377651432127f87}
+      \strng{fullhash}{27163b803b77a6332377651432127f87}
+      \strng{bibnamehash}{27163b803b77a6332377651432127f87}
+      \strng{authorbibnamehash}{27163b803b77a6332377651432127f87}
+      \strng{authornamehash}{27163b803b77a6332377651432127f87}
+      \strng{authorfullhash}{27163b803b77a6332377651432127f87}
+      \strng{editorbibnamehash}{387d6daba47192f6fcace3596df560eb}
+      \strng{editornamehash}{387d6daba47192f6fcace3596df560eb}
+      \strng{editorfullhash}{387d6daba47192f6fcace3596df560eb}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{We propose a new library to model and verify hardware circuits in the Coq proof assistant. This library allows one to easily build circuits by following the usual pen-and-paper diagrams. We define a deep-embedding: we use a (dependently typed) data-type that models the architecture of circuits, and a meaning function. We propose tactics that ease the reasoning about the behavior of the circuits, and we demonstrate that our approach is practicable by proving the correctness of various circuits: a text-book divide and conquer adder of parametric size, some higher-order combinators of circuits, and some sequential circuits: a buffer, and a register.}
+      \field{booktitle}{Certified Programs and Proofs}
+      \field{isbn}{978-3-642-25379-9}
+      \field{title}{Coquet: A Coq Library for Verifying Hardware}
+      \field{year}{2011}
+      \field{pages}{330\bibrangedash 345}
+      \range{pages}{16}
+    \endentry
     \entry{cohen}{article}{}
       \name{author}{1}{}{%
         {{hash=db90b622eba26dc7c0195a3ce34de469}{%
@@ -57,6 +192,138 @@
       \endverb
       \verb{url}
       \verb http://www.jstor.org/stable/71858
+      \endverb
+    \endentry
+    \entry{lean_toppage}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=169e2818c0d286c2d85e577b288c37e9}{%
+           family={Community},
+           familyi={C\bibinitperiod},
+           given={Lean},
+           giveni={L\bibinitperiod}}}%
+      }
+      \strng{namehash}{169e2818c0d286c2d85e577b288c37e9}
+      \strng{fullhash}{169e2818c0d286c2d85e577b288c37e9}
+      \strng{bibnamehash}{169e2818c0d286c2d85e577b288c37e9}
+      \strng{authorbibnamehash}{169e2818c0d286c2d85e577b288c37e9}
+      \strng{authornamehash}{169e2818c0d286c2d85e577b288c37e9}
+      \strng{authorfullhash}{169e2818c0d286c2d85e577b288c37e9}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{https://leanprover.github.io/}}
+      \field{note}{Accessed: 2024-12-23}
+      \field{title}{Lean}
+      \field{year}{2015-2024}
+    \endentry
+    \entry{Coq_hardware_verification}{inproceedings}{}
+      \name{author}{2}{}{%
+        {{hash=2c06bffaeaf266eeb6246c332fe7422e}{%
+           family={Coupet-Grimal},
+           familyi={C\bibinithyphendelim G\bibinitperiod},
+           given={Solange},
+           giveni={S\bibinitperiod}}}%
+        {{hash=c2187c63def8ecd909ca51541ee3a6b0}{%
+           family={Jakubiec},
+           familyi={J\bibinitperiod},
+           given={Line},
+           giveni={L\bibinitperiod}}}%
+      }
+      \name{editor}{6}{}{%
+        {{hash=97b8779c08da200ee2eb194bdc10ae4f}{%
+           family={Goos},
+           familyi={G\bibinitperiod},
+           given={Gerhard},
+           giveni={G\bibinitperiod}}}%
+        {{hash=84d4ea2bd3ec736effccd97ee64d09ef}{%
+           family={Hartmanis},
+           familyi={H\bibinitperiod},
+           given={Juris},
+           giveni={J\bibinitperiod}}}%
+        {{hash=85c66f2d841a584a103f4ae08683c2ea}{%
+           family={Leeuwen},
+           familyi={L\bibinitperiod},
+           given={Jan},
+           giveni={J\bibinitperiod},
+           prefix={van},
+           prefixi={v\bibinitperiod}}}%
+        {{hash=275376732614a5f627b5c007ae82ff4b}{%
+           family={Wright},
+           familyi={W\bibinitperiod},
+           given={Joakim},
+           giveni={J\bibinitperiod},
+           prefix={von},
+           prefixi={v\bibinitperiod}}}%
+        {{hash=e2192c653db8fe31cce96a71a02b1599}{%
+           family={Grundy},
+           familyi={G\bibinitperiod},
+           given={Jim},
+           giveni={J\bibinitperiod}}}%
+        {{hash=1d44b053f0953d217186bae6128bf61b}{%
+           family={Harrison},
+           familyi={H\bibinitperiod},
+           given={John},
+           giveni={J\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Berlin, Heidelberg}%
+      }
+      \list{publisher}{1}{%
+        {Springer Berlin Heidelberg}%
+      }
+      \strng{namehash}{7050b282c3e051de75934026a4962157}
+      \strng{fullhash}{7050b282c3e051de75934026a4962157}
+      \strng{bibnamehash}{7050b282c3e051de75934026a4962157}
+      \strng{authorbibnamehash}{7050b282c3e051de75934026a4962157}
+      \strng{authornamehash}{7050b282c3e051de75934026a4962157}
+      \strng{authorfullhash}{7050b282c3e051de75934026a4962157}
+      \strng{editorbibnamehash}{522af9cbd4958b79cc9ddb9b46943274}
+      \strng{editornamehash}{522af9cbd4958b79cc9ddb9b46943274}
+      \strng{editorfullhash}{d8d52d94b7a60f6d707732b926f6f928}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{We present several approaches to verifying a class of circuits with the Coq proof-assistant, using the example of a left-to-right comparator. The large capacity of expression of the Calculus of Inductive Constructions allows us to give precise and general specifications. Using Coq's higher order logic, we state general results useful in establishing the correctness of the circuits. Finally, exploiting the constructive aspect of the logic, we can show how a certified circuit can be automatically synthesized from its specification.}
+      \field{booktitle}{Theorem Proving in Higher Order Logics}
+      \field{isbn}{978-3-540-70641-0}
+      \field{title}{Coq and hardware verification: A case study}
+      \field{year}{1996}
+      \field{pages}{125\bibrangedash 139}
+      \range{pages}{15}
+    \endentry
+    \entry{EasyCrypt_zero_knowledge}{misc}{}
+      \name{author}{2}{}{%
+        {{hash=e4ba2da629d3b47ef6e697c6435d823f}{%
+           family={Firsov},
+           familyi={F\bibinitperiod},
+           given={Denis},
+           giveni={D\bibinitperiod}}}%
+        {{hash=8a56d1103628eb2468b4302fe42b4baa}{%
+           family={Unruh},
+           familyi={U\bibinitperiod},
+           given={Dominique},
+           giveni={D\bibinitperiod}}}%
+      }
+      \strng{namehash}{a3d07d891d68a22d625f4ddf562e441b}
+      \strng{fullhash}{a3d07d891d68a22d625f4ddf562e441b}
+      \strng{bibnamehash}{a3d07d891d68a22d625f4ddf562e441b}
+      \strng{authorbibnamehash}{a3d07d891d68a22d625f4ddf562e441b}
+      \strng{authornamehash}{a3d07d891d68a22d625f4ddf562e441b}
+      \strng{authorfullhash}{a3d07d891d68a22d625f4ddf562e441b}
+      \field{sortinit}{F}
+      \field{sortinithash}{2638baaa20439f1b5a8f80c6c08a13b4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{Cryptology {ePrint} Archive, Paper 2022/926}
+      \field{title}{Zero-Knowledge in {EasyCrypt}}
+      \field{year}{2022}
+      \verb{urlraw}
+      \verb https://eprint.iacr.org/2022/926
+      \endverb
+      \verb{url}
+      \verb https://eprint.iacr.org/2022/926
       \endverb
     \endentry
     \entry{four_color}{inproceedings}{}
@@ -576,6 +843,59 @@
       \verb https://doi.org/10.1145/1538788.1538814
       \endverb
     \endentry
+    \entry{survey_theorem_provers}{article}{}
+      \name{author}{5}{}{%
+        {{hash=8ead3932ae355e549b72c3a03235afa3}{%
+           family={Nawaz},
+           familyi={N\bibinitperiod},
+           given={M.\bibnamedelimi Saqib},
+           giveni={M\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
+        {{hash=5fa41355949873a8210f213169da72a0}{%
+           family={Malik},
+           familyi={M\bibinitperiod},
+           given={Moin},
+           giveni={M\bibinitperiod}}}%
+        {{hash=cf1f0547c288eff0857572dcc12516bb}{%
+           family={Li},
+           familyi={L\bibinitperiod},
+           given={Yi},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=7b8f28a51717b34b499e8a1ffca1df90}{%
+           family={Sun},
+           familyi={S\bibinitperiod},
+           given={Meng},
+           giveni={M\bibinitperiod}}}%
+        {{hash=6c414750742dbde13e2c2dc5a2a58506}{%
+           family={Lali},
+           familyi={L\bibinitperiod},
+           given={Muhammad\bibnamedelimb Ikram\bibnamedelima Ullah},
+           giveni={M\bibinitperiod\bibinitdelim I\bibinitperiod\bibinitdelim U\bibinitperiod}}}%
+      }
+      \strng{namehash}{450f541cbccfa4428108c4e37f3188a2}
+      \strng{fullhash}{893f93910fab49da9dccecaad70eb797}
+      \strng{bibnamehash}{450f541cbccfa4428108c4e37f3188a2}
+      \strng{authorbibnamehash}{450f541cbccfa4428108c4e37f3188a2}
+      \strng{authornamehash}{450f541cbccfa4428108c4e37f3188a2}
+      \strng{authorfullhash}{893f93910fab49da9dccecaad70eb797}
+      \field{sortinit}{N}
+      \field{sortinithash}{22369a73d5f88983a108b63f07f37084}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprinttype}{arXiv}
+      \field{journaltitle}{CoRR}
+      \field{title}{A Survey on Theorem Provers in Formal Methods}
+      \field{volume}{abs/1912.03028}
+      \field{year}{2019}
+      \verb{eprint}
+      \verb 1912.03028
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/1912.03028
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/1912.03028
+      \endverb
+    \endentry
     \entry{paulson_datatype_impl}{inproceedings}{}
       \name{author}{1}{}{%
         {{hash=3c148717c5f0355213ec4ed493cbd64e}{%
@@ -825,39 +1145,165 @@
       \verb http://dx.doi.org/10.1007/BF00283132
       \endverb
     \endentry
-    \entry{paulson_datatype}{inbook}{}
-      \name{author}{3}{}{%
-        {{hash=5ac4023ed140a900b897444afb2c41d9}{%
-           family={Plotkin},
+    \entry{survey_proof_assistants_program_verification}{article}{}
+      \name{author}{5}{}{%
+        {{hash=49dba801877e578ded10db9d08f0e5e2}{%
+           family={Ringer},
+           familyi={R\bibinitperiod},
+           given={Talia},
+           giveni={T\bibinitperiod}}}%
+        {{hash=9310691fdab7f6be3f4acabf6d179449}{%
+           family={Palmskog},
            familyi={P\bibinitperiod},
-           given={Gordon},
-           giveni={G\bibinitperiod}}}%
-        {{hash=c74a3f2dab5d3a5430bb8433f7d370ef}{%
-           family={Stirling},
+           given={Karl},
+           giveni={K\bibinitperiod}}}%
+        {{hash=219ce47ae5465bf8aff4ffe6dd07349c}{%
+           family={Sergey},
            familyi={S\bibinitperiod},
-           given={Colin\bibnamedelima P.},
-           giveni={C\bibinitperiod\bibinitdelim P\bibinitperiod}}}%
-        {{hash=5780065392a3c6c91ee5a3b8c079ca35}{%
-           family={Tofte},
-           familyi={T\bibinitperiod},
-           given={Mads},
+           given={Ilya},
+           giveni={I\bibinitperiod}}}%
+        {{hash=ebea614788c0ded22f0fae688f5f235c}{%
+           family={Gligoric},
+           familyi={G\bibinitperiod},
+           given={Milos},
            giveni={M\bibinitperiod}}}%
+        {{hash=a69fd5ea4c78e4b10502a7611d5a8dc0}{%
+           family={Tatlock},
+           familyi={T\bibinitperiod},
+           given={Zachary},
+           giveni={Z\bibinitperiod}}}%
       }
-      \strng{namehash}{4920310d1b4ede4b0593ee68424f25ff}
-      \strng{fullhash}{4920310d1b4ede4b0593ee68424f25ff}
-      \strng{bibnamehash}{4920310d1b4ede4b0593ee68424f25ff}
-      \strng{authorbibnamehash}{4920310d1b4ede4b0593ee68424f25ff}
-      \strng{authornamehash}{4920310d1b4ede4b0593ee68424f25ff}
-      \strng{authorfullhash}{4920310d1b4ede4b0593ee68424f25ff}
-      \field{sortinit}{P}
-      \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
+      \list{location}{1}{%
+        {Hanover, MA, USA}%
+      }
+      \list{publisher}{1}{%
+        {Now Publishers Inc.}%
+      }
+      \strng{namehash}{871d7bf8f880c77c00f27caa2e1b06c8}
+      \strng{fullhash}{61243aeab61f8760b420a952513e56e1}
+      \strng{bibnamehash}{871d7bf8f880c77c00f27caa2e1b06c8}
+      \strng{authorbibnamehash}{871d7bf8f880c77c00f27caa2e1b06c8}
+      \strng{authornamehash}{871d7bf8f880c77c00f27caa2e1b06c8}
+      \strng{authorfullhash}{61243aeab61f8760b420a952513e56e1}
+      \field{sortinit}{R}
+      \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{booktitle}{Proof, Language, and Interaction: Essays in Honour of Robin Milner}
-      \field{title}{A Fixedpoint Approach to (Co)Inductive and (Co)Datatype Definitions}
-      \field{year}{2000}
-      \field{pages}{187\bibrangedash 211}
-      \range{pages}{25}
+      \field{abstract}{Development of formal proofs of correctness of programs can increase actual and perceived reliability and facilitate better understanding of program specifications and their underlying assumptions. Tools supporting such development have been available for over 40 years, but have only recently seen wide practical use. Projects based on construction of machine-checked formal proofs are now reaching an unprecedented scale, comparable to large software projects, which leads to new challenges in proof development and maintenance. Despite its increasing importance, the field of proof engineering is seldom considered in its own right; related theories, techniques, and tools span many fields and venues. This survey of the literature presents a holistic understanding of proof engineering for program correctness, covering impact in practice, foundations, proof automation, proof organization, and practical proof development.}
+      \field{issn}{2325-1107}
+      \field{journaltitle}{Found. Trends Program. Lang.}
+      \field{month}{9}
+      \field{number}{2–3}
+      \field{title}{QED at Large: A Survey of Engineering of Formally Verified Software}
+      \field{volume}{5}
+      \field{year}{2019}
+      \field{pages}{102\bibrangedash 281}
+      \range{pages}{180}
+      \verb{doi}
+      \verb 10.1561/2500000045
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1561/2500000045
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1561/2500000045
+      \endverb
+    \endentry
+    \entry{agda_toppage}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=ace8729c7b8c4555bcded660f3a49f2d}{%
+           family={Team},
+           familyi={T\bibinitperiod},
+           given={Agda\bibnamedelima Development},
+           giveni={A\bibinitperiod\bibinitdelim D\bibinitperiod}}}%
+      }
+      \strng{namehash}{ace8729c7b8c4555bcded660f3a49f2d}
+      \strng{fullhash}{ace8729c7b8c4555bcded660f3a49f2d}
+      \strng{bibnamehash}{ace8729c7b8c4555bcded660f3a49f2d}
+      \strng{authorbibnamehash}{ace8729c7b8c4555bcded660f3a49f2d}
+      \strng{authornamehash}{ace8729c7b8c4555bcded660f3a49f2d}
+      \strng{authorfullhash}{ace8729c7b8c4555bcded660f3a49f2d}
+      \field{extraname}{1}
+      \field{sortinit}{T}
+      \field{sortinithash}{9af77f0292593c26bde9a56e688eaee9}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{https://wiki.portal.chalmers.se/agda/}}
+      \field{note}{Accessed: 2024-12-23}
+      \field{title}{Agda}
+      \field{year}{2005-2024}
+    \endentry
+    \entry{hol_light_toppage}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=e767250c6c98dba3c0b2943f701d069d}{%
+           family={Team},
+           familyi={T\bibinitperiod},
+           given={HOL\bibnamedelimb Light\bibnamedelima Development},
+           giveni={H\bibinitperiod\bibinitdelim L\bibinitperiod\bibinitdelim D\bibinitperiod}}}%
+      }
+      \strng{namehash}{e767250c6c98dba3c0b2943f701d069d}
+      \strng{fullhash}{e767250c6c98dba3c0b2943f701d069d}
+      \strng{bibnamehash}{e767250c6c98dba3c0b2943f701d069d}
+      \strng{authorbibnamehash}{e767250c6c98dba3c0b2943f701d069d}
+      \strng{authornamehash}{e767250c6c98dba3c0b2943f701d069d}
+      \strng{authorfullhash}{e767250c6c98dba3c0b2943f701d069d}
+      \field{extraname}{2}
+      \field{sortinit}{T}
+      \field{sortinithash}{9af77f0292593c26bde9a56e688eaee9}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{https://www.cl.cam.ac.uk/~jrh13/hol-light/}}
+      \field{note}{Accessed: 2024-12-23}
+      \field{title}{HOL Light}
+      \field{year}{1996-2024}
+    \endentry
+    \entry{isabelle_toppage}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=e907e0705cef553a40389c6c61b1f957}{%
+           family={Team},
+           familyi={T\bibinitperiod},
+           given={Isabelle\bibnamedelima Development},
+           giveni={I\bibinitperiod\bibinitdelim D\bibinitperiod}}}%
+      }
+      \strng{namehash}{e907e0705cef553a40389c6c61b1f957}
+      \strng{fullhash}{e907e0705cef553a40389c6c61b1f957}
+      \strng{bibnamehash}{e907e0705cef553a40389c6c61b1f957}
+      \strng{authorbibnamehash}{e907e0705cef553a40389c6c61b1f957}
+      \strng{authornamehash}{e907e0705cef553a40389c6c61b1f957}
+      \strng{authorfullhash}{e907e0705cef553a40389c6c61b1f957}
+      \field{extraname}{3}
+      \field{sortinit}{T}
+      \field{sortinithash}{9af77f0292593c26bde9a56e688eaee9}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{https://isabelle.in.tum.de/}}
+      \field{note}{Accessed: 2024-12-23}
+      \field{title}{Isabelle}
+      \field{year}{1994-2024}
+    \endentry
+    \entry{coq_toppage}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=d47c52d4add3e3728b111d5bc2db76ec}{%
+           family={Team},
+           familyi={T\bibinitperiod},
+           given={The\bibnamedelimb Coq\bibnamedelima Development},
+           giveni={T\bibinitperiod\bibinitdelim C\bibinitperiod\bibinitdelim D\bibinitperiod}}}%
+      }
+      \strng{namehash}{d47c52d4add3e3728b111d5bc2db76ec}
+      \strng{fullhash}{d47c52d4add3e3728b111d5bc2db76ec}
+      \strng{bibnamehash}{d47c52d4add3e3728b111d5bc2db76ec}
+      \strng{authorbibnamehash}{d47c52d4add3e3728b111d5bc2db76ec}
+      \strng{authornamehash}{d47c52d4add3e3728b111d5bc2db76ec}
+      \strng{authorfullhash}{d47c52d4add3e3728b111d5bc2db76ec}
+      \field{extraname}{4}
+      \field{sortinit}{T}
+      \field{sortinithash}{9af77f0292593c26bde9a56e688eaee9}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{https://coq.inria.fr/}}
+      \field{note}{Accessed: 2024-12-23}
+      \field{title}{The Coq Proof Assistant}
+      \field{year}{1989-2024}
     \endentry
   \enddatalist
 \endrefsection

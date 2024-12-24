@@ -1,9 +1,0 @@
-\begin{Verbatim}[commandchars=\\\{\}]
-\PYG{k+kn}{lemma}\PYG{+w}{ }\PYG{n}{Fn\PYGZus{}perm\PYGZsq{}\PYGZus{}is\PYGZus{}P\PYGZus{}auto}\PYG{+w}{ }\PYG{o}{:}
-\PYG{+w}{    }\PYG{k+kp}{fixes}\PYG{+w}{ }\PYG{n}{f}
-\PYG{+w}{    }\PYG{k+kp}{assumes}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}f ∈ nat\PYGZus{}perms\PYGZdq{}}
-\PYG{+w}{    }\PYG{k+kp}{shows}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}forcing\PYGZus{}data\PYGZus{}partial.is\PYGZus{}P\PYGZus{}auto(Fn, Fn\PYGZus{}leq, M, Fn\PYGZus{}perm\PYGZsq{}(f))\PYGZdq{}}
-
-\PYG{k+kn}{lemma}\PYG{+w}{ }\PYG{n}{Fn\PYGZus{}perms\PYGZus{}group}\PYG{+w}{ }\PYG{o}{:}
-\PYG{+w}{    }\PYG{l+s}{\PYGZdq{}forcing\PYGZus{}data\PYGZus{}partial.is\PYGZus{}P\PYGZus{}auto\PYGZus{}group(Fn, Fn\PYGZus{}leq, M, Fn\PYGZus{}perms)\PYGZdq{}}
-\end{Verbatim}

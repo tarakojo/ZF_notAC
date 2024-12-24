@@ -7,8 +7,8 @@
 \BOOKMARK [2][-]{subsection.2.1.4}{The\040c.t.m.\040Approach}{section.2.1}% 7
 \BOOKMARK [1][-]{section.2.2}{Outline\040for\040the\040Informal\040Proof}{chapter.2}% 8
 \BOOKMARK [1][-]{section.2.3}{Isabelle/ZF\040and\040Formalization\040in\040Prior\040Work}{chapter.2}% 9
-\BOOKMARK [2][-]{subsection.2.3.1}{Isabelle/ZF}{section.2.3}% 10
-\BOOKMARK [2][-]{subsection.2.3.2}{Important\040Results\040from\040Prior\040Work}{section.2.3}% 11
+\BOOKMARK [2][-]{subsection.2.3.1}{Isabelle\040and\040Isabelle/ZF}{section.2.3}% 10
+\BOOKMARK [2][-]{subsection.2.3.2}{Important\040Results\040from\040Prior\040Work\040in\040Isabelle/ZF}{section.2.3}% 11
 \BOOKMARK [0][-]{chapter.3}{Formalization\040of\040the\040Proof}{}% 12
 \BOOKMARK [1][-]{section.3.1}{Symmetric\040Extensions}{chapter.3}% 13
 \BOOKMARK [2][-]{subsection.3.1.1}{Defining\040Symmetric\040Extensions}{section.3.1}% 14

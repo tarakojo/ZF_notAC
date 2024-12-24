@@ -1,7 +1,0 @@
-\begin{Verbatim}[commandchars=\\\{\}]
-\PYG{k+kn}{theorem}\PYG{+w}{ }\PYG{n}{ZF\PYGZus{}notAC\PYGZus{}main\PYGZus{}theorem}\PYG{+w}{ }\PYG{o}{:}
-\PYG{+w}{    }\PYG{k+kp}{fixes}\PYG{+w}{ }\PYG{n}{M}
-\PYG{+w}{    }\PYG{k+kp}{assumes}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}nat ≈ M\PYGZdq{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}M ⊨ ZF\PYGZdq{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}Transset(M)\PYGZdq{}}
-\PYG{+w}{    }\PYG{k+kp}{shows}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}∃N. nat ≈ N ∧ N ⊨ ZF ∧ Transset(N)}
-\PYG{l+s}{                ∧ ¬(∀A ∈ N. ∃r ∈ N. wellordered(\PYGZsh{}\PYGZsh{}N, A, r))\PYGZdq{}}
-\end{Verbatim}
