@@ -852,6 +852,7 @@ Gunther et al. did not provide an excplicit formalization of the set of $\mathbb
 In this study, since we need to consider a subset of $M^{\mathbb{P}}$, we define $M^{\mathbb{P}}$ explicitly.
 We define $M^{\mathbb{P}}_{\alpha}$ as \texttt{"P\_set(α)"} and $M^{\mathbb{P}}$ as \texttt{"P\_names"} as follows:
 
+\tiny{\url{https://github.com/tarakojo/ZF_notAC/blob/a376fdd7222b5b1fdb7681a1f542521e8805d82e/code/P_Names.thy#L10}}
 \begin{isaframe}
 \begin{minted}[breaklines]{isabelle}
 definition HP_set_succ :: "[i, i] ⇒ i" where 
@@ -884,6 +885,7 @@ locale forcing_data_partial = forcing_data +
     and leq_partial_order : "partial_order_on(P, leq)" 
 \end{minted}
 \end{isaframe}
+\tiny{\url{https://github.com/tarakojo/ZF_notAC/blob/a376fdd7222b5b1fdb7681a1f542521e8805d82e/code/Automorphism_Definition.thy#L5}}
 
 We define the set of automorphisms on $\mathbb{P}$, denoted by \texttt{"P\_auto"}, as follows:
 \begin{isaframe}
@@ -894,6 +896,7 @@ definition is_P_auto :: "i ⇒ o" where
 definition P_auto where "P_auto ≡ { π ∈ P → P. is_P_auto(π) }" 
 \end{minted}
 \end{isaframe}
+\tiny{\href{https://github.com/tarakojo/ZF_notAC/blob/a376fdd7222b5b1fdb7681a1f542521e8805d82e/code/Automorphism_Definition.thy#L25}{Automorphism\_Definition.thy:25-28}}
 
 Where \texttt{"bij(A, B)"} is the set of bijections from \texttt{A} to \texttt{B}
 and \texttt{"f`x"} denotes the function application of \texttt{f} to \texttt{x}.

@@ -908,6 +908,7 @@ INPUT ./out//main.pyg
 INPUT ./out/main.run.xml
 OUTPUT out/main.run.xml
 INPUT c:/texlive/2023/texmf-dist/fonts/type1/public/newtx/NewTXMI.pfb
+INPUT c:/texlive/2023/texmf-dist/fonts/type1/public/newtx/NewTXMI5.pfb
 INPUT c:/texlive/2023/texmf-dist/fonts/type1/public/newtx/NewTXMI7.pfb
 INPUT c:/texlive/2023/texmf-dist/fonts/type1/public/newtx/txexs.pfb
 INPUT c:/texlive/2023/texmf-dist/fonts/type1/public/newtx/txmiaX.pfb

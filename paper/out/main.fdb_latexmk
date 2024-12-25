@@ -1,12 +1,12 @@
 # Fdb version 4
-["biber out/main"] 1735051126 "out/main.bcf" "out/main.bbl" "out/main" 1735051306 0
+["biber out/main"] 1735090336 "out/main.bcf" "out/main.bbl" "out/main" 1735090359 0
   "./main.bib" 1734931564 25298 f725d5682edcef6e429b348186bd0618 ""
-  "out/main.bcf" 1735051306 112261 81cb2495a5020ef1955d7d78f7a6be2d "pdflatex"
+  "out/main.bcf" 1735090358 112261 81cb2495a5020ef1955d7d78f7a6be2d "pdflatex"
   (generated)
   "out/main.bbl"
   "out/main.blg"
   (rewritten before read)
-["pdflatex"] 1735051301 "c:/Users/tarak/source/repos/ZF_notAC/paper/main.tex" "out/main.pdf" "main" 1735051306 0
+["pdflatex"] 1735090351 "c:/Users/tarak/source/repos/ZF_notAC/paper/main.tex" "out/main.pdf" "main" 1735090359 0
   "C:/texlive/2023/texmf-var/luatex-cache/generic/fonts/otl/lmroman10-bold.luc" 1726375263 128402 ba4e34466919a50528858a3237d9e899 ""
   "C:/texlive/2023/texmf-var/luatex-cache/generic/fonts/otl/lmroman10-regular.luc" 1730435255 127319 862db57d80674f216368fc20a5b8fd18 ""
   "C:/texlive/2023/texmf-var/luatex-cache/generic/fonts/otl/texgyredejavu-math.luc" 1730455601 551166 d4e10226b056b0142a0ff9fbd5197567 ""
@@ -16,9 +16,9 @@
   "C:/texlive/2023/texmf-var/luatex-cache/generic/fonts/otl/texgyretermesx-italic.luc" 1726375775 313613 3747954f9a11d893b895db2b36c1d578 ""
   "C:/texlive/2023/texmf-var/luatex-cache/generic/fonts/otl/texgyretermesx-regular.luc" 1726375775 313961 83aa4d644ad1ac93916cfa10b44b55fe ""
   "C:/texlive/2023/texmf-var/luatex-cache/generic/fonts/otl/texgyretermesx-slanted.luc" 1726375775 314349 c13e3d9d793104f352f6a493ddb70e45 ""
-  "C:/texlive/2023/texmf-var/luatex-cache/generic/names/luaotfload-lookup-cache.luc" 1732175579 4611 d33e54175ecc2a5affd4f681a3fc5580 ""
+  "C:/texlive/2023/texmf-var/luatex-cache/generic/names/luaotfload-lookup-cache.luc" 1735089530 4769 6ae42dabd18f662c3a7dcc1743cf9571 ""
   "C:/texlive/2023/texmf-var/luatex-cache/generic/names/luaotfload-names.luc.gz" 1732118738 286352 5c9379f7497352164cbf110971c8598a ""
-  "c:/Users/tarak/source/repos/ZF_notAC/paper/main.tex" 1735051300 80018 cf7de33efcc4aa2cb3af5edfa2a27a0b ""
+  "c:/Users/tarak/source/repos/ZF_notAC/paper/main.tex" 1735090335 80437 bc7933e7bec792ead0a5bf240d3277aa ""
   "c:/texlive/2023/texmf-dist/fonts/opentype/public/newtx/TeXGyreTermesX-Bold.otf" 1684132897 192848 978ae5fb0a99f4677c55c752c3446285 ""
   "c:/texlive/2023/texmf-dist/fonts/opentype/public/newtx/TeXGyreTermesX-Italic.otf" 1684132897 199896 752ef70d685c887ce4d68e6b05c2cb74 ""
   "c:/texlive/2023/texmf-dist/fonts/opentype/public/newtx/TeXGyreTermesX-Regular.otf" 1684132897 207108 54f9a7a2d6129fd8928c2200a1486a53 ""
@@ -57,6 +57,7 @@
   "c:/texlive/2023/texmf-dist/fonts/tfm/public/txfonts/txsyb.tfm" 1684137384 988 098ca7e8cc5647b9ac21b82dbdce1f01 ""
   "c:/texlive/2023/texmf-dist/fonts/tfm/public/txfonts/txsyc.tfm" 1684137384 1084 75e807e9e71f7a312e4e1187dce5e93b ""
   "c:/texlive/2023/texmf-dist/fonts/type1/public/newtx/NewTXMI.pfb" 1684132898 32409 eee1344d05b8bec92e60a2ec9a7f49e3 ""
+  "c:/texlive/2023/texmf-dist/fonts/type1/public/newtx/NewTXMI5.pfb" 1684132898 35776 3cf3205badc1a3a38b65b34f4cef78d9 ""
   "c:/texlive/2023/texmf-dist/fonts/type1/public/newtx/NewTXMI7.pfb" 1684132898 34733 61fa3c01fac511e451670c1b454ff211 ""
   "c:/texlive/2023/texmf-dist/fonts/type1/public/newtx/txexs.pfb" 1684132898 33424 8b2b99d9d7571201cc7eece13c492c55 ""
   "c:/texlive/2023/texmf-dist/fonts/type1/public/newtx/txmiaX.pfb" 1684132898 56686 3d6d86b0a770bb2c243f4c4351685fc2 ""
@@ -255,7 +256,7 @@
   "c:/texlive/2023/texmf-dist/tex/luatex/luatexbase/luatexbase.sty" 1684131951 10170 b1a2248f43cab899e3fe36f676176865 ""
   "c:/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1684138125 4683009 81ac55e6554f9124653631026fb1fc4e ""
   "c:/texlive/2023/texmf-var/web2c/luahbtex/lualatex.fmt" 1684138368 11869899 25014e89a64adc0d9bbac3bb8f0ddd81 ""
-  "main.tex" 1735051300 80018 cf7de33efcc4aa2cb3af5edfa2a27a0b ""
+  "main.tex" 1735090335 80437 bc7933e7bec792ead0a5bf240d3277aa ""
   "out/_minted-main/01BE22461944784C714927457DD1BC76FECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex" 1735007139 757 98665e772a73f19c9ea408d90553a308 ""
   "out/_minted-main/0A73345C596586DE51A986ABD0CD2D6BFECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex" 1735007133 282 aaaeef20e30eeec78ffb857c82f9872b ""
   "out/_minted-main/0F26E3C8FAEFC7C05FF6267EF2713ED7FECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex" 1735007127 459 6f3bd740d4e7dce5235a66cd8a84bcb7 ""
@@ -296,11 +297,11 @@
   "out/_minted-main/F9840A9F629229866745D485E25D2A1BFECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex" 1735007128 927 c8f0a395a2da038819f1180425b84b2a ""
   "out/_minted-main/FB65EA95EECE9E0A2D170062B77F7469FECB1FB52E0C7D8CEDEF9B2C0B01A8E6.pygtex" 1735007129 858 ab4b2f266ac5ec110eb1d740d0165cec ""
   "out/_minted-main/default.pygstyle" 1735007126 6530 74aba51736a5bc6590f8f7dd413c6f27 ""
-  "out/main.aux" 1735051306 19042 1f4b26787c319ca7c79388c3644d192c "pdflatex"
-  "out/main.bbl" 1735051129 57848 7a355536249b7c12b86537af445474df "biber out/main"
-  "out/main.out" 1735051306 1585 2b28aaf7872ff89cbf4bed423aa82900 "pdflatex"
-  "out/main.run.xml" 1735051306 2334 7e0c4f20985526cf631a0f99e8739206 "pdflatex"
-  "out/main.toc" 1735051306 3821 e98a114f3675e83a0079df0d61c2fd66 "pdflatex"
+  "out/main.aux" 1735090358 19042 862ad4d7aeb43993a232e9213362b514 "pdflatex"
+  "out/main.bbl" 1735090338 57848 7a355536249b7c12b86537af445474df "biber out/main"
+  "out/main.out" 1735090358 1585 2b28aaf7872ff89cbf4bed423aa82900 "pdflatex"
+  "out/main.run.xml" 1735090358 2334 7e0c4f20985526cf631a0f99e8739206 "pdflatex"
+  "out/main.toc" 1735090358 3821 2a8dbb3cc6346c6f80bef0e0789bb80c "pdflatex"
   (generated)
   "out/main.aux"
   "out/main.bcf"
