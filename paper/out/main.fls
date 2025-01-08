@@ -267,12 +267,12 @@ INPUT c:/texlive/2023/texmf-dist/tex/latex/biblatex/blx-compat.def
 INPUT c:/texlive/2023/texmf-dist/tex/latex/biblatex/blx-compat.def
 INPUT c:/texlive/2023/texmf-dist/tex/latex/biblatex/biblatex.def
 INPUT c:/texlive/2023/texmf-dist/tex/latex/biblatex/biblatex.def
-INPUT c:/texlive/2023/texmf-dist/tex/latex/biblatex/bbx/numeric.bbx
-INPUT c:/texlive/2023/texmf-dist/tex/latex/biblatex/bbx/numeric.bbx
+INPUT c:/texlive/2023/texmf-dist/tex/latex/biblatex/bbx/authoryear.bbx
+INPUT c:/texlive/2023/texmf-dist/tex/latex/biblatex/bbx/authoryear.bbx
 INPUT c:/texlive/2023/texmf-dist/tex/latex/biblatex/bbx/standard.bbx
 INPUT c:/texlive/2023/texmf-dist/tex/latex/biblatex/bbx/standard.bbx
-INPUT c:/texlive/2023/texmf-dist/tex/latex/biblatex/cbx/numeric.cbx
-INPUT c:/texlive/2023/texmf-dist/tex/latex/biblatex/cbx/numeric.cbx
+INPUT c:/texlive/2023/texmf-dist/tex/latex/biblatex/cbx/authoryear.cbx
+INPUT c:/texlive/2023/texmf-dist/tex/latex/biblatex/cbx/authoryear.cbx
 INPUT c:/texlive/2023/texmf-dist/tex/latex/biblatex/biblatex.cfg
 INPUT c:/texlive/2023/texmf-dist/tex/latex/biblatex/biblatex.cfg
 INPUT c:/texlive/2023/texmf-dist/tex/latex/biblatex/blx-case-expl3.sty
@@ -908,7 +908,6 @@ INPUT ./out//main.pyg
 INPUT ./out/main.run.xml
 OUTPUT out/main.run.xml
 INPUT c:/texlive/2023/texmf-dist/fonts/type1/public/newtx/NewTXMI.pfb
-INPUT c:/texlive/2023/texmf-dist/fonts/type1/public/newtx/NewTXMI5.pfb
 INPUT c:/texlive/2023/texmf-dist/fonts/type1/public/newtx/NewTXMI7.pfb
 INPUT c:/texlive/2023/texmf-dist/fonts/type1/public/newtx/txexs.pfb
 INPUT c:/texlive/2023/texmf-dist/fonts/type1/public/newtx/txmiaX.pfb

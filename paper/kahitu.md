@@ -94,9 +94,36 @@ unseccessfulだと、言い過ぎ？
 bibtexなるべく同じところから
 dblp 
 
+----------------------------------------------------
 
-axiom of choice ZFのモデルであることの証明の定理番号を
+
+イントロ　complex とはどういう意味...場合分け
+リンクにnoindent 
+
+
+abstract 段落変えなくてよい... ok 
+リファレンスっぽく、しかくKaragila[200...]みたいに ... ok
+alternative proof method -> 
+some parts required adopting alternative proof methods ...ok
+...
+単独な文でかくほどじゃなくていい
+ちょっと変更が必要になりましたが...みたいな
+.. approach, with a modification for ... 
+どういうmodificationかも一言で ... ok 
+
+reveal insights into ->  
+gave insights ... 
+intoなのか？？ ... ok
+
+summary of our results ... ok 
+discussion and future work ... ok 
+
+
+数学の形式化プロジェクトとして例えばこういうプロジェクトがあります
+複雑でない数学　引用
+引用スタイル
+URL
+
+
+※jech axiom of choice ZFのモデルであることの証明の定理番号を
 Traditional approachのとこにいれる
-
-
-

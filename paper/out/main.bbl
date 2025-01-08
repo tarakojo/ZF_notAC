@@ -18,59 +18,92 @@
 
 
 \refsection{0}
-  \datalist[entry]{nty/global//global/global}
+  \datalist[entry]{nyt/global//global/global}
+    \entry{agda_toppage}{misc}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=1125fa01cbe17e12f7d396582262f58a}{%
+           family={{Agda Development Team}},
+           familyi={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{1125fa01cbe17e12f7d396582262f58a}
+      \strng{fullhash}{1125fa01cbe17e12f7d396582262f58a}
+      \strng{bibnamehash}{1125fa01cbe17e12f7d396582262f58a}
+      \strng{authorbibnamehash}{1125fa01cbe17e12f7d396582262f58a}
+      \strng{authornamehash}{1125fa01cbe17e12f7d396582262f58a}
+      \strng{authorfullhash}{1125fa01cbe17e12f7d396582262f58a}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{https://wiki.portal.chalmers.se/agda/}}
+      \field{note}{Accessed: 2024-12-23}
+      \field{title}{Agda}
+      \field{year}{2005-2024}
+    \endentry
     \entry{EasyCrypt_AWS}{inproceedings}{}
       \name{author}{10}{}{%
-        {{hash=8d5c89fcf9913dc6ae2b9c9f2b56e9e3}{%
+        {{un=0,uniquepart=base,hash=8d5c89fcf9913dc6ae2b9c9f2b56e9e3}{%
            family={Almeida},
            familyi={A\bibinitperiod},
            given={José\bibnamedelima Bacelar},
-           giveni={J\bibinitperiod\bibinitdelim B\bibinitperiod}}}%
-        {{hash=9f57cce40b57fc93fb67f72834028011}{%
+           giveni={J\bibinitperiod\bibinitdelim B\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=9f57cce40b57fc93fb67f72834028011}{%
            family={Barbosa},
            familyi={B\bibinitperiod},
            given={Manuel},
-           giveni={M\bibinitperiod}}}%
-        {{hash=a591e71debdbd9a86231c933df50ef0b}{%
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=a591e71debdbd9a86231c933df50ef0b}{%
            family={Barthe},
            familyi={B\bibinitperiod},
            given={Gilles},
-           giveni={G\bibinitperiod}}}%
-        {{hash=09a03f9a4069b8bf17f78e2677097179}{%
+           giveni={G\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=09a03f9a4069b8bf17f78e2677097179}{%
            family={Campagna},
            familyi={C\bibinitperiod},
            given={Matthew},
-           giveni={M\bibinitperiod}}}%
-        {{hash=f0f8e21d796bca1a47e4777dc9d04c24}{%
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=f0f8e21d796bca1a47e4777dc9d04c24}{%
            family={Cohen},
            familyi={C\bibinitperiod},
            given={Ernie},
-           giveni={E\bibinitperiod}}}%
-        {{hash=dacaf256b5f9678dcd7ed16b4f0cd3f0}{%
+           giveni={E\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=dacaf256b5f9678dcd7ed16b4f0cd3f0}{%
            family={Gregoire},
            familyi={G\bibinitperiod},
            given={Benjamin},
-           giveni={B\bibinitperiod}}}%
-        {{hash=b97fc29ea7a7df93c74aec551efc649b}{%
+           giveni={B\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=b97fc29ea7a7df93c74aec551efc649b}{%
            family={Pereira},
            familyi={P\bibinitperiod},
            given={Vitor},
-           giveni={V\bibinitperiod}}}%
-        {{hash=bdba3cb5db2d48bfc6a5d022bdff2398}{%
+           giveni={V\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=bdba3cb5db2d48bfc6a5d022bdff2398}{%
            family={Portela},
            familyi={P\bibinitperiod},
            given={Bernardo},
-           giveni={B\bibinitperiod}}}%
-        {{hash=e690ee937a17ca2f6870a1127062fcec}{%
+           giveni={B\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=e690ee937a17ca2f6870a1127062fcec}{%
            family={Strub},
            familyi={S\bibinitperiod},
            given={Pierre-Yves},
-           giveni={P\bibinithyphendelim Y\bibinitperiod}}}%
-        {{hash=b0313437afeb893b51e1632a040ecf0d}{%
+           giveni={P\bibinithyphendelim Y\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=b0313437afeb893b51e1632a040ecf0d}{%
            family={Tasiran},
            familyi={T\bibinitperiod},
            given={Serdar},
-           giveni={S\bibinitperiod}}}%
+           giveni={S\bibinitperiod},
+           givenun=0}}%
       }
       \list{location}{1}{%
         {London, United Kingdom}%
@@ -86,6 +119,8 @@
       \strng{authorfullhash}{afbd001c041398ef1e38bf551455bb3c}
       \field{sortinit}{A}
       \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{abstract}{We present a machine-checked proof of security for the domain management protocol of Amazon Web Services' KMS (Key Management Service) a critical security service used throughout AWS and by AWS customers. Domain management is at the core of AWS KMS; it governs the top-level keys that anchor the security of encryption services at AWS. We show that the protocol securely implements an ideal distributed encryption mechanism under standard cryptographic assumptions. The proof is machine-checked in the EasyCrypt proof assistant and is the largest EasyCrypt development to date.}
@@ -109,11 +144,12 @@
     \endentry
     \entry{Coq_hardware_verification_2}{inproceedings}{}
       \name{author}{1}{}{%
-        {{hash=27163b803b77a6332377651432127f87}{%
+        {{un=0,uniquepart=base,hash=27163b803b77a6332377651432127f87}{%
            family={Braibant},
            familyi={B\bibinitperiod},
            given={Thomas},
-           giveni={T\bibinitperiod}}}%
+           giveni={T\bibinitperiod},
+           givenun=0}}%
       }
       \name{editor}{2}{}{%
         {{hash=6eeba4a38cd4dba9ec491e9d7e87b452}{%
@@ -144,6 +180,8 @@
       \strng{editorfullhash}{387d6daba47192f6fcace3596df560eb}
       \field{sortinit}{B}
       \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{abstract}{We propose a new library to model and verify hardware circuits in the Coq proof assistant. This library allows one to easily build circuits by following the usual pen-and-paper diagrams. We define a deep-embedding: we use a (dependently typed) data-type that models the architecture of circuits, and a meaning function. We propose tactics that ease the reasoning about the behavior of the circuits, and we demonstrate that our approach is practicable by proving the correctness of various circuits: a text-book divide and conquer adder of parametric size, some higher-order combinators of circuits, and some sequential circuits: a buffer, and a register.}
@@ -156,11 +194,12 @@
     \endentry
     \entry{cohen}{article}{}
       \name{author}{1}{}{%
-        {{hash=db90b622eba26dc7c0195a3ce34de469}{%
+        {{un=0,uniquepart=base,hash=db90b622eba26dc7c0195a3ce34de469}{%
            family={Cohen},
            familyi={C\bibinitperiod},
            given={Paul\bibnamedelima J.},
-           giveni={P\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+           giveni={P\bibinitperiod\bibinitdelim J\bibinitperiod},
+           givenun=0}}%
       }
       \list{publisher}{1}{%
         {National Academy of Sciences}%
@@ -173,6 +212,8 @@
       \strng{authorfullhash}{db90b622eba26dc7c0195a3ce34de469}
       \field{sortinit}{C}
       \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{issn}{00278424, 10916490}
@@ -194,41 +235,20 @@
       \verb http://www.jstor.org/stable/71858
       \endverb
     \endentry
-    \entry{lean_toppage}{misc}{}
-      \name{author}{1}{}{%
-        {{hash=169e2818c0d286c2d85e577b288c37e9}{%
-           family={Community},
-           familyi={C\bibinitperiod},
-           given={Lean},
-           giveni={L\bibinitperiod}}}%
-      }
-      \strng{namehash}{169e2818c0d286c2d85e577b288c37e9}
-      \strng{fullhash}{169e2818c0d286c2d85e577b288c37e9}
-      \strng{bibnamehash}{169e2818c0d286c2d85e577b288c37e9}
-      \strng{authorbibnamehash}{169e2818c0d286c2d85e577b288c37e9}
-      \strng{authornamehash}{169e2818c0d286c2d85e577b288c37e9}
-      \strng{authorfullhash}{169e2818c0d286c2d85e577b288c37e9}
-      \field{sortinit}{C}
-      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{howpublished}{\url{https://leanprover.github.io/}}
-      \field{note}{Accessed: 2024-12-23}
-      \field{title}{Lean}
-      \field{year}{2015-2024}
-    \endentry
     \entry{Coq_hardware_verification}{inproceedings}{}
       \name{author}{2}{}{%
-        {{hash=2c06bffaeaf266eeb6246c332fe7422e}{%
+        {{un=0,uniquepart=base,hash=2c06bffaeaf266eeb6246c332fe7422e}{%
            family={Coupet-Grimal},
            familyi={C\bibinithyphendelim G\bibinitperiod},
            given={Solange},
-           giveni={S\bibinitperiod}}}%
-        {{hash=c2187c63def8ecd909ca51541ee3a6b0}{%
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=c2187c63def8ecd909ca51541ee3a6b0}{%
            family={Jakubiec},
            familyi={J\bibinitperiod},
            given={Line},
-           giveni={L\bibinitperiod}}}%
+           giveni={L\bibinitperiod},
+           givenun=0}}%
       }
       \name{editor}{6}{}{%
         {{hash=97b8779c08da200ee2eb194bdc10ae4f}{%
@@ -283,6 +303,8 @@
       \strng{editorfullhash}{d8d52d94b7a60f6d707732b926f6f928}
       \field{sortinit}{C}
       \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{abstract}{We present several approaches to verifying a class of circuits with the Coq proof-assistant, using the example of a left-to-right comparator. The large capacity of expression of the Calculus of Inductive Constructions allows us to give precise and general specifications. Using Coq's higher order logic, we state general results useful in establishing the correctness of the circuits. Finally, exploiting the constructive aspect of the logic, we can show how a certified circuit can be automatically synthesized from its specification.}
@@ -295,16 +317,18 @@
     \endentry
     \entry{EasyCrypt_zero_knowledge}{misc}{}
       \name{author}{2}{}{%
-        {{hash=e4ba2da629d3b47ef6e697c6435d823f}{%
+        {{un=0,uniquepart=base,hash=e4ba2da629d3b47ef6e697c6435d823f}{%
            family={Firsov},
            familyi={F\bibinitperiod},
            given={Denis},
-           giveni={D\bibinitperiod}}}%
-        {{hash=8a56d1103628eb2468b4302fe42b4baa}{%
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=8a56d1103628eb2468b4302fe42b4baa}{%
            family={Unruh},
            familyi={U\bibinitperiod},
            given={Dominique},
-           giveni={D\bibinitperiod}}}%
+           giveni={D\bibinitperiod},
+           givenun=0}}%
       }
       \strng{namehash}{a3d07d891d68a22d625f4ddf562e441b}
       \strng{fullhash}{a3d07d891d68a22d625f4ddf562e441b}
@@ -314,6 +338,8 @@
       \strng{authorfullhash}{a3d07d891d68a22d625f4ddf562e441b}
       \field{sortinit}{F}
       \field{sortinithash}{2638baaa20439f1b5a8f80c6c08a13b4}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{howpublished}{Cryptology {ePrint} Archive, Paper 2022/926}
@@ -328,11 +354,12 @@
     \endentry
     \entry{four_color}{inproceedings}{}
       \name{author}{1}{}{%
-        {{hash=4bde01b7cbd8a03f2e8959bcde4b3b4a}{%
+        {{un=0,uniquepart=base,hash=4bde01b7cbd8a03f2e8959bcde4b3b4a}{%
            family={Gonthier},
            familyi={G\bibinitperiod},
            given={Georges},
-           giveni={G\bibinitperiod}}}%
+           giveni={G\bibinitperiod},
+           givenun=0}}%
       }
       \name{editor}{1}{}{%
         {{hash=79ae193c185dc98fb2b7f4ece0ec1fb4}{%
@@ -358,6 +385,8 @@
       \strng{editorfullhash}{79ae193c185dc98fb2b7f4ece0ec1fb4}
       \field{sortinit}{G}
       \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{abstract}{The 150 year old Four Colour Theorem is the first famous result with a proof that requires large computer calculations. Such proofs are still controversial: It is thought that computer programs cannot be reviewed with mathematical rigor.}
@@ -370,21 +399,24 @@
     \endentry
     \entry{gunther_forcing}{article}{}
       \name{author}{3}{}{%
-        {{hash=82f3b48dfb9567e3068c9214c122719c}{%
+        {{un=0,uniquepart=base,hash=82f3b48dfb9567e3068c9214c122719c}{%
            family={Gunther},
            familyi={G\bibinitperiod},
            given={Emmanuel},
-           giveni={E\bibinitperiod}}}%
-        {{hash=46bd888eee5b3ea691dffc74217e809c}{%
+           giveni={E\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=46bd888eee5b3ea691dffc74217e809c}{%
            family={Pagano},
            familyi={P\bibinitperiod},
            given={Miguel},
-           giveni={M\bibinitperiod}}}%
-        {{hash=6a68f14774922c029c16be28d2ad216d}{%
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=6a68f14774922c029c16be28d2ad216d}{%
            family={Terraf},
            familyi={T\bibinitperiod},
            given={Pedro\bibnamedelima Sánchez},
-           giveni={P\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
+           giveni={P\bibinitperiod\bibinitdelim S\bibinitperiod},
+           givenun=0}}%
       }
       \strng{namehash}{7142706f10809dcb6949f4b3077d4f30}
       \strng{fullhash}{7142706f10809dcb6949f4b3077d4f30}
@@ -394,6 +426,8 @@
       \strng{authorfullhash}{7142706f10809dcb6949f4b3077d4f30}
       \field{sortinit}{G}
       \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{issn}{2150-914x}
@@ -404,36 +438,42 @@
       \field{year}{2020}
     \endentry
     \entry{gunther_independence}{article}{}
-      \name{author}{4}{}{%
-        {{hash=82f3b48dfb9567e3068c9214c122719c}{%
+      \name{author}{4}{ul=4}{%
+        {{un=0,uniquepart=base,hash=82f3b48dfb9567e3068c9214c122719c}{%
            family={Gunther},
            familyi={G\bibinitperiod},
            given={Emmanuel},
-           giveni={E\bibinitperiod}}}%
-        {{hash=46bd888eee5b3ea691dffc74217e809c}{%
+           giveni={E\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=46bd888eee5b3ea691dffc74217e809c}{%
            family={Pagano},
            familyi={P\bibinitperiod},
            given={Miguel},
-           giveni={M\bibinitperiod}}}%
-        {{hash=6a68f14774922c029c16be28d2ad216d}{%
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=6a68f14774922c029c16be28d2ad216d}{%
            family={Terraf},
            familyi={T\bibinitperiod},
            given={Pedro\bibnamedelima Sánchez},
-           giveni={P\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
-        {{hash=84a21839a8fededa38084ef1387870ce}{%
+           giveni={P\bibinitperiod\bibinitdelim S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=84a21839a8fededa38084ef1387870ce}{%
            family={Steinberg},
            familyi={S\bibinitperiod},
            given={Matías},
-           giveni={M\bibinitperiod}}}%
+           giveni={M\bibinitperiod},
+           givenun=0}}%
       }
-      \strng{namehash}{732a1ec4e456474b9ff95a45c31a79ba}
+      \strng{namehash}{bd3b801ba372731d67e9338675c5f5bf}
       \strng{fullhash}{bd3b801ba372731d67e9338675c5f5bf}
-      \strng{bibnamehash}{732a1ec4e456474b9ff95a45c31a79ba}
-      \strng{authorbibnamehash}{732a1ec4e456474b9ff95a45c31a79ba}
-      \strng{authornamehash}{732a1ec4e456474b9ff95a45c31a79ba}
+      \strng{bibnamehash}{bd3b801ba372731d67e9338675c5f5bf}
+      \strng{authorbibnamehash}{bd3b801ba372731d67e9338675c5f5bf}
+      \strng{authornamehash}{bd3b801ba372731d67e9338675c5f5bf}
       \strng{authorfullhash}{bd3b801ba372731d67e9338675c5f5bf}
       \field{sortinit}{G}
       \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{issn}{2150-914x}
@@ -445,116 +485,138 @@
     \endentry
     \entry{kepler}{misc}{}
       \name{author}{22}{}{%
-        {{hash=6d5a580961f5a68ba57df1437bac86d9}{%
+        {{un=0,uniquepart=base,hash=6d5a580961f5a68ba57df1437bac86d9}{%
            family={Hales},
            familyi={H\bibinitperiod},
            given={Thomas},
-           giveni={T\bibinitperiod}}}%
-        {{hash=dc7e539f79baeb4c5f3a97bf098b3558}{%
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=dc7e539f79baeb4c5f3a97bf098b3558}{%
            family={Adams},
            familyi={A\bibinitperiod},
            given={Mark},
-           giveni={M\bibinitperiod}}}%
-        {{hash=78d4c8b1caaf756102e3c238ba7b2d8b}{%
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=78d4c8b1caaf756102e3c238ba7b2d8b}{%
            family={Bauer},
            familyi={B\bibinitperiod},
            given={Gertrud},
-           giveni={G\bibinitperiod}}}%
-        {{hash=e49a303dd8864b5b51b61d195fcba2be}{%
+           giveni={G\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=e49a303dd8864b5b51b61d195fcba2be}{%
            family={Dang},
            familyi={D\bibinitperiod},
            given={Dat\bibnamedelima Tat},
-           giveni={D\bibinitperiod\bibinitdelim T\bibinitperiod}}}%
-        {{hash=1d44b053f0953d217186bae6128bf61b}{%
+           giveni={D\bibinitperiod\bibinitdelim T\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=1d44b053f0953d217186bae6128bf61b}{%
            family={Harrison},
            familyi={H\bibinitperiod},
            given={John},
-           giveni={J\bibinitperiod}}}%
-        {{hash=9a325d4fb21ac545e46f734babdd0bfa}{%
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=9a325d4fb21ac545e46f734babdd0bfa}{%
            family={Hoang},
            familyi={H\bibinitperiod},
            given={Truong\bibnamedelima Le},
-           giveni={T\bibinitperiod\bibinitdelim L\bibinitperiod}}}%
-        {{hash=10a85b654f1367541fab90b023304aba}{%
+           giveni={T\bibinitperiod\bibinitdelim L\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=10a85b654f1367541fab90b023304aba}{%
            family={Kaliszyk},
            familyi={K\bibinitperiod},
            given={Cezary},
-           giveni={C\bibinitperiod}}}%
-        {{hash=19567e921db6b68c86394bcc52711e13}{%
+           giveni={C\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=19567e921db6b68c86394bcc52711e13}{%
            family={Magron},
            familyi={M\bibinitperiod},
            given={Victor},
-           giveni={V\bibinitperiod}}}%
-        {{hash=dc9acf483d01341ec403e774fbb19c85}{%
+           giveni={V\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=dc9acf483d01341ec403e774fbb19c85}{%
            family={McLaughlin},
            familyi={M\bibinitperiod},
            given={Sean},
-           giveni={S\bibinitperiod}}}%
-        {{hash=7ee583be359f308d4a8bda24396d7c04}{%
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=7ee583be359f308d4a8bda24396d7c04}{%
            family={Nguyen},
            familyi={N\bibinitperiod},
            given={Thang\bibnamedelima Tat},
-           giveni={T\bibinitperiod\bibinitdelim T\bibinitperiod}}}%
-        {{hash=ac8c2ee2323af0180db3d295fd1e264c}{%
+           giveni={T\bibinitperiod\bibinitdelim T\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=ac8c2ee2323af0180db3d295fd1e264c}{%
            family={Nguyen},
            familyi={N\bibinitperiod},
            given={Truong\bibnamedelima Quang},
-           giveni={T\bibinitperiod\bibinitdelim Q\bibinitperiod}}}%
-        {{hash=a41b38c2580f5bb8c574d84f66e0856a}{%
+           giveni={T\bibinitperiod\bibinitdelim Q\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=a41b38c2580f5bb8c574d84f66e0856a}{%
            family={Nipkow},
            familyi={N\bibinitperiod},
            given={Tobias},
-           giveni={T\bibinitperiod}}}%
-        {{hash=dcf5964722780b65070d3265878421e4}{%
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=dcf5964722780b65070d3265878421e4}{%
            family={Obua},
            familyi={O\bibinitperiod},
            given={Steven},
-           giveni={S\bibinitperiod}}}%
-        {{hash=676db95d0a6d74833bb2daa8ab0440f8}{%
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=676db95d0a6d74833bb2daa8ab0440f8}{%
            family={Pleso},
            familyi={P\bibinitperiod},
            given={Joseph},
-           giveni={J\bibinitperiod}}}%
-        {{hash=1e6f207cdb337d5818e73e3a9c177053}{%
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=1e6f207cdb337d5818e73e3a9c177053}{%
            family={Rute},
            familyi={R\bibinitperiod},
            given={Jason},
-           giveni={J\bibinitperiod}}}%
-        {{hash=53e6fd1d1c303424d69c7e7fb550440d}{%
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=53e6fd1d1c303424d69c7e7fb550440d}{%
            family={Solovyev},
            familyi={S\bibinitperiod},
            given={Alexey},
-           giveni={A\bibinitperiod}}}%
-        {{hash=a9e36c6f1f9abc9e35ba50fdeaf36a63}{%
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=a9e36c6f1f9abc9e35ba50fdeaf36a63}{%
            family={Ta},
            familyi={T\bibinitperiod},
            given={An\bibnamedelima Hoai\bibnamedelima Thi},
-           giveni={A\bibinitperiod\bibinitdelim H\bibinitperiod\bibinitdelim T\bibinitperiod}}}%
-        {{hash=982ed3604c1af63fe15680d1b9540dba}{%
+           giveni={A\bibinitperiod\bibinitdelim H\bibinitperiod\bibinitdelim T\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=982ed3604c1af63fe15680d1b9540dba}{%
            family={Tran},
            familyi={T\bibinitperiod},
            given={Trung\bibnamedelima Nam},
-           giveni={T\bibinitperiod\bibinitdelim N\bibinitperiod}}}%
-        {{hash=3220f49f4c404d3b660a3d96746016bc}{%
+           giveni={T\bibinitperiod\bibinitdelim N\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=3220f49f4c404d3b660a3d96746016bc}{%
            family={Trieu},
            familyi={T\bibinitperiod},
            given={Diep\bibnamedelima Thi},
-           giveni={D\bibinitperiod\bibinitdelim T\bibinitperiod}}}%
-        {{hash=49a65895d90339355469ad0192f7f146}{%
+           giveni={D\bibinitperiod\bibinitdelim T\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=49a65895d90339355469ad0192f7f146}{%
            family={Urban},
            familyi={U\bibinitperiod},
            given={Josef},
-           giveni={J\bibinitperiod}}}%
-        {{hash=4b68ca212c4700df84865f568d4d6685}{%
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=4b68ca212c4700df84865f568d4d6685}{%
            family={Vu},
            familyi={V\bibinitperiod},
            given={Ky\bibnamedelima Khac},
-           giveni={K\bibinitperiod\bibinitdelim K\bibinitperiod}}}%
-        {{hash=3a2cd684583e14a0cc556549bc72e85c}{%
+           giveni={K\bibinitperiod\bibinitdelim K\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=3a2cd684583e14a0cc556549bc72e85c}{%
            family={Zumkeller},
            familyi={Z\bibinitperiod},
            given={Roland},
-           giveni={R\bibinitperiod}}}%
+           giveni={R\bibinitperiod},
+           givenun=0}}%
       }
       \strng{namehash}{3090335343f7d70b00f0abd4d91936c3}
       \strng{fullhash}{e1c3e797f057e3483d24849021407b55}
@@ -564,6 +626,8 @@
       \strng{authorfullhash}{e1c3e797f057e3483d24849021407b55}
       \field{sortinit}{H}
       \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{eprintclass}{math.MG}
@@ -582,18 +646,21 @@
     \endentry
     \entry{flypitch}{inproceedings}{}
       \name{author}{2}{}{%
-        {{hash=9b8689c0a1d3ea61445d35eb4e71843a}{%
+        {{un=0,uniquepart=base,hash=9b8689c0a1d3ea61445d35eb4e71843a}{%
            family={Han},
            familyi={H\bibinitperiod},
            given={Jesse\bibnamedelima Michael},
-           giveni={J\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
-        {{hash=241ef3eeb33e764da3482b74049133fa}{%
+           giveni={J\bibinitperiod\bibinitdelim M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=241ef3eeb33e764da3482b74049133fa}{%
            family={Doorn},
            familyi={D\bibinitperiod},
            given={Floris},
            giveni={F\bibinitperiod},
+           givenun=0,
            prefix={van},
-           prefixi={v\bibinitperiod}}}%
+           prefixi={v\bibinitperiod},
+           prefixun=0}}%
       }
       \strng{namehash}{dab5687bd36a2d042332bb5b868163c5}
       \strng{fullhash}{dab5687bd36a2d042332bb5b868163c5}
@@ -603,24 +670,51 @@
       \strng{authorfullhash}{dab5687bd36a2d042332bb5b868163c5}
       \field{sortinit}{H}
       \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{booktitle}{Proceedings of the 9th {ACM} {SIGPLAN} International Conference on Certified Programs and Proofs, {CPP} 2020, New Orleans, LA, {USA}, January 20-21, 2020}
       \field{title}{A formal proof of the independence of the continuum hypothesis}
       \field{year}{2020}
     \endentry
+    \entry{hol_light_toppage}{misc}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=6596d409238e6fefae08201adb6f2471}{%
+           family={{HOL Light Development Team}},
+           familyi={H\bibinitperiod}}}%
+      }
+      \strng{namehash}{6596d409238e6fefae08201adb6f2471}
+      \strng{fullhash}{6596d409238e6fefae08201adb6f2471}
+      \strng{bibnamehash}{6596d409238e6fefae08201adb6f2471}
+      \strng{authorbibnamehash}{6596d409238e6fefae08201adb6f2471}
+      \strng{authornamehash}{6596d409238e6fefae08201adb6f2471}
+      \strng{authorfullhash}{6596d409238e6fefae08201adb6f2471}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{https://www.cl.cam.ac.uk/~jrh13/hol-light/}}
+      \field{note}{Accessed: 2024-12-23}
+      \field{title}{HOL Light}
+      \field{year}{1996-2024}
+    \endentry
     \entry{NF_consistency}{misc}{}
       \name{author}{2}{}{%
-        {{hash=432d6d9b1e5ece343f85180d2cd1639f}{%
+        {{un=0,uniquepart=base,hash=432d6d9b1e5ece343f85180d2cd1639f}{%
            family={Holmes},
            familyi={H\bibinitperiod},
            given={M.\bibnamedelimi Randall},
-           giveni={M\bibinitperiod\bibinitdelim R\bibinitperiod}}}%
-        {{hash=82c6c2ec5811ce45b4318d5d282eb76c}{%
+           giveni={M\bibinitperiod\bibinitdelim R\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=82c6c2ec5811ce45b4318d5d282eb76c}{%
            family={Wilshaw},
            familyi={W\bibinitperiod},
            given={Sky},
-           giveni={S\bibinitperiod}}}%
+           giveni={S\bibinitperiod},
+           givenun=0}}%
       }
       \strng{namehash}{99623369830fdaa0006182ad1379fc10}
       \strng{fullhash}{99623369830fdaa0006182ad1379fc10}
@@ -630,6 +724,8 @@
       \strng{authorfullhash}{99623369830fdaa0006182ad1379fc10}
       \field{sortinit}{H}
       \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{NF is Consistent}
@@ -638,13 +734,37 @@
       \verb arXiv:1503.01406
       \endverb
     \endentry
+    \entry{isabelle_toppage}{misc}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=c50b6b93fa060895b0b2ae971bd403dc}{%
+           family={{Isabelle Development Team}},
+           familyi={I\bibinitperiod}}}%
+      }
+      \strng{namehash}{c50b6b93fa060895b0b2ae971bd403dc}
+      \strng{fullhash}{c50b6b93fa060895b0b2ae971bd403dc}
+      \strng{bibnamehash}{c50b6b93fa060895b0b2ae971bd403dc}
+      \strng{authorbibnamehash}{c50b6b93fa060895b0b2ae971bd403dc}
+      \strng{authornamehash}{c50b6b93fa060895b0b2ae971bd403dc}
+      \strng{authorfullhash}{c50b6b93fa060895b0b2ae971bd403dc}
+      \field{sortinit}{I}
+      \field{sortinithash}{8d291c51ee89b6cd86bf5379f0b151d8}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{https://isabelle.in.tum.de/}}
+      \field{note}{Accessed: 2024-12-23}
+      \field{title}{Isabelle}
+      \field{year}{1994-2024}
+    \endentry
     \entry{jech_set_theory}{book}{}
       \name{author}{1}{}{%
-        {{hash=1ea51a62907e839b389e5fd269d9ae60}{%
+        {{un=0,uniquepart=base,hash=1ea51a62907e839b389e5fd269d9ae60}{%
            family={Jech},
            familyi={J\bibinitperiod},
            given={Thomas\bibnamedelima J},
-           giveni={T\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+           giveni={T\bibinitperiod\bibinitdelim J\bibinitperiod},
+           givenun=0}}%
       }
       \list{language}{1}{%
         {en}%
@@ -664,6 +784,8 @@
       \field{extraname}{1}
       \field{sortinit}{J}
       \field{sortinithash}{b2f54a9081ace9966a7cb9413811edb4}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{edition}{3}
@@ -674,11 +796,12 @@
     \endentry
     \entry{jech_AC}{book}{}
       \name{author}{1}{}{%
-        {{hash=1ea51a62907e839b389e5fd269d9ae60}{%
+        {{un=0,uniquepart=base,hash=1ea51a62907e839b389e5fd269d9ae60}{%
            family={Jech},
            familyi={J\bibinitperiod},
            given={Thomas\bibnamedelima J},
-           giveni={T\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+           giveni={T\bibinitperiod\bibinitdelim J\bibinitperiod},
+           givenun=0}}%
       }
       \list{location}{1}{%
         {Mineola, NY}%
@@ -695,6 +818,8 @@
       \field{extraname}{2}
       \field{sortinit}{J}
       \field{sortinithash}{b2f54a9081ace9966a7cb9413811edb4}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{month}{7}
@@ -704,21 +829,24 @@
     \endentry
     \entry{seL4}{article}{}
       \name{author}{3}{}{%
-        {{hash=199a8abce7ff51f1ce18d08d6910be68}{%
+        {{un=0,uniquepart=base,hash=199a8abce7ff51f1ce18d08d6910be68}{%
            family={Klein},
            familyi={K\bibinitperiod},
            given={Gerwin},
-           giveni={G\bibinitperiod}}}%
-        {{hash=4899d1b6699f1281f9779df5e94d56e6}{%
+           giveni={G\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=4899d1b6699f1281f9779df5e94d56e6}{%
            family={Derrin},
            familyi={D\bibinitperiod},
            given={Philip},
-           giveni={P\bibinitperiod}}}%
-        {{hash=fccc24f8be7baf0fc4b221f306006e22}{%
+           giveni={P\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=fccc24f8be7baf0fc4b221f306006e22}{%
            family={Elphinstone},
            familyi={E\bibinitperiod},
            given={Kevin},
-           giveni={K\bibinitperiod}}}%
+           giveni={K\bibinitperiod},
+           givenun=0}}%
       }
       \list{location}{1}{%
         {New York, NY, USA}%
@@ -734,6 +862,8 @@
       \strng{authorfullhash}{42949e3c0a0b6519e1d94e3647cbf794}
       \field{sortinit}{K}
       \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{abstract}{We report on our experience using Haskell as an executable specification language in the formal verification of the seL4 microkernel. The verification connects an abstract operational specification in the theorem prover Isabelle/HOL to a C implementation of the microkernel. We describe how this project differs from other efforts, and examine the effect of using Haskell in a large-scale formal verification. The kernel comprises 8,700 lines of C code; the verification more than 150,000 lines of proof script.}
@@ -759,11 +889,12 @@
     \endentry
     \entry{kunen2011}{book}{}
       \name{author}{1}{}{%
-        {{hash=9bbbc8091281c78067693611cdfae8a1}{%
+        {{un=0,uniquepart=base,hash=9bbbc8091281c78067693611cdfae8a1}{%
            family={Kunen},
            familyi={K\bibinitperiod},
            given={Kenneth},
-           giveni={K\bibinitperiod}}}%
+           giveni={K\bibinitperiod},
+           givenun=0}}%
       }
       \list{location}{1}{%
         {London, England}%
@@ -779,15 +910,42 @@
       \strng{authorfullhash}{9bbbc8091281c78067693611cdfae8a1}
       \field{sortinit}{K}
       \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{month}{11}
       \field{title}{Set Theory}
       \field{year}{2011}
     \endentry
+    \entry{lean_toppage}{misc}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=bb90c737e0f91718390f806ec557af44}{%
+           family={{Lean Community}},
+           familyi={L\bibinitperiod}}}%
+      }
+      \strng{namehash}{bb90c737e0f91718390f806ec557af44}
+      \strng{fullhash}{bb90c737e0f91718390f806ec557af44}
+      \strng{bibnamehash}{bb90c737e0f91718390f806ec557af44}
+      \strng{authorbibnamehash}{bb90c737e0f91718390f806ec557af44}
+      \strng{authornamehash}{bb90c737e0f91718390f806ec557af44}
+      \strng{authorfullhash}{bb90c737e0f91718390f806ec557af44}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{https://leanprover.github.io/}}
+      \field{note}{Accessed: 2024-12-23}
+      \field{title}{Lean}
+      \field{year}{2015-2024}
+    \endentry
     \entry{karagila}{misc}{}
       \field{sortinit}{L}
       \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
       \field{labeltitlesource}{title}
       \field{note}{Accessed: 2024-10-29}
       \field{title}{Lecture Notes: Forcing \& Symmetric Extensions}
@@ -801,11 +959,12 @@
     \endentry
     \entry{compcert}{article}{}
       \name{author}{1}{}{%
-        {{hash=437df325bdf126ab15c356676db2c0d5}{%
+        {{un=0,uniquepart=base,hash=437df325bdf126ab15c356676db2c0d5}{%
            family={Leroy},
            familyi={L\bibinitperiod},
            given={Xavier},
-           giveni={X\bibinitperiod}}}%
+           giveni={X\bibinitperiod},
+           givenun=0}}%
       }
       \list{location}{1}{%
         {New York, NY, USA}%
@@ -821,6 +980,8 @@
       \strng{authorfullhash}{437df325bdf126ab15c356676db2c0d5}
       \field{sortinit}{L}
       \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{abstract}{This paper reports on the development and formal verification (proof of semantic preservation) of CompCert, a compiler from Clight (a large subset of the C programming language) to PowerPC assembly code, using the Coq proof assistant both for programming the compiler and for proving its correctness. Such a verified compiler is useful in the context of critical software and its formal verification: the verification of the compiler guarantees that the safety properties proved on the source code hold for the executable compiled code as well.}
@@ -845,31 +1006,36 @@
     \endentry
     \entry{survey_theorem_provers}{article}{}
       \name{author}{5}{}{%
-        {{hash=8ead3932ae355e549b72c3a03235afa3}{%
+        {{un=0,uniquepart=base,hash=8ead3932ae355e549b72c3a03235afa3}{%
            family={Nawaz},
            familyi={N\bibinitperiod},
            given={M.\bibnamedelimi Saqib},
-           giveni={M\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
-        {{hash=5fa41355949873a8210f213169da72a0}{%
+           giveni={M\bibinitperiod\bibinitdelim S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=5fa41355949873a8210f213169da72a0}{%
            family={Malik},
            familyi={M\bibinitperiod},
            given={Moin},
-           giveni={M\bibinitperiod}}}%
-        {{hash=cf1f0547c288eff0857572dcc12516bb}{%
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=cf1f0547c288eff0857572dcc12516bb}{%
            family={Li},
            familyi={L\bibinitperiod},
            given={Yi},
-           giveni={Y\bibinitperiod}}}%
-        {{hash=7b8f28a51717b34b499e8a1ffca1df90}{%
+           giveni={Y\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=7b8f28a51717b34b499e8a1ffca1df90}{%
            family={Sun},
            familyi={S\bibinitperiod},
            given={Meng},
-           giveni={M\bibinitperiod}}}%
-        {{hash=6c414750742dbde13e2c2dc5a2a58506}{%
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=6c414750742dbde13e2c2dc5a2a58506}{%
            family={Lali},
            familyi={L\bibinitperiod},
            given={Muhammad\bibnamedelimb Ikram\bibnamedelima Ullah},
-           giveni={M\bibinitperiod\bibinitdelim I\bibinitperiod\bibinitdelim U\bibinitperiod}}}%
+           giveni={M\bibinitperiod\bibinitdelim I\bibinitperiod\bibinitdelim U\bibinitperiod},
+           givenun=0}}%
       }
       \strng{namehash}{450f541cbccfa4428108c4e37f3188a2}
       \strng{fullhash}{893f93910fab49da9dccecaad70eb797}
@@ -879,6 +1045,8 @@
       \strng{authorfullhash}{893f93910fab49da9dccecaad70eb797}
       \field{sortinit}{N}
       \field{sortinithash}{22369a73d5f88983a108b63f07f37084}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{eprinttype}{arXiv}
@@ -896,13 +1064,55 @@
       \verb http://arxiv.org/abs/1912.03028
       \endverb
     \endentry
-    \entry{paulson_datatype_impl}{inproceedings}{}
+    \entry{paulson_1986}{article}{}
       \name{author}{1}{}{%
-        {{hash=3c148717c5f0355213ec4ed493cbd64e}{%
+        {{un=1,uniquepart=given,hash=3c148717c5f0355213ec4ed493cbd64e}{%
            family={Paulson},
            familyi={P\bibinitperiod},
            given={Lawrence\bibnamedelima C.},
-           giveni={L\bibinitperiod\bibinitdelim C\bibinitperiod}}}%
+           giveni={L\bibinitperiod\bibinitdelim C\bibinitperiod},
+           givenun=1}}%
+      }
+      \strng{namehash}{3c148717c5f0355213ec4ed493cbd64e}
+      \strng{fullhash}{3c148717c5f0355213ec4ed493cbd64e}
+      \strng{bibnamehash}{3c148717c5f0355213ec4ed493cbd64e}
+      \strng{authorbibnamehash}{3c148717c5f0355213ec4ed493cbd64e}
+      \strng{authornamehash}{3c148717c5f0355213ec4ed493cbd64e}
+      \strng{authorfullhash}{3c148717c5f0355213ec4ed493cbd64e}
+      \field{extraname}{1}
+      \field{sortinit}{P}
+      \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{An interactive theorem prover, Isabelle, is under development. In lcf, each inference rule is represented by one function for forwards proof and another (a tactic) for backwards proof. In Isabelle, each inference rule is represented by a Horn clause. Resolution gives both forwards and backwards proof, supporting a large class of logics. Isabelle has been used to prove theorems in Martin-Löf's constructive type theory. Quantifiers pose several difficulties: substitution, bound variables, Skolemization. Isabelle's representation of logical syntax is the typed λ-calculus, requiring higher-order unification. It may have potential for logic programming. Depth-first subgoaling along inference rules constitutes a higher-order PROLOG.}
+      \field{issn}{0743-1066}
+      \field{journaltitle}{The Journal of Logic Programming}
+      \field{number}{3}
+      \field{title}{Natural deduction as higher-order resolution}
+      \field{volume}{3}
+      \field{year}{1986}
+      \field{pages}{237\bibrangedash 258}
+      \range{pages}{22}
+      \verb{doi}
+      \verb https://doi.org/10.1016/0743-1066(86)90015-4
+      \endverb
+      \verb{urlraw}
+      \verb https://www.sciencedirect.com/science/article/pii/0743106686900154
+      \endverb
+      \verb{url}
+      \verb https://www.sciencedirect.com/science/article/pii/0743106686900154
+      \endverb
+    \endentry
+    \entry{paulson_datatype_impl}{inproceedings}{}
+      \name{author}{1}{}{%
+        {{un=1,uniquepart=given,hash=3c148717c5f0355213ec4ed493cbd64e}{%
+           family={Paulson},
+           familyi={P\bibinitperiod},
+           given={Lawrence\bibnamedelima C.},
+           giveni={L\bibinitperiod\bibinitdelim C\bibinitperiod},
+           givenun=1}}%
       }
       \name{editor}{1}{}{%
         {{hash=3b21bf8aebc65b49921c7d76fc66c90a}{%
@@ -926,9 +1136,11 @@
       \strng{editorbibnamehash}{3b21bf8aebc65b49921c7d76fc66c90a}
       \strng{editornamehash}{3b21bf8aebc65b49921c7d76fc66c90a}
       \strng{editorfullhash}{3b21bf8aebc65b49921c7d76fc66c90a}
-      \field{extraname}{1}
+      \field{extraname}{2}
       \field{sortinit}{P}
       \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{abstract}{This paper presents a fixedpoint approach to inductive definitions. Instead of using a syntactic test such as `strictly positive,' the approach lets definitions involve any operators that have been proved monotone. It is conceptually simple, which has allowed the easy implementation of mutual recursion and other conveniences. It also handles coinductive definitions: simply replace the least fixedpoint by a greatest fixedpoint. This represents the first automated support for coinductive definitions.}
@@ -939,13 +1151,56 @@
       \field{pages}{148\bibrangedash 161}
       \range{pages}{14}
     \endentry
-    \entry{alexiandria}{inproceedings}{}
+    \entry{paulson_reflection}{inbook}{}
       \name{author}{1}{}{%
-        {{hash=3c148717c5f0355213ec4ed493cbd64e}{%
+        {{un=1,uniquepart=given,hash=3c148717c5f0355213ec4ed493cbd64e}{%
            family={Paulson},
            familyi={P\bibinitperiod},
            given={Lawrence\bibnamedelima C.},
-           giveni={L\bibinitperiod\bibinitdelim C\bibinitperiod}}}%
+           giveni={L\bibinitperiod\bibinitdelim C\bibinitperiod},
+           givenun=1}}%
+      }
+      \list{publisher}{1}{%
+        {Springer Berlin Heidelberg}%
+      }
+      \strng{namehash}{3c148717c5f0355213ec4ed493cbd64e}
+      \strng{fullhash}{3c148717c5f0355213ec4ed493cbd64e}
+      \strng{bibnamehash}{3c148717c5f0355213ec4ed493cbd64e}
+      \strng{authorbibnamehash}{3c148717c5f0355213ec4ed493cbd64e}
+      \strng{authornamehash}{3c148717c5f0355213ec4ed493cbd64e}
+      \strng{authorfullhash}{3c148717c5f0355213ec4ed493cbd64e}
+      \field{extraname}{3}
+      \field{sortinit}{P}
+      \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Automated Deduction—CADE-18}
+      \field{isbn}{9783540456209}
+      \field{issn}{0302-9743}
+      \field{title}{The Reflection Theorem: A Study in Meta-theoretic Reasoning}
+      \field{year}{2002}
+      \field{pages}{377\bibrangedash 391}
+      \range{pages}{15}
+      \verb{doi}
+      \verb 10.1007/3-540-45620-1_31
+      \endverb
+      \verb{urlraw}
+      \verb http://dx.doi.org/10.1007/3-540-45620-1_31
+      \endverb
+      \verb{url}
+      \verb http://dx.doi.org/10.1007/3-540-45620-1_31
+      \endverb
+    \endentry
+    \entry{alexiandria}{inproceedings}{}
+      \name{author}{1}{}{%
+        {{un=1,uniquepart=given,hash=3c148717c5f0355213ec4ed493cbd64e}{%
+           family={Paulson},
+           familyi={P\bibinitperiod},
+           given={Lawrence\bibnamedelima C.},
+           giveni={L\bibinitperiod\bibinitdelim C\bibinitperiod},
+           givenun=1}}%
       }
       \name{editor}{2}{}{%
         {{hash=f5f465d394b1417f867cead0b30775e6}{%
@@ -974,9 +1229,11 @@
       \strng{editorbibnamehash}{6ae57761145ea7b8d0cf6daf5e81c8a8}
       \strng{editornamehash}{6ae57761145ea7b8d0cf6daf5e81c8a8}
       \strng{editorfullhash}{6ae57761145ea7b8d0cf6daf5e81c8a8}
-      \field{extraname}{2}
+      \field{extraname}{4}
       \field{sortinit}{P}
       \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{abstract}{ALEXANDRIA is an ERC-funded project that started in 2017, with the aim of bringing formal verification to mathematics. The past six years have seen great strides in the formalisation of mathematics and also in some relevant technologies, above all machine learning. Six years of intensive formalisation activity seem to show that even the most advanced results, drawing on multiple fields of mathematics, can be formalised using the tools available today.}
@@ -987,90 +1244,14 @@
       \field{pages}{3\bibrangedash 15}
       \range{pages}{13}
     \endentry
-    \entry{paulson_1986}{article}{}
-      \name{author}{1}{}{%
-        {{hash=3c148717c5f0355213ec4ed493cbd64e}{%
-           family={Paulson},
-           familyi={P\bibinitperiod},
-           given={Lawrence\bibnamedelima C.},
-           giveni={L\bibinitperiod\bibinitdelim C\bibinitperiod}}}%
-      }
-      \strng{namehash}{3c148717c5f0355213ec4ed493cbd64e}
-      \strng{fullhash}{3c148717c5f0355213ec4ed493cbd64e}
-      \strng{bibnamehash}{3c148717c5f0355213ec4ed493cbd64e}
-      \strng{authorbibnamehash}{3c148717c5f0355213ec4ed493cbd64e}
-      \strng{authornamehash}{3c148717c5f0355213ec4ed493cbd64e}
-      \strng{authorfullhash}{3c148717c5f0355213ec4ed493cbd64e}
-      \field{extraname}{3}
-      \field{sortinit}{P}
-      \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{abstract}{An interactive theorem prover, Isabelle, is under development. In lcf, each inference rule is represented by one function for forwards proof and another (a tactic) for backwards proof. In Isabelle, each inference rule is represented by a Horn clause. Resolution gives both forwards and backwards proof, supporting a large class of logics. Isabelle has been used to prove theorems in Martin-Löf's constructive type theory. Quantifiers pose several difficulties: substitution, bound variables, Skolemization. Isabelle's representation of logical syntax is the typed λ-calculus, requiring higher-order unification. It may have potential for logic programming. Depth-first subgoaling along inference rules constitutes a higher-order PROLOG.}
-      \field{issn}{0743-1066}
-      \field{journaltitle}{The Journal of Logic Programming}
-      \field{number}{3}
-      \field{title}{Natural deduction as higher-order resolution}
-      \field{volume}{3}
-      \field{year}{1986}
-      \field{pages}{237\bibrangedash 258}
-      \range{pages}{22}
-      \verb{doi}
-      \verb https://doi.org/10.1016/0743-1066(86)90015-4
-      \endverb
-      \verb{urlraw}
-      \verb https://www.sciencedirect.com/science/article/pii/0743106686900154
-      \endverb
-      \verb{url}
-      \verb https://www.sciencedirect.com/science/article/pii/0743106686900154
-      \endverb
-    \endentry
-    \entry{paulson_reflection}{inbook}{}
-      \name{author}{1}{}{%
-        {{hash=3c148717c5f0355213ec4ed493cbd64e}{%
-           family={Paulson},
-           familyi={P\bibinitperiod},
-           given={Lawrence\bibnamedelima C.},
-           giveni={L\bibinitperiod\bibinitdelim C\bibinitperiod}}}%
-      }
-      \list{publisher}{1}{%
-        {Springer Berlin Heidelberg}%
-      }
-      \strng{namehash}{3c148717c5f0355213ec4ed493cbd64e}
-      \strng{fullhash}{3c148717c5f0355213ec4ed493cbd64e}
-      \strng{bibnamehash}{3c148717c5f0355213ec4ed493cbd64e}
-      \strng{authorbibnamehash}{3c148717c5f0355213ec4ed493cbd64e}
-      \strng{authornamehash}{3c148717c5f0355213ec4ed493cbd64e}
-      \strng{authorfullhash}{3c148717c5f0355213ec4ed493cbd64e}
-      \field{extraname}{4}
-      \field{sortinit}{P}
-      \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{booktitle}{Automated Deduction—CADE-18}
-      \field{isbn}{9783540456209}
-      \field{issn}{0302-9743}
-      \field{title}{The Reflection Theorem: A Study in Meta-theoretic Reasoning}
-      \field{year}{2002}
-      \field{pages}{377\bibrangedash 391}
-      \range{pages}{15}
-      \verb{doi}
-      \verb 10.1007/3-540-45620-1_31
-      \endverb
-      \verb{urlraw}
-      \verb http://dx.doi.org/10.1007/3-540-45620-1_31
-      \endverb
-      \verb{url}
-      \verb http://dx.doi.org/10.1007/3-540-45620-1_31
-      \endverb
-    \endentry
     \entry{paulson_AC_consistency}{inbook}{}
       \name{author}{1}{}{%
-        {{hash=3c148717c5f0355213ec4ed493cbd64e}{%
+        {{un=1,uniquepart=given,hash=3c148717c5f0355213ec4ed493cbd64e}{%
            family={Paulson},
            familyi={P\bibinitperiod},
            given={Lawrence\bibnamedelima C.},
-           giveni={L\bibinitperiod\bibinitdelim C\bibinitperiod}}}%
+           giveni={L\bibinitperiod\bibinitdelim C\bibinitperiod},
+           givenun=1}}%
       }
       \list{publisher}{1}{%
         {Springer Berlin Heidelberg}%
@@ -1084,6 +1265,7 @@
       \field{extraname}{5}
       \field{sortinit}{P}
       \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
+      \field{labeldatesource}{nodate}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{booktitle}{Logic and Theory of Algorithms}
@@ -1103,16 +1285,18 @@
     \endentry
     \entry{paulson_cardinal_AC}{article}{}
       \name{author}{2}{}{%
-        {{hash=3c148717c5f0355213ec4ed493cbd64e}{%
+        {{un=1,uniquepart=given,hash=3c148717c5f0355213ec4ed493cbd64e}{%
            family={Paulson},
            familyi={P\bibinitperiod},
            given={LawrenceC.},
-           giveni={L\bibinitperiod}}}%
-        {{hash=3f1d4ac2b0894338ad1c847a2967fdba}{%
+           giveni={L\bibinitperiod},
+           givenun=1}}%
+        {{un=0,uniquepart=base,hash=3f1d4ac2b0894338ad1c847a2967fdba}{%
            family={Grabczewski},
            familyi={G\bibinitperiod},
            given={Krzysztof},
-           giveni={K\bibinitperiod}}}%
+           giveni={K\bibinitperiod},
+           givenun=0}}%
       }
       \list{publisher}{2}{%
         {Springer Science}%
@@ -1126,6 +1310,8 @@
       \strng{authorfullhash}{f1ab39614df9f8944dfca821940d4896}
       \field{sortinit}{P}
       \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{issn}{1573-0670}
@@ -1147,31 +1333,36 @@
     \endentry
     \entry{survey_proof_assistants_program_verification}{article}{}
       \name{author}{5}{}{%
-        {{hash=49dba801877e578ded10db9d08f0e5e2}{%
+        {{un=0,uniquepart=base,hash=49dba801877e578ded10db9d08f0e5e2}{%
            family={Ringer},
            familyi={R\bibinitperiod},
            given={Talia},
-           giveni={T\bibinitperiod}}}%
-        {{hash=9310691fdab7f6be3f4acabf6d179449}{%
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=9310691fdab7f6be3f4acabf6d179449}{%
            family={Palmskog},
            familyi={P\bibinitperiod},
            given={Karl},
-           giveni={K\bibinitperiod}}}%
-        {{hash=219ce47ae5465bf8aff4ffe6dd07349c}{%
+           giveni={K\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=219ce47ae5465bf8aff4ffe6dd07349c}{%
            family={Sergey},
            familyi={S\bibinitperiod},
            given={Ilya},
-           giveni={I\bibinitperiod}}}%
-        {{hash=ebea614788c0ded22f0fae688f5f235c}{%
+           giveni={I\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=ebea614788c0ded22f0fae688f5f235c}{%
            family={Gligoric},
            familyi={G\bibinitperiod},
            given={Milos},
-           giveni={M\bibinitperiod}}}%
-        {{hash=a69fd5ea4c78e4b10502a7611d5a8dc0}{%
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=a69fd5ea4c78e4b10502a7611d5a8dc0}{%
            family={Tatlock},
            familyi={T\bibinitperiod},
            given={Zachary},
-           giveni={Z\bibinitperiod}}}%
+           giveni={Z\bibinitperiod},
+           givenun=0}}%
       }
       \list{location}{1}{%
         {Hanover, MA, USA}%
@@ -1187,6 +1378,8 @@
       \strng{authorfullhash}{61243aeab61f8760b420a952513e56e1}
       \field{sortinit}{R}
       \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{abstract}{Development of formal proofs of correctness of programs can increase actual and perceived reliability and facilitate better understanding of program specifications and their underlying assumptions. Tools supporting such development have been available for over 40 years, but have only recently seen wide practical use. Projects based on construction of machine-checked formal proofs are now reaching an unprecedented scale, comparable to large software projects, which leads to new challenges in proof development and maintenance. Despite its increasing importance, the field of proof engineering is seldom considered in its own right; related theories, techniques, and tools span many fields and venues. This survey of the literature presents a holistic understanding of proof engineering for program correctness, covering impact in practice, foundations, proof automation, proof organization, and practical proof development.}
@@ -1209,101 +1402,64 @@
       \verb https://doi.org/10.1561/2500000045
       \endverb
     \endentry
-    \entry{agda_toppage}{misc}{}
-      \name{author}{1}{}{%
-        {{hash=ace8729c7b8c4555bcded660f3a49f2d}{%
-           family={Team},
-           familyi={T\bibinitperiod},
-           given={Agda\bibnamedelima Development},
-           giveni={A\bibinitperiod\bibinitdelim D\bibinitperiod}}}%
-      }
-      \strng{namehash}{ace8729c7b8c4555bcded660f3a49f2d}
-      \strng{fullhash}{ace8729c7b8c4555bcded660f3a49f2d}
-      \strng{bibnamehash}{ace8729c7b8c4555bcded660f3a49f2d}
-      \strng{authorbibnamehash}{ace8729c7b8c4555bcded660f3a49f2d}
-      \strng{authornamehash}{ace8729c7b8c4555bcded660f3a49f2d}
-      \strng{authorfullhash}{ace8729c7b8c4555bcded660f3a49f2d}
-      \field{extraname}{1}
-      \field{sortinit}{T}
-      \field{sortinithash}{9af77f0292593c26bde9a56e688eaee9}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{howpublished}{\url{https://wiki.portal.chalmers.se/agda/}}
-      \field{note}{Accessed: 2024-12-23}
-      \field{title}{Agda}
-      \field{year}{2005-2024}
-    \endentry
-    \entry{hol_light_toppage}{misc}{}
-      \name{author}{1}{}{%
-        {{hash=e767250c6c98dba3c0b2943f701d069d}{%
-           family={Team},
-           familyi={T\bibinitperiod},
-           given={HOL\bibnamedelimb Light\bibnamedelima Development},
-           giveni={H\bibinitperiod\bibinitdelim L\bibinitperiod\bibinitdelim D\bibinitperiod}}}%
-      }
-      \strng{namehash}{e767250c6c98dba3c0b2943f701d069d}
-      \strng{fullhash}{e767250c6c98dba3c0b2943f701d069d}
-      \strng{bibnamehash}{e767250c6c98dba3c0b2943f701d069d}
-      \strng{authorbibnamehash}{e767250c6c98dba3c0b2943f701d069d}
-      \strng{authornamehash}{e767250c6c98dba3c0b2943f701d069d}
-      \strng{authorfullhash}{e767250c6c98dba3c0b2943f701d069d}
-      \field{extraname}{2}
-      \field{sortinit}{T}
-      \field{sortinithash}{9af77f0292593c26bde9a56e688eaee9}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{howpublished}{\url{https://www.cl.cam.ac.uk/~jrh13/hol-light/}}
-      \field{note}{Accessed: 2024-12-23}
-      \field{title}{HOL Light}
-      \field{year}{1996-2024}
-    \endentry
-    \entry{isabelle_toppage}{misc}{}
-      \name{author}{1}{}{%
-        {{hash=e907e0705cef553a40389c6c61b1f957}{%
-           family={Team},
-           familyi={T\bibinitperiod},
-           given={Isabelle\bibnamedelima Development},
-           giveni={I\bibinitperiod\bibinitdelim D\bibinitperiod}}}%
-      }
-      \strng{namehash}{e907e0705cef553a40389c6c61b1f957}
-      \strng{fullhash}{e907e0705cef553a40389c6c61b1f957}
-      \strng{bibnamehash}{e907e0705cef553a40389c6c61b1f957}
-      \strng{authorbibnamehash}{e907e0705cef553a40389c6c61b1f957}
-      \strng{authornamehash}{e907e0705cef553a40389c6c61b1f957}
-      \strng{authorfullhash}{e907e0705cef553a40389c6c61b1f957}
-      \field{extraname}{3}
-      \field{sortinit}{T}
-      \field{sortinithash}{9af77f0292593c26bde9a56e688eaee9}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{howpublished}{\url{https://isabelle.in.tum.de/}}
-      \field{note}{Accessed: 2024-12-23}
-      \field{title}{Isabelle}
-      \field{year}{1994-2024}
-    \endentry
     \entry{coq_toppage}{misc}{}
       \name{author}{1}{}{%
-        {{hash=d47c52d4add3e3728b111d5bc2db76ec}{%
-           family={Team},
-           familyi={T\bibinitperiod},
-           given={The\bibnamedelimb Coq\bibnamedelima Development},
-           giveni={T\bibinitperiod\bibinitdelim C\bibinitperiod\bibinitdelim D\bibinitperiod}}}%
+        {{un=0,uniquepart=base,hash=976193a5ec0dcaf0f8685402abb9c9d8}{%
+           family={{The Coq Development Team}},
+           familyi={T\bibinitperiod}}}%
       }
-      \strng{namehash}{d47c52d4add3e3728b111d5bc2db76ec}
-      \strng{fullhash}{d47c52d4add3e3728b111d5bc2db76ec}
-      \strng{bibnamehash}{d47c52d4add3e3728b111d5bc2db76ec}
-      \strng{authorbibnamehash}{d47c52d4add3e3728b111d5bc2db76ec}
-      \strng{authornamehash}{d47c52d4add3e3728b111d5bc2db76ec}
-      \strng{authorfullhash}{d47c52d4add3e3728b111d5bc2db76ec}
-      \field{extraname}{4}
+      \strng{namehash}{976193a5ec0dcaf0f8685402abb9c9d8}
+      \strng{fullhash}{976193a5ec0dcaf0f8685402abb9c9d8}
+      \strng{bibnamehash}{976193a5ec0dcaf0f8685402abb9c9d8}
+      \strng{authorbibnamehash}{976193a5ec0dcaf0f8685402abb9c9d8}
+      \strng{authornamehash}{976193a5ec0dcaf0f8685402abb9c9d8}
+      \strng{authorfullhash}{976193a5ec0dcaf0f8685402abb9c9d8}
       \field{sortinit}{T}
       \field{sortinithash}{9af77f0292593c26bde9a56e688eaee9}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{howpublished}{\url{https://coq.inria.fr/}}
       \field{note}{Accessed: 2024-12-23}
       \field{title}{The Coq Proof Assistant}
       \field{year}{1989-2024}
+    \endentry
+    \entry{mathlib}{inproceedings}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=28dacf0db247712272b0b405526266d3}{%
+           family={{The mathlib Community}},
+           familyi={T\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {ACM}%
+      }
+      \strng{namehash}{28dacf0db247712272b0b405526266d3}
+      \strng{fullhash}{28dacf0db247712272b0b405526266d3}
+      \strng{bibnamehash}{28dacf0db247712272b0b405526266d3}
+      \strng{authorbibnamehash}{28dacf0db247712272b0b405526266d3}
+      \strng{authornamehash}{28dacf0db247712272b0b405526266d3}
+      \strng{authorfullhash}{28dacf0db247712272b0b405526266d3}
+      \field{sortinit}{T}
+      \field{sortinithash}{9af77f0292593c26bde9a56e688eaee9}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the 9th ACM SIGPLAN International Conference on Certified Programs and Proofs}
+      \field{month}{1}
+      \field{series}{POPL ’20}
+      \field{title}{The lean mathematical library}
+      \field{year}{2020}
+      \verb{doi}
+      \verb 10.1145/3372885.3373824
+      \endverb
+      \verb{urlraw}
+      \verb http://dx.doi.org/10.1145/3372885.3373824
+      \endverb
+      \verb{url}
+      \verb http://dx.doi.org/10.1145/3372885.3373824
+      \endverb
     \endentry
   \enddatalist
 \endrefsection
