@@ -1,6 +1,0 @@
-\begin{Verbatim}[commandchars=\\\{\}]
-\PYG{k}{definition}\PYG{+w}{ }\PYG{n}{nat\PYGZus{}perms}\PYG{+w}{ }\PYG{k+kp}{where}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}nat\PYGZus{}perms ≡ bij(nat, nat) ∩ M\PYGZdq{}}
-\PYG{k}{definition}\PYG{+w}{ }\PYG{n}{Fn\PYGZus{}perm}\PYG{+w}{ }\PYG{k+kp}{where}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}Fn\PYGZus{}perm(f, p) ≡ \PYGZob{} \PYGZlt{}\PYGZlt{}f`n, m\PYGZgt{}, l\PYGZgt{} . \PYGZlt{}\PYGZlt{}n, m\PYGZgt{}, l\PYGZgt{} ∈ p \PYGZcb{}\PYGZdq{}}
-\PYG{k}{definition}\PYG{+w}{ }\PYG{n}{Fn\PYGZus{}perm\PYGZsq{}}\PYG{+w}{ }\PYG{k+kp}{where}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}Fn\PYGZus{}perm\PYGZsq{}(f) ≡ \PYGZob{} \PYGZlt{}p, Fn\PYGZus{}perm(f, p)\PYGZgt{}. p ∈ Fn \PYGZcb{}\PYGZdq{}}
-\PYG{k}{definition}\PYG{+w}{ }\PYG{n}{Fn\PYGZus{}perms}\PYG{+w}{ }\PYG{k+kp}{where}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}Fn\PYGZus{}perms ≡ \PYGZob{} Fn\PYGZus{}perm\PYGZsq{}(f). f ∈ nat\PYGZus{}perms \PYGZcb{}\PYGZdq{}}
-\end{Verbatim}

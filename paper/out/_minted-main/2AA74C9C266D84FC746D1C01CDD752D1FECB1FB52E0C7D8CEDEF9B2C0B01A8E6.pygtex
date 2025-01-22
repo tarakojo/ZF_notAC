@@ -1,8 +1,0 @@
-\begin{Verbatim}[commandchars=\\\{\}]
-\PYG{k}{consts}
-\PYG{+w}{    }\PYG{n}{length}\PYG{+w}{ }\PYG{o}{::}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}i⇒i\PYGZdq{}}
-
-\PYG{k}{primrec}
-\PYG{+w}{    }\PYG{l+s}{\PYGZdq{}length([]) = 0\PYGZdq{}}
-\PYG{+w}{    }\PYG{l+s}{\PYGZdq{}length(Cons(a,l)) = succ(length(l))\PYGZdq{}}
-\end{Verbatim}

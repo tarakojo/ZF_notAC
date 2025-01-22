@@ -1,6 +1,0 @@
-\begin{Verbatim}[commandchars=\\\{\}]
-\PYG{k}{definition}\PYG{+w}{ }\PYG{n}{Fn}\PYG{+w}{ }\PYG{k+kp}{where}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}Fn ≡ \PYGZob{} f ∈ Pow((nat × nat) × 2) ∩ M.}
-\PYG{l+s}{                function(f) ∧ domain(f) ⊆ nat × nat ∧ finite\PYGZus{}M(domain(f)) ∧ range(f) ⊆ 2 \PYGZcb{}\PYGZdq{}}
-
-\PYG{k}{definition}\PYG{+w}{ }\PYG{n}{Fn\PYGZus{}leq}\PYG{+w}{ }\PYG{k+kp}{where}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}Fn\PYGZus{}leq ≡ \PYGZob{} \PYGZlt{}f, g\PYGZgt{} ∈ Fn × Fn. g ⊆ f \PYGZcb{}\PYGZdq{}}
-\end{Verbatim}

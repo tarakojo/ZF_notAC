@@ -1,8 +1,0 @@
-\begin{Verbatim}[commandchars=\\\{\}]
-\PYG{k}{definition}\PYG{+w}{ }\PYG{n}{Fn\PYGZus{}perms\PYGZus{}filter}\PYG{+w}{ }\PYG{k+kp}{where}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}Fn\PYGZus{}perms\PYGZus{}filter ≡ \PYGZob{}}
-\PYG{l+s}{              H ∈ forcing\PYGZus{}data\PYGZus{}partial.P\PYGZus{}auto\PYGZus{}subgroups(Fn, Fn\PYGZus{}leq, M, Fn\PYGZus{}perms).}
-\PYG{l+s}{              ∃E ∈ Pow(nat) ∩ M. finite\PYGZus{}M(E) ∧ Fix(E) ⊆ H \PYGZcb{}\PYGZdq{}}
-
-\PYG{k+kn}{lemma}\PYG{+w}{ }\PYG{n}{Fn\PYGZus{}M\PYGZus{}symmetric\PYGZus{}system}\PYG{+w}{ }\PYG{o}{:}
-\PYG{+w}{    }\PYG{l+s}{\PYGZdq{}M\PYGZus{}symmetric\PYGZus{}system(Fn, Fn\PYGZus{}leq, 0, M, enum, Fn\PYGZus{}perms, Fn\PYGZus{}perms\PYGZus{}filter)\PYGZdq{}}
-\end{Verbatim}

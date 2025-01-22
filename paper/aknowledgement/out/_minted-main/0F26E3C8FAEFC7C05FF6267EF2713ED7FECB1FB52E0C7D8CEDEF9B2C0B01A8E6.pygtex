@@ -1,7 +1,0 @@
-\begin{Verbatim}[commandchars=\\\{\}]
-\PYG{k}{consts}
-\PYG{+w}{    }\PYG{n}{list}\PYG{+w}{       }\PYG{o}{::}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}i⇒i\PYGZdq{}}
-
-\PYG{k}{datatype}
-\PYG{+w}{    }\PYG{l+s}{\PYGZdq{}list(A)\PYGZdq{}}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{Nil}\PYG{+w}{ }\PYG{o}{|}\PYG{+w}{ }\PYG{n}{Cons}\PYG{+w}{ }\PYG{o}{(}\PYG{l+s}{\PYGZdq{}a ∈ A\PYGZdq{}}\PYG{o}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}l ∈ list(A)\PYGZdq{}}\PYG{o}{)}
-\end{Verbatim}

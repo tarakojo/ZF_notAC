@@ -1,7 +1,0 @@
-\begin{Verbatim}[commandchars=\\\{\}]
-\PYG{k+kn}{lemma}\PYG{+w}{ }\PYG{n}{symmetry\PYGZus{}lemma}\PYG{o}{:}
-\PYG{+w}{    }\PYG{k+kp}{fixes}\PYG{+w}{ }\PYG{n}{φ}\PYG{+w}{ }\PYG{n}{π}
-\PYG{+w}{    }\PYG{k+kp}{assumes}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}φ ∈ formula\PYGZdq{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}is\PYGZus{}P\PYGZus{}auto(π)\PYGZdq{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}π ∈ 𝒢\PYGZdq{}}
-\PYG{+w}{    }\PYG{k+kp}{shows}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}⋀env p. env ∈ list(HS) ⟹ arity(φ) ≤ length(env) ⟹ p ∈ P ⟹}
-\PYG{l+s}{                p ⊩HS φ env ⟷ π`p ⊩HS φ map(λx. Pn\PYGZus{}auto(π)`x, env)\PYGZdq{}}
-\end{Verbatim}

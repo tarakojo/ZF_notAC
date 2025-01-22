@@ -1,8 +1,0 @@
-\begin{Verbatim}[commandchars=\\\{\}]
-\PYG{k}{consts}\PYG{+w}{   }\PYG{n}{formula}\PYG{+w}{ }\PYG{o}{::}\PYG{+w}{ }\PYG{n}{i}
-\PYG{k}{datatype}
-\PYG{+w}{    }\PYG{l+s}{\PYGZdq{}formula\PYGZdq{}}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{Member}\PYG{+w}{ }\PYG{o}{(}\PYG{l+s}{\PYGZdq{}x ∈ nat\PYGZdq{}}\PYG{o}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}y ∈ nat\PYGZdq{}}\PYG{o}{)}
-\PYG{+w}{                      }\PYG{o}{|}\PYG{+w}{ }\PYG{n}{Equal}\PYG{+w}{  }\PYG{o}{(}\PYG{l+s}{\PYGZdq{}x ∈ nat\PYGZdq{}}\PYG{o}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}y ∈ nat\PYGZdq{}}\PYG{o}{)}
-\PYG{+w}{                      }\PYG{o}{|}\PYG{+w}{ }\PYG{n}{Nand}\PYG{+w}{ }\PYG{o}{(}\PYG{l+s}{\PYGZdq{}p ∈ formula\PYGZdq{}}\PYG{o}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}q ∈ formula\PYGZdq{}}\PYG{o}{)}
-\PYG{+w}{                      }\PYG{o}{|}\PYG{+w}{ }\PYG{n}{Forall}\PYG{+w}{ }\PYG{o}{(}\PYG{l+s}{\PYGZdq{}p ∈ formula\PYGZdq{}}\PYG{o}{)}
-\end{Verbatim}
