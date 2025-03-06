@@ -335,7 +335,8 @@ qed
   
 lemma P_name_induct : 
   "\<forall>x \<in> P_names. (\<forall>y. \<forall> p. <y, p> \<in> x \<longrightarrow> Q(y)) \<longrightarrow> Q(x) \<Longrightarrow> x \<in> P_names \<Longrightarrow> Q(x)"
-proof (rule_tac P_rank_induct, clarify)
+  apply (rule_tac P_rank_induct)
+proof (clarify)
   fix x assume assms: 
     "x \<in> P_names" "\<forall>y\<in>P_names. P_rank(y) < P_rank(x) \<longrightarrow> Q(y)"
     "\<forall>x\<in>P_names. (\<forall>y p. \<langle>y, p\<rangle> \<in> x \<longrightarrow> Q(y)) \<longrightarrow> Q(x)" 

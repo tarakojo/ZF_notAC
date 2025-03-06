@@ -8,7 +8,7 @@ definition rep_for_recfun_fm where
   "rep_for_recfun_fm(p, x, z, r) \<equiv> 
     Exists(Exists(Exists(And(Equal(x #+ 3, 2), And(pair_fm(x#+3, 0, z#+3), And(is_recfun_fm(p, r#+3, x#+3, 1), p))))))" 
 
-context M_ZF_trans
+context M_ctm 
 begin 
 
 lemma rep_for_recfun_fm_sats_iff :
@@ -411,13 +411,8 @@ definition is_preds_fm_Rfm_ren where "is_preds_fm_Rfm_ren(Rfm, x) \<equiv> ren(R
 
 definition is_preds_fm where "is_preds_fm(Rfm, x, S) \<equiv> Forall(Iff(Member(0, S #+ 1), is_preds_fm_Rfm_ren(Rfm, x)))" 
 
-context M_ctm
+context M_ctm 
 begin 
-
-interpretation M_ZF_trans
-  unfolding M_ZF_trans_def
-  using M_ctm_axioms M_ctm_def M_ZF_def M_ctm_axioms_def
-  by auto
 
 lemma is_preds_fm_ren_type : 
   fixes x 
@@ -543,13 +538,8 @@ definition is_preds_rel_fm where
   "is_preds_rel_fm(Rfm, x, S) \<equiv> 
     Exists(And(is_preds_fm(Rfm, x #+ 1, 0), Forall(Iff(Member(0, S #+ 2), Exists(Exists(And(pair_fm(0, 1, 2), And(Member(0, 3), And(Or(Member(1, 3), Equal(1, x #+ 4)), Rfm)))))))))"
 
-context M_ctm
+context M_ctm 
 begin 
-
-interpretation M_ZF_trans
-  unfolding M_ZF_trans_def
-  using M_ctm_axioms M_ctm_def M_ZF_def M_ctm_axioms_def
-  by auto
 
 lemma is_preds_rel_fm_type : 
   fixes Rfm x S 
@@ -970,11 +960,6 @@ definition is_preds_prel_elem_fm where
 context M_ctm 
 begin 
 
-interpretation M_ZF_trans
-  unfolding M_ZF_trans_def
-  using M_ctm_axioms M_ctm_def M_ZF_def M_ctm_axioms_def
-  by auto
-
 lemma is_preds_prel_elem_fm_type : 
   fixes Rfm x a v 
   assumes "x \<in> nat" "a \<in> nat" "v \<in> nat" "Rfm \<in> formula"
@@ -1184,11 +1169,6 @@ definition is_preds_prel_fm where
 context M_ctm 
 begin 
 
-interpretation M_ZF_trans
-  unfolding M_ZF_trans_def
-  using M_ctm_axioms M_ctm_def M_ZF_def M_ctm_axioms_def
-  by auto
-
 lemma is_preds_prel_fm_type :
   fixes Rfm x a S 
   assumes "Rfm \<in> formula" "x \<in> nat" "a \<in> nat" "S \<in> nat" 
@@ -1267,11 +1247,6 @@ definition is_wftrec_fm where "is_wftrec_fm(Gfm, Rfm, x, a, v) \<equiv> Exists(E
 
 context M_ctm 
 begin 
-
-interpretation M_ZF_trans
-  unfolding M_ZF_trans_def
-  using M_ctm_axioms M_ctm_def M_ZF_def M_ctm_axioms_def
-  by auto
 
 lemma is_wftrec_fm_type : 
   fixes Gfm Rfm x a v 

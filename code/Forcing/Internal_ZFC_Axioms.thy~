@@ -73,7 +73,7 @@ definition
 definition
   ZFC_fin :: "i" where
   "ZFC_fin \<equiv> ZF_fin \<union> {ZF_choice_fm}"
-                               
+
 lemma ZFC_fin_type : "ZFC_fin \<subseteq> formula"
   unfolding ZFC_fin_def ZF_fin_def ZFC_fm_defs by (auto)
 

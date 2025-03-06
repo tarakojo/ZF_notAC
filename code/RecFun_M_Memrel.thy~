@@ -7,13 +7,8 @@ begin
 definition InEclose where "InEclose(y, x) \<equiv> y \<in> eclose(x)"  
 definition InEclose_fm where "InEclose_fm \<equiv> Exists(And(is_eclose_fm(2, 0), Member(1, 0)))"
 
-context M_ctm
+context M_ctm 
 begin 
-
-interpretation M_ZF_trans
-  unfolding M_ZF_trans_def
-  using M_ctm_axioms M_ctm_def M_ZF_def M_ctm_axioms_def
-  by auto
 
 lemma Relation_fm_InEclose : 
   "Relation_fm(InEclose, InEclose_fm)" 
@@ -178,7 +173,7 @@ end
 
 definition is_memrel_wftrec_fm where "is_memrel_wftrec_fm(Gfm, i, j, k) \<equiv> is_wftrec_fm(Gfm, InEclose_fm, i, j, k)" 
 
-context M_ctm
+context M_ctm 
 begin 
 
 lemma is_memrel_wftrec_fm_type : 
