@@ -1,5 +1,5 @@
 theory ZF_notAC 
-  imports NotAC_Proof Wellord_AC
+  imports NotAC_Proof 
 begin
 
 
@@ -52,17 +52,6 @@ qed
 
 
 
-  thm wf_def
-      wf_on_def 
-      well_ord_def
-      choice_ax_def 
-      ordinal_def
-      surjection_def
-      transitive_set_def
-      subset_def
-      wellordered_def
-      wellfounded_on_def
-      M_ZF_trans.ac_implies_wellordering
 
 
 

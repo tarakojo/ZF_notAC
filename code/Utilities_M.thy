@@ -4,12 +4,12 @@ theory Utilities_M
     Utilities
 begin 
 
+context M_ctm
+begin 
 
 lemma to_rex : "\<And>P. \<exists>x[##M]. P(x) \<Longrightarrow> \<exists>x \<in> M. P(x)" by auto
 lemma to_rin : "(##M)(x) \<Longrightarrow> x \<in> M" by auto
 
-context M_ctm
-begin 
 lemma powerset_powerA_inter_M_helper
   : "\<forall> A \<in> M. (Pow(A) \<inter> M) \<in> M \<and> (\<forall> X \<in> M. powerset(##M, A, X) \<longrightarrow> X = (Pow(A) \<inter> M))" 
   apply (clarify)
@@ -254,6 +254,7 @@ lemma least_cong :
   unfolding least_def 
   by auto
 
-end
 
+
+end
 end
